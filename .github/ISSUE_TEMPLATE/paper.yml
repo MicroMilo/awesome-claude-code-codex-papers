@@ -16,6 +16,13 @@ body:
       description: Official proceedings, DOI, OpenReview, or arXiv URL.
     validations:
       required: true
+  - type: input
+    id: system
+    attributes:
+      label: Proposed system or benchmark name
+      description: For example, QLCoder, ZeroRepo, or Terminal-Bench 2.0.
+    validations:
+      required: true
   - type: dropdown
     id: products
     attributes:
@@ -42,7 +49,14 @@ body:
     id: evidence
     attributes:
       label: Baseline and result evidence
-      description: Quote table or section numbers and paraphrase the result. Include model and budget details when available.
+      description: Give table, figure, section, or appendix locations and paraphrase the result. Include model and budget details when available.
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Product configuration
+      description: Product/CLI version, model snapshot, reasoning mode, tool permissions, time/turn/token budget, and number of runs. Use "not reported" when needed.
     validations:
       required: true
   - type: input

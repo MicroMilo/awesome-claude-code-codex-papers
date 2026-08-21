@@ -56,3 +56,32 @@ The paper studies the pre-CLI OpenAI Codex model. These entries are retained for
 - `unknown`: the source does not establish parity clearly enough.
 
 These fields describe experimental controls, not paper quality.
+
+## Claim types
+
+- `quality`: correctness, pass rate, coverage, ranking, or another outcome-quality measure.
+- `efficiency`: latency, token use, monetary cost, throughput, or another resource measure.
+- `mixed`: the central evidence includes both quality and efficiency.
+- `diagnostic`: the paper measures behavior or failures rather than claiming an improvement.
+
+## Comparison scope
+
+- `product-level`: the proposed system and production product are compared end to end.
+- `component-level`: the main evidence isolates retrieval, planning, testing, or another component.
+- `configuration-ablation`: the product is compared under changed instructions or configuration.
+- `benchmark-only`: the product is measured without an improvement intervention.
+- `historical-model`: the result concerns the pre-CLI OpenAI Codex model.
+
+## Evidence strength
+
+- `high`: the central claim is clearly reported in a primary paper table, figure, or section.
+- `medium`: useful product-level evidence is reported, but controls or reporting are incomplete.
+- `contextual`: the product appears in a partial, secondary, or non-central comparison.
+
+Strength records how directly the catalog claim is supported. It is not a paper-quality score.
+
+## Artifact status
+
+- `official`: maintained by the paper authors or publishing organization.
+- `community`: a useful third-party implementation or reproduction.
+- `not-found`: no qualifying artifact was found during the latest catalog review.

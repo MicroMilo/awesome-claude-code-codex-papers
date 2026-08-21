@@ -1,0 +1,1164 @@
+{
+  "catalog_version": 1,
+  "reviewed_at": "2026-08-21",
+  "papers": [
+    {
+      "id": "qlcoder-2026",
+      "title": "QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities",
+      "authors": [
+        "Claire Wang",
+        "Ziyang Li",
+        "Saikat Dutta",
+        "Mayur Naik"
+      ],
+      "year": 2026,
+      "venue": "ICLR",
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "QLCoder",
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2adf01ab15adde8820622f7f24bd516b-Abstract-Conference.html",
+      "artifact_url": "https://github.com/neuralprogram/qlcoder",
+      "artifact_status": "official",
+      "arxiv_id": "2511.08462",
+      "published_at": "2025-11-11",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Sonnet 4",
+          "version": "1.0.120"
+        }
+      ],
+      "task": {
+        "summary": "CodeQL query synthesis from CVE metadata",
+        "benchmark": "176 CVEs across 111 Java projects"
+      },
+      "method": {
+        "summary": "CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback",
+        "tags": [
+          "retrieval",
+          "verifier-loop",
+          "static-analysis"
+        ]
+      },
+      "evidence": {
+        "result": "Correct-query rate 53.4% versus 10% for Claude Code-only; F1 0.70 versus 0.048 for IRIS and 0.073 for CodeQL suites.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Official abstract, main evaluation, and artifact paper environment",
+        "caveats": "Security-query synthesis is narrower than general software engineering."
+      }
+    },
+    {
+      "id": "rpg-zerorepo-2026",
+      "title": "RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation",
+      "authors": [
+        "Jane Luo",
+        "Xin Zhang",
+        "Steven Liu",
+        "Jie Wu",
+        "Jianfeng Liu",
+        "Yiming Huang",
+        "Yangyu Huang",
+        "Chengyu Yin",
+        "Ying Xin",
+        "Yuefeng Zhan",
+        "Hao Sun",
+        "Qi Chen",
+        "Scarlett Li",
+        "Mao Yang"
+      ],
+      "year": 2026,
+      "venue": "ICLR",
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "ZeroRepo",
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/9482f45fdd89aba9130bb04c44f788a9-Paper-Conference.pdf",
+      "artifact_url": "https://github.com/microsoft/RPG-ZeroRepo",
+      "artifact_status": "official",
+      "arxiv_id": "2509.16198",
+      "published_at": "2025-09-19",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude 4 Sonnet",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "o3-pro",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository-level codebase generation",
+        "benchmark": "RepoCraft"
+      },
+      "method": {
+        "summary": "Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation",
+        "tags": [
+          "structured-state",
+          "repository-graph",
+          "dependency-aware-planning",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "ZeroRepo coverage 81.5% versus Claude Code 54.2% and Codex 28.4%; pass rate 69.7% versus Claude Code 33.9%.",
+        "same_model": "no",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Section 4.3 and RepoCraft main-results table",
+        "caveats": "ZeroRepo uses o3-mini while the Claude Code baseline uses Claude 4 Sonnet, so model and harness effects are mixed."
+      }
+    },
+    {
+      "id": "artemis-2026",
+      "title": "Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing",
+      "authors": [
+        "Justin W. Lin",
+        "Eliot Krzysztof Jones",
+        "Donovan Julian Jasper",
+        "Ethan Jun-shen Ho",
+        "Anna Wu",
+        "Arnold Tianyi Yang",
+        "Neil Perry",
+        "Andy Zou",
+        "Matt Fredrikson",
+        "J. Zico Kolter",
+        "Percy Liang",
+        "Dan Boneh",
+        "Daniel E. Ho"
+      ],
+      "year": 2026,
+      "venue": "ICLR",
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "ARTEMIS",
+      "paper_url": "https://arxiv.org/abs/2512.09882",
+      "artifact_url": "https://github.com/Stanford-Trinity/ARTEMIS",
+      "artifact_status": "official",
+      "arxiv_id": "2512.09882",
+      "published_at": "2025-12-10",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Sonnet 4",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "GPT-5",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Long-horizon penetration testing in a live enterprise network",
+        "benchmark": "Approximately 8,000 hosts across 12 subnets"
+      },
+      "method": {
+        "summary": "Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting",
+        "tags": [
+          "multi-agent",
+          "dynamic-specialization",
+          "parallelism",
+          "memory",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "ARTEMIS found 9 valid vulnerabilities with an 82% valid-submission rate, ranked second overall, and outperformed 9 of 10 human participants.",
+        "same_model": "unknown",
+        "same_budget": "no",
+        "strength": "medium",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and main penetration-testing results",
+        "caveats": "Runtime limits, model combinations, safety refusals, and product policies differ across systems."
+      }
+    },
+    {
+      "id": "mlzero-2025",
+      "title": "MLZero: A Multi-Agent System for End-to-end Machine Learning Automation",
+      "authors": [
+        "Haoyang Fang",
+        "Boran Han",
+        "Nick Erickson",
+        "Xiyuan Zhang",
+        "Su Zhou",
+        "Anirudh Dagar",
+        "Jiani Zhang",
+        "Ali Caner Turkmen",
+        "Cuixiong Hu",
+        "Huzefa Rangwala",
+        "Ying Nian Wu",
+        "Bernie Wang",
+        "George Karypis"
+      ],
+      "year": 2025,
+      "venue": "NeurIPS",
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "MLZero",
+      "paper_url": "https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html",
+      "artifact_url": "https://github.com/autogluon/autogluon-assistant",
+      "artifact_status": "official",
+      "arxiv_id": "2505.13941",
+      "published_at": "2025-05-20",
+      "products": [
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "GPT-4.1 and o4-mini",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "End-to-end machine learning automation",
+        "benchmark": "MLE-Bench Lite and Multimodal AutoML Agent Benchmark"
+      },
+      "method": {
+        "summary": "Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop",
+        "tags": [
+          "multi-agent",
+          "memory",
+          "verifier-loop",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "MLZero led MLE-Bench Lite with six gold medals and achieved 0.92 success on its multimodal benchmark; one appendix setting reports 6.5% errors versus 26.9% for Codex CLI.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract, main benchmark results, and appendix error analysis",
+        "caveats": "Results concern machine-learning automation and should not be generalized to all software-engineering tasks."
+      }
+    },
+    {
+      "id": "formact-2026",
+      "title": "FormAct: Agentic Source Editing for Rich-Format Document Generation",
+      "authors": [
+        "Eugene J. Yu",
+        "Xingxing Zhang",
+        "Yuan Xia",
+        "Tao Ge",
+        "Xun Wang",
+        "FNU Kartik",
+        "Vishwas Suryanarayanan",
+        "Cheng Yang",
+        "Amanda Jiang",
+        "Jiayu Ding",
+        "Xiangyu Wong",
+        "Tengchao Lv",
+        "Lei Cui",
+        "Si-Qing Chen",
+        "Furu Wei",
+        "Sujian Li"
+      ],
+      "year": 2026,
+      "venue": "ICML",
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "FormAct",
+      "paper_url": "https://openreview.net/forum?id=n7Ta0YEcgw",
+      "artifact_status": "not-found",
+      "products": [
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Rich-format document generation and editing",
+        "benchmark": "RichDocBench and RichDocFuzz"
+      },
+      "method": {
+        "summary": "HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression",
+        "tags": [
+          "retrieval",
+          "context-reduction",
+          "verifier-loop",
+          "visual-review"
+        ]
+      },
+      "evidence": {
+        "result": "Render correctness 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate 0.760 versus 0.140.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Main comparison table and review-refinement ablation",
+        "caveats": "Codex has slightly higher content alignment, and the task is document formatting rather than source-code repair."
+      }
+    },
+    {
+      "id": "agentic-harness-engineering-2026",
+      "title": "Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses",
+      "authors": [
+        "Jiahang Lin",
+        "Shichun Liu",
+        "Chengjun Pan",
+        "Lizhi Lin",
+        "Shihan Dou",
+        "Zhiheng Xi",
+        "Xuanjing Huang",
+        "Hang Yan",
+        "Zhenhua Han",
+        "Tao Gui",
+        "Yu-Gang Jiang"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Agentic Harness Engineering",
+      "paper_url": "https://arxiv.org/abs/2604.25850",
+      "artifact_url": "https://github.com/china-qijizhifeng/agentic-harness-engineering",
+      "artifact_status": "official",
+      "arxiv_id": "2604.25850",
+      "published_at": "2026-04-28",
+      "products": [
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Automatic evolution of coding-agent harnesses",
+        "benchmark": "Terminal-Bench 2 and SWE-bench Verified"
+      },
+      "method": {
+        "summary": "Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback",
+        "tags": [
+          "harness-evolution",
+          "observability",
+          "memory",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "Terminal-Bench 2 pass@1 improves from 69.7 to 77.0, above a human-designed Codex-CLI harness at 71.9; transfer uses 12% fewer tokens on SWE-bench Verified.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and Terminal-Bench 2 transfer and ablation results",
+        "caveats": "Preprint; model, harness, and evaluation-budget effects require careful separation."
+      }
+    },
+    {
+      "id": "webdesigniter-2026",
+      "title": "WebDesignIter: Co-Evolving Design Knowledge for Repository-Level Front-End Code Generation",
+      "authors": [
+        "Zheng Pei",
+        "Mingwei Liu",
+        "Zhenxi Chen",
+        "Zihao Wang",
+        "Yanlin Wang"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "WebDesignIter",
+      "paper_url": "https://arxiv.org/abs/2607.10621",
+      "artifact_url": "https://github.com/SYSUSELab/WebDesignIter",
+      "artifact_status": "official",
+      "arxiv_id": "2607.10621",
+      "published_at": "2026-07-12",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository-level front-end code generation",
+        "benchmark": "Web-Bench"
+      },
+      "method": {
+        "summary": "Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair",
+        "tags": [
+          "structured-state",
+          "repository-graph",
+          "retrieval",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "Average Pass@2 improves by 9.55 percentage points over existing baselines; removing design knowledge reduces Pass@1 by 11.4 points.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract, main Web-Bench comparison, and design-knowledge ablation",
+        "caveats": "Front-end-specific benchmark and preprint status."
+      }
+    },
+    {
+      "id": "prefactory-2026",
+      "title": "Prefactory: Automated Discovery and Application of Library-Adoption Refactorings",
+      "authors": [
+        "Islem Bouzenia",
+        "Michael Pradel"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Prefactory",
+      "paper_url": "https://arxiv.org/abs/2607.17211",
+      "artifact_status": "not-found",
+      "arxiv_id": "2607.17211",
+      "published_at": "2026-07-19",
+      "products": [
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Discovery and application of library-adoption refactorings",
+        "benchmark": "PrefactoryBench"
+      },
+      "method": {
+        "summary": "LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests",
+        "tags": [
+          "deterministic-search",
+          "static-analysis",
+          "test-feedback",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "File-level detection 75 versus Codex 35; function-level detection 56 versus 32; 40 of 56 candidates yield test-validated refactorings.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and PrefactoryBench detection and validation results",
+        "caveats": "The strongest comparison concerns candidate detection, not universal end-to-end task success."
+      }
+    },
+    {
+      "id": "rustprint-2026",
+      "title": "RustPrint: Documentation-Guided Agentic Codebase Migration from C to Rust",
+      "authors": [
+        "Minh Le-Anh",
+        "Anh Nguyen Hoang",
+        "Bach Le",
+        "Nghi D. Q. Bui"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "RustPrint",
+      "paper_url": "https://arxiv.org/abs/2605.14634",
+      "artifact_status": "not-found",
+      "arxiv_id": "2605.14634",
+      "published_at": "2026-05-14",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Whole-codebase migration from C to Rust",
+        "benchmark": "Eight real C repositories from 11K to 84K lines of code"
+      },
+      "method": {
+        "summary": "Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation",
+        "tags": [
+          "structured-state",
+          "dependency-aware-planning",
+          "verifier-loop",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "In the reported Kimi-K2-Instruct setting, feature preservation is 93.26% versus 52.52% for agentic Claude Code; cross-evaluation test pass is 95.17% versus 79.85%.",
+        "same_model": "no",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and feature-preservation and cross-evaluation results",
+        "caveats": "The comparison mixes model and scaffold choices and is specific to C-to-Rust migration."
+      }
+    },
+    {
+      "id": "repoomp-2026",
+      "title": "RepoOMP: Repository-Aware Hotspot OpenMP Parallelization via Dependency-Aware Context Reduction",
+      "authors": [
+        "Yongjie Qian",
+        "Ke Gao",
+        "Zhibin Zhang",
+        "Shaohui Peng",
+        "Ling Li"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "RepoOMP",
+      "paper_url": "https://arxiv.org/abs/2608.05855",
+      "artifact_url": "https://github.com/Qlalq/RepoOMP_Simplified",
+      "artifact_status": "official",
+      "arxiv_id": "2608.05855",
+      "published_at": "2026-08-06",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository-aware OpenMP hotspot parallelization",
+        "benchmark": "951 hotspots including 330 accepted real-world hotspots"
+      },
+      "method": {
+        "summary": "Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation",
+        "tags": [
+          "repository-graph",
+          "context-reduction",
+          "deterministic-search",
+          "performance-feedback",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "Across nine detailed kernels, speedup improves 18% to 28% and token cost falls 47% to 68% relative to unstructured Claude Code.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and nine-kernel cross-backbone comparison",
+        "caveats": "Domain-specific high-performance-computing task and preprint status."
+      }
+    },
+    {
+      "id": "icat-agent-2026",
+      "title": "Unlocking Model Potentials Through Adaptive Multi-Agent Scaffolding for Efficient Issue Resolution",
+      "authors": [
+        "Yang Chen",
+        "Aliya Ahmad",
+        "Yiheng Zhou",
+        "Reyhaneh Jabbarvand"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "icat-agent",
+      "paper_url": "https://arxiv.org/abs/2606.25514",
+      "artifact_status": "not-found",
+      "arxiv_id": "2606.25514",
+      "published_at": "2026-06-24",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository issue resolution",
+        "benchmark": "SWE-bench Verified and SWE-bench Pro"
+      },
+      "method": {
+        "summary": "Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback",
+        "tags": [
+          "multi-agent",
+          "dynamic-specialization",
+          "parallelism",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "SWE-bench Verified improves 3.6 to 8.4 percentage points and SWE-bench Pro 6.3 to 18.5 points; average cost is $1.18 lower than multi-agent Claude Code.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and SWE-bench Verified and Pro comparisons",
+        "caveats": "Exact model parity varies by reported configuration; preprint."
+      }
+    },
+    {
+      "id": "co-coder-2026",
+      "title": "When Parallelism Pays Off: Cohesion-Aware Task Partitioning for Multi-Agent Coding",
+      "authors": [
+        "Xu Yang",
+        "Lunyiu Nie",
+        "Ethan Chandra",
+        "Stanislav Gannutin",
+        "Fangru Lin",
+        "Swarat Chaudhuri"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Co-Coder",
+      "paper_url": "https://arxiv.org/abs/2606.00953",
+      "artifact_url": "https://github.com/Flitternie/CoCoder",
+      "artifact_status": "official",
+      "arxiv_id": "2606.00953",
+      "published_at": "2026-05-31",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "Agent Teams"
+        }
+      ],
+      "task": {
+        "summary": "Parallel multi-agent coding",
+        "benchmark": "28 DevEval and CodeProjectEval tasks"
+      },
+      "method": {
+        "summary": "Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling",
+        "tags": [
+          "repository-graph",
+          "dependency-aware-planning",
+          "multi-agent",
+          "parallelism"
+        ]
+      },
+      "evidence": {
+        "result": "Pass rate improves 14.0%, wall-clock speedup reaches 2.10x, and API cost falls 35% relative to Claude Code Agent Teams and simpler schedules.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "medium",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Abstract and DevEval and CodeProjectEval comparisons",
+        "caveats": "Small 28-task evaluation and preprint status."
+      }
+    },
+    {
+      "id": "agents-md-impact-2026",
+      "title": "On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents",
+      "authors": [
+        "Jai Lal Lulla",
+        "Seyedmoein Mohsenimofidi",
+        "Matthias Galster",
+        "Jie M. Zhang",
+        "Sebastian Baltes",
+        "Christoph Treude"
+      ],
+      "year": 2026,
+      "venue": "ICSE JAWs",
+      "publication_status": "workshop",
+      "classification": "direct",
+      "system": "AGENTS.md",
+      "paper_url": "https://conf.researchr.org/details/icse-2026/jaws-2026-papers/31/On-the-Impact-of-AGENTS-md-Files-on-the-Efficiency-of-AI-Coding-Agents",
+      "artifact_status": "not-found",
+      "arxiv_id": "2601.20404",
+      "published_at": "2026-01-28",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Real pull-request tasks with and without repository instructions",
+        "benchmark": "10 repositories and 124 pull requests"
+      },
+      "method": {
+        "summary": "Persistent repository-level build, test, style, and directory guidance in AGENTS.md",
+        "tags": [
+          "repository-instructions",
+          "structured-state",
+          "context-reduction"
+        ]
+      },
+      "evidence": {
+        "result": "Median runtime falls 28.64% and output tokens fall 16.58% with comparable completion behavior.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "efficiency",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "Abstract and with-versus-without AGENTS.md results",
+        "caveats": "Workshop study and configuration intervention rather than a standalone agent."
+      }
+    },
+    {
+      "id": "codegrep-2026",
+      "title": "CodeGrep: An RL-Trained Retrieval Agent for LLM Coding Agents",
+      "authors": [
+        "Wuya Chen",
+        "Yihao Yang",
+        "Yang Cao",
+        "Yue Lin"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "related",
+      "system": "CodeGrep",
+      "paper_url": "https://arxiv.org/abs/2608.05886",
+      "artifact_status": "not-found",
+      "arxiv_id": "2608.05886",
+      "published_at": "2026-08-06",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "not-reported",
+          "version": "Claude-Code-like agent"
+        }
+      ],
+      "task": {
+        "summary": "Repository retrieval for issue resolution",
+        "benchmark": "SWE-bench Verified"
+      },
+      "method": {
+        "summary": "GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent",
+        "tags": [
+          "retrieval",
+          "context-reduction",
+          "parallelism"
+        ]
+      },
+      "evidence": {
+        "result": "Resolve rate 27.0% versus 25.8% without retrieval; resolved tasks use 15% fewer rounds and 19% fewer tokens.",
+        "same_model": "yes",
+        "same_budget": "unknown",
+        "strength": "contextual",
+        "claim_type": "mixed",
+        "comparison_scope": "component-level",
+        "source_location": "Abstract and frozen-agent retrieval comparison",
+        "caveats": "The clean numeric comparison is against a frozen no-retrieval downstream agent, not necessarily the released Claude Code CLI."
+      }
+    },
+    {
+      "id": "scate-2026",
+      "title": "SCATE: Learning to Supervise Coding Agents for Cost-Effective Test Generation",
+      "authors": [
+        "Sijia Gu",
+        "Noor Nashid",
+        "Ali Mesbah"
+      ],
+      "year": 2026,
+      "venue": "arXiv",
+      "publication_status": "preprint",
+      "classification": "related",
+      "system": "SCATE",
+      "paper_url": "https://arxiv.org/abs/2607.08983",
+      "artifact_status": "not-found",
+      "arxiv_id": "2607.08983",
+      "published_at": "2026-07-09",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Automated test generation",
+        "benchmark": "Repository-level test-generation benchmark"
+      },
+      "method": {
+        "summary": "Contextual-bandit supervisor that selects testing actions from current coverage and testability state",
+        "tags": [
+          "test-feedback",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "Line coverage improves 32.3% and branch coverage 30.9% over agent-only Gemini CLI; adaptation is also evaluated with Claude Code.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "contextual",
+        "claim_type": "quality",
+        "comparison_scope": "component-level",
+        "source_location": "Abstract and cross-agent adaptation experiment",
+        "caveats": "The abstract does not provide an equally complete numeric head-to-head against Claude Code."
+      }
+    },
+    {
+      "id": "terminal-bench-2-2026",
+      "title": "Terminal-Bench 2.0: Advancing Agentic Terminal Intelligence through Better Evaluation and Verification",
+      "authors": [
+        "Mike A. Merrill",
+        "Alexander G. Shaw",
+        "Nicholas Carlini",
+        "Boxuan Li",
+        "Harsh Raj",
+        "Ivan Bercovich",
+        "Lin Shi",
+        "Jeong Yeon Shin",
+        "Thomas Walshe",
+        "E. Kelly Buchanan",
+        "Junhong Shen",
+        "Guanghao Ye",
+        "Haowei Lin",
+        "Jason Poulos",
+        "Maoyu Wang",
+        "Marianna Nezhurina",
+        "Jenia Jitsev",
+        "Di Lu",
+        "Orfeas Menis Mastromichalakis",
+        "Zhiwei Xu",
+        "Zizhao Chen",
+        "Yue Liu",
+        "Robert Zhang",
+        "Leon Liangyu Chen",
+        "Anurag Kashyap",
+        "Jan-Lucas Uslu",
+        "Jeffrey Li",
+        "Jianbo Wu",
+        "Minghao Yan",
+        "Song Bian",
+        "Vedang Sharma",
+        "Ke Sun",
+        "Steven Dillmann",
+        "Akshay Anand",
+        "Andrew Lanpouthakoun",
+        "Bardia Koopah",
+        "Changran Hu",
+        "Etash Guha",
+        "Gabriel H. S. Dreiman",
+        "Jiacheng Zhu",
+        "Karl Krauth",
+        "Li Zhong",
+        "Niklas Muennighoff",
+        "Robert Amanfu",
+        "Shangyin Tan",
+        "Shreyas Pimpalgaonkar",
+        "Tushar Aggarwal",
+        "Xiangning Lin",
+        "Xin Lan",
+        "Xuandong Zhao",
+        "Yiqing Liang",
+        "Yuanli Wang",
+        "Zilong Wang",
+        "Changzhi Zhou",
+        "David Heineman",
+        "Hange Liu",
+        "Harsh Trivedi",
+        "John Yang",
+        "Junhong Lin",
+        "Manish Shetty",
+        "Michael Yang",
+        "Nabil Omi",
+        "Negin Raoof",
+        "Shanda Li",
+        "Terry Yue Zhuo",
+        "Wuwei Lin",
+        "Yiwei Dai",
+        "Yuxin Wang",
+        "Wenhao Chai",
+        "Shang Zhou",
+        "Dariush Wahdany",
+        "Ziyu She",
+        "Jiaming Hu",
+        "Zhikang Dong",
+        "Yuxuan Zhu",
+        "Sasha Cui",
+        "Ahson Saiyed",
+        "Arinbjörn Kolbeinsson",
+        "Jesse Hu",
+        "Christopher Michael Rytting",
+        "Ryan Marten",
+        "Yixin Wang",
+        "Alex Dimakis",
+        "Andy Konwinski",
+        "Ludwig Schmidt"
+      ],
+      "year": 2026,
+      "venue": "ICLR",
+      "publication_status": "main",
+      "classification": "evaluation",
+      "system": "Terminal-Bench 2.0",
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/444a3737adaee10d86ad2ef5f74468e6-Paper-Conference.pdf",
+      "artifact_url": "https://github.com/harbor-framework/terminal-bench-2",
+      "artifact_status": "official",
+      "arxiv_id": "2601.11868",
+      "published_at": "2026-01-17",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Opus 4.5",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.2",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "General terminal-agent evaluation",
+        "benchmark": "Terminal-Bench 2.0"
+      },
+      "method": {
+        "summary": "Evaluation-only benchmark with stronger task verification and a neutral terminal scaffold",
+        "tags": [
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "GPT-5.2 with Codex CLI scores 62.9; Claude Opus 4.5 scores 57.8 with Terminus 2 and 52.1 with Claude Code.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Main agent and model results table",
+        "caveats": "Benchmark result; differences can reflect both model and harness, and no new method is proposed to beat the products."
+      }
+    },
+    {
+      "id": "bountybench-2025",
+      "title": "BountyBench: Dollar Impact of AI Agent Attackers and Defenders on Real-World Cybersecurity Systems",
+      "authors": [
+        "Andy K. Zhang",
+        "Joey Ji",
+        "Celeste Menders",
+        "Riya Dulepet",
+        "Thomas Qin",
+        "Ron Y. Wang",
+        "Junrong Wu",
+        "Kyleen Liao",
+        "Jiliang Li",
+        "Jinghan Hu",
+        "Sara Hong",
+        "Nardos Demilew",
+        "Shivatmica Murgai",
+        "Jason Tran",
+        "Nishka Kacheria",
+        "Ethan Ho",
+        "Denis Liu",
+        "Lauren McLane",
+        "Olivia Bruvik",
+        "Dai-Rong Han",
+        "Seungwoo Kim",
+        "Akhil Vyas",
+        "Cuiyuanxiu Chen",
+        "Ryan Li",
+        "Weiran Xu",
+        "Jonathan Z. Ye",
+        "Prerit Choudhary",
+        "Siddharth M. Bhatia",
+        "Vikram Sivashankar",
+        "Yuxuan Bao",
+        "Dawn Song",
+        "Dan Boneh",
+        "Daniel E. Ho",
+        "Percy Liang"
+      ],
+      "year": 2025,
+      "venue": "NeurIPS",
+      "publication_status": "dataset-benchmark",
+      "classification": "evaluation",
+      "system": "BountyBench",
+      "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html",
+      "artifact_url": "https://github.com/bountybench/bountybench",
+      "artifact_status": "official",
+      "arxiv_id": "2505.15216",
+      "published_at": "2025-05-21",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "not-reported",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "o3-high and o4-mini",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Vulnerability detection, exploitation, and patching",
+        "benchmark": "BountyBench"
+      },
+      "method": {
+        "summary": "Evaluation-only benchmark of offensive and defensive cybersecurity agents",
+        "tags": [
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "Codex o3-high detects 12.5% and patches 90%; Claude Code patches 87.5% and exploits 57.5% in the reported settings.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Official abstract and agent task-results tables",
+        "caveats": "Benchmark-only evidence across different tasks and model configurations."
+      }
+    },
+    {
+      "id": "engineering-pitfalls-2026",
+      "title": "Engineering Pitfalls in AI Coding Tools: An Empirical Study of Bugs in Claude Code, Codex, and Gemini CLI",
+      "authors": [
+        "Ruixin Zhang",
+        "Wuyang Dai",
+        "Hung Viet Pham",
+        "Gias Uddin",
+        "Jinqiu Yang",
+        "Song Wang"
+      ],
+      "year": 2026,
+      "venue": "FSE Industry Track",
+      "publication_status": "conference",
+      "classification": "evaluation",
+      "system": "Bug taxonomy",
+      "paper_url": "https://conf.researchr.org/details/fse-2026/fse-2026-industry-papers/12/Engineering-Pitfalls-in-AI-Coding-Tools-An-Empirical-Study-of-Bugs-in-Claude-Code-C",
+      "artifact_status": "not-found",
+      "arxiv_id": "2603.20847",
+      "doi": "10.1145/3803437.3805213",
+      "published_at": "2026-03-21",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "not-applicable",
+          "version": "multiple"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "not-applicable",
+          "version": "multiple"
+        }
+      ],
+      "task": {
+        "summary": "Empirical analysis of product bug reports",
+        "benchmark": "More than 3,800 reported bugs"
+      },
+      "method": {
+        "summary": "Evaluation-only manual taxonomy of functionality, integration, invocation, and command-execution failures",
+        "tags": [
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "More than 67% of studied bugs concern functionality; API, integration, and configuration account for 36.9% of root causes.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Abstract and root-cause, symptom, and workflow-stage findings",
+        "caveats": "Failure-taxonomy study; it does not propose an agent that outperforms the products."
+      }
+    },
+    {
+      "id": "ticoder-2022",
+      "title": "Interactive Code Generation via Test-Driven User-Intent Formalization",
+      "authors": [
+        "Shuvendu K. Lahiri",
+        "Sarah Fakhoury",
+        "Aaditya Naik",
+        "Georgios Sakkas",
+        "Saikat Chakraborty",
+        "Madanlal Musuvathi",
+        "Piali Choudhury",
+        "Curtis von Veh",
+        "Jeevana Priya Inala",
+        "Chenglong Wang",
+        "Jianfeng Gao"
+      ],
+      "year": 2022,
+      "venue": "AST at ICSE",
+      "publication_status": "workshop",
+      "classification": "historical",
+      "system": "TiCoder",
+      "paper_url": "https://arxiv.org/abs/2208.05950",
+      "artifact_url": "https://github.com/microsoft/TiCoder",
+      "artifact_status": "official",
+      "arxiv_id": "2208.05950",
+      "published_at": "2022-08-11",
+      "products": [
+        {
+          "product": "openai-codex-model",
+          "role": "historical-baseline",
+          "model": "OpenAI Codex",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Interactive function-level code generation",
+        "benchmark": "MBPP and HumanEval"
+      },
+      "method": {
+        "summary": "Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs",
+        "tags": [
+          "test-feedback",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "With one to five simulated user queries, Codex pass@1 gains 22.49 to 37.71 points on MBPP and 24.79 to 53.98 points on HumanEval.",
+        "same_model": "yes",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "historical-model",
+        "source_location": "MBPP and HumanEval evaluation section",
+        "caveats": "This is the historical OpenAI Codex model, not the modern Codex CLI product."
+      }
+    }
+  ]
+}

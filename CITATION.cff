@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If this catalog supports your research, please cite the repository and the original papers you use."
+title: "Awesome Claude Code & Codex Papers"
+type: dataset
+authors:
+  - name: MicroMilo
+repository-code: "https://github.com/MicroMilo/awesome-claude-code-codex-papers"
+url: "https://github.com/MicroMilo/awesome-claude-code-codex-papers"
+abstract: "An evidence-first catalog of research papers that evaluate, analyze, or improve Claude Code and Codex CLI as production coding-agent products."
+keywords:
+  - coding agents
+  - Claude Code
+  - Codex CLI
+  - agentic software engineering
+  - benchmarks
+  - harness engineering
+license: MIT
+version: 0.1.0
+date-released: "2026-08-21"

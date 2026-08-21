@@ -48,10 +48,18 @@ def invariant_errors(catalog: dict) -> list[str]:
         errors.append(f"duplicate paper id: {duplicate}")
     for duplicate in duplicate_values([paper.get("title", "") for paper in papers]):
         errors.append(f"duplicate paper title: {duplicate}")
+    arxiv_ids = [paper["arxiv_id"] for paper in papers if paper.get("arxiv_id")]
+    for duplicate in duplicate_values(arxiv_ids):
+        errors.append(f"duplicate arXiv id: {duplicate}")
+    dois = [paper["doi"].lower() for paper in papers if paper.get("doi")]
+    for duplicate in duplicate_values(dois):
+        errors.append(f"duplicate DOI: {duplicate}")
 
     for paper in papers:
         paper_id = paper.get("id", "<missing-id>")
         classification = paper.get("classification")
+        artifact_status = paper.get("artifact_status")
+        artifact_url = paper.get("artifact_url")
         products = paper.get("products", [])
         product_ids = [item.get("product") for item in products]
 
@@ -75,6 +83,24 @@ def invariant_errors(catalog: dict) -> list[str]:
             errors.append(f"{paper_id}: historical entries require a historical product")
         if classification != "historical" and has_historical_product:
             errors.append(f"{paper_id}: historical products must use historical classification")
+
+        if artifact_status in {"official", "community"} and not artifact_url:
+            errors.append(f"{paper_id}: {artifact_status} artifact requires artifact_url")
+        if artifact_status == "not-found" and artifact_url:
+            errors.append(f"{paper_id}: not-found artifact cannot include artifact_url")
+
+        comparison_scope = paper.get("evidence", {}).get("comparison_scope")
+        expected_scopes = {
+            "direct": {"product-level", "configuration-ablation"},
+            "related": {"component-level", "configuration-ablation"},
+            "evaluation": {"benchmark-only"},
+            "historical": {"historical-model"},
+        }
+        if comparison_scope not in expected_scopes.get(classification, set()):
+            errors.append(
+                f"{paper_id}: comparison scope {comparison_scope!r} does not match "
+                f"classification {classification!r}"
+            )
 
     return errors
 

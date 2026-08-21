@@ -1,0 +1,53 @@
+name: Correct a catalog record
+description: Report incorrect metadata, evidence, classification, or a broken primary link.
+title: "[Correction]: "
+labels: [metadata-correction]
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Catalog record
+      description: Paper title, system name, or catalog ID.
+    validations:
+      required: true
+  - type: dropdown
+    id: correction_type
+    attributes:
+      label: Correction type
+      options:
+        - Product, model, or version
+        - Venue or publication status
+        - Method or task description
+        - Quantitative result
+        - Comparison fairness or caveat
+        - Authors or identifiers
+        - Artifact or broken link
+        - Other metadata
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current catalog statement
+    validations:
+      required: true
+  - type: textarea
+    id: corrected
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary-source URL
+      description: Link to the paper, proceedings, DOI, OpenReview, arXiv, or official artifact.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: The correction is supported by the linked primary source.
+          required: true
