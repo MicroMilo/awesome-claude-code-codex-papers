@@ -1,0 +1,61 @@
+name: Suggest a paper
+description: Suggest a paper that evaluates, analyzes, or improves a production coding agent.
+title: "[Paper]: "
+labels: [paper-candidate]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Paper title
+    validations:
+      required: true
+  - type: input
+    id: paper_url
+    attributes:
+      label: Primary-source URL
+      description: Official proceedings, DOI, OpenReview, or arXiv URL.
+    validations:
+      required: true
+  - type: dropdown
+    id: products
+    attributes:
+      label: Products studied
+      multiple: true
+      options:
+        - Claude Code
+        - Codex CLI
+        - Historical OpenAI Codex model
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Suggested evidence class
+      options:
+        - Direct comparison
+        - Related method
+        - Evaluation only
+        - Historical model
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Baseline and result evidence
+      description: Quote table or section numbers and paraphrase the result. Include model and budget details when available.
+    validations:
+      required: true
+  - type: input
+    id: artifact_url
+    attributes:
+      label: Artifact URL
+      description: Optional official code, data, or reproduction repository.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I linked a primary research source rather than a blog summary.
+          required: true
+        - label: The paper studies the product agent, not only a model from the same vendor.
+          required: true
