@@ -31,6 +31,15 @@ def test_generated_readme_is_current() -> None:
     assert result.returncode == 0, result.stderr
 
 
+def test_readmes_are_concise_website_entry_points() -> None:
+    website_url = "https://micromilo.github.io/awesome-claude-code-codex-papers/"
+    for filename in ("README.md", "README.zh-CN.md"):
+        text = (ROOT / filename).read_text(encoding="utf-8")
+        assert website_url in text
+        assert "CATALOG:DIRECT" not in text
+        assert len(text.splitlines()) < 100
+
+
 def test_link_scan_excludes_dependencies_and_build_outputs(tmp_path: Path, monkeypatch) -> None:
     (tmp_path / "README.md").write_text("# Project\n", encoding="utf-8")
     for directory in ("node_modules", "dist", ".next", ".wrangler"):

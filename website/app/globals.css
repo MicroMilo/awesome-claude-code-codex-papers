@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --ink: #0d1718;
   --ink-soft: #334445;
@@ -9,6 +7,8 @@
   --coral: #f16f51;
   --cyan: #4bcbd5;
   --mint: #7be0a9;
+  --font-geist-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * {

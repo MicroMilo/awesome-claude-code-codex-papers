@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type ProductId = "claude-code" | "codex-cli" | "openai-codex-model";
