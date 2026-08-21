@@ -8,8 +8,8 @@ All notable catalog and schema changes are recorded here.
 
 - Interactive bilingual research catalog with full-text search and product, evidence, fairness, venue, and method filters
 - Expandable paper evidence dossiers and recurring-method summaries
-- Host-aware social sharing metadata and a dedicated Open Graph card
-- Website build, server-rendering, catalog-parity, lint, and dependency-audit checks in CI
+- GitHub Pages deployment with static social-sharing metadata and a dedicated Open Graph card
+- Website build, component-rendering, catalog-parity, lint, and dependency-audit checks in CI
 
 ### Planned
 

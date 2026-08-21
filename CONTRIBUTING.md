@@ -33,10 +33,10 @@ same_budget: unknown
 3. Record authors, identifiers, system name, artifact status, and publication date from primary sources.
 4. Choose the narrowest correct evidence class and comparison scope.
 5. Record where the supporting result appears in the paper.
-6. Run `make build` to regenerate READMEs, both JSON exports, views, and paper dossiers.
+6. Run `make build` to regenerate README stats, both JSON exports, views, and paper dossiers.
 7. Run `make check` and `make site-check` before opening a pull request.
 
-Do not manually edit content between `CATALOG:*:START` and `CATALOG:*:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
+Do not manually edit content between the `CATALOG:STATS:START` and `CATALOG:STATS:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
 
 ## Required source checks
 

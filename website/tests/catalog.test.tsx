@@ -1,0 +1,43 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+import { renderToStaticMarkup } from "react-dom/server";
+import { CatalogExplorer, type Paper } from "../app/CatalogExplorer";
+import catalog from "../data/catalog.json";
+
+test("renders the complete research catalog", () => {
+  const html = renderToStaticMarkup(
+    <CatalogExplorer
+      papers={catalog.papers as Paper[]}
+      reviewedAt={catalog.reviewed_at}
+    />,
+  );
+
+  assert.match(html, /What actually beats/);
+  assert.match(html, /Claude Code &amp; Codex\?/);
+  assert.match(html, /QLCoder/);
+  assert.match(html, /Star the repository/);
+  assert.match(
+    html,
+    /https:\/\/github\.com\/MicroMilo\/awesome-claude-code-codex-papers/,
+  );
+});
+
+test("ships GitHub Pages metadata without OpenAI hosting references", async () => {
+  const html = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+
+  assert.match(html, /<title>Awesome Claude Code &amp; Codex Papers<\/title>/i);
+  assert.match(
+    html,
+    /https:\/\/micromilo\.github\.io\/awesome-claude-code-codex-papers\/og\.png/,
+  );
+  assert.doesNotMatch(html, /chatgpt\.site|openai|vinext|wrangler/i);
+});
+
+test("site catalog mirrors the repository JSON export", async () => {
+  const repositoryCatalog = JSON.parse(
+    await readFile(new URL("../../data/papers.json", import.meta.url), "utf8"),
+  );
+
+  assert.deepEqual(catalog, repositoryCatalog);
+});

@@ -2,13 +2,13 @@
   "name": "Awesome Claude Code & Codex Papers",
   "short_name": "Agent Papers",
   "description": "Evidence-first research on production coding agents.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f1eee5",
   "theme_color": "#0d1718",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

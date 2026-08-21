@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build README tables, paper dossiers, research views, and JSON export."""
+"""Build README stats, paper dossiers, research views, and JSON exports."""
 
 from __future__ import annotations
 
@@ -18,19 +18,6 @@ README_PATH = ROOT / "README.md"
 README_ZH_PATH = ROOT / "README.zh-CN.md"
 
 GENERATED_NOTICE = "<!-- Generated from data/papers.yaml; do not edit by hand. -->"
-
-SECTIONS = {
-    "direct": ("<!-- CATALOG:DIRECT:START -->", "<!-- CATALOG:DIRECT:END -->"),
-    "related": ("<!-- CATALOG:RELATED:START -->", "<!-- CATALOG:RELATED:END -->"),
-    "evaluation": (
-        "<!-- CATALOG:EVALUATION:START -->",
-        "<!-- CATALOG:EVALUATION:END -->",
-    ),
-    "historical": (
-        "<!-- CATALOG:HISTORICAL:START -->",
-        "<!-- CATALOG:HISTORICAL:END -->",
-    ),
-}
 
 STATS_MARKERS = ("<!-- CATALOG:STATS:START -->", "<!-- CATALOG:STATS:END -->")
 
@@ -195,14 +182,9 @@ def replace_section(text: str, start: str, end: str, content: str) -> str:
     return updated
 
 
-def render_marked_readme(path: Path, catalog: dict, language: str) -> str:
+def render_marked_readme(path: Path, catalog: dict) -> str:
     text = path.read_text(encoding="utf-8")
-    text = replace_section(text, *STATS_MARKERS, generate_stats(catalog))
-    papers = catalog["papers"]
-    for classification, (start, end) in SECTIONS.items():
-        selected = [paper for paper in papers if paper["classification"] == classification]
-        text = replace_section(text, start, end, generate_table(selected, language))
-    return text
+    return replace_section(text, *STATS_MARKERS, generate_stats(catalog))
 
 
 def short_authors(paper: dict) -> str:
@@ -521,8 +503,8 @@ def render_all() -> dict[Path, str]:
     catalog = load_catalog()
     catalog_json = json.dumps(catalog, indent=2, ensure_ascii=False) + "\n"
     outputs = {
-        README_PATH: render_marked_readme(README_PATH, catalog, "en"),
-        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, "zh"),
+        README_PATH: render_marked_readme(README_PATH, catalog),
+        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog),
         ROOT / "data" / "papers.json": catalog_json,
         ROOT / "website" / "data" / "catalog.json": catalog_json,
         ROOT / "papers" / "README.md": render_paper_index(catalog),
