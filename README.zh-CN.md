@@ -29,6 +29,10 @@
 </p>
 <!-- CATALOG:STATS:END -->
 
+<p align="center">
+  <a href="https://awesome-claude-code-codex-papers.osako6947.chatgpt.site"><strong>打开可交互论文目录 →</strong></a>
+</p>
+
 这是一个以证据为核心的论文库，研究对象是完整的 **Claude Code** 与 **Codex CLI** 产品，而不只是 Claude 或 GPT 系列模型。每篇论文都记录 baseline 配置、任务、新增方法、论文结果、实验控制、风险说明和官方 artifact。
 
 > [!IMPORTANT]
@@ -81,6 +85,9 @@
 
 这些论文把提出的方法与 Claude Code 或 Codex CLI 做了数值比较。“直接”不代表模型和预算相同，请同时查看可比性字段和论文证据页。
 
+<details>
+<summary><strong>展开原始直接对比表</strong></summary>
+
 <!-- CATALOG:DIRECT:START -->
 | 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
@@ -99,6 +106,8 @@
 | **[MLZero](papers/mlzero-2025.md)**<br>[paper](https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html) · [artifact](https://github.com/autogluon/autogluon-assistant) | NeurIPS 2025<br>main | Codex CLI (GPT-4.1 and o4-mini) | End-to-end machine learning automation | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop<br>`multi-agent` `memory` `verifier-loop` `test-feedback` | MLZero led MLE-Bench Lite with six gold medals and achieved 0.92 success on its multimodal benchmark; one appendix setting reports 6.5% errors versus 26.9% for Codex CLI. | model: unknown<br>budget: unknown<br>evidence: medium |
 <!-- CATALOG:DIRECT:END -->
 
+</details>
+
 ## 反复出现的有效方法
 
 1. **持久化仓库状态**：把计划、架构、依赖和设计知识放到上下文窗口之外。
@@ -114,6 +123,9 @@
 
 这些论文包含有用的产品证据，但主要数值可能来自组件实验或其他 agent，不构成严格的 Claude Code/Codex CLI 正面对比。
 
+<details>
+<summary><strong>展开原始相关方法表</strong></summary>
+
 <!-- CATALOG:RELATED:START -->
 | 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
@@ -121,9 +133,14 @@
 | **[SCATE](papers/scate-2026.md)**<br>[paper](https://arxiv.org/abs/2607.08983) | arXiv 2026<br>preprint | Claude Code | Automated test generation | Contextual-bandit supervisor that selects testing actions from current coverage and testability state<br>`test-feedback` `verifier-loop` | Line coverage improves 32.3% and branch coverage 30.9% over agent-only Gemini CLI; adaptation is also evaluated with Claude Code. | model: unknown<br>budget: unknown<br>evidence: contextual |
 <!-- CATALOG:RELATED:END -->
 
+</details>
+
 ## 仅评测论文
 
 这些论文负责 benchmark、测量或故障分析，没有提出专门超越产品的新方法。
+
+<details>
+<summary><strong>展开原始评测论文表</strong></summary>
 
 <!-- CATALOG:EVALUATION:START -->
 | 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
@@ -133,15 +150,22 @@
 | **[BountyBench](papers/bountybench-2025.md)**<br>[paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html) · [artifact](https://github.com/bountybench/bountybench) | NeurIPS 2025<br>dataset benchmark | Claude Code<br>Codex CLI (o3-high and o4-mini) | Vulnerability detection, exploitation, and patching | Evaluation-only benchmark of offensive and defensive cybersecurity agents<br>`verifier-loop` | Codex o3-high detects 12.5% and patches 90%; Claude Code patches 87.5% and exploits 57.5% in the reported settings. | model: unknown<br>budget: unknown<br>evidence: high |
 <!-- CATALOG:EVALUATION:END -->
 
+</details>
+
 ## 旧 OpenAI Codex 模型论文
 
 这些论文研究的是 Codex CLI 出现前的 OpenAI Codex 模型，不与现代 Codex CLI 结果混合。
+
+<details>
+<summary><strong>展开原始历史模型表</strong></summary>
 
 <!-- CATALOG:HISTORICAL:START -->
 | 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
 | **[TiCoder](papers/ticoder-2022.md)**<br>[paper](https://arxiv.org/abs/2208.05950) · [artifact](https://github.com/microsoft/TiCoder) | AST at ICSE 2022<br>workshop | OpenAI Codex model (OpenAI Codex) | Interactive function-level code generation | Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs<br>`test-feedback` `verifier-loop` | With one to five simulated user queries, Codex pass@1 gains 22.49 to 37.71 points on MBPP and 24.79 to 53.98 points on HumanEval. | model: same<br>budget: different<br>evidence: high |
 <!-- CATALOG:HISTORICAL:END -->
+
+</details>
 
 ## 数据与自动校验
 

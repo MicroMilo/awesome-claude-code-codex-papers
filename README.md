@@ -29,6 +29,10 @@
 </p>
 <!-- CATALOG:STATS:END -->
 
+<p align="center">
+  <a href="https://awesome-claude-code-codex-papers.osako6947.chatgpt.site"><strong>Open the interactive research catalog →</strong></a>
+</p>
+
 This repository is an evidence-first catalog of papers that study **Claude Code** and **Codex CLI** as complete products—not merely Claude or GPT-family models. It records the baseline configuration, task, intervention, reported result, comparison controls, caveats, and official artifacts.
 
 > [!IMPORTANT]
@@ -81,6 +85,9 @@ Excluded from the primary catalog:
 
 These papers numerically compare a proposed method with Claude Code or Codex CLI. “Direct” does not imply same-model or same-budget parity—check the controls column and linked dossier.
 
+<details>
+<summary><strong>Open the raw direct-comparison table</strong></summary>
+
 <!-- CATALOG:DIRECT:START -->
 | System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
 |---|---|---|---|---|---|---|
@@ -99,6 +106,8 @@ These papers numerically compare a proposed method with Claude Code or Codex CLI
 | **[MLZero](papers/mlzero-2025.md)**<br>[paper](https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html) · [artifact](https://github.com/autogluon/autogluon-assistant) | NeurIPS 2025<br>main | Codex CLI (GPT-4.1 and o4-mini) | End-to-end machine learning automation | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop<br>`multi-agent` `memory` `verifier-loop` `test-feedback` | MLZero led MLE-Bench Lite with six gold medals and achieved 0.92 success on its multimodal benchmark; one appendix setting reports 6.5% errors versus 26.9% for Codex CLI. | model: unknown<br>budget: unknown<br>evidence: medium |
 <!-- CATALOG:DIRECT:END -->
 
+</details>
+
 ## What repeatedly works
 
 Across the current catalog, successful methods repeatedly add structure around the model:
@@ -116,6 +125,9 @@ See the generated [method view](views/by-method.md) and [taxonomy](docs/taxonomy
 
 These papers contain useful product-level evidence, but their central numeric result is a component comparison or another agent's result rather than a clean Claude Code/Codex CLI head-to-head.
 
+<details>
+<summary><strong>Open the raw related-method table</strong></summary>
+
 <!-- CATALOG:RELATED:START -->
 | System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
 |---|---|---|---|---|---|---|
@@ -123,9 +135,14 @@ These papers contain useful product-level evidence, but their central numeric re
 | **[SCATE](papers/scate-2026.md)**<br>[paper](https://arxiv.org/abs/2607.08983) | arXiv 2026<br>preprint | Claude Code | Automated test generation | Contextual-bandit supervisor that selects testing actions from current coverage and testability state<br>`test-feedback` `verifier-loop` | Line coverage improves 32.3% and branch coverage 30.9% over agent-only Gemini CLI; adaptation is also evaluated with Claude Code. | model: unknown<br>budget: unknown<br>evidence: contextual |
 <!-- CATALOG:RELATED:END -->
 
+</details>
+
 ## Evaluation-only papers
 
 These papers benchmark or diagnose the products without proposing a method intended to outperform them.
+
+<details>
+<summary><strong>Open the raw evaluation table</strong></summary>
 
 <!-- CATALOG:EVALUATION:START -->
 | System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
@@ -135,15 +152,22 @@ These papers benchmark or diagnose the products without proposing a method inten
 | **[BountyBench](papers/bountybench-2025.md)**<br>[paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html) · [artifact](https://github.com/bountybench/bountybench) | NeurIPS 2025<br>dataset benchmark | Claude Code<br>Codex CLI (o3-high and o4-mini) | Vulnerability detection, exploitation, and patching | Evaluation-only benchmark of offensive and defensive cybersecurity agents<br>`verifier-loop` | Codex o3-high detects 12.5% and patches 90%; Claude Code patches 87.5% and exploits 57.5% in the reported settings. | model: unknown<br>budget: unknown<br>evidence: high |
 <!-- CATALOG:EVALUATION:END -->
 
+</details>
+
 ## Historical OpenAI Codex model papers
 
 These entries study the pre-CLI OpenAI Codex model and are never mixed with modern Codex CLI results.
+
+<details>
+<summary><strong>Open the raw historical-model table</strong></summary>
 
 <!-- CATALOG:HISTORICAL:START -->
 | System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
 |---|---|---|---|---|---|---|
 | **[TiCoder](papers/ticoder-2022.md)**<br>[paper](https://arxiv.org/abs/2208.05950) · [artifact](https://github.com/microsoft/TiCoder) | AST at ICSE 2022<br>workshop | OpenAI Codex model (OpenAI Codex) | Interactive function-level code generation | Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs<br>`test-feedback` `verifier-loop` | With one to five simulated user queries, Codex pass@1 gains 22.49 to 37.71 points on MBPP and 24.79 to 53.98 points on HumanEval. | model: same<br>budget: different<br>evidence: high |
 <!-- CATALOG:HISTORICAL:END -->
+
+</details>
 
 ## Evidence classes
 

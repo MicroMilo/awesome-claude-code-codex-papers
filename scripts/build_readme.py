@@ -519,10 +519,12 @@ Main-conference, workshop, benchmark-track, and preprint status remain explicit.
 
 def render_all() -> dict[Path, str]:
     catalog = load_catalog()
+    catalog_json = json.dumps(catalog, indent=2, ensure_ascii=False) + "\n"
     outputs = {
         README_PATH: render_marked_readme(README_PATH, catalog, "en"),
         README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, "zh"),
-        ROOT / "data" / "papers.json": json.dumps(catalog, indent=2, ensure_ascii=False) + "\n",
+        ROOT / "data" / "papers.json": catalog_json,
+        ROOT / "website" / "data" / "catalog.json": catalog_json,
         ROOT / "papers" / "README.md": render_paper_index(catalog),
         ROOT / "views" / "README.md": render_views_index(),
         ROOT / "views" / "by-product.md": render_by_product(catalog),

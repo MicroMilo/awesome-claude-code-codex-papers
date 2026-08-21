@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-- Edit `data/papers.yaml`; do not hand-edit generated catalog tables, `data/papers.json`, `papers/*.md`, or `views/*.md`.
+- Edit `data/papers.yaml`; do not hand-edit generated catalog tables, `data/papers.json`, `website/data/catalog.json`, `papers/*.md`, or `views/*.md`.
 - Update `data/schema.json` and `docs/taxonomy.md` together when adding fields, products, statuses, or method tags.
 - A product mention means the complete agent or harness, not merely a model from the same vendor.
 
@@ -20,6 +20,9 @@
 python -m pip install -r requirements-dev.txt
 make build
 make check
+npm --prefix website install
+make site-check
 ```
 
 Run `make build` after catalog edits and include all generated changes in the same commit.
+The website reads the generated `website/data/catalog.json`; never maintain a second paper list in the frontend.
