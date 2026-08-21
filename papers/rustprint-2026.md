@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Minh Le-Anh, Anh Nguyen Hoang, Bach Le, Nghi D. Q. Bui |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering, Systems & Performance |
 | Evidence class | Direct comparison |
 | First published | 2026-05-14 |
 | Identifiers | [arXiv:2605.14634](https://arxiv.org/abs/2605.14634) |

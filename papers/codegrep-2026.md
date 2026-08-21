@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Wuya Chen, Yihao Yang, Yang Cao, Yue Lin |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Related method |
 | First published | 2026-08-06 |
 | Identifiers | [arXiv:2608.05886](https://arxiv.org/abs/2608.05886) |

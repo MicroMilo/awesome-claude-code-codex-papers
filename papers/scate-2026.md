@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Sijia Gu, Noor Nashid, Ali Mesbah |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Related method |
 | First published | 2026-07-09 |
 | Identifiers | [arXiv:2607.08983](https://arxiv.org/abs/2607.08983) |

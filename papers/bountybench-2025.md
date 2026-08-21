@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Andy K. Zhang, Joey Ji, Celeste Menders, Riya Dulepet, Thomas Qin, Ron Y. Wang, Junrong Wu, Kyleen Liao, Jiliang Li, Jinghan Hu, Sara Hong, Nardos Demilew, Shivatmica Murgai, Jason Tran, Nishka Kacheria, Ethan Ho, Denis Liu, Lauren McLane, Olivia Bruvik, Dai-Rong Han, Seungwoo Kim, Akhil Vyas, Cuiyuanxiu Chen, Ryan Li, Weiran Xu, Jonathan Z. Ye, Prerit Choudhary, Siddharth M. Bhatia, Vikram Sivashankar, Yuxuan Bao, Dawn Song, Dan Boneh, Daniel E. Ho, Percy Liang |
+| Conference | NeurIPS |
 | Venue | NeurIPS 2025 (dataset-benchmark) |
+| Domains | Security |
 | Evidence class | Evaluation only |
 | First published | 2025-05-21 |
 | Identifiers | [arXiv:2505.15216](https://arxiv.org/abs/2505.15216) |

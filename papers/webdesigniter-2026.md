@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Zheng Pei, Mingwei Liu, Zhenxi Chen, Zihao Wang, Yanlin Wang |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering, Web & UI |
 | Evidence class | Direct comparison |
 | First published | 2026-07-12 |
 | Identifiers | [arXiv:2607.10621](https://arxiv.org/abs/2607.10621) |

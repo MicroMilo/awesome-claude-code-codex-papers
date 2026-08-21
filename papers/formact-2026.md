@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Eugene J. Yu, Xingxing Zhang, Yuan Xia, Tao Ge, Xun Wang, FNU Kartik, Vishwas Suryanarayanan, Cheng Yang, Amanda Jiang, Jiayu Ding, Xiangyu Wong, Tengchao Lv, Lei Cui, Si-Qing Chen, Furu Wei, Sujian Li |
+| Conference | ICML |
 | Venue | ICML 2026 (main) |
+| Domains | Documents |
 | Evidence class | Direct comparison |
 | First published | Not recorded |
 | Identifiers | Not recorded |

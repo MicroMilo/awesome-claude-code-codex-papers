@@ -12,7 +12,11 @@
         "Mayur Naik"
       ],
       "year": 2026,
+      "conference": "ICLR",
       "venue": "ICLR",
+      "domains": [
+        "security"
+      ],
       "publication_status": "main",
       "classification": "direct",
       "system": "QLCoder",
@@ -72,7 +76,11 @@
         "Mao Yang"
       ],
       "year": 2026,
+      "conference": "ICLR",
       "venue": "ICLR",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "main",
       "classification": "direct",
       "system": "ZeroRepo",
@@ -138,7 +146,11 @@
         "Daniel E. Ho"
       ],
       "year": 2026,
+      "conference": "ICLR",
       "venue": "ICLR",
+      "domains": [
+        "security"
+      ],
       "publication_status": "main",
       "classification": "direct",
       "system": "ARTEMIS",
@@ -205,7 +217,11 @@
         "George Karypis"
       ],
       "year": 2025,
+      "conference": "NeurIPS",
       "venue": "NeurIPS",
+      "domains": [
+        "machine-learning"
+      ],
       "publication_status": "main",
       "classification": "direct",
       "system": "MLZero",
@@ -268,7 +284,11 @@
         "Sujian Li"
       ],
       "year": 2026,
+      "conference": "ICML",
       "venue": "ICML",
+      "domains": [
+        "documents"
+      ],
       "publication_status": "main",
       "classification": "direct",
       "system": "FormAct",
@@ -323,7 +343,11 @@
         "Yu-Gang Jiang"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "Agentic Harness Engineering",
@@ -375,7 +399,12 @@
         "Yanlin Wang"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering",
+        "web-ui"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "WebDesignIter",
@@ -430,7 +459,11 @@
         "Michael Pradel"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "Prefactory",
@@ -480,7 +513,12 @@
         "Nghi D. Q. Bui"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering",
+        "systems-performance"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "RustPrint",
@@ -531,7 +569,12 @@
         "Ling Li"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "scientific-computing",
+        "systems-performance"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "RepoOMP",
@@ -583,7 +626,11 @@
         "Reyhaneh Jabbarvand"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "icat-agent",
@@ -635,7 +682,11 @@
         "Swarat Chaudhuri"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "direct",
       "system": "Co-Coder",
@@ -688,7 +739,11 @@
         "Christoph Treude"
       ],
       "year": 2026,
+      "conference": "ICSE",
       "venue": "ICSE JAWs",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "workshop",
       "classification": "direct",
       "system": "AGENTS.md",
@@ -743,7 +798,11 @@
         "Yue Lin"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "related",
       "system": "CodeGrep",
@@ -791,7 +850,11 @@
         "Ali Mesbah"
       ],
       "year": 2026,
+      "conference": "arXiv",
       "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "preprint",
       "classification": "related",
       "system": "SCATE",
@@ -920,7 +983,12 @@
         "Ludwig Schmidt"
       ],
       "year": 2026,
+      "conference": "ICLR",
       "venue": "ICLR",
+      "domains": [
+        "software-engineering",
+        "systems-performance"
+      ],
       "publication_status": "main",
       "classification": "evaluation",
       "system": "Terminal-Bench 2.0",
@@ -1004,7 +1072,11 @@
         "Percy Liang"
       ],
       "year": 2025,
+      "conference": "NeurIPS",
       "venue": "NeurIPS",
+      "domains": [
+        "security"
+      ],
       "publication_status": "dataset-benchmark",
       "classification": "evaluation",
       "system": "BountyBench",
@@ -1060,7 +1132,11 @@
         "Song Wang"
       ],
       "year": 2026,
+      "conference": "FSE",
       "venue": "FSE Industry Track",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "conference",
       "classification": "evaluation",
       "system": "Bug taxonomy",
@@ -1121,7 +1197,11 @@
         "Jianfeng Gao"
       ],
       "year": 2022,
+      "conference": "ICSE",
       "venue": "AST at ICSE",
+      "domains": [
+        "software-engineering"
+      ],
       "publication_status": "workshop",
       "classification": "historical",
       "system": "TiCoder",
@@ -1158,6 +1238,752 @@
         "comparison_scope": "historical-model",
         "source_location": "MBPP and HumanEval evaluation section",
         "caveats": "This is the historical OpenAI Codex model, not the modern Codex CLI product."
+      }
+    },
+    {
+      "id": "evodev-2026",
+      "title": "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework",
+      "authors": [
+        "Junwei Liu",
+        "Chen Xu",
+        "Chong Wang",
+        "Tong Bai",
+        "Weitong Chen",
+        "Kaseng Wong",
+        "Yiling Lou",
+        "Xin Peng"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA",
+      "domains": [
+        "software-engineering",
+        "web-ui"
+      ],
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "EvoDev",
+      "paper_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame",
+      "artifact_status": "not-found",
+      "arxiv_id": "2511.02399",
+      "published_at": "2025-11-04",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude 4 Sonnet",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Iterative end-to-end Android application development",
+        "benchmark": "APPDev, 15 Android applications with 8 to 26 functional requirements"
+      },
+      "method": {
+        "summary": "Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair",
+        "tags": [
+          "structured-state",
+          "dependency-aware-planning",
+          "multi-agent",
+          "memory",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "With Claude 4 Sonnet, EvoDev reaches 100% build success and 3.57 function completeness versus 73.3% and 2.27 for Claude Code, a 57.3% relative completeness gain.",
+        "same_model": "yes",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "ISSTA 2026 official abstract; Tables 3 and 7",
+        "caveats": "APPDev contains 15 Android apps and uses manual quality scoring; EvoDev takes about twice Claude Code's wall-clock time in the Claude 4 Sonnet comparison."
+      }
+    },
+    {
+      "id": "toolleak-2026",
+      "title": "Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment",
+      "authors": [
+        "Yuchong Xie",
+        "Mingyu Luo",
+        "Zesen Liu",
+        "Zhixiang Zhang",
+        "Kaikai Zhang",
+        "Yu Liu",
+        "Ci Tao",
+        "Changhui Wang",
+        "Zongjie Li",
+        "Ping Chen",
+        "Shuai Wang",
+        "Dongdong She"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA",
+      "domains": [
+        "security"
+      ],
+      "publication_status": "main",
+      "classification": "evaluation",
+      "system": "ToolLeak",
+      "paper_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A",
+      "artifact_status": "not-found",
+      "arxiv_id": "2509.05755",
+      "published_at": "2025-09-06",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "multiple",
+          "version": "multiple"
+        }
+      ],
+      "task": {
+        "summary": "Prompt exfiltration and tool-invocation hijacking in production coding agents",
+        "benchmark": "Six real-world coding agents and 25 agent-model configurations"
+      },
+      "method": {
+        "summary": "Tool-call schema pressure for prompt leakage followed by a two-channel injection through tool descriptions and returns",
+        "tags": [
+          "adversarial-testing",
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "ToolLeak obtains the best pseudo-recall on 18 of 25 real agent-model pairs; the follow-on attack hijacks all six studied agents, including a Claude Code RCE case study.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "ISSTA 2026 official abstract; Tables 3 to 5 and Sections 6 to 7",
+        "caveats": "Claude Code is an attack target rather than a baseline to beat; results depend on product and backend versions that may change quickly."
+      }
+    },
+    {
+      "id": "execution-ablation-2026",
+      "title": "To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair",
+      "authors": [
+        "Zhihao Lin",
+        "Junhua Zhu",
+        "Mingyi Zhou",
+        "Xin Wang",
+        "Zhensu Sun",
+        "Renyu Yang",
+        "David Lo",
+        "Li Li"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA",
+      "domains": [
+        "software-engineering",
+        "systems-performance"
+      ],
+      "publication_status": "main",
+      "classification": "related",
+      "system": "Execution-policy ablation",
+      "paper_url": "https://arxiv.org/abs/2606.26978",
+      "artifact_url": "https://github.com/mathieu0905/To_Run_Or_Not_To_Run",
+      "artifact_status": "official",
+      "arxiv_id": "2606.26978",
+      "published_at": "2026-06-25",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Sonnet 4.5",
+          "version": "1.0.16"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.2 xhigh",
+          "version": "0.1.2025062301"
+        }
+      ],
+      "task": {
+        "summary": "Repository-level program repair with and without local code execution",
+        "benchmark": "200 SWE-bench Lite and Verified instances; 3,000 controlled runs"
+      },
+      "method": {
+        "summary": "Paired five-arm execution-policy ablation spanning prohibited, quota-limited, budget-guided, and unrestricted execution",
+        "tags": [
+          "test-feedback",
+          "verifier-loop",
+          "context-reduction"
+        ]
+      },
+      "evidence": {
+        "result": "Disabling execution changes resolve rate by only 1 to 3 points for Claude Code and Codex in the main cells, while saving 56 to 62% of tokens and 48 to 54% of wall-clock time for Claude Code.",
+        "same_model": "yes",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "ISSTA 2026 paper, Tables 2 to 4 and Sections 4.2 to 4.3",
+        "caveats": "The prompt-level prohibition was not perfectly obeyed by Claude Code, though the paper separately measures and hard-checks unintended execution."
+      }
+    },
+    {
+      "id": "llm2ltac-2026",
+      "title": "Mining Tactics for Automated Theorem Proving",
+      "authors": [
+        "Jian Fang",
+        "Yixun Yao",
+        "Yingfei Xiong"
+      ],
+      "year": 2026,
+      "conference": "ASE",
+      "venue": "ASE",
+      "domains": [
+        "formal-methods"
+      ],
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "LLM2Ltac",
+      "paper_url": "https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving",
+      "artifact_status": "not-found",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "not-reported",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Automated theorem proving in Rocq projects",
+        "benchmark": "6,199 theorems across CompCert, Coq-Art, Ext-Lib, and VFA"
+      },
+      "method": {
+        "summary": "LLM-mined reusable symbolic tactics, validity and generalization checks, and integration into CoqHammer",
+        "tags": [
+          "deterministic-search",
+          "verifier-loop",
+          "static-analysis"
+        ]
+      },
+      "evidence": {
+        "result": "Mined tactics let CoqHammer prove 23.87% more theorems; integrating the improved prover with Claude Code increases the overall number proved by 9.90%.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "ASE 2026 official abstract",
+        "caveats": "The public conference record does not report the Claude Code version, backbone model, absolute theorem counts for the product ablation, or budget parity."
+      }
+    },
+    {
+      "id": "agentradio-2026",
+      "title": "AgentRadio: Passive Awareness for Long-Horizon Multi-Agent Collaboration",
+      "authors": [
+        "Xinxing Ren",
+        "Qianbo Zang",
+        "Ziyan Wang",
+        "Caelum Forder",
+        "Suman Deb",
+        "Peter Carroll",
+        "Zekun Guo"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "AgentRadio",
+      "paper_url": "https://arxiv.org/abs/2607.28430",
+      "artifact_url": "https://github.com/Coral-Protocol/AgentRadio",
+      "artifact_status": "official",
+      "arxiv_id": "2607.28430",
+      "published_at": "2026-07-30",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Opus 4.6",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Long-horizon repository question answering",
+        "benchmark": "SWE-Atlas QnA, 124 tasks and 1,306 rubrics"
+      },
+      "method": {
+        "summary": "Four Claude Code agents coordinated through asynchronous threads, messages, passive mention watching, and a five-phase negotiation protocol",
+        "tags": [
+          "multi-agent",
+          "coordination",
+          "parallelism"
+        ]
+      },
+      "evidence": {
+        "result": "AgentRadio reaches 62.1% task accuracy versus 32.3% for single-agent Claude Code; a near-cost six-run baseline reaches 37.9%, and single-agent Opus 4.8 reaches 57.2%.",
+        "same_model": "yes",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Figure 1 and Tables 1 to 2",
+        "caveats": "The four-agent method costs about six times a single Opus 4.6 run, although the paper includes a near-cost resampling baseline."
+      }
+    },
+    {
+      "id": "context-files-ablation-2026",
+      "title": "Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories",
+      "authors": [
+        "Prakhar Khatri"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
+      "publication_status": "preprint",
+      "classification": "related",
+      "system": "Context-file ablation",
+      "paper_url": "https://arxiv.org/abs/2607.27250",
+      "artifact_url": "https://github.com/codeprakhar25/context-files-coding-agents",
+      "artifact_status": "official",
+      "arxiv_id": "2607.27250",
+      "published_at": "2026-07-28",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Sonnet 4.6",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.5",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository repair under different persistent-context strategies",
+        "benchmark": "17 real tasks from three Python repositories; 288 evaluated runs"
+      },
+      "method": {
+        "summary": "Within-task comparison of no context, always-on AGENTS.md, and selectively retrieved repository wiki context with gold tests and equivalence testing",
+        "tags": [
+          "repository-instructions",
+          "retrieval"
+        ]
+      },
+      "evidence": {
+        "result": "Claude Code pass rates are 53.3%, 55.6%, and 55.6%; Codex rates are 58.8%, 56.9%, and 52.9%, with no detectable strategy effect and bounded null effects of 10 to 15 points.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "Table 1 and Sections 3.4 to 4.4",
+        "caveats": "Only three Python repositories are studied; Claude and Codex receive injected context through different channels, and two selective-context corpora are larger than AGENTS.md."
+      }
+    },
+    {
+      "id": "guardrails-guidance-2026",
+      "title": "Guardrails Beat Guidance: A Large-Scale Study of Rules, Skills, and Persistent Configuration for Coding Agents",
+      "authors": [
+        "Xing Zhang",
+        "Guanghui Wang",
+        "Yanwei Cui",
+        "Wei Qiu",
+        "Ziyuan Li",
+        "Bing Zhu",
+        "Peiyang He"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Guardrails Beat Guidance",
+      "paper_url": "https://arxiv.org/abs/2604.11088",
+      "artifact_status": "not-found",
+      "arxiv_id": "2604.11088",
+      "published_at": "2026-04-13",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Opus 4.6",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository repair under persistent rule-file configurations",
+        "benchmark": "SWE-bench Verified; more than 5,000 Claude Code runs"
+      },
+      "method": {
+        "summary": "Paired rule-file experiments over source, count, polarity, type, and composition, backed by a corpus of 25,532 rules",
+        "tags": [
+          "repository-instructions"
+        ]
+      },
+      "evidence": {
+        "result": "Random and expert-curated rule files both reach 63.8% pass rate versus 50.0% with no rules; only negative constraints are individually beneficial in the reported ablation.",
+        "same_model": "yes",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "Figure 1 and Tables 1 to 5",
+        "caveats": "Results are limited to Claude Code with Opus 4.6 on a discriminative Python subset; several headline pairwise differences do not reach conventional significance."
+      }
+    },
+    {
+      "id": "lcm-2026",
+      "title": "LCM: Lossless Context Management",
+      "authors": [
+        "Clint Ehrlich",
+        "Theodore Blackman"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "systems-performance"
+      ],
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Volt with LCM",
+      "paper_url": "https://arxiv.org/abs/2605.04050",
+      "artifact_url": "https://github.com/Martian-Engineering/volt",
+      "artifact_status": "official",
+      "arxiv_id": "2605.04050",
+      "published_at": "2026-02-14",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Opus 4.6",
+          "version": "2.1.4"
+        }
+      ],
+      "task": {
+        "summary": "Long-context reasoning and aggregation",
+        "benchmark": "OOLONG trec_coarse, 8K to 1M-token contexts"
+      },
+      "method": {
+        "summary": "Lossless message storage, hierarchical summary DAGs, deterministic recursive compression, and engine-managed parallel map operators",
+        "tags": [
+          "memory",
+          "context-reduction",
+          "parallelism"
+        ]
+      },
+      "evidence": {
+        "result": "Volt averages 74.8 versus 70.3 for Claude Code and wins at every tested context length from 32K to 1M tokens, with gaps up to 12.6 points.",
+        "same_model": "yes",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "product-level",
+        "source_location": "Section 4.2 and Figures 6 to 7",
+        "caveats": "OOLONG may be contaminated in Opus 4.6, and the paper does not provide a matched end-to-end cost comparison for LCM's auxiliary calls."
+      }
+    },
+    {
+      "id": "brief-product-context-2026",
+      "title": "Context-Augmented Code Generation: How Product Context Improves AI Coding Agent Decision Compliance by 49%",
+      "authors": [
+        "Drew Dillon",
+        "Kasyap Varanasi"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering"
+      ],
+      "publication_status": "preprint",
+      "classification": "direct",
+      "system": "Brief",
+      "paper_url": "https://arxiv.org/abs/2605.08112",
+      "artifact_url": "https://github.com/brief-hq/dcbench",
+      "artifact_status": "official",
+      "arxiv_id": "2605.08112",
+      "published_at": "2026-04-27",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Sonnet 4.6",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Product-decision-compliant feature implementation",
+        "benchmark": "DCBench, eight tasks with 41 weighted decision points and 48 runs"
+      },
+      "method": {
+        "summary": "Retrieval over recorded product decisions, personas, customer signals, and competitive context during specification and implementation",
+        "tags": [
+          "retrieval",
+          "structured-state",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "Decision compliance rises from 19/41 (46%) for Claude Code to 39/41 (95%) with Brief; cost per merge-ready task falls 68% despite 28% higher total spend.",
+        "same_model": "no",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Tables 2 to 5",
+        "caveats": "The augmented arm adds Opus planning, a longer timeout, generated specifications, tests, and retrieval, so the 49-point gain is not attributable to product context alone."
+      }
+    },
+    {
+      "id": "swe-bench-science-2026",
+      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+      "authors": [
+        "Zhipeng Xu",
+        "Jiahao Lu",
+        "Yining Zheng",
+        "Yuxin Wang",
+        "Xipeng Qiu"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering",
+        "scientific-computing"
+      ],
+      "publication_status": "preprint",
+      "classification": "evaluation",
+      "system": "SWE-bench Science",
+      "paper_url": "https://arxiv.org/abs/2608.19799",
+      "artifact_url": "https://github.com/OpenMOSS/SWE-bench-Science",
+      "artifact_status": "official",
+      "arxiv_id": "2608.19799",
+      "published_at": "2026-08-20",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Opus 5 and DeepSeek V4 variants",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.6, GLM 5.2, Nex N2, and Qwen 3.5 variants",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Repository repair in scientific software",
+        "benchmark": "119 tasks, 98 repositories, and 20 scientific domains"
+      },
+      "method": {
+        "summary": "Three-paradigm benchmark with private tests, a scientific failure taxonomy, and paired ablations of explicit scientific guidance",
+        "tags": [
+          "benchmark-design",
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "The best configuration, Claude Code with Opus 5 at max effort, reaches 47.90% Pass@1; no evaluated agent crosses 50%, and scientific guidance helps some models but hurts others.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Tables 2 to 3 and Figures 5 to 7",
+        "caveats": "Results span different models, harnesses, and reasoning settings; the paper is a benchmark and failure analysis, not a method that beats the products."
+      }
+    },
+    {
+      "id": "swe-bench-mobile-2026",
+      "title": "SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?",
+      "authors": [
+        "Muxin Tian",
+        "Zhe Wang",
+        "Blair Yang",
+        "Zhenwei Tang",
+        "Kunlun Zhu",
+        "Honghua Dong",
+        "Hanchen Li",
+        "Xinni Xie",
+        "Guangjing Wang",
+        "Jiaxuan You"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "software-engineering",
+        "web-ui"
+      ],
+      "publication_status": "preprint",
+      "classification": "evaluation",
+      "system": "SWE-Bench Mobile",
+      "paper_url": "https://arxiv.org/abs/2602.09540",
+      "artifact_status": "not-found",
+      "arxiv_id": "2602.09540",
+      "published_at": "2026-02-10",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "multiple",
+          "version": "2.1.37"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "multiple",
+          "version": "0.77.0"
+        }
+      ],
+      "task": {
+        "summary": "Industry-scale iOS feature development from PRDs and Figma designs",
+        "benchmark": "50 tasks over a 500,000-line Swift and Objective-C production codebase"
+      },
+      "method": {
+        "summary": "Multimodal mobile benchmark with private tests, cross-agent model controls, cost analysis, prompt ablations, and error taxonomy",
+        "tags": [
+          "benchmark-design",
+          "visual-review",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "Across 22 configurations, the best task success is 12%; the same Opus 4.5 model varies by up to 6x across agents, and a defensive-programming prompt raises Claude Code test pass from 19.3% to 26.7%.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Figures 4 to 7 and Tables 3 to 6",
+        "caveats": "The public artifact URL reported in the PDF was unavailable during review; product results vary across models and include MCP-assisted visual access."
+      }
+    },
+    {
+      "id": "sec-bench-pro-2026",
+      "title": "SEC-bench Pro: Can Language Models Solve Long-Horizon Software Security Tasks?",
+      "authors": [
+        "Hwiwon Lee",
+        "Jiawei Liu",
+        "Dongjun Kim",
+        "Wubing Xia",
+        "Ziqi Zhang",
+        "Chunqiu Steven Xia",
+        "Lingming Zhang"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "security"
+      ],
+      "publication_status": "preprint",
+      "classification": "evaluation",
+      "system": "SEC-bench Pro",
+      "paper_url": "https://arxiv.org/abs/2605.26548",
+      "artifact_url": "https://github.com/SEC-bench/SEC-bench-Pro",
+      "artifact_status": "official",
+      "arxiv_id": "2605.26548",
+      "published_at": "2026-05-26",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Opus 4.6",
+          "version": "not-reported"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.4 and GPT-5.5",
+          "version": "not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Long-horizon proof-of-concept synthesis for disclosed vulnerabilities",
+        "benchmark": "344 validated V8, SpiderMonkey, and Linux kernel vulnerabilities"
+      },
+      "method": {
+        "summary": "Self-evolving reconstruction pipeline, three-image execution oracle, and LLM judge for vulnerability-specific PoC attribution",
+        "tags": [
+          "benchmark-design",
+          "verifier-loop"
+        ]
+      },
+      "evidence": {
+        "result": "Codex with GPT-5.5 solves 58% of all instances; Claude Code with Opus 4.6 times out often but solves most completed attempts, while GLM-5 solves 13 of 344.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Abstract and main agent-results tables",
+        "caveats": "The configurations use different models and completion behavior; this is comparative capability measurement rather than a proposed system beating a product baseline."
+      }
+    },
+    {
+      "id": "aria-2026",
+      "title": "Harnessing Code Agents for Automatic Software Verification",
+      "authors": [
+        "Shuangxiang Kan",
+        "Shuanglong Kan",
+        "Sebastian Ertel"
+      ],
+      "year": 2026,
+      "conference": "arXiv",
+      "venue": "arXiv",
+      "domains": [
+        "formal-methods"
+      ],
+      "publication_status": "preprint",
+      "classification": "related",
+      "system": "Aria",
+      "paper_url": "https://arxiv.org/abs/2607.06341",
+      "artifact_status": "not-found",
+      "arxiv_id": "2607.06341",
+      "published_at": "2026-07-07",
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "host",
+          "model": "Claude Opus 4.7",
+          "version": "SDK, not-reported"
+        }
+      ],
+      "task": {
+        "summary": "Fully automatic proof construction for verified software",
+        "benchmark": "4,257 Iris lemmas, 217 Rust-library lemmas, 318 reglang theorems, and 72 Lean-port lemmas"
+      },
+      "method": {
+        "summary": "A reusable harness that lets the code agent choose whole-proof strategy while prover kernels enforce soundness, completeness, retries, and termination",
+        "tags": [
+          "verifier-loop",
+          "test-feedback"
+        ]
+      },
+      "evidence": {
+        "result": "Aria proves all 4,257 targeted Iris lemmas, all 217 Rust-library lemmas, all 318 reglang theorems, and 72 not-yet-ported Lean lemmas; prior reglang provers manage about one in eight.",
+        "same_model": "no",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "quality",
+        "comparison_scope": "component-level",
+        "source_location": "Abstract, Tables 1 and 3 to 4, and Sections 4 to 6",
+        "caveats": "Claude Code is the host harness, not a separately measured baseline; comparisons to prior provers mix models, systems, and compute budgets."
       }
     }
   ]

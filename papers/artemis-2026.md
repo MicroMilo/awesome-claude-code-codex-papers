@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Justin W. Lin, Eliot Krzysztof Jones, Donovan Julian Jasper, Ethan Jun-shen Ho, Anna Wu, Arnold Tianyi Yang, Neil Perry, Andy Zou, Matt Fredrikson, J. Zico Kolter, Percy Liang, Dan Boneh, Daniel E. Ho |
+| Conference | ICLR |
 | Venue | ICLR 2026 (main) |
+| Domains | Security |
 | Evidence class | Direct comparison |
 | First published | 2025-12-10 |
 | Identifiers | [arXiv:2512.09882](https://arxiv.org/abs/2512.09882) |

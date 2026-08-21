@@ -16,11 +16,28 @@ test("renders the complete research catalog", () => {
   assert.match(html, /What actually beats/);
   assert.match(html, /Claude Code &amp; Codex\?/);
   assert.match(html, /QLCoder/);
+  assert.match(html, /What the catalog covers/);
+  assert.match(html, /Research domains/);
+  assert.match(html, /Software Engineering/);
+  assert.match(html, /ISSTA/);
+  assert.match(html, /AgentRadio/);
   assert.match(html, /Star the repository/);
   assert.match(
     html,
     /https:\/\/github\.com\/MicroMilo\/awesome-claude-code-codex-papers/,
   );
+});
+
+test("ships filterable domain and conference metadata for every paper", () => {
+  const papers = catalog.papers as Paper[];
+
+  assert.equal(papers.length, 32);
+  assert.equal(
+    papers.filter((paper) => paper.year === 2026).length,
+    29,
+  );
+  assert.ok(papers.every((paper) => paper.conference.length > 0));
+  assert.ok(papers.every((paper) => paper.domains.length > 0));
 });
 
 test("ships GitHub Pages metadata without OpenAI hosting references", async () => {

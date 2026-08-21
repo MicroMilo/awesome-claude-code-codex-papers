@@ -4,13 +4,35 @@ type ProductId = "claude-code" | "codex-cli" | "openai-codex-model";
 type Classification = "direct" | "related" | "evaluation" | "historical";
 type Language = "en" | "zh";
 type FairnessFilter = "all" | "controlled" | "unknown" | "mismatch";
+type ConferenceId =
+  | "AAAI"
+  | "ASE"
+  | "FSE"
+  | "ICLR"
+  | "ICML"
+  | "ICSE"
+  | "ISSTA"
+  | "NeurIPS"
+  | "arXiv"
+  | "Other";
+type DomainId =
+  | "software-engineering"
+  | "security"
+  | "systems-performance"
+  | "machine-learning"
+  | "scientific-computing"
+  | "formal-methods"
+  | "web-ui"
+  | "documents";
 
 export type Paper = {
   id: string;
   title: string;
   authors: string[];
   year: number;
+  conference: ConferenceId;
   venue: string;
+  domains: DomainId[];
   publication_status: string;
   classification: Classification;
   system: string;
@@ -49,9 +71,48 @@ const PRODUCT_LABELS: Record<ProductId, string> = {
   "openai-codex-model": "Codex model",
 };
 
+const DOMAIN_LABELS: Record<Language, Record<DomainId, string>> = {
+  en: {
+    "software-engineering": "Software Engineering",
+    security: "Security",
+    "systems-performance": "Systems & Performance",
+    "machine-learning": "Machine Learning",
+    "scientific-computing": "Scientific Computing",
+    "formal-methods": "Formal Methods",
+    "web-ui": "Web & UI",
+    documents: "Documents",
+  },
+  zh: {
+    "software-engineering": "软件工程",
+    security: "安全",
+    "systems-performance": "系统与性能",
+    "machine-learning": "机器学习",
+    "scientific-computing": "科学计算",
+    "formal-methods": "形式化方法",
+    "web-ui": "Web 与 UI",
+    documents: "文档",
+  },
+};
+
+const CONFERENCE_ORDER: ConferenceId[] = [
+  "AAAI",
+  "ASE",
+  "FSE",
+  "ICLR",
+  "ICML",
+  "ICSE",
+  "ISSTA",
+  "NeurIPS",
+  "arXiv",
+  "Other",
+];
+
+const DOMAIN_ORDER = Object.keys(DOMAIN_LABELS.en) as DomainId[];
+
 const copy = {
   en: {
     papers: "Papers",
+    coverage: "Coverage",
     methods: "Patterns",
     fairness: "Fairness",
     star: "Star on GitHub ↗",
@@ -65,14 +126,21 @@ const copy = {
     reviewedPapers: "reviewed papers",
     directComparisons: "direct comparisons",
     officialArtifacts: "official artifacts",
-    productionAgents: "production agents",
+    researchDomains: "research domains",
+    coverageEyebrow: "What the catalog covers",
+    coverageTitle: "Choose a domain or conference before opening a paper.",
+    coverageDeck:
+      "Every entry uses a standardized domain and conference label, while preserving the exact venue in its evidence record.",
+    domains: "Research domains",
+    conferences: "Conferences / sources",
     catalogEyebrow: "Research catalog",
     catalogTitle: "Start with the result. Open the controls only when needed.",
     search: "Search systems, tasks, methods…",
     product: "Product",
     evidenceClass: "Evidence class",
     comparison: "Comparison",
-    venue: "Venue",
+    conference: "Conference / source",
+    exactVenue: "Exact venue",
     method: "Method",
     all: "All",
     direct: "Direct",
@@ -124,6 +192,7 @@ const copy = {
   },
   zh: {
     papers: "论文",
+    coverage: "收录范围",
     methods: "方法",
     fairness: "公平性",
     star: "去 GitHub 点 Star ↗",
@@ -137,14 +206,21 @@ const copy = {
     reviewedPapers: "篇已审论文",
     directComparisons: "篇直接对比",
     officialArtifacts: "个官方 Artifact",
-    productionAgents: "个工业 Agent",
+    researchDomains: "个研究领域",
+    coverageEyebrow: "目录收录什么",
+    coverageTitle: "先选研究领域或会议，再打开论文。",
+    coverageDeck:
+      "每篇论文都使用统一的领域与会议标签，同时在证据记录中保留准确的 venue / track。",
+    domains: "研究领域",
+    conferences: "会议 / 来源",
     catalogEyebrow: "论文目录",
     catalogTitle: "先看结果；需要时，再展开实验控制和限制。",
     search: "搜索系统、任务或方法…",
     product: "产品",
     evidenceClass: "证据类型",
     comparison: "实验控制",
-    venue: "会议",
+    conference: "会议 / 来源",
+    exactVenue: "准确 venue / track",
     method: "方法",
     all: "全部",
     direct: "直接对比",
@@ -241,7 +317,8 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     "all" | Classification
   >("all");
   const [fairness, setFairness] = useState<FairnessFilter>("all");
-  const [venue, setVenue] = useState("all");
+  const [conference, setConference] = useState<"all" | ConferenceId>("all");
+  const [domain, setDomain] = useState<"all" | DomainId>("all");
   const [method, setMethod] = useState("all");
   const [activePaper, setActivePaper] = useState<Paper | null>(null);
   const dialogCloseButton = useRef<HTMLButtonElement>(null);
@@ -254,10 +331,29 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     (paper) => paper.artifact_status === "official",
   ).length;
 
-  const venues = useMemo(
-    () => [...new Set(papers.map((paper) => paper.venue))].sort(),
-    [papers],
-  );
+  const conferenceCounts = useMemo(() => {
+    const counts = new Map<ConferenceId, number>();
+    papers.forEach((paper) => {
+      counts.set(paper.conference, (counts.get(paper.conference) ?? 0) + 1);
+    });
+    return CONFERENCE_ORDER.flatMap((item) => {
+      const count = counts.get(item);
+      return count ? ([[item, count]] as Array<[ConferenceId, number]>) : [];
+    });
+  }, [papers]);
+
+  const domainCounts = useMemo(() => {
+    const counts = new Map<DomainId, number>();
+    papers.forEach((paper) => {
+      paper.domains.forEach((item) => {
+        counts.set(item, (counts.get(item) ?? 0) + 1);
+      });
+    });
+    return DOMAIN_ORDER.flatMap((item) => {
+      const count = counts.get(item);
+      return count ? ([[item, count]] as Array<[DomainId, number]>) : [];
+    });
+  }, [papers]);
 
   const methodCounts = useMemo(() => {
     const counts = new Map<string, number>();
@@ -299,7 +395,10 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           [
             paper.system,
             paper.title,
+            paper.conference,
             paper.venue,
+            ...paper.domains,
+            ...paper.domains.map((item) => DOMAIN_LABELS[language][item]),
             paper.task.summary,
             paper.task.benchmark,
             paper.method.summary,
@@ -317,7 +416,9 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           classification === "all" || paper.classification === classification;
         const matchesFairness =
           fairness === "all" || fairnessGroup(paper) === fairness;
-        const matchesVenue = venue === "all" || paper.venue === venue;
+        const matchesConference =
+          conference === "all" || paper.conference === conference;
+        const matchesDomain = domain === "all" || paper.domains.includes(domain);
         const matchesMethod =
           method === "all" || paper.method.tags.includes(method);
         return (
@@ -325,7 +426,8 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           matchesProduct &&
           matchesClass &&
           matchesFairness &&
-          matchesVenue &&
+          matchesConference &&
+          matchesDomain &&
           matchesMethod
         );
       })
@@ -335,14 +437,15 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           paperB.year - paperA.year ||
           paperA.system.localeCompare(paperB.system),
       );
-  }, [classification, fairness, method, papers, product, query, venue]);
+  }, [classification, conference, domain, fairness, language, method, papers, product, query]);
 
   const filtersActive =
     query !== "" ||
     product !== "all" ||
     classification !== "all" ||
     fairness !== "all" ||
-    venue !== "all" ||
+    conference !== "all" ||
+    domain !== "all" ||
     method !== "all";
 
   useEffect(() => {
@@ -369,8 +472,19 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     setProduct("all");
     setClassification("all");
     setFairness("all");
-    setVenue("all");
+    setConference("all");
+    setDomain("all");
     setMethod("all");
+  };
+
+  const chooseDomain = (value: DomainId) => {
+    setDomain(value);
+    document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const chooseConference = (value: ConferenceId) => {
+    setConference(value);
+    document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const chooseMethod = (tag: string) => {
@@ -395,6 +509,7 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <span>Agent Papers</span>
         </a>
         <nav aria-label="Primary navigation">
+          <a href="#coverage">{t.coverage}</a>
           <a href="#catalog">{t.papers}</a>
           <a href="#method-patterns">{t.methods}</a>
           <a href="#fairness">{t.fairness}</a>
@@ -462,8 +577,52 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <span>{t.officialArtifacts}</span>
         </div>
         <div>
-          <strong>2</strong>
-          <span>{t.productionAgents}</span>
+          <strong>{domainCounts.length}</strong>
+          <span>{t.researchDomains}</span>
+        </div>
+      </section>
+
+      <section className="coverage-section" id="coverage">
+        <div className="coverage-heading">
+          <p className="eyebrow">{t.coverageEyebrow}</p>
+          <h2>{t.coverageTitle}</h2>
+          <p>{t.coverageDeck}</p>
+        </div>
+        <div className="coverage-groups">
+          <div className="coverage-group">
+            <h3>{t.domains}</h3>
+            <div className="coverage-options">
+              {domainCounts.map(([item, count]) => (
+                <button
+                  aria-pressed={domain === item}
+                  className={domain === item ? "active" : ""}
+                  key={item}
+                  type="button"
+                  onClick={() => chooseDomain(item)}
+                >
+                  <span>{DOMAIN_LABELS[language][item]}</span>
+                  <strong>{count.toString().padStart(2, "0")}</strong>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="coverage-group conference-group">
+            <h3>{t.conferences}</h3>
+            <div className="coverage-options conference-options">
+              {conferenceCounts.map(([item, count]) => (
+                <button
+                  aria-pressed={conference === item}
+                  className={conference === item ? "active" : ""}
+                  key={item}
+                  type="button"
+                  onClick={() => chooseConference(item)}
+                >
+                  <span>{item}</span>
+                  <strong>{count.toString().padStart(2, "0")}</strong>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -536,12 +695,34 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           </label>
 
           <label>
-            <span>{t.venue}</span>
-            <select value={venue} onChange={(event) => setVenue(event.target.value)}>
+            <span>{t.conference}</span>
+            <select
+              value={conference}
+              onChange={(event) =>
+                setConference(event.target.value as "all" | ConferenceId)
+              }
+            >
               <option value="all">{t.all}</option>
-              {venues.map((item) => (
+              {conferenceCounts.map(([item, count]) => (
                 <option value={item} key={item}>
-                  {item}
+                  {item} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span>{t.domains}</span>
+            <select
+              value={domain}
+              onChange={(event) =>
+                setDomain(event.target.value as "all" | DomainId)
+              }
+            >
+              <option value="all">{t.all}</option>
+              {domainCounts.map(([item, count]) => (
+                <option value={item} key={item}>
+                  {DOMAIN_LABELS[language][item]} ({count})
                 </option>
               ))}
             </select>
@@ -580,7 +761,7 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                     {CLASS_LABELS[language][paper.classification]}
                   </span>
                   <span>
-                    {paper.venue} · {paper.year}
+                    {paper.conference} · {paper.year}
                   </span>
                 </div>
                 <h3>{paper.system}</h3>
@@ -588,6 +769,11 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                 <div className="product-list">
                   {paper.products.map((item) => (
                     <span key={item.product}>{PRODUCT_LABELS[item.product]}</span>
+                  ))}
+                </div>
+                <div className="domain-list" aria-label={t.domains}>
+                  {paper.domains.map((item) => (
+                    <span key={item}>{DOMAIN_LABELS[language][item]}</span>
                   ))}
                 </div>
                 <div className="method-summary">
@@ -717,11 +903,20 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                 {CLASS_LABELS[language][activePaper.classification]}
               </span>
               <p>
-                {activePaper.venue} · {activePaper.year} · {activePaper.publication_status}
+                {activePaper.conference} · {activePaper.year} ·{" "}
+                {activePaper.publication_status}
               </p>
               <h2 id="dialog-title">{activePaper.system}</h2>
               <h3>{activePaper.title}</h3>
               <p className="author-line">{activePaper.authors.join(", ")}</p>
+              <div className="dialog-metadata">
+                <span>
+                  {t.exactVenue}: {activePaper.venue}
+                </span>
+                {activePaper.domains.map((item) => (
+                  <span key={item}>{DOMAIN_LABELS[language][item]}</span>
+                ))}
+              </div>
             </div>
 
             <div className="dialog-section product-config">

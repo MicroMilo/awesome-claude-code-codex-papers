@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Xu Yang, Lunyiu Nie, Ethan Chandra, Stanislav Gannutin, Fangru Lin, Swarat Chaudhuri |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2026-05-31 |
 | Identifiers | [arXiv:2606.00953](https://arxiv.org/abs/2606.00953) |
