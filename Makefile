@@ -1,4 +1,4 @@
-.PHONY: install build validate test lint check
+.PHONY: install build validate test lint check site-check
 
 install:
 	python -m pip install -r requirements-dev.txt
@@ -22,3 +22,8 @@ check: validate
 	python -m pytest
 	python -m ruff check scripts tests
 	python -m ruff format --check scripts tests
+
+site-check:
+	npm --prefix website run lint
+	npm --prefix website test
+	npm --prefix website audit --omit=dev --audit-level=high

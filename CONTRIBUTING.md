@@ -33,10 +33,10 @@ same_budget: unknown
 3. Record authors, identifiers, system name, artifact status, and publication date from primary sources.
 4. Choose the narrowest correct evidence class and comparison scope.
 5. Record where the supporting result appears in the paper.
-6. Run `make build` to regenerate READMEs, JSON, views, and paper dossiers.
-7. Run `make check` before opening a pull request.
+6. Run `make build` to regenerate READMEs, both JSON exports, views, and paper dossiers.
+7. Run `make check` and `make site-check` before opening a pull request.
 
-Do not manually edit content between `CATALOG:*:START` and `CATALOG:*:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json`, are also generated.
+Do not manually edit content between `CATALOG:*:START` and `CATALOG:*:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
 
 ## Required source checks
 
@@ -73,4 +73,5 @@ Future products must be added to both `data/schema.json` and `docs/taxonomy.md` 
 - [ ] The evidence location and comparison scope are recorded.
 - [ ] Comparison caveats are explicit.
 - [ ] `make check` passes.
+- [ ] `make site-check` passes when the website or catalog changed.
 - [ ] No copyrighted PDF has been committed.

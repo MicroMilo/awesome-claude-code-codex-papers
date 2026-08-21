@@ -13,6 +13,8 @@ The catalog optimizes for evidence quality before paper count.
 - [x] English and Simplified Chinese entry points
 - [x] Schema, tests, linting, and CI
 - [x] Structured paper-suggestion workflow
+- [x] Interactive bilingual site generated from the same catalog
+- [x] Matched-model and matched-budget comparison filters
 
 ## v0.2 — Evidence depth
 
@@ -45,7 +47,5 @@ Model-only papers remain out of scope unless they study a product harness direct
 
 ## Long-term
 
-- Interactive static site generated from the same catalog
-- Comparison matrices with matched-model and matched-budget filters
 - Reproduction packs for a small set of high-impact claims
 - Community-maintained venue watchlist and artifact-status audits
