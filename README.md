@@ -29,6 +29,10 @@
 </p>
 <!-- CATALOG:STATS:END -->
 
+<p align="center">
+  <a href="https://awesome-claude-code-codex-papers.osako6947.chatgpt.site"><strong>Open the interactive research catalog →</strong></a>
+</p>
+
 This repository is an evidence-first catalog of papers that study **Claude Code** and **Codex CLI** as complete products—not merely Claude or GPT-family models. It records the baseline configuration, task, intervention, reported result, comparison controls, caveats, and official artifacts.
 
 > [!IMPORTANT]

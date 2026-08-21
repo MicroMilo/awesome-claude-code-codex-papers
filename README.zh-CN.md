@@ -29,6 +29,10 @@
 </p>
 <!-- CATALOG:STATS:END -->
 
+<p align="center">
+  <a href="https://awesome-claude-code-codex-papers.osako6947.chatgpt.site"><strong>打开可交互论文目录 →</strong></a>
+</p>
+
 这是一个以证据为核心的论文库，研究对象是完整的 **Claude Code** 与 **Codex CLI** 产品，而不只是 Claude 或 GPT 系列模型。每篇论文都记录 baseline 配置、任务、新增方法、论文结果、实验控制、风险说明和官方 artifact。
 
 > [!IMPORTANT]
