@@ -55,7 +55,6 @@ a {
 .hero-actions,
 .card-topline,
 .card-footer,
-.product-list,
 footer,
 footer > div {
   align-items: center;
@@ -513,24 +512,54 @@ h1 span {
   min-height: 58px;
 }
 
-.product-list {
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 14px 0 24px;
+.model-list {
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 9px;
+  margin: 16px 0 14px;
+  padding: 13px 0;
 }
 
-.product-list span {
-  background: var(--ink);
-  color: white;
-  font-size: 10px;
-  padding: 7px 9px;
+.model-list > p {
+  color: #718182;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin: 0 0 2px;
+  text-transform: uppercase;
+}
+
+.model-list > div {
+  align-items: baseline;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(88px, 0.42fr) minmax(0, 1fr);
+}
+
+.model-list span {
+  color: #bd492e;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.model-list [data-product="codex-cli"] span,
+.model-list [data-product="openai-codex-model"] span {
+  color: #16616a;
+}
+
+.model-list strong {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .domain-list {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: -12px 0 24px;
+  margin: 0 0 24px;
 }
 
 .domain-list span {
@@ -752,7 +781,7 @@ select {
   border-top: 1px solid var(--line);
   display: grid;
   gap: 20px;
-  grid-template-columns: minmax(300px, 1.45fr) repeat(5, minmax(118px, 0.7fr));
+  grid-template-columns: minmax(300px, 1.45fr) repeat(4, minmax(130px, 0.7fr));
   margin-top: 72px;
   padding: 22px 0;
 }
@@ -862,36 +891,8 @@ select {
   -webkit-line-clamp: 3;
 }
 
-.control-strip {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: auto;
-}
-
-.control-strip span {
-  background: rgba(13, 23, 24, 0.06);
-  color: #657576;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 8px;
-  padding: 8px 5px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.control-strip span[data-state="yes"],
-.control-strip span[data-state="high"] {
-  background: rgba(75, 203, 213, 0.2);
-  color: #16616a;
-}
-
-.control-strip span[data-state="no"] {
-  background: rgba(241, 111, 81, 0.2);
-  color: #9a321c;
-}
-
 .card-footer {
-  margin-top: 18px;
+  margin-top: auto;
 }
 
 .card-footer > span {
@@ -995,81 +996,6 @@ select {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 34px;
   font-weight: 400;
-}
-
-.fairness-section {
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 120px clamp(24px, 6vw, 92px);
-}
-
-.fairness-heading h2 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(40px, 5vw, 72px);
-  font-weight: 400;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
-  max-width: 850px;
-}
-
-.fairness-grid {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 60px;
-}
-
-.fairness-grid button {
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid var(--line);
-  margin-right: -1px;
-  min-height: 270px;
-  padding: 28px;
-  text-align: left;
-}
-
-.fairness-grid button:hover {
-  background: var(--paper-bright);
-}
-
-.fairness-number {
-  align-items: center;
-  border-radius: 50%;
-  display: flex;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 42px;
-  height: 86px;
-  justify-content: center;
-  margin-bottom: 34px;
-  width: 86px;
-}
-
-.fairness-number.controlled {
-  background: rgba(75, 203, 213, 0.2);
-  color: #16616a;
-}
-
-.fairness-number.unknown {
-  background: rgba(75, 203, 213, 0.17);
-  color: #16616a;
-}
-
-.fairness-number.mismatch {
-  background: rgba(241, 111, 81, 0.2);
-  color: #9a321c;
-}
-
-.fairness-grid strong {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.fairness-grid p {
-  color: #5f7071;
-  font-size: 13px;
-  line-height: 1.55;
-  max-width: 310px;
 }
 
 footer {
@@ -1382,14 +1308,6 @@ footer {
 
   .method-cloud {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .fairness-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fairness-grid button {
-    min-height: 220px;
   }
 
   footer {

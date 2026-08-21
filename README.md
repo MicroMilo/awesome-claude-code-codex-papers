@@ -52,7 +52,7 @@ This repository is the open data and maintenance layer behind the **web-first re
 The [interactive catalog](https://micromilo.github.io/awesome-claude-code-codex-papers/) is the fastest way to:
 
 - search systems, tasks, methods, authors, and reported results;
-- choose a research domain or conference, then refine by product, evidence class, method, and comparison fairness;
+- choose a research domain or conference, then refine by product, evidence class, and method;
 - inspect baseline models, versions, budgets, evidence locations, and caveats;
 - switch between English and Chinese without reading giant Markdown tables.
 
@@ -60,7 +60,7 @@ The [interactive catalog](https://micromilo.github.io/awesome-claude-code-codex-
 
 This is not a leaderboard. Product versions, backbone models, budgets, tools, and task domains often differ. Every entry separates the paper's reported result from our comparison controls and caveats. Missing details stay explicitly `unknown`.
 
-For raw or generated research material, use the [paper dossiers](papers/README.md), [domain view](views/by-domain.md), [conference view](views/by-conference.md), [fair-comparison view](views/fair-comparisons.md), or [machine-readable JSON](data/papers.json).
+For raw or generated research material, use the [paper dossiers](papers/README.md), [domain view](views/by-domain.md), [conference view](views/by-conference.md), or [machine-readable JSON](data/papers.json).
 
 ## Contributing
 

@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 type ProductId = "claude-code" | "codex-cli" | "openai-codex-model";
 type Classification = "direct" | "related" | "evaluation" | "historical";
 type Language = "en" | "zh";
-type FairnessFilter = "all" | "controlled" | "unknown" | "mismatch";
 type ConferenceId =
   | "AAAI"
   | "ASE"
@@ -114,13 +113,12 @@ const copy = {
     papers: "Papers",
     coverage: "Coverage",
     methods: "Patterns",
-    fairness: "Fairness",
     star: "Star on GitHub ↗",
     eyebrow: "Evidence, not leaderboard hype",
     heroLead: "What actually beats",
     heroAccent: "Claude Code & Codex?",
     heroDeck:
-      "A readable research index for the methods, controls, and caveats behind production coding-agent comparisons.",
+      "A readable research index for the models, methods, results, and caveats behind production coding-agent comparisons.",
     explore: "Explore the evidence ↓",
     reviewed: "Last reviewed",
     reviewedPapers: "reviewed papers",
@@ -134,11 +132,11 @@ const copy = {
     domains: "Research domains",
     conferences: "Conferences / sources",
     catalogEyebrow: "Research catalog",
-    catalogTitle: "Start with the result. Open the controls only when needed.",
+    catalogTitle: "See the model and result before opening the details.",
     search: "Search systems, tasks, methods…",
     product: "Product",
+    modelsUsed: "Models used",
     evidenceClass: "Evidence class",
-    comparison: "Comparison",
     conference: "Conference / source",
     exactVenue: "Exact venue",
     method: "Method",
@@ -147,9 +145,6 @@ const copy = {
     related: "Related",
     evaluation: "Evaluation",
     historical: "Historical",
-    controlled: "Same model + budget",
-    unknown: "Controls unclear",
-    mismatch: "Known mismatch",
     clear: "Clear filters",
     results: "matching papers",
     noResults: "No paper matches these filters.",
@@ -161,14 +156,6 @@ const copy = {
     methodTitle: "Structure around the model keeps winning.",
     methodDeck:
       "Select a pattern to see the papers behind it. Counts are generated from the same reviewed catalog.",
-    fairnessEyebrow: "Comparison sanity check",
-    fairnessTitle: "A direct comparison is not automatically a fair comparison.",
-    fairControlled: "Controlled",
-    fairUnknown: "Unclear",
-    fairMismatch: "Mismatch",
-    fairControlledText: "The paper explicitly holds model and budget fixed.",
-    fairUnknownText: "At least one important control is not reported clearly.",
-    fairMismatchText: "The paper explicitly changes the model or budget.",
     task: "Task",
     benchmark: "Benchmark / scale",
     intervention: "What changed",
@@ -194,13 +181,12 @@ const copy = {
     papers: "论文",
     coverage: "收录范围",
     methods: "方法",
-    fairness: "公平性",
     star: "去 GitHub 点 Star ↗",
     eyebrow: "看证据，不看榜单气氛",
     heroLead: "到底什么方法能超越",
     heroAccent: "Claude Code 与 Codex？",
     heroDeck:
-      "把工业 coding agent 论文里的方法、实验控制和限制条件，整理成真正读得下去的研究索引。",
+      "把工业 coding agent 论文里的模型、方法、结果和限制条件，整理成真正读得下去的研究索引。",
     explore: "开始看证据 ↓",
     reviewed: "最近审计",
     reviewedPapers: "篇已审论文",
@@ -214,11 +200,11 @@ const copy = {
     domains: "研究领域",
     conferences: "会议 / 来源",
     catalogEyebrow: "论文目录",
-    catalogTitle: "先看结果；需要时，再展开实验控制和限制。",
+    catalogTitle: "打开详情之前，先看清模型和结果。",
     search: "搜索系统、任务或方法…",
     product: "产品",
+    modelsUsed: "使用的模型",
     evidenceClass: "证据类型",
-    comparison: "实验控制",
     conference: "会议 / 来源",
     exactVenue: "准确 venue / track",
     method: "方法",
@@ -227,9 +213,6 @@ const copy = {
     related: "相关方法",
     evaluation: "仅评测",
     historical: "历史模型",
-    controlled: "相同模型与预算",
-    unknown: "控制不明确",
-    mismatch: "已知不一致",
     clear: "清空筛选",
     results: "篇匹配论文",
     noResults: "没有论文符合当前筛选。",
@@ -240,14 +223,6 @@ const copy = {
     methodPattern: "反复出现的方法",
     methodTitle: "真正有效的，往往是模型周围的结构。",
     methodDeck: "点击方法即可筛选对应论文；数量直接来自审计后的目录。",
-    fairnessEyebrow: "先检查可比性",
-    fairnessTitle: "有直接对比，不等于做了公平对比。",
-    fairControlled: "严格控制",
-    fairUnknown: "信息不明",
-    fairMismatch: "条件不同",
-    fairControlledText: "论文明确保持模型和预算一致。",
-    fairUnknownText: "至少一个关键实验控制没有写清楚。",
-    fairMismatchText: "论文明确使用了不同模型或预算。",
     task: "任务",
     benchmark: "Benchmark / 规模",
     intervention: "新增了什么",
@@ -285,22 +260,6 @@ const CLASS_LABELS: Record<Language, Record<Classification, string>> = {
   },
 };
 
-function fairnessGroup(paper: Paper): Exclude<FairnessFilter, "all"> {
-  if (
-    paper.evidence.same_model === "yes" &&
-    paper.evidence.same_budget === "yes"
-  ) {
-    return "controlled";
-  }
-  if (
-    paper.evidence.same_model === "no" ||
-    paper.evidence.same_budget === "no"
-  ) {
-    return "mismatch";
-  }
-  return "unknown";
-}
-
 function readableValue(value: string, fallback: string) {
   return value === "not-reported" || value === "not-applicable"
     ? fallback
@@ -316,7 +275,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
   const [classification, setClassification] = useState<
     "all" | Classification
   >("all");
-  const [fairness, setFairness] = useState<FairnessFilter>("all");
   const [conference, setConference] = useState<"all" | ConferenceId>("all");
   const [domain, setDomain] = useState<"all" | DomainId>("all");
   const [method, setMethod] = useState("all");
@@ -368,18 +326,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     );
   }, [papers]);
 
-  const fairnessCounts = useMemo(
-    () => ({
-      controlled: papers.filter((paper) => fairnessGroup(paper) === "controlled")
-        .length,
-      unknown: papers.filter((paper) => fairnessGroup(paper) === "unknown")
-        .length,
-      mismatch: papers.filter((paper) => fairnessGroup(paper) === "mismatch")
-        .length,
-    }),
-    [papers],
-  );
-
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
     const rank: Record<Classification, number> = {
@@ -414,8 +360,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           paper.products.some((item) => item.product === product);
         const matchesClass =
           classification === "all" || paper.classification === classification;
-        const matchesFairness =
-          fairness === "all" || fairnessGroup(paper) === fairness;
         const matchesConference =
           conference === "all" || paper.conference === conference;
         const matchesDomain = domain === "all" || paper.domains.includes(domain);
@@ -425,7 +369,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           matchesQuery &&
           matchesProduct &&
           matchesClass &&
-          matchesFairness &&
           matchesConference &&
           matchesDomain &&
           matchesMethod
@@ -437,13 +380,12 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           paperB.year - paperA.year ||
           paperA.system.localeCompare(paperB.system),
       );
-  }, [classification, conference, domain, fairness, language, method, papers, product, query]);
+  }, [classification, conference, domain, language, method, papers, product, query]);
 
   const filtersActive =
     query !== "" ||
     product !== "all" ||
     classification !== "all" ||
-    fairness !== "all" ||
     conference !== "all" ||
     domain !== "all" ||
     method !== "all";
@@ -471,7 +413,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     setQuery("");
     setProduct("all");
     setClassification("all");
-    setFairness("all");
     setConference("all");
     setDomain("all");
     setMethod("all");
@@ -492,11 +433,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const chooseFairness = (value: Exclude<FairnessFilter, "all">) => {
-    setFairness(value);
-    document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const toggleLanguage = () => {
     setLanguage((current) => (current === "en" ? "zh" : "en"));
   };
@@ -512,7 +448,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <a href="#coverage">{t.coverage}</a>
           <a href="#catalog">{t.papers}</a>
           <a href="#method-patterns">{t.methods}</a>
-          <a href="#fairness">{t.fairness}</a>
           <button className="language-toggle" type="button" onClick={toggleLanguage}>
             {language === "en" ? "中文" : "EN"}
           </button>
@@ -682,19 +617,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           </label>
 
           <label>
-            <span>{t.comparison}</span>
-            <select
-              value={fairness}
-              onChange={(event) => setFairness(event.target.value as FairnessFilter)}
-            >
-              <option value="all">{t.all}</option>
-              <option value="controlled">{t.controlled}</option>
-              <option value="unknown">{t.unknown}</option>
-              <option value="mismatch">{t.mismatch}</option>
-            </select>
-          </label>
-
-          <label>
             <span>{t.conference}</span>
             <select
               value={conference}
@@ -766,9 +688,13 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                 </div>
                 <h3>{paper.system}</h3>
                 <p className="paper-title">{paper.title}</p>
-                <div className="product-list">
+                <div className="model-list" aria-label={t.modelsUsed}>
+                  <p>{t.modelsUsed}</p>
                   {paper.products.map((item) => (
-                    <span key={item.product}>{PRODUCT_LABELS[item.product]}</span>
+                    <div data-product={item.product} key={`${item.product}-${item.model}`}>
+                      <span>{PRODUCT_LABELS[item.product]}</span>
+                      <strong>{readableValue(item.model, t.notReported)}</strong>
+                    </div>
                   ))}
                 </div>
                 <div className="domain-list" aria-label={t.domains}>
@@ -781,17 +707,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                   <p>{paper.method.summary}</p>
                 </div>
                 <blockquote>{paper.evidence.result}</blockquote>
-                <div className="control-strip">
-                  <span data-state={paper.evidence.same_model}>
-                    M · {paper.evidence.same_model}
-                  </span>
-                  <span data-state={paper.evidence.same_budget}>
-                    B · {paper.evidence.same_budget}
-                  </span>
-                  <span data-state={paper.evidence.strength}>
-                    E · {paper.evidence.strength}
-                  </span>
-                </div>
                 <div className="card-footer">
                   <span>{paper.method.tags.slice(0, 2).join(" · ")}</span>
                   <button type="button" onClick={() => setActivePaper(paper)}>
@@ -832,30 +747,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
               <strong>{count.toString().padStart(2, "0")}</strong>
             </button>
           ))}
-        </div>
-      </section>
-
-      <section className="fairness-section" id="fairness">
-        <div className="fairness-heading">
-          <p className="eyebrow">{t.fairnessEyebrow}</p>
-          <h2>{t.fairnessTitle}</h2>
-        </div>
-        <div className="fairness-grid">
-          <button type="button" onClick={() => chooseFairness("controlled")}>
-            <span className="fairness-number controlled">{fairnessCounts.controlled}</span>
-            <strong>{t.fairControlled}</strong>
-            <p>{t.fairControlledText}</p>
-          </button>
-          <button type="button" onClick={() => chooseFairness("unknown")}>
-            <span className="fairness-number unknown">{fairnessCounts.unknown}</span>
-            <strong>{t.fairUnknown}</strong>
-            <p>{t.fairUnknownText}</p>
-          </button>
-          <button type="button" onClick={() => chooseFairness("mismatch")}>
-            <span className="fairness-number mismatch">{fairnessCounts.mismatch}</span>
-            <strong>{t.fairMismatch}</strong>
-            <p>{t.fairMismatchText}</p>
-          </button>
         </div>
       </section>
 
