@@ -51,7 +51,9 @@
         "title",
         "authors",
         "year",
+        "conference",
         "venue",
+        "domains",
         "publication_status",
         "classification",
         "system",
@@ -85,9 +87,40 @@
           "minimum": 2020,
           "maximum": 2100
         },
+        "conference": {
+          "enum": [
+            "AAAI",
+            "ASE",
+            "FSE",
+            "ICLR",
+            "ICML",
+            "ICSE",
+            "ISSTA",
+            "NeurIPS",
+            "arXiv",
+            "Other"
+          ]
+        },
         "venue": {
           "type": "string",
           "minLength": 2
+        },
+        "domains": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "software-engineering",
+              "security",
+              "systems-performance",
+              "machine-learning",
+              "scientific-computing",
+              "formal-methods",
+              "web-ui",
+              "documents"
+            ]
+          }
         },
         "publication_status": {
           "enum": [
@@ -185,7 +218,10 @@
                   "observability",
                   "repository-instructions",
                   "deterministic-search",
-                  "visual-review"
+                  "visual-review",
+                  "coordination",
+                  "adversarial-testing",
+                  "benchmark-design"
                 ]
               }
             }

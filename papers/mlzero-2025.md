@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Haoyang Fang, Boran Han, Nick Erickson, Xiyuan Zhang, Su Zhou, Anirudh Dagar, Jiani Zhang, Ali Caner Turkmen, Cuixiong Hu, Huzefa Rangwala, Ying Nian Wu, Bernie Wang, George Karypis |
+| Conference | NeurIPS |
 | Venue | NeurIPS 2025 (main) |
+| Domains | Machine Learning |
 | Evidence class | Direct comparison |
 | First published | 2025-05-20 |
 | Identifiers | [arXiv:2505.13941](https://arxiv.org/abs/2505.13941) |

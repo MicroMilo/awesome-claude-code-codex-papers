@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Yang Chen, Aliya Ahmad, Yiheng Zhou, Reyhaneh Jabbarvand |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2026-06-24 |
 | Identifiers | [arXiv:2606.25514](https://arxiv.org/abs/2606.25514) |

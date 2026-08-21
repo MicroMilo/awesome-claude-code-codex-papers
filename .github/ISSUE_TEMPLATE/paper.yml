@@ -35,6 +35,47 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: conference
+    attributes:
+      label: Conference or source
+      description: Choose the accepted conference series. Use arXiv when no listed acceptance is verified.
+      options:
+        - arXiv
+        - AAAI
+        - ASE
+        - FSE
+        - ICLR
+        - ICML
+        - ICSE
+        - ISSTA
+        - NeurIPS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: venue
+    attributes:
+      label: Exact venue or track
+      description: For example, ISSTA Research Papers, ICLR, or arXiv.
+    validations:
+      required: true
+  - type: dropdown
+    id: domains
+    attributes:
+      label: Research domains
+      multiple: true
+      options:
+        - Software engineering
+        - Security
+        - Systems and performance
+        - Machine learning
+        - Scientific computing
+        - Formal methods
+        - Web and UI
+        - Documents
+    validations:
+      required: true
+  - type: dropdown
     id: classification
     attributes:
       label: Suggested evidence class

@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Claire Wang, Ziyang Li, Saikat Dutta, Mayur Naik |
+| Conference | ICLR |
 | Venue | ICLR 2026 (main) |
+| Domains | Security |
 | Evidence class | Direct comparison |
 | First published | 2025-11-11 |
 | Identifiers | [arXiv:2511.08462](https://arxiv.org/abs/2511.08462) |

@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Ruixin Zhang, Wuyang Dai, Hung Viet Pham, Gias Uddin, Jinqiu Yang, Song Wang |
+| Conference | FSE |
 | Venue | FSE Industry Track 2026 (conference) |
+| Domains | Software Engineering |
 | Evidence class | Evaluation only |
 | First published | 2026-03-21 |
 | Identifiers | [arXiv:2603.20847](https://arxiv.org/abs/2603.20847) · [DOI:10.1145/3803437.3805213](https://doi.org/10.1145/3803437.3805213) |

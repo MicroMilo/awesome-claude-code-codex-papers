@@ -20,6 +20,45 @@ README_ZH_PATH = ROOT / "README.zh-CN.md"
 GENERATED_NOTICE = "<!-- Generated from data/papers.yaml; do not edit by hand. -->"
 
 STATS_MARKERS = ("<!-- CATALOG:STATS:START -->", "<!-- CATALOG:STATS:END -->")
+COVERAGE_MARKERS = (
+    "<!-- CATALOG:COVERAGE:START -->",
+    "<!-- CATALOG:COVERAGE:END -->",
+)
+
+DOMAIN_LABELS = {
+    "software-engineering": "Software Engineering",
+    "security": "Security",
+    "systems-performance": "Systems & Performance",
+    "machine-learning": "Machine Learning",
+    "scientific-computing": "Scientific Computing",
+    "formal-methods": "Formal Methods",
+    "web-ui": "Web & UI",
+    "documents": "Documents",
+}
+
+DOMAIN_LABELS_ZH = {
+    "software-engineering": "软件工程",
+    "security": "安全",
+    "systems-performance": "系统与性能",
+    "machine-learning": "机器学习",
+    "scientific-computing": "科学计算",
+    "formal-methods": "形式化方法",
+    "web-ui": "Web 与 UI",
+    "documents": "文档",
+}
+
+CONFERENCE_ORDER = [
+    "AAAI",
+    "ASE",
+    "FSE",
+    "ICLR",
+    "ICML",
+    "ICSE",
+    "ISSTA",
+    "NeurIPS",
+    "arXiv",
+    "Other",
+]
 
 PRODUCT_LABELS = {
     "claude-code": "Claude Code",
@@ -153,13 +192,15 @@ def generate_stats(catalog: dict) -> str:
     papers = catalog["papers"]
     direct = sum(paper["classification"] == "direct" for paper in papers)
     artifacts = sum(paper["artifact_status"] == "official" for paper in papers)
-    venues = len({paper["venue"] for paper in papers})
+    conferences = len({paper["conference"] for paper in papers})
+    domains = len({domain for paper in papers for domain in paper["domains"]})
     reviewed = catalog["reviewed_at"]
     badges = [
-        ("papers", len(papers), "0f766e"),
+        ("papers", len(papers), "16616a"),
         ("direct comparisons", direct, "dc6b46"),
         ("official artifacts", artifacts, "2563eb"),
-        ("venues", venues, "7c3aed"),
+        ("domains", domains, "4bcbd5"),
+        ("conference groups", conferences, "7c3aed"),
         ("reviewed", reviewed, "475569"),
     ]
     images = []
@@ -173,6 +214,38 @@ def generate_stats(catalog: dict) -> str:
     return '<p align="center">\n  ' + "\n  ".join(images) + "\n</p>"
 
 
+def generate_coverage(catalog: dict, language: str) -> str:
+    papers = catalog["papers"]
+    domain_counts: dict[str, int] = defaultdict(int)
+    conference_counts: dict[str, int] = defaultdict(int)
+    for paper in papers:
+        conference_counts[paper["conference"]] += 1
+        for domain in paper["domains"]:
+            domain_counts[domain] += 1
+
+    labels = DOMAIN_LABELS_ZH if language == "zh" else DOMAIN_LABELS
+    domain_items = " · ".join(
+        f"<code>{labels[domain]} · {domain_counts[domain]}</code>"
+        for domain in DOMAIN_LABELS
+        if domain_counts[domain]
+    )
+    conference_items = " · ".join(
+        f"<code>{conference} · {conference_counts[conference]}</code>"
+        for conference in CONFERENCE_ORDER
+        if conference_counts[conference]
+    )
+    domain_title = "研究领域" if language == "zh" else "Research domains"
+    conference_title = "会议 / 来源" if language == "zh" else "Conferences / sources"
+    return (
+        '<p align="center">\n'
+        f'  <a href="views/by-domain.md"><strong>{domain_title}</strong></a><br>\n'
+        f"  {domain_items}<br><br>\n"
+        f'  <a href="views/by-conference.md"><strong>{conference_title}</strong></a><br>\n'
+        f"  {conference_items}\n"
+        "</p>"
+    )
+
+
 def replace_section(text: str, start: str, end: str, content: str) -> str:
     pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
     replacement = f"{start}\n{content}\n{end}"
@@ -182,9 +255,10 @@ def replace_section(text: str, start: str, end: str, content: str) -> str:
     return updated
 
 
-def render_marked_readme(path: Path, catalog: dict) -> str:
+def render_marked_readme(path: Path, catalog: dict, language: str) -> str:
     text = path.read_text(encoding="utf-8")
-    return replace_section(text, *STATS_MARKERS, generate_stats(catalog))
+    text = replace_section(text, *STATS_MARKERS, generate_stats(catalog))
+    return replace_section(text, *COVERAGE_MARKERS, generate_coverage(catalog, language))
 
 
 def short_authors(paper: dict) -> str:
@@ -247,7 +321,9 @@ def render_paper_page(paper: dict) -> str:
 | Field | Value |
 |---|---|
 | Authors | {escape_cell(", ".join(paper["authors"]))} |
+| Conference | {escape_cell(paper["conference"])} |
 | Venue | {escape_cell(paper["venue"])} {paper["year"]} ({paper["publication_status"]}) |
+| Domains | {escape_cell(", ".join(DOMAIN_LABELS[domain] for domain in paper["domains"]))} |
 | Evidence class | {CLASS_LABELS[paper["classification"]]} |
 | First published | {published} |
 | Identifiers | {" · ".join(identifiers)} |
@@ -308,7 +384,8 @@ def render_paper_index(catalog: dict) -> str:
                 [
                     f"[{escape_cell(paper['system'])}]({paper['id']}.md)",
                     escape_cell(paper["title"]),
-                    f"{paper['venue']} {paper['year']}",
+                    f"{paper['conference']} · {paper['venue']} {paper['year']}",
+                    "<br>".join(DOMAIN_LABELS[domain] for domain in paper["domains"]),
                     CLASS_LABELS[paper["classification"]],
                     format_products(paper),
                     artifact_label(paper),
@@ -324,8 +401,8 @@ def render_paper_index(catalog: dict) -> str:
 
 Every catalog entry has a generated evidence dossier. The YAML catalog remains the source of truth.
 
-| System | Paper | Venue | Evidence class | Product | Artifact |
-|---|---|---|---|---|---|
+| System | Paper | Conference / venue | Domains | Evidence class | Product | Artifact |
+|---|---|---|---|---|---|---|
 {chr(10).join(rows)}
 """
 
@@ -342,9 +419,11 @@ def render_views_index() -> str:
 # Research views
 
 - [By product](by-product.md) — Claude Code and Codex CLI separately.
+- [By domain](by-domain.md) — software engineering, security, systems, formal methods, and more.
+- [By conference](by-conference.md) — standardized conference series plus arXiv-only papers.
 - [By method](by-method.md) — repository graphs, retrieval, verification, orchestration, and more.
 - [Comparison fairness](fair-comparisons.md) — same-model and same-budget controls.
-- [By venue](by-venue.md) — conferences, workshops, and preprints.
+- [By exact venue](by-venue.md) — tracks, workshops, and proceedings labels as reported.
 - [All paper dossiers](../papers/README.md) — one evidence page per paper.
 """
 
@@ -407,6 +486,73 @@ def render_by_method(catalog: dict) -> str:
 # Papers by method
 
 Tags describe the intervention added around or instead of the production coding-agent baseline.
+
+{chr(10).join(sections)}
+"""
+
+
+def render_by_domain(catalog: dict) -> str:
+    grouped: dict[str, list[dict]] = defaultdict(list)
+    for paper in catalog["papers"]:
+        for domain in paper["domains"]:
+            grouped[domain].append(paper)
+
+    sections = []
+    for domain in DOMAIN_LABELS:
+        papers = grouped.get(domain, [])
+        if not papers:
+            continue
+        rows = [
+            f"| {view_paper_link(paper)} | {paper['conference']} | {paper['year']} | "
+            f"{CLASS_LABELS[paper['classification']]} | {escape_cell(paper['task']['summary'])} |"
+            for paper in sorted(papers, key=lambda item: (-item["year"], item["system"]))
+        ]
+        sections.append(
+            f"## {DOMAIN_LABELS[domain]} ({len(papers)})\n\n"
+            "| System | Conference | Year | Evidence class | Task |\n"
+            "|---|---|---|---|---|\n" + "\n".join(rows)
+        )
+    return f"""{GENERATED_NOTICE}
+
+[← Research views](README.md) · [Home](../README.md)
+
+# Papers by domain
+
+Domains describe the task or evidence area studied by each paper.
+A paper may appear in more than one domain.
+
+{chr(10).join(sections)}
+"""
+
+
+def render_by_conference(catalog: dict) -> str:
+    grouped: dict[str, list[dict]] = defaultdict(list)
+    for paper in catalog["papers"]:
+        grouped[paper["conference"]].append(paper)
+
+    sections = []
+    for conference in CONFERENCE_ORDER:
+        papers = grouped.get(conference, [])
+        if not papers:
+            continue
+        rows = [
+            f"| {view_paper_link(paper)} | {paper['venue']} | {paper['year']} | "
+            f"{paper['publication_status']} | {CLASS_LABELS[paper['classification']]} |"
+            for paper in sorted(papers, key=lambda item: (-item["year"], item["system"]))
+        ]
+        sections.append(
+            f"## {conference} ({len(papers)})\n\n"
+            "| System | Exact venue / track | Year | Status | Evidence class |\n"
+            "|---|---|---|---|---|\n" + "\n".join(rows)
+        )
+    return f"""{GENERATED_NOTICE}
+
+[← Research views](README.md) · [Home](../README.md)
+
+# Papers by conference
+
+Conference is a standardized series label used for filtering.
+Exact tracks and proceedings names remain in the venue field.
 
 {chr(10).join(sections)}
 """
@@ -503,13 +649,15 @@ def render_all() -> dict[Path, str]:
     catalog = load_catalog()
     catalog_json = json.dumps(catalog, indent=2, ensure_ascii=False) + "\n"
     outputs = {
-        README_PATH: render_marked_readme(README_PATH, catalog),
-        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog),
+        README_PATH: render_marked_readme(README_PATH, catalog, "en"),
+        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, "zh"),
         ROOT / "data" / "papers.json": catalog_json,
         ROOT / "website" / "data" / "catalog.json": catalog_json,
         ROOT / "papers" / "README.md": render_paper_index(catalog),
         ROOT / "views" / "README.md": render_views_index(),
         ROOT / "views" / "by-product.md": render_by_product(catalog),
+        ROOT / "views" / "by-domain.md": render_by_domain(catalog),
+        ROOT / "views" / "by-conference.md": render_by_conference(catalog),
         ROOT / "views" / "by-method.md": render_by_method(catalog),
         ROOT / "views" / "fair-comparisons.md": render_fair_comparisons(catalog),
         ROOT / "views" / "by-venue.md": render_by_venue(catalog),

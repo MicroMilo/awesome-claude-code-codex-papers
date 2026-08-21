@@ -31,17 +31,20 @@ same_budget: unknown
 1. Add one entry to `data/papers.yaml`.
 2. Use a stable identifier such as `short-title-year`.
 3. Record authors, identifiers, system name, artifact status, and publication date from primary sources.
-4. Choose the narrowest correct evidence class and comparison scope.
-5. Record where the supporting result appears in the paper.
-6. Run `make build` to regenerate README stats, both JSON exports, views, and paper dossiers.
-7. Run `make check` and `make site-check` before opening a pull request.
+4. Assign one standardized `conference`, preserve the exact `venue`, and select every applicable `domain`.
+5. Choose the narrowest correct evidence class and comparison scope.
+6. Record where the supporting result appears in the paper.
+7. Run `make build` to regenerate README stats, both JSON exports, views, and paper dossiers.
+8. Run `make check` and `make site-check` before opening a pull request.
 
-Do not manually edit content between the `CATALOG:STATS:START` and `CATALOG:STATS:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
+Do not manually edit content between either pair of `CATALOG:STATS` or `CATALOG:COVERAGE` markers in the READMEs. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
 
 ## Required source checks
 
 - Confirm the paper title and authors against an official paper page or PDF.
 - Distinguish arXiv publication dates from final venue publication.
+- Use the standardized conference series only after acceptance is verified; otherwise use `arXiv` and keep the exact source in `venue`.
+- Select domains from `docs/taxonomy.md`; multiple domains are encouraged when the evidence genuinely crosses areas.
 - Confirm that an artifact repository is author-maintained before marking it `official`.
 - Record the exact CLI version and model when the paper or artifact reports them.
 - Identify whether the result is product-level, component-level, a configuration ablation, benchmark-only, or historical-model evidence.
@@ -70,6 +73,7 @@ Future products must be added to both `data/schema.json` and `docs/taxonomy.md` 
 - [ ] All quantitative claims match the cited primary source.
 - [ ] Model, version, budget, and tool details are recorded or marked unknown.
 - [ ] Author, identifier, publication, and artifact fields come from primary sources.
+- [ ] Conference, exact venue, and domains follow the catalog taxonomy.
 - [ ] The evidence location and comparison scope are recorded.
 - [ ] Comparison caveats are explicit.
 - [ ] `make check` passes.

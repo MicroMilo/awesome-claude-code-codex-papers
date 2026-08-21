@@ -8,6 +8,23 @@
 
 The product field describes the evaluated harness, not merely the model provider. A paper using a Claude API model inside a custom scaffold is not automatically a Claude Code paper.
 
+## Domains
+
+Domains describe the task or evidence area studied by a paper. They are multi-valued: a mobile-agent benchmark can be both `software-engineering` and `web-ui`.
+
+- `software-engineering`: repository understanding, code generation, repair, testing, maintenance, and development workflows.
+- `security`: vulnerability discovery, exploitation, red teaming, secure repair, or agent security.
+- `systems-performance`: systems work, runtime behavior, resource efficiency, or performance engineering.
+- `machine-learning`: model training, architecture search, or ML research automation.
+- `scientific-computing`: scientific software, simulation, numerical computing, or research code.
+- `formal-methods`: theorem proving, proof assistants, program verification, or formal reasoning.
+- `web-ui`: web, mobile, frontend, visual fidelity, or interaction implementation.
+- `documents`: document generation, conversion, layout, or structured office artifacts.
+
+## Conference and venue
+
+`conference` is the standardized series used by filters: `AAAI`, `ASE`, `FSE`, `ICLR`, `ICML`, `ICSE`, `ISSTA`, `NeurIPS`, `arXiv`, or `Other`. `venue` preserves the exact proceedings, track, workshop, or preprint label reported by the source. A paper that has not been accepted by a listed conference remains `arXiv`, even when its subject fits that community.
+
 ## Evidence classes
 
 ### Direct comparison
@@ -46,6 +63,9 @@ The paper studies the pre-CLI OpenAI Codex model. These entries are retained for
 - `repository-instructions`: repository-scoped instruction files such as AGENTS.md.
 - `deterministic-search`: non-LLM rules or analyses narrow candidates before generation.
 - `visual-review`: rendered output is inspected and used as feedback.
+- `coordination`: explicit communication, synchronization, delegation, or handoff between agents.
+- `adversarial-testing`: attacks, red-team probes, or hostile inputs are used to expose failures.
+- `benchmark-design`: dataset construction, executable oracles, contamination controls, or evaluation protocol design is the central contribution.
 
 ## Comparison controls
 

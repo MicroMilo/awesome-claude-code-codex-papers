@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Jane Luo, Xin Zhang, Steven Liu, Jie Wu, Jianfeng Liu, Yiming Huang, Yangyu Huang, Chengyu Yin, Ying Xin, Yuefeng Zhan, Hao Sun, Qi Chen, Scarlett Li, Mao Yang |
+| Conference | ICLR |
 | Venue | ICLR 2026 (main) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2025-09-19 |
 | Identifiers | [arXiv:2509.16198](https://arxiv.org/abs/2509.16198) |

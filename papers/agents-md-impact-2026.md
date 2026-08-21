@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Jai Lal Lulla, Seyedmoein Mohsenimofidi, Matthias Galster, Jie M. Zhang, Sebastian Baltes, Christoph Treude |
+| Conference | ICSE |
 | Venue | ICSE JAWs 2026 (workshop) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2026-01-28 |
 | Identifiers | [arXiv:2601.20404](https://arxiv.org/abs/2601.20404) |

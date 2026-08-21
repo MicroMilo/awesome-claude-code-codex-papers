@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Shuvendu K. Lahiri, Sarah Fakhoury, Aaditya Naik, Georgios Sakkas, Saikat Chakraborty, Madanlal Musuvathi, Piali Choudhury, Curtis von Veh, Jeevana Priya Inala, Chenglong Wang, Jianfeng Gao |
+| Conference | ICSE |
 | Venue | AST at ICSE 2022 (workshop) |
+| Domains | Software Engineering |
 | Evidence class | Historical model |
 | First published | 2022-08-11 |
 | Identifiers | [arXiv:2208.05950](https://arxiv.org/abs/2208.05950) |

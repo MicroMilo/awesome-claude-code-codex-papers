@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Yongjie Qian, Ke Gao, Zhibin Zhang, Shaohui Peng, Ling Li |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Scientific Computing, Systems & Performance |
 | Evidence class | Direct comparison |
 | First published | 2026-08-06 |
 | Identifiers | [arXiv:2608.05855](https://arxiv.org/abs/2608.05855) |

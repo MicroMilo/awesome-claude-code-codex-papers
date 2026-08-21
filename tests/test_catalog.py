@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree
 
+import yaml
+
 from scripts import check_links
 from scripts.discover_candidates import parse_feed
 
@@ -37,7 +39,20 @@ def test_readmes_are_concise_website_entry_points() -> None:
         text = (ROOT / filename).read_text(encoding="utf-8")
         assert website_url in text
         assert "CATALOG:DIRECT" not in text
+        assert "CATALOG:COVERAGE:START" in text
+        assert "views/by-domain.md" in text
+        assert "views/by-conference.md" in text
         assert len(text.splitlines()) < 100
+
+
+def test_every_paper_has_filterable_domain_and_conference() -> None:
+    catalog = yaml.safe_load((ROOT / "data" / "papers.yaml").read_text(encoding="utf-8"))
+    papers = catalog["papers"]
+
+    assert len(papers) == 32
+    assert sum(paper["year"] == 2026 for paper in papers) == 29
+    assert all(paper["conference"] for paper in papers)
+    assert all(paper["domains"] for paper in papers)
 
 
 def test_link_scan_excludes_dependencies_and_build_outputs(tmp_path: Path, monkeypatch) -> None:

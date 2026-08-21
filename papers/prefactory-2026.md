@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Islem Bouzenia, Michael Pradel |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2026-07-19 |
 | Identifiers | [arXiv:2607.17211](https://arxiv.org/abs/2607.17211) |

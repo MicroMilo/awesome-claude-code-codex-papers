@@ -9,7 +9,9 @@
 | Field | Value |
 |---|---|
 | Authors | Jiahang Lin, Shichun Liu, Chengjun Pan, Lizhi Lin, Shihan Dou, Zhiheng Xi, Xuanjing Huang, Hang Yan, Zhenhua Han, Tao Gui, Yu-Gang Jiang |
+| Conference | arXiv |
 | Venue | arXiv 2026 (preprint) |
+| Domains | Software Engineering |
 | Evidence class | Direct comparison |
 | First published | 2026-04-28 |
 | Identifiers | [arXiv:2604.25850](https://arxiv.org/abs/2604.25850) |
