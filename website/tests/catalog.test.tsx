@@ -21,6 +21,14 @@ test("renders the complete research catalog", () => {
   assert.match(html, /Software Engineering/);
   assert.match(html, /ISSTA/);
   assert.match(html, /AgentRadio/);
+  assert.match(html, /Models used/);
+  assert.match(html, /Claude Sonnet 4/);
+  assert.match(html, /GPT-5/);
+  assert.doesNotMatch(html, /control-strip|fairness-section/);
+  assert.doesNotMatch(
+    html,
+    /A direct comparison is not automatically a fair comparison/,
+  );
   assert.match(html, /Star the repository/);
   assert.match(
     html,

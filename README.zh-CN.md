@@ -52,7 +52,7 @@
 [可交互论文目录](https://micromilo.github.io/awesome-claude-code-codex-papers/)适合直接：
 
 - 搜索系统、任务、方法、作者和论文结果；
-- 先选择研究领域或会议，再按产品、证据类型、方法和实验公平性细筛；
+- 先选择研究领域或会议，再按产品、证据类型和方法细筛；
 - 查看 baseline 模型、版本、预算、证据位置和限制；
 - 在中英文之间切换，不再阅读超长 Markdown 表格。
 
@@ -60,7 +60,7 @@
 
 这不是排行榜。产品版本、底层模型、预算、工具权限和任务领域经常不同。每条记录都会分开呈现论文报告的结果、实验控制和限制；论文没写清的内容会保留为 `unknown`。
 
-需要原始或生成资料时，可以查看[论文证据页](papers/README.md)、[按领域浏览](views/by-domain.md)、[按会议浏览](views/by-conference.md)、[公平对比视图](views/fair-comparisons.md)或[机器可读 JSON](data/papers.json)。
+需要原始或生成资料时，可以查看[论文证据页](papers/README.md)、[按领域浏览](views/by-domain.md)、[按会议浏览](views/by-conference.md)或[机器可读 JSON](data/papers.json)。
 
 ## 参与贡献
 
