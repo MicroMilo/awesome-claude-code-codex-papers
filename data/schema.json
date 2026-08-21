@@ -49,11 +49,14 @@
       "required": [
         "id",
         "title",
+        "authors",
         "year",
         "venue",
         "publication_status",
         "classification",
+        "system",
         "paper_url",
+        "artifact_status",
         "products",
         "task",
         "method",
@@ -67,6 +70,15 @@
         "title": {
           "type": "string",
           "minLength": 5
+        },
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          }
         },
         "year": {
           "type": "integer",
@@ -91,6 +103,10 @@
         "classification": {
           "enum": ["direct", "related", "evaluation", "historical"]
         },
+        "system": {
+          "type": "string",
+          "minLength": 2
+        },
         "paper_url": {
           "type": "string",
           "format": "uri",
@@ -100,6 +116,21 @@
           "type": "string",
           "format": "uri",
           "pattern": "^https://"
+        },
+        "artifact_status": {
+          "enum": ["official", "community", "not-found"]
+        },
+        "arxiv_id": {
+          "type": "string",
+          "pattern": "^[0-9]{4}\\.[0-9]{4,5}$"
+        },
+        "doi": {
+          "type": "string",
+          "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Za-z0-9]+$"
+        },
+        "published_at": {
+          "type": "string",
+          "format": "date"
         },
         "products": {
           "type": "array",
@@ -163,7 +194,16 @@
         "evidence": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["result", "same_model", "same_budget", "strength", "caveats"],
+          "required": [
+            "result",
+            "same_model",
+            "same_budget",
+            "strength",
+            "claim_type",
+            "comparison_scope",
+            "source_location",
+            "caveats"
+          ],
           "properties": {
             "result": {
               "type": "string",
@@ -177,6 +217,22 @@
             },
             "strength": {
               "enum": ["high", "medium", "contextual"]
+            },
+            "claim_type": {
+              "enum": ["quality", "efficiency", "mixed", "diagnostic"]
+            },
+            "comparison_scope": {
+              "enum": [
+                "product-level",
+                "component-level",
+                "configuration-ablation",
+                "benchmark-only",
+                "historical-model"
+              ]
+            },
+            "source_location": {
+              "type": "string",
+              "minLength": 3
             },
             "caveats": {
               "type": "string",

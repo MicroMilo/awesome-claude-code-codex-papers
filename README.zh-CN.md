@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/hero.png" alt="Coding-agent experiments flowing through an evidence graph into research papers" width="100%">
+  <img src="assets/hero.png" alt="Coding agent 实验经过证据图谱汇入研究论文" width="100%">
 </p>
 
-<h1 align="center">Awesome Claude Code & Codex Papers</h1>
+<h1 align="center">Claude Code 与 Codex 研究论文精选</h1>
 
 <p align="center">
-  <strong>Research that measures, analyzes, or beats real production coding agents.</strong>
+  <strong>专门收录评测、分析或超越真实工业 coding agent 的研究。</strong>
 </p>
 
 <p align="center">
@@ -29,60 +29,60 @@
 </p>
 <!-- CATALOG:STATS:END -->
 
-This repository is an evidence-first catalog of papers that study **Claude Code** and **Codex CLI** as complete products—not merely Claude or GPT-family models. It records the baseline configuration, task, intervention, reported result, comparison controls, caveats, and official artifacts.
+这是一个以证据为核心的论文库，研究对象是完整的 **Claude Code** 与 **Codex CLI** 产品，而不只是 Claude 或 GPT 系列模型。每篇论文都记录 baseline 配置、任务、新增方法、论文结果、实验控制、风险说明和官方 artifact。
 
 > [!IMPORTANT]
-> This is not a leaderboard. Product versions, backbone models, budgets, tools, and task domains often differ. Every direct result links to a paper dossier that makes those differences explicit.
+> 这不是排行榜。产品版本、底层模型、预算、工具权限和任务领域经常不同。每项直接结果都链接到独立证据页，明确展示这些差异。
 
-## Start here
+## 从这里开始
 
-| View | Best for |
+| 入口 | 适合查看什么 |
 |---|---|
-| [All paper dossiers](papers/README.md) | Inspecting authors, products, models, versions, evidence locations, and caveats |
-| [By product](views/by-product.md) | Finding Claude Code or Codex CLI papers |
-| [By method](views/by-method.md) | Studying retrieval, repository graphs, verification, multi-agent coordination, and harness evolution |
-| [Comparison fairness](views/fair-comparisons.md) | Separating controlled comparisons from model or budget confounds |
-| [By venue](views/by-venue.md) | Browsing main conferences, workshops, benchmark tracks, and preprints |
-| [Machine-readable catalog](data/papers.json) | Building tools, visualizations, or downstream surveys |
+| [全部论文证据页](papers/README.md) | 作者、产品、模型、版本、证据位置和风险说明 |
+| [按产品浏览](views/by-product.md) | Claude Code 或 Codex CLI 相关论文 |
+| [按方法浏览](views/by-method.md) | 检索、仓库图、验证闭环、多 agent 和 harness 演化 |
+| [实验公平性](views/fair-comparisons.md) | 区分严格控制、模型不同和预算不明的实验 |
+| [按会议浏览](views/by-venue.md) | 主会、workshop、benchmark track 和预印本 |
+| [机器可读数据](data/papers.json) | 二次开发、可视化和下游综述 |
 
-## The question this catalog answers
+## 这个仓库回答的问题
 
-Broad agent-paper lists answer **“What has been published?”** This catalog asks:
+普通论文列表回答“有哪些论文”，这个仓库重点回答：
 
-> **When researchers evaluate or outperform Claude Code or Codex CLI, what did they add, what improved, and was the comparison fair?**
+> **研究者用 Claude Code 或 Codex CLI 做 baseline 时，增加了什么、提升了什么，以及比较是否公平？**
 
-Each reviewed entry captures:
+每个条目都会记录：
 
-- product, CLI version, model, and role in the experiment;
-- task, benchmark, and evaluation scale;
-- the method added around or instead of the product baseline;
-- reported quality, efficiency, or diagnostic evidence;
-- same-model and same-budget controls;
-- evidence location, caveats, and artifact availability.
+- 产品、CLI 版本、底层模型及其在实验中的角色；
+- 任务、benchmark 和实验规模；
+- 围绕产品 baseline 增加或替换的方法；
+- 质量、效率或故障分析结果；
+- 是否保持相同模型和相同预算；
+- 证据位置、限制条件和 artifact 状态。
 
-## Scope
+## 收录范围
 
-The initial scope is deliberately narrow: **Claude Code** and **Codex CLI**. The schema is already product-agnostic, so later releases can add Kimi Code, Zed, Cursor, Gemini CLI, and other industrial coding agents without redesigning the catalog.
+第一阶段只做 **Claude Code** 和 **Codex CLI**。数据结构已经与产品解耦，未来可以自然加入 Kimi Code、Zed、Cursor、Gemini CLI 等工业 coding agent。
 
-Included:
+收录：
 
-- direct product-level comparisons;
-- harness, configuration, retrieval, planning, and verification improvements;
-- benchmarks and empirical studies with product-level results;
-- historical OpenAI Codex model papers, isolated from modern Codex CLI results.
+- 产品级直接对比；
+- harness、配置、检索、规划和验证方法；
+- 包含产品级结果的 benchmark 与实证研究；
+- 单独隔离的旧 OpenAI Codex 模型论文。
 
-Excluded from the primary catalog:
+主列表不收录：
 
-- papers that use a vendor model but never run the corresponding product agent;
-- blog-only or marketing comparisons without a research artifact;
-- claims that cannot be traced to a primary paper or official artifact.
+- 只使用厂商模型、没有运行对应产品 agent 的论文；
+- 没有研究材料的博客或营销对比；
+- 无法追溯到原论文或官方 artifact 的说法。
 
-## Direct comparisons
+## 直接对比
 
-These papers numerically compare a proposed method with Claude Code or Codex CLI. “Direct” does not imply same-model or same-budget parity—check the controls column and linked dossier.
+这些论文把提出的方法与 Claude Code 或 Codex CLI 做了数值比较。“直接”不代表模型和预算相同，请同时查看可比性字段和论文证据页。
 
 <!-- CATALOG:DIRECT:START -->
-| System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
+| 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
 | **[Agentic Harness Engineering](papers/agentic-harness-engineering-2026.md)**<br>[paper](https://arxiv.org/abs/2604.25850) · [artifact](https://github.com/china-qijizhifeng/agentic-harness-engineering) | arXiv 2026<br>preprint | Codex CLI | Automatic evolution of coding-agent harnesses | Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback<br>`harness-evolution` `observability` `memory` `verifier-loop` | Terminal-Bench 2 pass@1 improves from 69.7 to 77.0, above a human-designed Codex-CLI harness at 71.9; transfer uses 12% fewer tokens on SWE-bench Verified. | model: unknown<br>budget: unknown<br>evidence: medium |
 | **[AGENTS.md](papers/agents-md-impact-2026.md)**<br>[paper](https://conf.researchr.org/details/icse-2026/jaws-2026-papers/31/On-the-Impact-of-AGENTS-md-Files-on-the-Efficiency-of-AI-Coding-Agents) | ICSE JAWs 2026<br>workshop | Claude Code<br>Codex CLI | Real pull-request tasks with and without repository instructions | Persistent repository-level build, test, style, and directory guidance in AGENTS.md<br>`repository-instructions` `structured-state` `context-reduction` | Median runtime falls 28.64% and output tokens fall 16.58% with comparable completion behavior. | model: same<br>budget: same<br>evidence: high |
@@ -99,64 +99,53 @@ These papers numerically compare a proposed method with Claude Code or Codex CLI
 | **[MLZero](papers/mlzero-2025.md)**<br>[paper](https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html) · [artifact](https://github.com/autogluon/autogluon-assistant) | NeurIPS 2025<br>main | Codex CLI (GPT-4.1 and o4-mini) | End-to-end machine learning automation | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop<br>`multi-agent` `memory` `verifier-loop` `test-feedback` | MLZero led MLE-Bench Lite with six gold medals and achieved 0.92 success on its multimodal benchmark; one appendix setting reports 6.5% errors versus 26.9% for Codex CLI. | model: unknown<br>budget: unknown<br>evidence: medium |
 <!-- CATALOG:DIRECT:END -->
 
-## What repeatedly works
+## 反复出现的有效方法
 
-Across the current catalog, successful methods repeatedly add structure around the model:
+1. **持久化仓库状态**：把计划、架构、依赖和设计知识放到上下文窗口之外。
+2. **可执行反馈**：让测试、编译器、静态分析器、渲染器或性能测量判断正确性。
+3. **定向检索**：使用专门检索和上下文压缩，减少无关信息。
+4. **依赖感知调度**：根据任务图判断哪些步骤可以并行、哪些必须串行。
+5. **Harness 可观测性**：让轨迹、组件和决策可检查、可归因、可回滚。
+6. **低成本仓库指令**：用精炼的项目级说明减少无效操作和 token。
 
-1. **Persistent repository state** — plans, architecture, dependencies, and design knowledge survive beyond one context window.
-2. **Executable feedback** — tests, compilers, static analyzers, renderers, or performance measurements decide what is correct.
-3. **Targeted retrieval** — specialized search and context reduction replace indiscriminate long-context loading.
-4. **Dependency-aware orchestration** — task graphs determine what can run in parallel and what must remain serial.
-5. **Harness observability** — trajectories, components, and decisions become inspectable and reversible.
-6. **Low-cost repository guidance** — focused project instructions reduce wasted actions and tokens.
+详见[按方法浏览](views/by-method.md)和[方法分类](docs/taxonomy.md)。
 
-See the generated [method view](views/by-method.md) and [taxonomy](docs/taxonomy.md).
+## 相关方法
 
-## Related methods
-
-These papers contain useful product-level evidence, but their central numeric result is a component comparison or another agent's result rather than a clean Claude Code/Codex CLI head-to-head.
+这些论文包含有用的产品证据，但主要数值可能来自组件实验或其他 agent，不构成严格的 Claude Code/Codex CLI 正面对比。
 
 <!-- CATALOG:RELATED:START -->
-| System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
+| 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
 | **[CodeGrep](papers/codegrep-2026.md)**<br>[paper](https://arxiv.org/abs/2608.05886) | arXiv 2026<br>preprint | Claude Code (Claude-Code-like agent) | Repository retrieval for issue resolution | GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent<br>`retrieval` `context-reduction` `parallelism` | Resolve rate 27.0% versus 25.8% without retrieval; resolved tasks use 15% fewer rounds and 19% fewer tokens. | model: same<br>budget: unknown<br>evidence: contextual |
 | **[SCATE](papers/scate-2026.md)**<br>[paper](https://arxiv.org/abs/2607.08983) | arXiv 2026<br>preprint | Claude Code | Automated test generation | Contextual-bandit supervisor that selects testing actions from current coverage and testability state<br>`test-feedback` `verifier-loop` | Line coverage improves 32.3% and branch coverage 30.9% over agent-only Gemini CLI; adaptation is also evaluated with Claude Code. | model: unknown<br>budget: unknown<br>evidence: contextual |
 <!-- CATALOG:RELATED:END -->
 
-## Evaluation-only papers
+## 仅评测论文
 
-These papers benchmark or diagnose the products without proposing a method intended to outperform them.
+这些论文负责 benchmark、测量或故障分析，没有提出专门超越产品的新方法。
 
 <!-- CATALOG:EVALUATION:START -->
-| System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
+| 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
 | **[Bug taxonomy](papers/engineering-pitfalls-2026.md)**<br>[paper](https://conf.researchr.org/details/fse-2026/fse-2026-industry-papers/12/Engineering-Pitfalls-in-AI-Coding-Tools-An-Empirical-Study-of-Bugs-in-Claude-Code-C) | FSE Industry Track 2026<br>conference | Claude Code<br>Codex CLI | Empirical analysis of product bug reports | Evaluation-only manual taxonomy of functionality, integration, invocation, and command-execution failures<br>`observability` | More than 67% of studied bugs concern functionality; API, integration, and configuration account for 36.9% of root causes. | model: unknown<br>budget: unknown<br>evidence: high |
 | **[Terminal-Bench 2.0](papers/terminal-bench-2-2026.md)**<br>[paper](https://proceedings.iclr.cc/paper_files/paper/2026/file/444a3737adaee10d86ad2ef5f74468e6-Paper-Conference.pdf) · [artifact](https://github.com/harbor-framework/terminal-bench-2) | ICLR 2026<br>main | Claude Code (Claude Opus 4.5)<br>Codex CLI (GPT-5.2) | General terminal-agent evaluation | Evaluation-only benchmark with stronger task verification and a neutral terminal scaffold<br>`verifier-loop` | GPT-5.2 with Codex CLI scores 62.9; Claude Opus 4.5 scores 57.8 with Terminus 2 and 52.1 with Claude Code. | model: unknown<br>budget: unknown<br>evidence: high |
 | **[BountyBench](papers/bountybench-2025.md)**<br>[paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html) · [artifact](https://github.com/bountybench/bountybench) | NeurIPS 2025<br>dataset benchmark | Claude Code<br>Codex CLI (o3-high and o4-mini) | Vulnerability detection, exploitation, and patching | Evaluation-only benchmark of offensive and defensive cybersecurity agents<br>`verifier-loop` | Codex o3-high detects 12.5% and patches 90%; Claude Code patches 87.5% and exploits 57.5% in the reported settings. | model: unknown<br>budget: unknown<br>evidence: high |
 <!-- CATALOG:EVALUATION:END -->
 
-## Historical OpenAI Codex model papers
+## 旧 OpenAI Codex 模型论文
 
-These entries study the pre-CLI OpenAI Codex model and are never mixed with modern Codex CLI results.
+这些论文研究的是 Codex CLI 出现前的 OpenAI Codex 模型，不与现代 Codex CLI 结果混合。
 
 <!-- CATALOG:HISTORICAL:START -->
-| System / paper | Venue | Product baseline | Task | What changed | Reported evidence | Controls |
+| 系统 / 论文 | 会议 | 产品 baseline | 任务 | 新增方法 | 论文结果 | 可比性 |
 |---|---|---|---|---|---|---|
 | **[TiCoder](papers/ticoder-2022.md)**<br>[paper](https://arxiv.org/abs/2208.05950) · [artifact](https://github.com/microsoft/TiCoder) | AST at ICSE 2022<br>workshop | OpenAI Codex model (OpenAI Codex) | Interactive function-level code generation | Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs<br>`test-feedback` `verifier-loop` | With one to five simulated user queries, Codex pass@1 gains 22.49 to 37.71 points on MBPP and 24.79 to 53.98 points on HumanEval. | model: same<br>budget: different<br>evidence: high |
 <!-- CATALOG:HISTORICAL:END -->
 
-## Evidence classes
+## 数据与自动校验
 
-- **Direct comparison** — numeric comparison with the production product.
-- **Related method** — product-relevant evidence without a clean product-level head-to-head.
-- **Evaluation only** — benchmark, dataset, measurement, or failure analysis.
-- **Historical model** — pre-CLI OpenAI Codex research.
-
-Evidence strength and comparison controls are separate fields. A paper can report a strong result while still using a different backbone or budget.
-
-## Reproducible data pipeline
-
-`data/papers.yaml` is the source of truth. One command validates the schema, regenerates both READMEs, exports JSON, builds paper dossiers and research views, checks internal links, runs tests, and lints the scripts:
+`data/papers.yaml` 是唯一数据源。构建流程会校验 Schema、生成中英文 README、导出 JSON、生成每篇论文的证据页和研究视图，并检查内部链接、执行测试与 lint：
 
 ```bash
 python -m pip install -r requirements-dev.txt
@@ -164,24 +153,12 @@ make build
 make check
 ```
 
-Generated sections and pages are checked in CI. Hand edits to generated catalog tables fail the build.
+## 参与贡献
 
-## Contributing
+可以直接[推荐论文](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml)，也可以修正现有证据记录。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。定量结果必须指向一手来源；论文没写清模型或预算时，应保留为 `unknown`，不能自行猜测。
 
-The fastest way to help is to [suggest a paper](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml) or correct an existing evidence record.
+## 路线图、引用与许可
 
-Before submitting a PR, read [CONTRIBUTING.md](CONTRIBUTING.md). Quantitative claims must point to a primary source, and missing model or budget information must stay explicitly `unknown` rather than being guessed.
-
-## Roadmap
-
-See [ROADMAP.md](ROADMAP.md). Near-term priorities are deeper baseline-version audits, weekly candidate discovery, richer artifact coverage, and carefully scoped expansion to additional industrial coding agents.
-
-## Related collections
-
-- [PurCL/ASE](https://github.com/PurCL/ASE) — broad Agentic Software Engineering literature database.
-- [EuniAI/awesome-code-agents](https://github.com/EuniAI/awesome-code-agents) — research map of code agents.
-- [Awesome Agent Harnesses](https://github.com/NeuraLiying/Awesome-Agent-Harnesses) — harness research and engineering resources.
-
-## Citation and license
-
-If this catalog supports academic work, use [CITATION.cff](CITATION.cff). Code and catalog metadata are available under the [MIT License](LICENSE); paper copyright remains with the original authors and publishers.
+- 后续计划见 [ROADMAP.md](ROADMAP.md)。
+- 学术引用信息见 [CITATION.cff](CITATION.cff)。
+- 代码和目录元数据使用 [MIT License](LICENSE)，论文版权属于原作者与出版方。

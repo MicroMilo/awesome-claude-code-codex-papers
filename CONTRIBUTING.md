@@ -30,11 +30,22 @@ same_budget: unknown
 
 1. Add one entry to `data/papers.yaml`.
 2. Use a stable identifier such as `short-title-year`.
-3. Choose the narrowest correct evidence class.
-4. Run `make build` to regenerate README tables.
-5. Run `make check` before opening a pull request.
+3. Record authors, identifiers, system name, artifact status, and publication date from primary sources.
+4. Choose the narrowest correct evidence class and comparison scope.
+5. Record where the supporting result appears in the paper.
+6. Run `make build` to regenerate READMEs, JSON, views, and paper dossiers.
+7. Run `make check` before opening a pull request.
 
-Do not manually edit content between `CATALOG:*:START` and `CATALOG:*:END` markers in `README.md`; those sections are generated.
+Do not manually edit content between `CATALOG:*:START` and `CATALOG:*:END` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json`, are also generated.
+
+## Required source checks
+
+- Confirm the paper title and authors against an official paper page or PDF.
+- Distinguish arXiv publication dates from final venue publication.
+- Confirm that an artifact repository is author-maintained before marking it `official`.
+- Record the exact CLI version and model when the paper or artifact reports them.
+- Identify whether the result is product-level, component-level, a configuration ablation, benchmark-only, or historical-model evidence.
+- Keep missing details as `not-reported`, `not-found`, or `unknown`; absence is useful data.
 
 ## Evidence classes
 
@@ -58,6 +69,8 @@ Future products must be added to both `data/schema.json` and `docs/taxonomy.md` 
 - [ ] The paper satisfies the inclusion criteria.
 - [ ] All quantitative claims match the cited primary source.
 - [ ] Model, version, budget, and tool details are recorded or marked unknown.
+- [ ] Author, identifier, publication, and artifact fields come from primary sources.
+- [ ] The evidence location and comparison scope are recorded.
 - [ ] Comparison caveats are explicit.
 - [ ] `make check` passes.
 - [ ] No copyrighted PDF has been committed.
