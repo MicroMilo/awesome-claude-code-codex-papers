@@ -7,7 +7,7 @@
   "required": ["catalog_version", "reviewed_at", "papers"],
   "properties": {
     "catalog_version": {
-      "const": 1
+      "const": 2
     },
     "reviewed_at": {
       "type": "string",
@@ -40,6 +40,30 @@
         "version": {
           "type": "string",
           "minLength": 1
+        },
+        "reasoning_mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "temperature": {
+          "type": "string",
+          "minLength": 1
+        },
+        "max_output_tokens": {
+          "type": "string",
+          "minLength": 1
+        },
+        "budget": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runs": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tool_permissions": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -51,16 +75,21 @@
         "title",
         "authors",
         "year",
+        "year_tag",
         "conference",
+        "conference_tag",
         "venue",
         "domains",
         "publication_status",
         "classification",
         "system",
         "paper_url",
+        "source_type",
+        "audit_status",
         "artifact_status",
         "products",
         "task",
+        "experiment",
         "method",
         "evidence"
       ],
@@ -83,9 +112,10 @@
           }
         },
         "year": {
-          "type": "integer",
-          "minimum": 2020,
-          "maximum": 2100
+          "const": 2026
+        },
+        "year_tag": {
+          "const": 2026
         },
         "conference": {
           "enum": [
@@ -97,8 +127,28 @@
             "ICSE",
             "ISSTA",
             "NeurIPS",
-            "arXiv",
-            "Other"
+            "IJCAI",
+            "KDD",
+            "PLDI",
+            "POPL",
+            "OOPSLA"
+          ]
+        },
+        "conference_tag": {
+          "enum": [
+            "AAAI",
+            "ASE",
+            "FSE",
+            "ICLR",
+            "ICML",
+            "ICSE",
+            "ISSTA",
+            "NeurIPS",
+            "IJCAI",
+            "KDD",
+            "PLDI",
+            "POPL",
+            "OOPSLA"
           ]
         },
         "venue": {
@@ -145,6 +195,17 @@
           "format": "uri",
           "pattern": "^https://"
         },
+        "source_type": {
+          "enum": [
+            "official-conference",
+            "official-proceedings",
+            "openreview-conference",
+            "official-publisher"
+          ]
+        },
+        "audit_status": {
+          "const": "included"
+        },
         "artifact_url": {
           "type": "string",
           "format": "uri",
@@ -152,10 +213,6 @@
         },
         "artifact_status": {
           "enum": ["official", "community", "not-found"]
-        },
-        "arxiv_id": {
-          "type": "string",
-          "pattern": "^[0-9]{4}\\.[0-9]{4,5}$"
         },
         "doi": {
           "type": "string",
@@ -185,6 +242,34 @@
               "type": "string",
               "minLength": 1
             }
+          }
+        },
+        "experiment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reasoning_mode",
+            "temperature",
+            "max_output_tokens",
+            "time_budget",
+            "turn_budget",
+            "token_budget",
+            "api_budget",
+            "runs",
+            "tool_permissions",
+            "baseline_config"
+          ],
+          "properties": {
+            "reasoning_mode": { "type": "string", "minLength": 1 },
+            "temperature": { "type": "string", "minLength": 1 },
+            "max_output_tokens": { "type": "string", "minLength": 1 },
+            "time_budget": { "type": "string", "minLength": 1 },
+            "turn_budget": { "type": "string", "minLength": 1 },
+            "token_budget": { "type": "string", "minLength": 1 },
+            "api_budget": { "type": "string", "minLength": 1 },
+            "runs": { "type": "string", "minLength": 1 },
+            "tool_permissions": { "type": "string", "minLength": 1 },
+            "baseline_config": { "type": "string", "minLength": 1 }
           }
         },
         "method": {

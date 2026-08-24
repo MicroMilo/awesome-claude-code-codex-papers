@@ -13,7 +13,7 @@ body:
     id: paper_url
     attributes:
       label: Primary-source URL
-      description: Official proceedings, DOI, OpenReview, or arXiv URL.
+      description: Official conference record, proceedings, DOI, publisher, or conference OpenReview URL. Preprints alone are not eligible.
     validations:
       required: true
   - type: input
@@ -37,10 +37,9 @@ body:
   - type: dropdown
     id: conference
     attributes:
-      label: Conference or source
-      description: Choose the accepted conference series. Use arXiv when no listed acceptance is verified.
+      label: Conference
+      description: Choose the verified 2026 conference series. If acceptance cannot be verified, do not submit the paper yet.
       options:
-        - arXiv
         - AAAI
         - ASE
         - FSE
@@ -49,6 +48,11 @@ body:
         - ICSE
         - ISSTA
         - NeurIPS
+        - IJCAI
+        - KDD
+        - PLDI
+        - POPL
+        - OOPSLA
         - Other
     validations:
       required: true
@@ -56,7 +60,7 @@ body:
     id: venue
     attributes:
       label: Exact venue or track
-      description: For example, ISSTA Research Papers, ICLR, or arXiv.
+      description: For example, ISSTA Research Papers, ICLR Conference, or PLDI Research Papers.
     validations:
       required: true
   - type: dropdown
@@ -111,6 +115,8 @@ body:
       label: Submission checks
       options:
         - label: I linked a primary research source rather than a blog summary.
+          required: true
+        - label: I verified that this is a formally accepted 2026 conference paper, not an arXiv-only preprint.
           required: true
         - label: The paper studies the product agent, not only a model from the same vendor.
           required: true

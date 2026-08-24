@@ -3,12 +3,10 @@ from __future__ import annotations
 import subprocess
 import sys
 from pathlib import Path
-from xml.etree import ElementTree
 
 import yaml
 
 from scripts import check_links
-from scripts.discover_candidates import parse_feed
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -49,10 +47,12 @@ def test_every_paper_has_filterable_domain_and_conference() -> None:
     catalog = yaml.safe_load((ROOT / "data" / "papers.yaml").read_text(encoding="utf-8"))
     papers = catalog["papers"]
 
-    assert len(papers) == 32
-    assert sum(paper["year"] == 2026 for paper in papers) == 29
+    assert len(papers) > 0
+    assert sum(paper["year"] == 2026 for paper in papers) == len(papers)
     assert all(paper["conference"] for paper in papers)
     assert all(paper["domains"] for paper in papers)
+    assert all(paper["source_type"] != "arxiv" for paper in papers)
+    assert all("arxiv.org" not in paper["paper_url"] for paper in papers)
 
 
 def test_link_scan_excludes_dependencies_and_build_outputs(tmp_path: Path, monkeypatch) -> None:
@@ -65,28 +65,3 @@ def test_link_scan_excludes_dependencies_and_build_outputs(tmp_path: Path, monke
     monkeypatch.setattr(check_links, "ROOT", tmp_path)
 
     assert check_links.markdown_files() == [tmp_path / "README.md"]
-
-
-def test_arxiv_feed_parser_strips_version_and_normalizes_text() -> None:
-    feed = ElementTree.fromstring(
-        """<feed xmlns="http://www.w3.org/2005/Atom">
-        <entry>
-          <id>https://arxiv.org/abs/2608.12345v2</id>
-          <title>A  Product-Level\n  Study</title>
-          <summary>Tests   Claude Code.</summary>
-          <published>2026-08-20T00:00:00Z</published>
-          <author><name>Ada Researcher</name></author>
-        </entry>
-        </feed>"""
-    )
-    parsed = parse_feed(ElementTree.tostring(feed))
-    assert parsed == [
-        {
-            "arxiv_id": "2608.12345",
-            "title": "A Product-Level Study",
-            "summary": "Tests Claude Code.",
-            "authors": ["Ada Researcher"],
-            "published": "2026-08-20T00:00:00Z",
-            "url": "https://arxiv.org/abs/2608.12345",
-        }
-    ]

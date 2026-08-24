@@ -6,183 +6,137 @@
 
 Tags describe the intervention added around or instead of the production coding-agent baseline.
 
-## `verifier-loop` (16)
+## `verifier-loop` (9)
 
 | System | Venue | Method |
 |---|---|---|
-| [ARTEMIS](../papers/artemis-2026.md) | ICLR 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
-| [Agentic Harness Engineering](../papers/agentic-harness-engineering-2026.md) | arXiv 2026 | Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback |
-| [Aria](../papers/aria-2026.md) | arXiv 2026 | A reusable harness that lets the code agent choose whole-proof strategy while prover kernels enforce soundness, completeness, retries, and termination |
-| [Execution-policy ablation](../papers/execution-ablation-2026.md) | ISSTA 2026 | Paired five-arm execution-policy ablation spanning prohibited, quota-limited, budget-guided, and unrestricted execution |
-| [FormAct](../papers/formact-2026.md) | ICML 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
-| [LLM2Ltac](../papers/llm2ltac-2026.md) | ASE 2026 | LLM-mined reusable symbolic tactics, validity and generalization checks, and integration into CoqHammer |
-| [Prefactory](../papers/prefactory-2026.md) | arXiv 2026 | LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests |
-| [QLCoder](../papers/qlcoder-2026.md) | ICLR 2026 | CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback |
-| [RepoOMP](../papers/repoomp-2026.md) | arXiv 2026 | Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation |
-| [RustPrint](../papers/rustprint-2026.md) | arXiv 2026 | Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation |
-| [SCATE](../papers/scate-2026.md) | arXiv 2026 | Contextual-bandit supervisor that selects testing actions from current coverage and testability state |
-| [SEC-bench Pro](../papers/sec-bench-pro-2026.md) | arXiv 2026 | Self-evolving reconstruction pipeline, three-image execution oracle, and LLM judge for vulnerability-specific PoC attribution |
-| [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR 2026 | Evaluation-only benchmark with stronger task verification and a neutral terminal scaffold |
-| [BountyBench](../papers/bountybench-2025.md) | NeurIPS 2025 | Evaluation-only benchmark of offensive and defensive cybersecurity agents |
-| [MLZero](../papers/mlzero-2025.md) | NeurIPS 2025 | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop |
-| [TiCoder](../papers/ticoder-2022.md) | AST at ICSE 2022 | Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs |
-## `test-feedback` (13)
+| [ARTEMIS](../papers/artemis-2026.md) | ICLR Conference 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
+| [AppForge](../papers/appforge-2026.md) | ICLR Conference 2026 | Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark. |
+| [CyberGym](../papers/cybergym-2026.md) | ICLR Conference 2026 | A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis. |
+| [DeepScientist](../papers/deepscientist-2026.md) | ICLR Conference 2026 | A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. |
+| [FeatureBench](../papers/featurebench-2026.md) | ICLR Conference 2026 | Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls. |
+| [FormAct](../papers/formact-2026.md) | ICML Main Conference 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
+| [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. |
+| [QLCoder](../papers/qlcoder-2026.md) | ICLR Conference 2026 | CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back into iterative query repair. |
+| [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized Harbor tasks, and failure-mode analysis. |
+## `benchmark-design` (8)
 
 | System | Venue | Method |
 |---|---|---|
-| [Aria](../papers/aria-2026.md) | arXiv 2026 | A reusable harness that lets the code agent choose whole-proof strategy while prover kernels enforce soundness, completeness, retries, and termination |
-| [Brief](../papers/brief-product-context-2026.md) | arXiv 2026 | Retrieval over recorded product decisions, personas, customer signals, and competitive context during specification and implementation |
-| [EvoDev](../papers/evodev-2026.md) | ISSTA 2026 | Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair |
-| [Execution-policy ablation](../papers/execution-ablation-2026.md) | ISSTA 2026 | Paired five-arm execution-policy ablation spanning prohibited, quota-limited, budget-guided, and unrestricted execution |
-| [Prefactory](../papers/prefactory-2026.md) | arXiv 2026 | LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests |
-| [RustPrint](../papers/rustprint-2026.md) | arXiv 2026 | Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation |
-| [SCATE](../papers/scate-2026.md) | arXiv 2026 | Contextual-bandit supervisor that selects testing actions from current coverage and testability state |
-| [SWE-Bench Mobile](../papers/swe-bench-mobile-2026.md) | arXiv 2026 | Multimodal mobile benchmark with private tests, cross-agent model controls, cost analysis, prompt ablations, and error taxonomy |
-| [WebDesignIter](../papers/webdesigniter-2026.md) | arXiv 2026 | Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair |
-| [ZeroRepo](../papers/rpg-zerorepo-2026.md) | ICLR 2026 | Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation |
-| [icat-agent](../papers/icat-agent-2026.md) | arXiv 2026 | Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback |
-| [MLZero](../papers/mlzero-2025.md) | NeurIPS 2025 | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop |
-| [TiCoder](../papers/ticoder-2022.md) | AST at ICSE 2022 | Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs |
-## `context-reduction` (6)
+| [AppForge](../papers/appforge-2026.md) | ICLR Conference 2026 | Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark. |
+| [CyberGym](../papers/cybergym-2026.md) | ICLR Conference 2026 | A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis. |
+| [DevOps-Gym](../papers/devops-gym-2026.md) | ICLR Conference 2026 | A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics. |
+| [FeatureBench](../papers/featurebench-2026.md) | ICLR Conference 2026 | Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls. |
+| [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. |
+| [InnoGym](../papers/innogym-2026.md) | ICLR Conference 2026 | Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions. |
+| [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection. |
+| [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized Harbor tasks, and failure-mode analysis. |
+## `test-feedback` (6)
 
 | System | Venue | Method |
 |---|---|---|
-| [AGENTS.md](../papers/agents-md-impact-2026.md) | ICSE JAWs 2026 | Persistent repository-level build, test, style, and directory guidance in AGENTS.md |
-| [CodeGrep](../papers/codegrep-2026.md) | arXiv 2026 | GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent |
-| [Execution-policy ablation](../papers/execution-ablation-2026.md) | ISSTA 2026 | Paired five-arm execution-policy ablation spanning prohibited, quota-limited, budget-guided, and unrestricted execution |
-| [FormAct](../papers/formact-2026.md) | ICML 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
-| [RepoOMP](../papers/repoomp-2026.md) | arXiv 2026 | Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation |
-| [Volt with LCM](../papers/lcm-2026.md) | arXiv 2026 | Lossless message storage, hierarchical summary DAGs, deterministic recursive compression, and engine-managed parallel map operators |
-## `multi-agent` (6)
+| [AppForge](../papers/appforge-2026.md) | ICLR Conference 2026 | Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark. |
+| [DevOps-Gym](../papers/devops-gym-2026.md) | ICLR Conference 2026 | A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics. |
+| [FeatureBench](../papers/featurebench-2026.md) | ICLR Conference 2026 | Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls. |
+| [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. |
+| [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection. |
+| [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference 2026 | A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation. |
+## `observability` (3)
 
 | System | Venue | Method |
 |---|---|---|
-| [ARTEMIS](../papers/artemis-2026.md) | ICLR 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
-| [AgentRadio](../papers/agentradio-2026.md) | arXiv 2026 | Four Claude Code agents coordinated through asynchronous threads, messages, passive mention watching, and a five-phase negotiation protocol |
-| [Co-Coder](../papers/co-coder-2026.md) | arXiv 2026 | Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling |
-| [EvoDev](../papers/evodev-2026.md) | ISSTA 2026 | Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair |
-| [icat-agent](../papers/icat-agent-2026.md) | arXiv 2026 | Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback |
-| [MLZero](../papers/mlzero-2025.md) | NeurIPS 2025 | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop |
-## `parallelism` (6)
+| [CyberGym](../papers/cybergym-2026.md) | ICLR Conference 2026 | A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis. |
+| [DevOps-Gym](../papers/devops-gym-2026.md) | ICLR Conference 2026 | A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics. |
+| [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized Harbor tasks, and failure-mode analysis. |
+## `performance-feedback` (3)
 
 | System | Venue | Method |
 |---|---|---|
-| [ARTEMIS](../papers/artemis-2026.md) | ICLR 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
-| [AgentRadio](../papers/agentradio-2026.md) | arXiv 2026 | Four Claude Code agents coordinated through asynchronous threads, messages, passive mention watching, and a five-phase negotiation protocol |
-| [Co-Coder](../papers/co-coder-2026.md) | arXiv 2026 | Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling |
-| [CodeGrep](../papers/codegrep-2026.md) | arXiv 2026 | GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent |
-| [Volt with LCM](../papers/lcm-2026.md) | arXiv 2026 | Lossless message storage, hierarchical summary DAGs, deterministic recursive compression, and engine-managed parallel map operators |
-| [icat-agent](../papers/icat-agent-2026.md) | arXiv 2026 | Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback |
-## `retrieval` (6)
+| [DeepScientist](../papers/deepscientist-2026.md) | ICLR Conference 2026 | A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. |
+| [InnoGym](../papers/innogym-2026.md) | ICLR Conference 2026 | Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions. |
+| [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection. |
+## `structured-state` (3)
 
 | System | Venue | Method |
 |---|---|---|
-| [Brief](../papers/brief-product-context-2026.md) | arXiv 2026 | Retrieval over recorded product decisions, personas, customer signals, and competitive context during specification and implementation |
-| [CodeGrep](../papers/codegrep-2026.md) | arXiv 2026 | GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent |
-| [Context-file ablation](../papers/context-files-ablation-2026.md) | arXiv 2026 | Within-task comparison of no context, always-on AGENTS.md, and selectively retrieved repository wiki context with gold tests and equivalence testing |
-| [FormAct](../papers/formact-2026.md) | ICML 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
-| [QLCoder](../papers/qlcoder-2026.md) | ICLR 2026 | CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback |
-| [WebDesignIter](../papers/webdesigniter-2026.md) | arXiv 2026 | Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair |
-## `structured-state` (6)
+| [DeepScientist](../papers/deepscientist-2026.md) | ICLR Conference 2026 | A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. |
+| [InnoGym](../papers/innogym-2026.md) | ICLR Conference 2026 | Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions. |
+| [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference 2026 | A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation. |
+## `adversarial-testing` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [AGENTS.md](../papers/agents-md-impact-2026.md) | ICSE JAWs 2026 | Persistent repository-level build, test, style, and directory guidance in AGENTS.md |
-| [Brief](../papers/brief-product-context-2026.md) | arXiv 2026 | Retrieval over recorded product decisions, personas, customer signals, and competitive context during specification and implementation |
-| [EvoDev](../papers/evodev-2026.md) | ISSTA 2026 | Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair |
-| [RustPrint](../papers/rustprint-2026.md) | arXiv 2026 | Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation |
-| [WebDesignIter](../papers/webdesigniter-2026.md) | arXiv 2026 | Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair |
-| [ZeroRepo](../papers/rpg-zerorepo-2026.md) | ICLR 2026 | Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation |
-## `memory` (5)
+| [CyberGym](../papers/cybergym-2026.md) | ICLR Conference 2026 | A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis. |
+| [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized Harbor tasks, and failure-mode analysis. |
+## `coordination` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [ARTEMIS](../papers/artemis-2026.md) | ICLR 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
-| [Agentic Harness Engineering](../papers/agentic-harness-engineering-2026.md) | arXiv 2026 | Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback |
-| [EvoDev](../papers/evodev-2026.md) | ISSTA 2026 | Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair |
-| [Volt with LCM](../papers/lcm-2026.md) | arXiv 2026 | Lossless message storage, hierarchical summary DAGs, deterministic recursive compression, and engine-managed parallel map operators |
-| [MLZero](../papers/mlzero-2025.md) | NeurIPS 2025 | Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop |
-## `dependency-aware-planning` (4)
+| [DevOps-Gym](../papers/devops-gym-2026.md) | ICLR Conference 2026 | A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics. |
+| [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. |
+## `deterministic-search` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [Co-Coder](../papers/co-coder-2026.md) | arXiv 2026 | Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling |
-| [EvoDev](../papers/evodev-2026.md) | ISSTA 2026 | Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair |
-| [RustPrint](../papers/rustprint-2026.md) | arXiv 2026 | Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation |
-| [ZeroRepo](../papers/rpg-zerorepo-2026.md) | ICLR 2026 | Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation |
-## `observability` (4)
+| [InnoGym](../papers/innogym-2026.md) | ICLR Conference 2026 | Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions. |
+| [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection. |
+## `memory` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [Agentic Harness Engineering](../papers/agentic-harness-engineering-2026.md) | arXiv 2026 | Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback |
-| [Bug taxonomy](../papers/engineering-pitfalls-2026.md) | FSE Industry Track 2026 | Evaluation-only manual taxonomy of functionality, integration, invocation, and command-execution failures |
-| [SWE-bench Science](../papers/swe-bench-science-2026.md) | arXiv 2026 | Three-paradigm benchmark with private tests, a scientific failure taxonomy, and paired ablations of explicit scientific guidance |
-| [ToolLeak](../papers/toolleak-2026.md) | ISSTA 2026 | Tool-call schema pressure for prompt leakage followed by a two-channel injection through tool descriptions and returns |
-## `repository-graph` (4)
+| [ARTEMIS](../papers/artemis-2026.md) | ICLR Conference 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
+| [DeepScientist](../papers/deepscientist-2026.md) | ICLR Conference 2026 | A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. |
+## `multi-agent` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [Co-Coder](../papers/co-coder-2026.md) | arXiv 2026 | Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling |
-| [RepoOMP](../papers/repoomp-2026.md) | arXiv 2026 | Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation |
-| [WebDesignIter](../papers/webdesigniter-2026.md) | arXiv 2026 | Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair |
-| [ZeroRepo](../papers/rpg-zerorepo-2026.md) | ICLR 2026 | Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation |
-## `benchmark-design` (3)
+| [ARTEMIS](../papers/artemis-2026.md) | ICLR Conference 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
+| [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. |
+## `parallelism` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [SEC-bench Pro](../papers/sec-bench-pro-2026.md) | arXiv 2026 | Self-evolving reconstruction pipeline, three-image execution oracle, and LLM judge for vulnerability-specific PoC attribution |
-| [SWE-Bench Mobile](../papers/swe-bench-mobile-2026.md) | arXiv 2026 | Multimodal mobile benchmark with private tests, cross-agent model controls, cost analysis, prompt ablations, and error taxonomy |
-| [SWE-bench Science](../papers/swe-bench-science-2026.md) | arXiv 2026 | Three-paradigm benchmark with private tests, a scientific failure taxonomy, and paired ablations of explicit scientific guidance |
-## `deterministic-search` (3)
+| [ARTEMIS](../papers/artemis-2026.md) | ICLR Conference 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
+| [DeepScientist](../papers/deepscientist-2026.md) | ICLR Conference 2026 | A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. |
+## `retrieval` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [LLM2Ltac](../papers/llm2ltac-2026.md) | ASE 2026 | LLM-mined reusable symbolic tactics, validity and generalization checks, and integration into CoqHammer |
-| [Prefactory](../papers/prefactory-2026.md) | arXiv 2026 | LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests |
-| [RepoOMP](../papers/repoomp-2026.md) | arXiv 2026 | Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation |
-## `repository-instructions` (3)
-
-| System | Venue | Method |
-|---|---|---|
-| [AGENTS.md](../papers/agents-md-impact-2026.md) | ICSE JAWs 2026 | Persistent repository-level build, test, style, and directory guidance in AGENTS.md |
-| [Context-file ablation](../papers/context-files-ablation-2026.md) | arXiv 2026 | Within-task comparison of no context, always-on AGENTS.md, and selectively retrieved repository wiki context with gold tests and equivalence testing |
-| [Guardrails Beat Guidance](../papers/guardrails-guidance-2026.md) | arXiv 2026 | Paired rule-file experiments over source, count, polarity, type, and composition, backed by a corpus of 25,532 rules |
-## `static-analysis` (3)
-
-| System | Venue | Method |
-|---|---|---|
-| [LLM2Ltac](../papers/llm2ltac-2026.md) | ASE 2026 | LLM-mined reusable symbolic tactics, validity and generalization checks, and integration into CoqHammer |
-| [Prefactory](../papers/prefactory-2026.md) | arXiv 2026 | LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests |
-| [QLCoder](../papers/qlcoder-2026.md) | ICLR 2026 | CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback |
-## `dynamic-specialization` (2)
-
-| System | Venue | Method |
-|---|---|---|
-| [ARTEMIS](../papers/artemis-2026.md) | ICLR 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
-| [icat-agent](../papers/icat-agent-2026.md) | arXiv 2026 | Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback |
+| [FormAct](../papers/formact-2026.md) | ICML Main Conference 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
+| [QLCoder](../papers/qlcoder-2026.md) | ICLR Conference 2026 | CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back into iterative query repair. |
 ## `visual-review` (2)
 
 | System | Venue | Method |
 |---|---|---|
-| [FormAct](../papers/formact-2026.md) | ICML 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
-| [SWE-Bench Mobile](../papers/swe-bench-mobile-2026.md) | arXiv 2026 | Multimodal mobile benchmark with private tests, cross-agent model controls, cost analysis, prompt ablations, and error taxonomy |
-## `adversarial-testing` (1)
+| [AppForge](../papers/appforge-2026.md) | ICLR Conference 2026 | Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark. |
+| [FormAct](../papers/formact-2026.md) | ICML Main Conference 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
+## `context-reduction` (1)
 
 | System | Venue | Method |
 |---|---|---|
-| [ToolLeak](../papers/toolleak-2026.md) | ISSTA 2026 | Tool-call schema pressure for prompt leakage followed by a two-channel injection through tool descriptions and returns |
-## `coordination` (1)
+| [FormAct](../papers/formact-2026.md) | ICML Main Conference 2026 | HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression |
+## `dependency-aware-planning` (1)
 
 | System | Venue | Method |
 |---|---|---|
-| [AgentRadio](../papers/agentradio-2026.md) | arXiv 2026 | Four Claude Code agents coordinated through asynchronous threads, messages, passive mention watching, and a five-phase negotiation protocol |
-## `harness-evolution` (1)
+| [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference 2026 | A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation. |
+## `dynamic-specialization` (1)
 
 | System | Venue | Method |
 |---|---|---|
-| [Agentic Harness Engineering](../papers/agentic-harness-engineering-2026.md) | arXiv 2026 | Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback |
-## `performance-feedback` (1)
+| [ARTEMIS](../papers/artemis-2026.md) | ICLR Conference 2026 | Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting |
+## `repository-graph` (1)
 
 | System | Venue | Method |
 |---|---|---|
-| [RepoOMP](../papers/repoomp-2026.md) | arXiv 2026 | Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation |
+| [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference 2026 | A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation. |
+## `repository-instructions` (1)
+
+| System | Venue | Method |
+|---|---|---|
+| [FeatureBench](../papers/featurebench-2026.md) | ICLR Conference 2026 | Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls. |
+## `static-analysis` (1)
+
+| System | Venue | Method |
+|---|---|---|
+| [QLCoder](../papers/qlcoder-2026.md) | ICLR Conference 2026 | CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back into iterative query repair. |

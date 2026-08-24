@@ -14,6 +14,7 @@
 
 <p align="center">
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/"><img alt="Open website" src="https://img.shields.io/badge/open-interactive%20website-f16f51?style=for-the-badge"></a>
+  <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/insights/"><img alt="Read insights" src="https://img.shields.io/badge/read-evidence%20insights-4bcbd5?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -25,12 +26,12 @@
 
 <!-- CATALOG:STATS:START -->
 <p align="center">
-  <img alt="papers: 32" src="https://img.shields.io/badge/papers-32-16616a">
-  <img alt="direct comparisons: 19" src="https://img.shields.io/badge/direct%20comparisons-19-dc6b46">
-  <img alt="official artifacts: 18" src="https://img.shields.io/badge/official%20artifacts-18-2563eb">
-  <img alt="domains: 8" src="https://img.shields.io/badge/domains-8-4bcbd5">
-  <img alt="conference groups: 8" src="https://img.shields.io/badge/conference%20groups-8-7c3aed">
-  <img alt="reviewed: 2026-08-21" src="https://img.shields.io/badge/reviewed-2026--08--21-475569">
+  <img alt="papers: 13" src="https://img.shields.io/badge/papers-13-16616a">
+  <img alt="direct comparisons: 5" src="https://img.shields.io/badge/direct%20comparisons-5-dc6b46">
+  <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
+  <img alt="domains: 7" src="https://img.shields.io/badge/domains-7-4bcbd5">
+  <img alt="conference groups: 2" src="https://img.shields.io/badge/conference%20groups-2-7c3aed">
+  <img alt="reviewed: 2026-08-24" src="https://img.shields.io/badge/reviewed-2026--08--24-475569">
 </p>
 <!-- CATALOG:STATS:END -->
 
@@ -39,28 +40,30 @@
 <!-- CATALOG:COVERAGE:START -->
 <p align="center">
   <a href="views/by-domain.md"><strong>Research domains</strong></a><br>
-  <code>Software Engineering · 21</code> · <code>Security · 5</code> · <code>Systems & Performance · 5</code> · <code>Machine Learning · 1</code> · <code>Scientific Computing · 2</code> · <code>Formal Methods · 2</code> · <code>Web & UI · 3</code> · <code>Documents · 1</code><br><br>
+  <code>Software Engineering · 7</code> · <code>Security · 3</code> · <code>Systems & Performance · 1</code> · <code>Machine Learning · 4</code> · <code>Scientific Computing · 3</code> · <code>Web & UI · 1</code> · <code>Documents · 1</code><br><br>
   <a href="views/by-conference.md"><strong>Conferences / sources</strong></a><br>
-  <code>ASE · 1</code> · <code>FSE · 1</code> · <code>ICLR · 4</code> · <code>ICML · 1</code> · <code>ICSE · 2</code> · <code>ISSTA · 3</code> · <code>NeurIPS · 2</code> · <code>arXiv · 18</code>
+  <code>ICLR · 12</code> · <code>ICML · 1</code>
 </p>
 <!-- CATALOG:COVERAGE:END -->
 
-This repository is the open data and maintenance layer behind the **web-first research catalog**. It covers papers that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model.
+This repository is the open data and maintenance layer behind the **web-first research catalog**. The main catalog is restricted to **2026 papers with an official conference, proceedings, or OpenReview conference record** that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model.
 
 ## Start with the website
 
 The [interactive catalog](https://micromilo.github.io/awesome-claude-code-codex-papers/) is the fastest way to:
 
 - search systems, tasks, methods, authors, and reported results;
-- choose a research domain or conference, then refine by product, evidence class, and method;
+- choose a research domain, conference, year, product, evidence strength, exact model, or method;
 - inspect baseline models, versions, budgets, evidence locations, and caveats;
 - switch between English and Chinese without reading giant Markdown tables.
+
+The separate [evidence insights page](https://micromilo.github.io/awesome-claude-code-codex-papers/insights/) synthesizes where the products struggle and maps every inference back to the supporting papers, reported results, source locations, and comparison caveats.
 
 ## Evidence standard
 
 This is not a leaderboard. Product versions, backbone models, budgets, tools, and task domains often differ. Every entry separates the paper's reported result from our comparison controls and caveats. Missing details stay explicitly `unknown`.
 
-For raw or generated research material, use the [paper dossiers](papers/README.md), [domain view](views/by-domain.md), [conference view](views/by-conference.md), or [machine-readable JSON](data/papers.json).
+For raw or generated research material, use the [paper dossiers](papers/README.md), [domain view](views/by-domain.md), [conference view](views/by-conference.md), [machine-readable JSON](data/papers.json), or the [full 2026 conference census](docs/2026-conference-census.md).
 
 ## Contributing
 

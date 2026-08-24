@@ -1,0 +1,566 @@
+report_version: 1
+generated_at: '2026-08-21T15:08:10+00:00'
+source_catalog: data/papers.yaml before the 2026 conference-only migration
+policy:
+  arxiv_only: excluded
+  official_record_with_arxiv_primary_url: retain as pending until paper_url is replaced
+  uncertain_acceptance_or_full_text: pending
+papers:
+- id: qlcoder-2026
+  title: 'QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities'
+  original_conference: ICLR
+  original_year: 2026
+  original_paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/2adf01ab15adde8820622f7f24bd516b-Abstract-Conference.html
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4
+    version: 1.0.120
+  disposition: pending
+  reason: official ICLR proceedings record
+  field_issues: []
+  official_record_note: official ICLR proceedings record
+- id: rpg-zerorepo-2026
+  title: 'RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation'
+  original_conference: ICLR
+  original_year: 2026
+  original_paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/file/9482f45fdd89aba9130bb04c44f788a9-Paper-Conference.pdf
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude 4 Sonnet
+    version: not-reported
+  - product: codex-cli
+    role: baseline
+    model: o3-pro
+    version: not-reported
+  disposition: pending
+  reason: official ICLR proceedings record
+  field_issues:
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ICLR proceedings record
+- id: artemis-2026
+  title: Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing
+  original_conference: ICLR
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2512.09882
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4
+    version: not-reported
+  - product: codex-cli
+    role: baseline
+    model: GPT-5
+    version: not-reported
+  disposition: pending
+  reason: official ICLR proceedings record matched by exact title; catalog URL must be replaced
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - formal conference record exists but paper_url must be replaced with the official conference record
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ICLR proceedings record matched by exact title; catalog URL must be replaced
+- id: mlzero-2025
+  title: 'MLZero: A Multi-Agent System for End-to-end Machine Learning Automation'
+  original_conference: NeurIPS
+  original_year: 2025
+  original_paper_url: https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html
+  original_products:
+  - product: codex-cli
+    role: baseline
+    model: GPT-4.1 and o4-mini
+    version: not-reported
+  disposition: excluded
+  reason: Outside the requested 2026 conference scope.
+  field_issues:
+  - year is outside the 2026 migration scope
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: formact-2026
+  title: 'FormAct: Agentic Source Editing for Rich-Format Document Generation'
+  original_conference: ICML
+  original_year: 2026
+  original_paper_url: https://openreview.net/forum?id=n7Ta0YEcgw
+  original_products:
+  - product: codex-cli
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: pending
+  reason: official ICML poster/OpenReview record
+  field_issues:
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ICML poster/OpenReview record
+- id: agentic-harness-engineering-2026
+  title: 'Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2604.25850
+  original_products:
+  - product: codex-cli
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: webdesigniter-2026
+  title: 'WebDesignIter: Co-Evolving Design Knowledge for Repository-Level Front-End Code Generation'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.10621
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  - product: codex-cli
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: prefactory-2026
+  title: 'Prefactory: Automated Discovery and Application of Library-Adoption Refactorings'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.17211
+  original_products:
+  - product: codex-cli
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: rustprint-2026
+  title: 'RustPrint: Documentation-Guided Agentic Codebase Migration from C to Rust'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2605.14634
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: repoomp-2026
+  title: 'RepoOMP: Repository-Aware Hotspot OpenMP Parallelization via Dependency-Aware Context Reduction'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2608.05855
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: icat-agent-2026
+  title: Unlocking Model Potentials Through Adaptive Multi-Agent Scaffolding for Efficient Issue Resolution
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2606.25514
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: co-coder-2026
+  title: 'When Parallelism Pays Off: Cohesion-Aware Task Partitioning for Multi-Agent Coding'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2606.00953
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: Agent Teams
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  official_record_note: null
+- id: agents-md-impact-2026
+  title: On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents
+  original_conference: ICSE
+  original_year: 2026
+  original_paper_url: https://conf.researchr.org/details/icse-2026/jaws-2026-papers/31/On-the-Impact-of-AGENTS-md-Files-on-the-Efficiency-of-AI-Coding-Agents
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  - product: codex-cli
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: pending
+  reason: official ICSE JAWs workshop record
+  field_issues:
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ICSE JAWs workshop record
+- id: codegrep-2026
+  title: 'CodeGrep: An RL-Trained Retrieval Agent for LLM Coding Agents'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2608.05886
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: not-reported
+    version: Claude-Code-like agent
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  official_record_note: null
+- id: scate-2026
+  title: 'SCATE: Learning to Supervise Coding Agents for Cost-Effective Test Generation'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.08983
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: not-reported
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: terminal-bench-2-2026
+  title: 'Terminal-Bench 2.0: Advancing Agentic Terminal Intelligence through Better Evaluation and Verification'
+  original_conference: ICLR
+  original_year: 2026
+  original_paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/file/444a3737adaee10d86ad2ef5f74468e6-Paper-Conference.pdf
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Opus 4.5
+    version: not-reported
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.2
+    version: not-reported
+  disposition: pending
+  reason: official ICLR proceedings record must be matched to the exact title/version
+  field_issues:
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ICLR proceedings record must be matched to the exact title/version
+- id: bountybench-2025
+  title: 'BountyBench: Dollar Impact of AI Agent Attackers and Defenders on Real-World Cybersecurity Systems'
+  original_conference: NeurIPS
+  original_year: 2025
+  original_paper_url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: not-reported
+    version: not-reported
+  - product: codex-cli
+    role: evaluated
+    model: o3-high and o4-mini
+    version: not-reported
+  disposition: excluded
+  reason: Outside the requested 2026 conference scope.
+  field_issues:
+  - year is outside the 2026 migration scope
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: engineering-pitfalls-2026
+  title: 'Engineering Pitfalls in AI Coding Tools: An Empirical Study of Bugs in Claude Code, Codex, and Gemini CLI'
+  original_conference: FSE
+  original_year: 2026
+  original_paper_url: https://conf.researchr.org/details/fse-2026/fse-2026-industry-papers/12/Engineering-Pitfalls-in-AI-Coding-Tools-An-Empirical-Study-of-Bugs-in-Claude-Code-C
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: not-applicable
+    version: multiple
+  - product: codex-cli
+    role: evaluated
+    model: not-applicable
+    version: multiple
+  disposition: pending
+  reason: official FSE industry-track record
+  field_issues: []
+  official_record_note: official FSE industry-track record
+- id: ticoder-2022
+  title: Interactive Code Generation via Test-Driven User-Intent Formalization
+  original_conference: ICSE
+  original_year: 2022
+  original_paper_url: https://arxiv.org/abs/2208.05950
+  original_products:
+  - product: openai-codex-model
+    role: historical-baseline
+    model: OpenAI Codex
+    version: not-reported
+  disposition: excluded
+  reason: Outside the requested 2026 conference scope.
+  field_issues:
+  - year is outside the 2026 migration scope
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: evodev-2026
+  title: 'Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework'
+  original_conference: ISSTA
+  original_year: 2026
+  original_paper_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude 4 Sonnet
+    version: not-reported
+  disposition: pending
+  reason: official ISSTA research-paper record
+  field_issues:
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ISSTA research-paper record
+- id: toolleak-2026
+  title: 'Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment'
+  original_conference: ISSTA
+  original_year: 2026
+  original_paper_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: multiple
+    version: multiple
+  disposition: pending
+  reason: official ISSTA research-paper record
+  field_issues: []
+  official_record_note: official ISSTA research-paper record
+- id: execution-ablation-2026
+  title: 'To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair'
+  original_conference: ISSTA
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2606.26978
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Sonnet 4.5
+    version: 1.0.16
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.2 xhigh
+    version: 0.1.2025062301
+  disposition: pending
+  reason: exact title matched in the official ISSTA accepted list; catalog URL still points to arXiv
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - formal conference record exists but paper_url must be replaced with the official conference record
+  official_record_note: exact title matched in the official ISSTA accepted list; catalog URL still points to arXiv
+- id: llm2ltac-2026
+  title: Mining Tactics for Automated Theorem Proving
+  original_conference: ASE
+  original_year: 2026
+  original_paper_url: https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+  disposition: pending
+  reason: official ASE research-paper record
+  field_issues:
+  - model field requires a full-text/appendix/artifact recheck
+  - CLI/product version is not reported or not yet verified
+  official_record_note: official ASE research-paper record
+- id: agentradio-2026
+  title: 'AgentRadio: Passive Awareness for Long-Horizon Multi-Agent Collaboration'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.28430
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Opus 4.6
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: context-files-ablation-2026
+  title: Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.27250
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Sonnet 4.6
+    version: not-reported
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.5
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: guardrails-guidance-2026
+  title: 'Guardrails Beat Guidance: A Large-Scale Study of Rules, Skills, and Persistent Configuration for Coding Agents'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2604.11088
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Opus 4.6
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: lcm-2026
+  title: 'LCM: Lossless Context Management'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2605.04050
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Opus 4.6
+    version: 2.1.4
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  official_record_note: null
+- id: brief-product-context-2026
+  title: 'Context-Augmented Code Generation: How Product Context Improves AI Coding Agent Decision Compliance by 49%'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2605.08112
+  original_products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4.6
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: swe-bench-science-2026
+  title: 'SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2608.19799
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Opus 5 and DeepSeek V4 variants
+    version: not-reported
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.6, GLM 5.2, Nex N2, and Qwen 3.5 variants
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: swe-bench-mobile-2026
+  title: 'SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2602.09540
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: multiple
+    version: 2.1.37
+  - product: codex-cli
+    role: evaluated
+    model: multiple
+    version: 0.77.0
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  official_record_note: null
+- id: sec-bench-pro-2026
+  title: 'SEC-bench Pro: Can Language Models Solve Long-Horizon Software Security Tasks?'
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2605.26548
+  original_products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Opus 4.6
+    version: not-reported
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.4 and GPT-5.5
+    version: not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  - CLI/product version is not reported or not yet verified
+  official_record_note: null
+- id: aria-2026
+  title: Harnessing Code Agents for Automatic Software Verification
+  original_conference: arXiv
+  original_year: 2026
+  original_paper_url: https://arxiv.org/abs/2607.06341
+  original_products:
+  - product: claude-code
+    role: host
+    model: Claude Opus 4.7
+    version: SDK, not-reported
+  disposition: excluded
+  reason: ArXiv-only record; no exact official 2026 conference record was found in the imported official census.
+  field_issues:
+  - current primary URL is arXiv; arXiv is not an accepted main-catalog source
+  official_record_note: null

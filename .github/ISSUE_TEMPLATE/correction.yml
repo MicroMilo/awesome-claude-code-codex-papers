@@ -41,7 +41,7 @@ body:
     id: source
     attributes:
       label: Primary-source URL
-      description: Link to the paper, proceedings, DOI, OpenReview, arXiv, or official artifact.
+      description: Link to the official conference record, proceedings, DOI, publisher page, conference OpenReview record, or official artifact.
     validations:
       required: true
   - type: checkboxes

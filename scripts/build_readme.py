@@ -14,6 +14,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "data" / "papers.yaml"
+PENDING_SUMMARY_PATH = ROOT / "data" / "audit" / "2026-pending-summary.json"
 README_PATH = ROOT / "README.md"
 README_ZH_PATH = ROOT / "README.zh-CN.md"
 
@@ -56,8 +57,11 @@ CONFERENCE_ORDER = [
     "ICSE",
     "ISSTA",
     "NeurIPS",
-    "arXiv",
-    "Other",
+    "IJCAI",
+    "KDD",
+    "PLDI",
+    "POPL",
+    "OOPSLA",
 ]
 
 PRODUCT_LABELS = {
@@ -279,14 +283,10 @@ def artifact_label(paper: dict) -> str:
 def render_paper_page(paper: dict) -> str:
     evidence = paper["evidence"]
     identifiers = []
-    if paper.get("arxiv_id"):
-        identifiers.append(
-            f"[arXiv:{paper['arxiv_id']}](https://arxiv.org/abs/{paper['arxiv_id']})"
-        )
     if paper.get("doi"):
         identifiers.append(f"[DOI:{paper['doi']}](https://doi.org/{paper['doi']})")
     if not identifiers:
-        identifiers.append("Not recorded")
+        identifiers.append("Official conference source")
 
     product_rows = []
     for product in paper["products"]:
@@ -420,7 +420,7 @@ def render_views_index() -> str:
 
 - [By product](by-product.md) — Claude Code and Codex CLI separately.
 - [By domain](by-domain.md) — software engineering, security, systems, formal methods, and more.
-- [By conference](by-conference.md) — standardized conference series plus arXiv-only papers.
+- [By conference](by-conference.md) — standardized 2026 conference series.
 - [By method](by-method.md) — repository graphs, retrieval, verification, orchestration, and more.
 - [Comparison fairness](fair-comparisons.md) — same-model and same-budget controls.
 - [By exact venue](by-venue.md) — tracks, workshops, and proceedings labels as reported.
@@ -648,11 +648,14 @@ Main-conference, workshop, benchmark-track, and preprint status remain explicit.
 def render_all() -> dict[Path, str]:
     catalog = load_catalog()
     catalog_json = json.dumps(catalog, indent=2, ensure_ascii=False) + "\n"
+    pending_summary = json.loads(PENDING_SUMMARY_PATH.read_text(encoding="utf-8"))
+    pending_summary_json = json.dumps(pending_summary, indent=2, ensure_ascii=False) + "\n"
     outputs = {
         README_PATH: render_marked_readme(README_PATH, catalog, "en"),
         README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, "zh"),
         ROOT / "data" / "papers.json": catalog_json,
         ROOT / "website" / "data" / "catalog.json": catalog_json,
+        ROOT / "website" / "data" / "pending-summary.json": pending_summary_json,
         ROOT / "papers" / "README.md": render_paper_index(catalog),
         ROOT / "views" / "README.md": render_views_index(),
         ROOT / "views" / "by-product.md": render_by_product(catalog),
@@ -664,7 +667,10 @@ def render_all() -> dict[Path, str]:
     }
     for paper in catalog["papers"]:
         outputs[ROOT / "papers" / f"{paper['id']}.md"] = render_paper_page(paper)
-    return outputs
+    return {
+        path: (content.rstrip() + "\n" if path.suffix == ".md" else content)
+        for path, content in outputs.items()
+    }
 
 
 def generated_extras(expected: set[Path]) -> list[Path]:
@@ -713,10 +719,10 @@ def main() -> int:
         print(f"updated {path.relative_to(ROOT)}")
     extras = generated_extras(set(outputs))
     if extras:
-        print("Obsolete generated files were not deleted automatically:", file=sys.stderr)
+        print("Removing obsolete generated files:")
         for path in extras:
-            print(f"- {path.relative_to(ROOT)}", file=sys.stderr)
-        return 1
+            path.unlink()
+            print(f"- {path.relative_to(ROOT)}")
     return 0
 
 

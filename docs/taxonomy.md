@@ -23,7 +23,9 @@ Domains describe the task or evidence area studied by a paper. They are multi-va
 
 ## Conference and venue
 
-`conference` is the standardized series used by filters: `AAAI`, `ASE`, `FSE`, `ICLR`, `ICML`, `ICSE`, `ISSTA`, `NeurIPS`, `arXiv`, or `Other`. `venue` preserves the exact proceedings, track, workshop, or preprint label reported by the source. A paper that has not been accepted by a listed conference remains `arXiv`, even when its subject fits that community.
+`conference` is the standardized series used by filters: `AAAI`, `ASE`, `FSE`, `ICLR`, `ICML`, `ICSE`, `ISSTA`, `NeurIPS`, `IJCAI`, `KDD`, `PLDI`, `POPL`, or `OOPSLA`. `venue` preserves the exact proceedings, track, or workshop label reported by the first-party source. The main catalog contains only 2026 records with an official conference/proceedings/OpenReview source; preprint-only records live in the audit report as excluded or pending records.
+
+Each main-catalog record also carries `year_tag: 2026`, `conference_tag` (equal to `conference`), `source_type`, and `audit_status: included`. `source_type` makes the provenance machine-checkable; `audit_status` prevents an unreviewed census record from being silently promoted.
 
 ## Evidence classes
 
@@ -76,6 +78,16 @@ The paper studies the pre-CLI OpenAI Codex model. These entries are retained for
 - `unknown`: the source does not establish parity clearly enough.
 
 These fields describe experimental controls, not paper quality.
+
+## Experiment configuration
+
+`experiment` preserves the paper's reported settings as strings so that exact
+snapshots and phrases such as `gpt-5.2-2025-12-11`, `minimal reasoning`, or
+`not-reported` are not silently normalized away. It records reasoning mode,
+temperature, output and time/turn/token/API budgets, run count, tool
+permissions, and the baseline configuration. Product rows carry the exact
+model and product/CLI version; a version is `not-reported` only after the
+full text, appendix, and available artifact have been checked.
 
 ## Claim types
 

@@ -10,18 +10,19 @@
 |---|---|
 | Authors | Claire Wang, Ziyang Li, Saikat Dutta, Mayur Naik |
 | Conference | ICLR |
-| Venue | ICLR 2026 (main) |
+| Venue | ICLR Conference 2026 (main) |
 | Domains | Security |
 | Evidence class | Direct comparison |
-| First published | 2025-11-11 |
-| Identifiers | [arXiv:2511.08462](https://arxiv.org/abs/2511.08462) |
+| First published | Not recorded |
+| Identifiers | Official conference source |
 | Artifact | [Official artifact](https://github.com/neuralprogram/qlcoder) |
 
 ## Product configuration
 
 | Product | Role | Model | Product version |
 |---|---|---|---|
-| Claude Code | baseline | Claude Sonnet 4 | 1.0.120 |
+| Claude Code | baseline | Claude Sonnet 4 | not-reported |
+| Codex CLI | baseline | GPT-5 | not-reported |
 
 ## Task
 
@@ -31,13 +32,13 @@
 
 ## Method
 
-CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback
+CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back into iterative query repair.
 
 **Tags.** `retrieval` `verifier-loop` `static-analysis`
 
 ## Reported evidence
 
-Correct-query rate 53.4% versus 10% for Claude Code-only; F1 0.70 versus 0.048 for IRIS and 0.073 for CodeQL suites.
+QLCoder synthesizes correct queries for 53.4% of CVEs versus 10% for Claude Code-only; its query F1 is 0.70, versus 0.048 for IRIS and 0.073 for CodeQL suites.
 
 | Control | Recorded value |
 |---|---|
@@ -46,11 +47,11 @@ Correct-query rate 53.4% versus 10% for Claude Code-only; F1 0.70 versus 0.048 f
 | Evidence strength | high |
 | Claim type | quality |
 | Comparison scope | product-level |
-| Source location | Official abstract, main evaluation, and artifact paper environment |
+| Source location | Section 4.1 Experimental Setup; Table 2; Table 5; Appendix A |
 
 ## Caveat
 
-Security-query synthesis is narrower than general software engineering.
+The task is CodeQL security-query synthesis, not general repository-level software engineering; GPT-5 reasoning settings differ across Codex baseline rows.
 
 ## Primary links
 

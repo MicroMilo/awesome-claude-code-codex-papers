@@ -2,7 +2,7 @@
 
 [← Paper index](README.md) · [Home](../README.md)
 
-# ZeroRepo
+# ZeroRepo / RPG
 
 ## RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation
 
@@ -10,19 +10,19 @@
 |---|---|
 | Authors | Jane Luo, Xin Zhang, Steven Liu, Jie Wu, Jianfeng Liu, Yiming Huang, Yangyu Huang, Chengyu Yin, Ying Xin, Yuefeng Zhan, Hao Sun, Qi Chen, Scarlett Li, Mao Yang |
 | Conference | ICLR |
-| Venue | ICLR 2026 (main) |
+| Venue | ICLR Conference 2026 (main) |
 | Domains | Software Engineering |
 | Evidence class | Direct comparison |
-| First published | 2025-09-19 |
-| Identifiers | [arXiv:2509.16198](https://arxiv.org/abs/2509.16198) |
+| First published | Not recorded |
+| Identifiers | Official conference source |
 | Artifact | [Official artifact](https://github.com/microsoft/RPG-ZeroRepo) |
 
 ## Product configuration
 
 | Product | Role | Model | Product version |
 |---|---|---|---|
-| Claude Code | baseline | Claude 4 Sonnet | not-reported |
-| Codex CLI | baseline | o3-pro | not-reported |
+| Claude Code | baseline | claude 4 sonnet | not-reported |
+| Codex CLI | baseline | o3 pro | not-reported |
 
 ## Task
 
@@ -32,13 +32,13 @@
 
 ## Method
 
-Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation
+A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation.
 
 **Tags.** `structured-state` `repository-graph` `dependency-aware-planning` `test-feedback`
 
 ## Reported evidence
 
-ZeroRepo coverage 81.5% versus Claude Code 54.2% and Codex 28.4%; pass rate 69.7% versus Claude Code 33.9%.
+ZeroRepo reaches 81.5% functional coverage and 69.7% test accuracy, improving over Claude Code by 27.3 and 35.8 points; it produces about 36K lines and 445K code tokens.
 
 | Control | Recorded value |
 |---|---|
@@ -47,15 +47,15 @@ ZeroRepo coverage 81.5% versus Claude Code 54.2% and Codex 28.4%; pass rate 69.7
 | Evidence strength | high |
 | Claim type | quality |
 | Comparison scope | product-level |
-| Source location | Section 4.3 and RepoCraft main-results table |
+| Source location | Section 3.3 Baselines; Section 4.3; RepoCraft main-results table |
 
 ## Caveat
 
-ZeroRepo uses o3-mini while the Claude Code baseline uses Claude 4 Sonnet, so model and harness effects are mixed.
+ZeroRepo uses a different backbone/configuration from each terminal-product baseline, so model and harness effects are mixed.
 
 ## Primary links
 
-- [Paper](https://proceedings.iclr.cc/paper_files/paper/2026/file/9482f45fdd89aba9130bb04c44f788a9-Paper-Conference.pdf)
+- [Paper](https://proceedings.iclr.cc/paper_files/paper/2026/hash/9482f45fdd89aba9130bb04c44f788a9-Abstract-Conference.html)
 - [Artifact](https://github.com/microsoft/RPG-ZeroRepo)
 
 ---

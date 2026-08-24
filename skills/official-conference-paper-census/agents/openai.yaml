@@ -1,0 +1,4 @@
+interface:
+  display_name: "Official Conference Paper Census"
+  short_description: "Build auditable official conference paper censuses"
+  default_prompt: "Use $official-conference-paper-census to build or audit an official conference paper census with full-text evidence."

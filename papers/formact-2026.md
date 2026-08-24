@@ -10,18 +10,18 @@
 |---|---|
 | Authors | Eugene J. Yu, Xingxing Zhang, Yuan Xia, Tao Ge, Xun Wang, FNU Kartik, Vishwas Suryanarayanan, Cheng Yang, Amanda Jiang, Jiayu Ding, Xiangyu Wong, Tengchao Lv, Lei Cui, Si-Qing Chen, Furu Wei, Sujian Li |
 | Conference | ICML |
-| Venue | ICML 2026 (main) |
+| Venue | ICML Main Conference 2026 (main) |
 | Domains | Documents |
 | Evidence class | Direct comparison |
 | First published | Not recorded |
-| Identifiers | Not recorded |
+| Identifiers | Official conference source |
 | Artifact | Not found during the latest review |
 
 ## Product configuration
 
 | Product | Role | Model | Product version |
 |---|---|---|---|
-| Codex CLI | baseline | not-reported | not-reported |
+| Codex CLI | baseline | gpt-5.2-2025-12-11 | not-reported |
 
 ## Task
 
@@ -37,20 +37,20 @@ HTML source editor, template retrieval, rendered-page review agent, iterative re
 
 ## Reported evidence
 
-Render correctness 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate 0.760 versus 0.140.
+Render correctness is 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate is 0.760 versus 0.140. Content alignment is the caveat where Codex is slightly higher.
 
 | Control | Recorded value |
 |---|---|
-| Same model | unknown |
+| Same model | yes |
 | Same budget | unknown |
 | Evidence strength | high |
 | Claim type | mixed |
 | Comparison scope | product-level |
-| Source location | Main comparison table and review-refinement ablation |
+| Source location | Section 5.1 Experimental Setup; Section 5.2; main comparison table; review-refinement ablation |
 
 ## Caveat
 
-Codex has slightly higher content alignment, and the task is document formatting rather than source-code repair.
+The task is rich-format document editing rather than source-code repair; the paper does not report a CLI version or a matched multi-pass budget.
 
 ## Primary links
 

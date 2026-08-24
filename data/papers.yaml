@@ -1,1185 +1,1078 @@
-catalog_version: 1
-reviewed_at: "2026-08-21"
+catalog_version: 2
+reviewed_at: '2026-08-24'
 papers:
-  - id: qlcoder-2026
-    title: "QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities"
-    authors: [Claire Wang, Ziyang Li, Saikat Dutta, Mayur Naik]
-    year: 2026
-    conference: ICLR
-    venue: ICLR
-    domains: [security]
-    publication_status: main
-    classification: direct
-    system: QLCoder
-    paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/2adf01ab15adde8820622f7f24bd516b-Abstract-Conference.html
-    artifact_url: https://github.com/neuralprogram/qlcoder
-    artifact_status: official
-    arxiv_id: "2511.08462"
-    published_at: "2025-11-11"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Sonnet 4
-        version: 1.0.120
-    task:
-      summary: CodeQL query synthesis from CVE metadata
-      benchmark: 176 CVEs across 111 Java projects
-    method:
-      summary: CVE-grounded retrieval, AST guidance, CodeQL LSP tools, and iterative execution feedback
-      tags: [retrieval, verifier-loop, static-analysis]
-    evidence:
-      result: "Correct-query rate 53.4% versus 10% for Claude Code-only; F1 0.70 versus 0.048 for IRIS and 0.073 for CodeQL suites."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Official abstract, main evaluation, and artifact paper environment
-      caveats: Security-query synthesis is narrower than general software engineering.
-
-  - id: rpg-zerorepo-2026
-    title: "RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation"
-    authors: [Jane Luo, Xin Zhang, Steven Liu, Jie Wu, Jianfeng Liu, Yiming Huang, Yangyu Huang, Chengyu Yin, Ying Xin, Yuefeng Zhan, Hao Sun, Qi Chen, Scarlett Li, Mao Yang]
-    year: 2026
-    conference: ICLR
-    venue: ICLR
-    domains: [software-engineering]
-    publication_status: main
-    classification: direct
-    system: ZeroRepo
-    paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/file/9482f45fdd89aba9130bb04c44f788a9-Paper-Conference.pdf
-    artifact_url: https://github.com/microsoft/RPG-ZeroRepo
-    artifact_status: official
-    arxiv_id: "2509.16198"
-    published_at: "2025-09-19"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude 4 Sonnet
-        version: not-reported
-      - product: codex-cli
-        role: baseline
-        model: o3-pro
-        version: not-reported
-    task:
-      summary: Repository-level codebase generation
-      benchmark: RepoCraft
-    method:
-      summary: Persistent graph over features, functions, files, interfaces, and data flow with graph-guided generation and validation
-      tags: [structured-state, repository-graph, dependency-aware-planning, test-feedback]
-    evidence:
-      result: "ZeroRepo coverage 81.5% versus Claude Code 54.2% and Codex 28.4%; pass rate 69.7% versus Claude Code 33.9%."
-      same_model: "no"
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Section 4.3 and RepoCraft main-results table
-      caveats: ZeroRepo uses o3-mini while the Claude Code baseline uses Claude 4 Sonnet, so model and harness effects are mixed.
-
-  - id: artemis-2026
-    title: "Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing"
-    authors: [Justin W. Lin, Eliot Krzysztof Jones, Donovan Julian Jasper, Ethan Jun-shen Ho, Anna Wu, Arnold Tianyi Yang, Neil Perry, Andy Zou, Matt Fredrikson, J. Zico Kolter, Percy Liang, Dan Boneh, Daniel E. Ho]
-    year: 2026
-    conference: ICLR
-    venue: ICLR
-    domains: [security]
-    publication_status: main
-    classification: direct
-    system: ARTEMIS
-    paper_url: https://arxiv.org/abs/2512.09882
-    artifact_url: https://github.com/Stanford-Trinity/ARTEMIS
-    artifact_status: official
-    arxiv_id: "2512.09882"
-    published_at: "2025-12-10"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Sonnet 4
-        version: not-reported
-      - product: codex-cli
-        role: baseline
-        model: GPT-5
-        version: not-reported
-    task:
-      summary: Long-horizon penetration testing in a live enterprise network
-      benchmark: Approximately 8,000 hosts across 12 subnets
-    method:
-      summary: Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting
-      tags: [multi-agent, dynamic-specialization, parallelism, memory, verifier-loop]
-    evidence:
-      result: "ARTEMIS found 9 valid vulnerabilities with an 82% valid-submission rate, ranked second overall, and outperformed 9 of 10 human participants."
-      same_model: unknown
-      same_budget: "no"
-      strength: medium
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Abstract and main penetration-testing results
-      caveats: Runtime limits, model combinations, safety refusals, and product policies differ across systems.
-
-  - id: mlzero-2025
-    title: "MLZero: A Multi-Agent System for End-to-end Machine Learning Automation"
-    authors: [Haoyang Fang, Boran Han, Nick Erickson, Xiyuan Zhang, Su Zhou, Anirudh Dagar, Jiani Zhang, Ali Caner Turkmen, Cuixiong Hu, Huzefa Rangwala, Ying Nian Wu, Bernie Wang, George Karypis]
-    year: 2025
-    conference: NeurIPS
-    venue: NeurIPS
-    domains: [machine-learning]
-    publication_status: main
-    classification: direct
-    system: MLZero
-    paper_url: https://papers.neurips.cc/paper_files/paper/2025/hash/63ed15a46a143ff57484b38cd6b85d91-Abstract-Conference.html
-    artifact_url: https://github.com/autogluon/autogluon-assistant
-    artifact_status: official
-    arxiv_id: "2505.13941"
-    published_at: "2025-05-20"
-    products:
-      - product: codex-cli
-        role: baseline
-        model: GPT-4.1 and o4-mini
-        version: not-reported
-    task:
-      summary: End-to-end machine learning automation
-      benchmark: MLE-Bench Lite and Multimodal AutoML Agent Benchmark
-    method:
-      summary: Hierarchical agents with multimodal perception, semantic and episodic memory, and a planning-coding-evaluation loop
-      tags: [multi-agent, memory, verifier-loop, test-feedback]
-    evidence:
-      result: "MLZero led MLE-Bench Lite with six gold medals and achieved 0.92 success on its multimodal benchmark; one appendix setting reports 6.5% errors versus 26.9% for Codex CLI."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Abstract, main benchmark results, and appendix error analysis
-      caveats: Results concern machine-learning automation and should not be generalized to all software-engineering tasks.
-
-  - id: formact-2026
-    title: "FormAct: Agentic Source Editing for Rich-Format Document Generation"
-    authors: [Eugene J. Yu, Xingxing Zhang, Yuan Xia, Tao Ge, Xun Wang, FNU Kartik, Vishwas Suryanarayanan, Cheng Yang, Amanda Jiang, Jiayu Ding, Xiangyu Wong, Tengchao Lv, Lei Cui, Si-Qing Chen, Furu Wei, Sujian Li]
-    year: 2026
-    conference: ICML
-    venue: ICML
-    domains: [documents]
-    publication_status: main
-    classification: direct
-    system: FormAct
-    paper_url: https://openreview.net/forum?id=n7Ta0YEcgw
-    artifact_status: not-found
-    products:
-      - product: codex-cli
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Rich-format document generation and editing
-      benchmark: RichDocBench and RichDocFuzz
-    method:
-      summary: HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression
-      tags: [retrieval, context-reduction, verifier-loop, visual-review]
-    evidence:
-      result: "Render correctness 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate 0.760 versus 0.140."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Main comparison table and review-refinement ablation
-      caveats: Codex has slightly higher content alignment, and the task is document formatting rather than source-code repair.
-
-  - id: agentic-harness-engineering-2026
-    title: "Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses"
-    authors: [Jiahang Lin, Shichun Liu, Chengjun Pan, Lizhi Lin, Shihan Dou, Zhiheng Xi, Xuanjing Huang, Hang Yan, Zhenhua Han, Tao Gui, Yu-Gang Jiang]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: Agentic Harness Engineering
-    paper_url: https://arxiv.org/abs/2604.25850
-    artifact_url: https://github.com/china-qijizhifeng/agentic-harness-engineering
-    artifact_status: official
-    arxiv_id: "2604.25850"
-    published_at: "2026-04-28"
-    products:
-      - product: codex-cli
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Automatic evolution of coding-agent harnesses
-      benchmark: Terminal-Bench 2 and SWE-bench Verified
-    method:
-      summary: Closed-loop harness evolution using component, trajectory, and decision observability with evidence-backed edits and rollback
-      tags: [harness-evolution, observability, memory, verifier-loop]
-    evidence:
-      result: "Terminal-Bench 2 pass@1 improves from 69.7 to 77.0, above a human-designed Codex-CLI harness at 71.9; transfer uses 12% fewer tokens on SWE-bench Verified."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Abstract and Terminal-Bench 2 transfer and ablation results
-      caveats: Preprint; model, harness, and evaluation-budget effects require careful separation.
-
-  - id: webdesigniter-2026
-    title: "WebDesignIter: Co-Evolving Design Knowledge for Repository-Level Front-End Code Generation"
-    authors: [Zheng Pei, Mingwei Liu, Zhenxi Chen, Zihao Wang, Yanlin Wang]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering, web-ui]
-    publication_status: preprint
-    classification: direct
-    system: WebDesignIter
-    paper_url: https://arxiv.org/abs/2607.10621
-    artifact_url: https://github.com/SYSUSELab/WebDesignIter
-    artifact_status: official
-    arxiv_id: "2607.10621"
-    published_at: "2026-07-12"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-      - product: codex-cli
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Repository-level front-end code generation
-      benchmark: Web-Bench
-    method:
-      summary: Persistent architecture and design knowledge graph, design-informed planning, targeted patches, and sandbox repair
-      tags: [structured-state, repository-graph, retrieval, test-feedback]
-    evidence:
-      result: "Average Pass@2 improves by 9.55 percentage points over existing baselines; removing design knowledge reduces Pass@1 by 11.4 points."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Abstract, main Web-Bench comparison, and design-knowledge ablation
-      caveats: Front-end-specific benchmark and preprint status.
-
-  - id: prefactory-2026
-    title: "Prefactory: Automated Discovery and Application of Library-Adoption Refactorings"
-    authors: [Islem Bouzenia, Michael Pradel]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: Prefactory
-    paper_url: https://arxiv.org/abs/2607.17211
-    artifact_status: not-found
-    arxiv_id: "2607.17211"
-    published_at: "2026-07-19"
-    products:
-      - product: codex-cli
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Discovery and application of library-adoption refactorings
-      benchmark: PrefactoryBench
-    method:
-      summary: LLM-synthesized lexical and structural search heuristics, deterministic candidate ranking, targeted refactoring, and differential tests
-      tags: [deterministic-search, static-analysis, test-feedback, verifier-loop]
-    evidence:
-      result: "File-level detection 75 versus Codex 35; function-level detection 56 versus 32; 40 of 56 candidates yield test-validated refactorings."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Abstract and PrefactoryBench detection and validation results
-      caveats: The strongest comparison concerns candidate detection, not universal end-to-end task success.
-
-  - id: rustprint-2026
-    title: "RustPrint: Documentation-Guided Agentic Codebase Migration from C to Rust"
-    authors: [Minh Le-Anh, Anh Nguyen Hoang, Bach Le, Nghi D. Q. Bui]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering, systems-performance]
-    publication_status: preprint
-    classification: direct
-    system: RustPrint
-    paper_url: https://arxiv.org/abs/2605.14634
-    artifact_status: not-found
-    arxiv_id: "2605.14634"
-    published_at: "2026-05-14"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Whole-codebase migration from C to Rust
-      benchmark: Eight real C repositories from 11K to 84K lines of code
-    method:
-      summary: Architecture documentation blueprint, module and data-flow planning, compile feedback, documentation mismatch repair, and source-test translation
-      tags: [structured-state, dependency-aware-planning, verifier-loop, test-feedback]
-    evidence:
-      result: "In the reported Kimi-K2-Instruct setting, feature preservation is 93.26% versus 52.52% for agentic Claude Code; cross-evaluation test pass is 95.17% versus 79.85%."
-      same_model: "no"
-      same_budget: unknown
-      strength: medium
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Abstract and feature-preservation and cross-evaluation results
-      caveats: The comparison mixes model and scaffold choices and is specific to C-to-Rust migration.
-
-  - id: repoomp-2026
-    title: "RepoOMP: Repository-Aware Hotspot OpenMP Parallelization via Dependency-Aware Context Reduction"
-    authors: [Yongjie Qian, Ke Gao, Zhibin Zhang, Shaohui Peng, Ling Li]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [scientific-computing, systems-performance]
-    publication_status: preprint
-    classification: direct
-    system: RepoOMP
-    paper_url: https://arxiv.org/abs/2608.05855
-    artifact_url: https://github.com/Qlalq/RepoOMP_Simplified
-    artifact_status: official
-    arxiv_id: "2608.05855"
-    published_at: "2026-08-06"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Repository-aware OpenMP hotspot parallelization
-      benchmark: 951 hotspots including 330 accepted real-world hotspots
-    method:
-      summary: Multi-granularity dependency graph, rule-or-LLM hotspot routing, reduced transformation context, and compile/workload/speedup validation
-      tags: [repository-graph, context-reduction, deterministic-search, performance-feedback, verifier-loop]
-    evidence:
-      result: "Across nine detailed kernels, speedup improves 18% to 28% and token cost falls 47% to 68% relative to unstructured Claude Code."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Abstract and nine-kernel cross-backbone comparison
-      caveats: Domain-specific high-performance-computing task and preprint status.
-
-  - id: icat-agent-2026
-    title: "Unlocking Model Potentials Through Adaptive Multi-Agent Scaffolding for Efficient Issue Resolution"
-    authors: [Yang Chen, Aliya Ahmad, Yiheng Zhou, Reyhaneh Jabbarvand]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: icat-agent
-    paper_url: https://arxiv.org/abs/2606.25514
-    artifact_status: not-found
-    arxiv_id: "2606.25514"
-    published_at: "2026-06-24"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Repository issue resolution
-      benchmark: SWE-bench Verified and SWE-bench Pro
-    method:
-      summary: Event-based agent communication, issue-quality routing, parallel patching and validation, and exploratory fallback
-      tags: [multi-agent, dynamic-specialization, parallelism, test-feedback]
-    evidence:
-      result: "SWE-bench Verified improves 3.6 to 8.4 percentage points and SWE-bench Pro 6.3 to 18.5 points; average cost is $1.18 lower than multi-agent Claude Code."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Abstract and SWE-bench Verified and Pro comparisons
-      caveats: Exact model parity varies by reported configuration; preprint.
-
-  - id: co-coder-2026
-    title: "When Parallelism Pays Off: Cohesion-Aware Task Partitioning for Multi-Agent Coding"
-    authors: [Xu Yang, Lunyiu Nie, Ethan Chandra, Stanislav Gannutin, Fangru Lin, Swarat Chaudhuri]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: Co-Coder
-    paper_url: https://arxiv.org/abs/2606.00953
-    artifact_url: https://github.com/Flitternie/CoCoder
-    artifact_status: official
-    arxiv_id: "2606.00953"
-    published_at: "2026-05-31"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: Agent Teams
-    task:
-      summary: Parallel multi-agent coding
-      benchmark: 28 DevEval and CodeProjectEval tasks
-    method:
-      summary: Static dependency graph partitioning, structural hub isolation, community detection, and dependency-aware scheduling
-      tags: [repository-graph, dependency-aware-planning, multi-agent, parallelism]
-    evidence:
-      result: "Pass rate improves 14.0%, wall-clock speedup reaches 2.10x, and API cost falls 35% relative to Claude Code Agent Teams and simpler schedules."
-      same_model: unknown
-      same_budget: unknown
-      strength: medium
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Abstract and DevEval and CodeProjectEval comparisons
-      caveats: Small 28-task evaluation and preprint status.
-
-  - id: agents-md-impact-2026
-    title: "On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents"
-    authors: [Jai Lal Lulla, Seyedmoein Mohsenimofidi, Matthias Galster, Jie M. Zhang, Sebastian Baltes, Christoph Treude]
-    year: 2026
-    conference: ICSE
-    venue: ICSE JAWs
-    domains: [software-engineering]
-    publication_status: workshop
-    classification: direct
-    system: AGENTS.md
-    paper_url: https://conf.researchr.org/details/icse-2026/jaws-2026-papers/31/On-the-Impact-of-AGENTS-md-Files-on-the-Efficiency-of-AI-Coding-Agents
-    artifact_status: not-found
-    arxiv_id: "2601.20404"
-    published_at: "2026-01-28"
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-      - product: codex-cli
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Real pull-request tasks with and without repository instructions
-      benchmark: 10 repositories and 124 pull requests
-    method:
-      summary: Persistent repository-level build, test, style, and directory guidance in AGENTS.md
-      tags: [repository-instructions, structured-state, context-reduction]
-    evidence:
-      result: "Median runtime falls 28.64% and output tokens fall 16.58% with comparable completion behavior."
-      same_model: "yes"
-      same_budget: "yes"
-      strength: high
-      claim_type: efficiency
-      comparison_scope: configuration-ablation
-      source_location: Abstract and with-versus-without AGENTS.md results
-      caveats: Workshop study and configuration intervention rather than a standalone agent.
-
-  - id: codegrep-2026
-    title: "CodeGrep: An RL-Trained Retrieval Agent for LLM Coding Agents"
-    authors: [Wuya Chen, Yihao Yang, Yang Cao, Yue Lin]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: related
-    system: CodeGrep
-    paper_url: https://arxiv.org/abs/2608.05886
-    artifact_status: not-found
-    arxiv_id: "2608.05886"
-    published_at: "2026-08-06"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: not-reported
-        version: Claude-Code-like agent
-    task:
-      summary: Repository retrieval for issue resolution
-      benchmark: SWE-bench Verified
-    method:
-      summary: GRPO-trained 14B retrieval agent that issues multi-turn parallel grep, glob, and read operations for a frozen downstream coding agent
-      tags: [retrieval, context-reduction, parallelism]
-    evidence:
-      result: "Resolve rate 27.0% versus 25.8% without retrieval; resolved tasks use 15% fewer rounds and 19% fewer tokens."
-      same_model: "yes"
-      same_budget: unknown
-      strength: contextual
-      claim_type: mixed
-      comparison_scope: component-level
-      source_location: Abstract and frozen-agent retrieval comparison
-      caveats: The clean numeric comparison is against a frozen no-retrieval downstream agent, not necessarily the released Claude Code CLI.
-
-  - id: scate-2026
-    title: "SCATE: Learning to Supervise Coding Agents for Cost-Effective Test Generation"
-    authors: [Sijia Gu, Noor Nashid, Ali Mesbah]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: related
-    system: SCATE
-    paper_url: https://arxiv.org/abs/2607.08983
-    artifact_status: not-found
-    arxiv_id: "2607.08983"
-    published_at: "2026-07-09"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Automated test generation
-      benchmark: Repository-level test-generation benchmark
-    method:
-      summary: Contextual-bandit supervisor that selects testing actions from current coverage and testability state
-      tags: [test-feedback, verifier-loop]
-    evidence:
-      result: "Line coverage improves 32.3% and branch coverage 30.9% over agent-only Gemini CLI; adaptation is also evaluated with Claude Code."
-      same_model: unknown
-      same_budget: unknown
-      strength: contextual
-      claim_type: quality
-      comparison_scope: component-level
-      source_location: Abstract and cross-agent adaptation experiment
-      caveats: The abstract does not provide an equally complete numeric head-to-head against Claude Code.
-
-  - id: terminal-bench-2-2026
-    title: "Terminal-Bench 2.0: Advancing Agentic Terminal Intelligence through Better Evaluation and Verification"
-    authors: [Mike A. Merrill, Alexander G. Shaw, Nicholas Carlini, Boxuan Li, Harsh Raj, Ivan Bercovich, Lin Shi, Jeong Yeon Shin, Thomas Walshe, E. Kelly Buchanan, Junhong Shen, Guanghao Ye, Haowei Lin, Jason Poulos, Maoyu Wang, Marianna Nezhurina, Jenia Jitsev, Di Lu, Orfeas Menis Mastromichalakis, Zhiwei Xu, Zizhao Chen, Yue Liu, Robert Zhang, Leon Liangyu Chen, Anurag Kashyap, Jan-Lucas Uslu, Jeffrey Li, Jianbo Wu, Minghao Yan, Song Bian, Vedang Sharma, Ke Sun, Steven Dillmann, Akshay Anand, Andrew Lanpouthakoun, Bardia Koopah, Changran Hu, Etash Guha, Gabriel H. S. Dreiman, Jiacheng Zhu, Karl Krauth, Li Zhong, Niklas Muennighoff, Robert Amanfu, Shangyin Tan, Shreyas Pimpalgaonkar, Tushar Aggarwal, Xiangning Lin, Xin Lan, Xuandong Zhao, Yiqing Liang, Yuanli Wang, Zilong Wang, Changzhi Zhou, David Heineman, Hange Liu, Harsh Trivedi, John Yang, Junhong Lin, Manish Shetty, Michael Yang, Nabil Omi, Negin Raoof, Shanda Li, Terry Yue Zhuo, Wuwei Lin, Yiwei Dai, Yuxin Wang, Wenhao Chai, Shang Zhou, Dariush Wahdany, Ziyu She, Jiaming Hu, Zhikang Dong, Yuxuan Zhu, Sasha Cui, Ahson Saiyed, Arinbjörn Kolbeinsson, Jesse Hu, Christopher Michael Rytting, Ryan Marten, Yixin Wang, Alex Dimakis, Andy Konwinski, Ludwig Schmidt]
-    year: 2026
-    conference: ICLR
-    venue: ICLR
-    domains: [software-engineering, systems-performance]
-    publication_status: main
-    classification: evaluation
-    system: Terminal-Bench 2.0
-    paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/file/444a3737adaee10d86ad2ef5f74468e6-Paper-Conference.pdf
-    artifact_url: https://github.com/harbor-framework/terminal-bench-2
-    artifact_status: official
-    arxiv_id: "2601.11868"
-    published_at: "2026-01-17"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: Claude Opus 4.5
-        version: not-reported
-      - product: codex-cli
-        role: evaluated
-        model: GPT-5.2
-        version: not-reported
-    task:
-      summary: General terminal-agent evaluation
-      benchmark: Terminal-Bench 2.0
-    method:
-      summary: Evaluation-only benchmark with stronger task verification and a neutral terminal scaffold
-      tags: [verifier-loop]
-    evidence:
-      result: "GPT-5.2 with Codex CLI scores 62.9; Claude Opus 4.5 scores 57.8 with Terminus 2 and 52.1 with Claude Code."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: mixed
-      comparison_scope: benchmark-only
-      source_location: Main agent and model results table
-      caveats: Benchmark result; differences can reflect both model and harness, and no new method is proposed to beat the products.
-
-  - id: bountybench-2025
-    title: "BountyBench: Dollar Impact of AI Agent Attackers and Defenders on Real-World Cybersecurity Systems"
-    authors: [Andy K. Zhang, Joey Ji, Celeste Menders, Riya Dulepet, Thomas Qin, Ron Y. Wang, Junrong Wu, Kyleen Liao, Jiliang Li, Jinghan Hu, Sara Hong, Nardos Demilew, Shivatmica Murgai, Jason Tran, Nishka Kacheria, Ethan Ho, Denis Liu, Lauren McLane, Olivia Bruvik, Dai-Rong Han, Seungwoo Kim, Akhil Vyas, Cuiyuanxiu Chen, Ryan Li, Weiran Xu, Jonathan Z. Ye, Prerit Choudhary, Siddharth M. Bhatia, Vikram Sivashankar, Yuxuan Bao, Dawn Song, Dan Boneh, Daniel E. Ho, Percy Liang]
-    year: 2025
-    conference: NeurIPS
-    venue: NeurIPS
-    domains: [security]
-    publication_status: dataset-benchmark
-    classification: evaluation
-    system: BountyBench
-    paper_url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/faed4276b52ef762879db4142655c699-Abstract-Datasets_and_Benchmarks_Track.html
-    artifact_url: https://github.com/bountybench/bountybench
-    artifact_status: official
-    arxiv_id: "2505.15216"
-    published_at: "2025-05-21"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: not-reported
-        version: not-reported
-      - product: codex-cli
-        role: evaluated
-        model: o3-high and o4-mini
-        version: not-reported
-    task:
-      summary: Vulnerability detection, exploitation, and patching
-      benchmark: BountyBench
-    method:
-      summary: Evaluation-only benchmark of offensive and defensive cybersecurity agents
-      tags: [verifier-loop]
-    evidence:
-      result: "Codex o3-high detects 12.5% and patches 90%; Claude Code patches 87.5% and exploits 57.5% in the reported settings."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: benchmark-only
-      source_location: Official abstract and agent task-results tables
-      caveats: Benchmark-only evidence across different tasks and model configurations.
-
-  - id: engineering-pitfalls-2026
-    title: "Engineering Pitfalls in AI Coding Tools: An Empirical Study of Bugs in Claude Code, Codex, and Gemini CLI"
-    authors: [Ruixin Zhang, Wuyang Dai, Hung Viet Pham, Gias Uddin, Jinqiu Yang, Song Wang]
-    year: 2026
-    conference: FSE
-    venue: FSE Industry Track
-    domains: [software-engineering]
-    publication_status: conference
-    classification: evaluation
-    system: Bug taxonomy
-    paper_url: https://conf.researchr.org/details/fse-2026/fse-2026-industry-papers/12/Engineering-Pitfalls-in-AI-Coding-Tools-An-Empirical-Study-of-Bugs-in-Claude-Code-C
-    artifact_status: not-found
-    arxiv_id: "2603.20847"
-    doi: 10.1145/3803437.3805213
-    published_at: "2026-03-21"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: not-applicable
-        version: multiple
-      - product: codex-cli
-        role: evaluated
-        model: not-applicable
-        version: multiple
-    task:
-      summary: Empirical analysis of product bug reports
-      benchmark: More than 3,800 reported bugs
-    method:
-      summary: Evaluation-only manual taxonomy of functionality, integration, invocation, and command-execution failures
-      tags: [observability]
-    evidence:
-      result: "More than 67% of studied bugs concern functionality; API, integration, and configuration account for 36.9% of root causes."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: benchmark-only
-      source_location: Abstract and root-cause, symptom, and workflow-stage findings
-      caveats: Failure-taxonomy study; it does not propose an agent that outperforms the products.
-
-  - id: ticoder-2022
-    title: "Interactive Code Generation via Test-Driven User-Intent Formalization"
-    authors: [Shuvendu K. Lahiri, Sarah Fakhoury, Aaditya Naik, Georgios Sakkas, Saikat Chakraborty, Madanlal Musuvathi, Piali Choudhury, Curtis von Veh, Jeevana Priya Inala, Chenglong Wang, Jianfeng Gao]
-    year: 2022
-    conference: ICSE
-    venue: AST at ICSE
-    domains: [software-engineering]
-    publication_status: workshop
-    classification: historical
-    system: TiCoder
-    paper_url: https://arxiv.org/abs/2208.05950
-    artifact_url: https://github.com/microsoft/TiCoder
-    artifact_status: official
-    arxiv_id: "2208.05950"
-    published_at: "2022-08-11"
-    products:
-      - product: openai-codex-model
-        role: historical-baseline
-        model: OpenAI Codex
-        version: not-reported
-    task:
-      summary: Interactive function-level code generation
-      benchmark: MBPP and HumanEval
-    method:
-      summary: Generate tests to formalize user intent, collect lightweight feedback, and rank or prune candidate programs
-      tags: [test-feedback, verifier-loop]
-    evidence:
-      result: "With one to five simulated user queries, Codex pass@1 gains 22.49 to 37.71 points on MBPP and 24.79 to 53.98 points on HumanEval."
-      same_model: "yes"
-      same_budget: "no"
-      strength: high
-      claim_type: quality
-      comparison_scope: historical-model
-      source_location: MBPP and HumanEval evaluation section
-      caveats: This is the historical OpenAI Codex model, not the modern Codex CLI product.
-
-  - id: evodev-2026
-    title: "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework"
-    authors: [Junwei Liu, Chen Xu, Chong Wang, Tong Bai, Weitong Chen, Kaseng Wong, Yiling Lou, Xin Peng]
-    year: 2026
-    conference: ISSTA
-    venue: ISSTA
-    domains: [software-engineering, web-ui]
-    publication_status: main
-    classification: direct
-    system: EvoDev
-    paper_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame
-    artifact_status: not-found
-    arxiv_id: "2511.02399"
-    published_at: "2025-11-04"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude 4 Sonnet
-        version: not-reported
-    task:
-      summary: Iterative end-to-end Android application development
-      benchmark: APPDev, 15 Android applications with 8 to 26 functional requirements
-    method:
-      summary: Feature-driven multi-agent development with a dependency DAG, layered business/design/code context, iterative implementation, and build repair
-      tags: [structured-state, dependency-aware-planning, multi-agent, memory, test-feedback]
-    evidence:
-      result: "With Claude 4 Sonnet, EvoDev reaches 100% build success and 3.57 function completeness versus 73.3% and 2.27 for Claude Code, a 57.3% relative completeness gain."
-      same_model: "yes"
-      same_budget: "no"
-      strength: high
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: ISSTA 2026 official abstract; Tables 3 and 7
-      caveats: APPDev contains 15 Android apps and uses manual quality scoring; EvoDev takes about twice Claude Code's wall-clock time in the Claude 4 Sonnet comparison.
-
-  - id: toolleak-2026
-    title: "Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment"
-    authors: [Yuchong Xie, Mingyu Luo, Zesen Liu, Zhixiang Zhang, Kaikai Zhang, Yu Liu, Ci Tao, Changhui Wang, Zongjie Li, Ping Chen, Shuai Wang, Dongdong She]
-    year: 2026
-    conference: ISSTA
-    venue: ISSTA
-    domains: [security]
-    publication_status: main
-    classification: evaluation
-    system: ToolLeak
-    paper_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A
-    artifact_status: not-found
-    arxiv_id: "2509.05755"
-    published_at: "2025-09-06"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: multiple
-        version: multiple
-    task:
-      summary: Prompt exfiltration and tool-invocation hijacking in production coding agents
-      benchmark: Six real-world coding agents and 25 agent-model configurations
-    method:
-      summary: Tool-call schema pressure for prompt leakage followed by a two-channel injection through tool descriptions and returns
-      tags: [adversarial-testing, observability]
-    evidence:
-      result: "ToolLeak obtains the best pseudo-recall on 18 of 25 real agent-model pairs; the follow-on attack hijacks all six studied agents, including a Claude Code RCE case study."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: benchmark-only
-      source_location: ISSTA 2026 official abstract; Tables 3 to 5 and Sections 6 to 7
-      caveats: Claude Code is an attack target rather than a baseline to beat; results depend on product and backend versions that may change quickly.
-
-  - id: execution-ablation-2026
-    title: "To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair"
-    authors: [Zhihao Lin, Junhua Zhu, Mingyi Zhou, Xin Wang, Zhensu Sun, Renyu Yang, David Lo, Li Li]
-    year: 2026
-    conference: ISSTA
-    venue: ISSTA
-    domains: [software-engineering, systems-performance]
-    publication_status: main
-    classification: related
-    system: Execution-policy ablation
-    paper_url: https://arxiv.org/abs/2606.26978
-    artifact_url: https://github.com/mathieu0905/To_Run_Or_Not_To_Run
-    artifact_status: official
-    arxiv_id: "2606.26978"
-    published_at: "2026-06-25"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: Claude Sonnet 4.5
-        version: 1.0.16
-      - product: codex-cli
-        role: evaluated
-        model: GPT-5.2 xhigh
-        version: 0.1.2025062301
-    task:
-      summary: Repository-level program repair with and without local code execution
-      benchmark: 200 SWE-bench Lite and Verified instances; 3,000 controlled runs
-    method:
-      summary: Paired five-arm execution-policy ablation spanning prohibited, quota-limited, budget-guided, and unrestricted execution
-      tags: [test-feedback, verifier-loop, context-reduction]
-    evidence:
-      result: "Disabling execution changes resolve rate by only 1 to 3 points for Claude Code and Codex in the main cells, while saving 56 to 62% of tokens and 48 to 54% of wall-clock time for Claude Code."
-      same_model: "yes"
-      same_budget: unknown
-      strength: high
-      claim_type: mixed
-      comparison_scope: configuration-ablation
-      source_location: ISSTA 2026 paper, Tables 2 to 4 and Sections 4.2 to 4.3
-      caveats: The prompt-level prohibition was not perfectly obeyed by Claude Code, though the paper separately measures and hard-checks unintended execution.
-
-  - id: llm2ltac-2026
-    title: "Mining Tactics for Automated Theorem Proving"
-    authors: [Jian Fang, Yixun Yao, Yingfei Xiong]
-    year: 2026
-    conference: ASE
-    venue: ASE
-    domains: [formal-methods]
-    publication_status: main
-    classification: direct
-    system: LLM2Ltac
-    paper_url: https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving
-    artifact_status: not-found
-    products:
-      - product: claude-code
-        role: baseline
-        model: not-reported
-        version: not-reported
-    task:
-      summary: Automated theorem proving in Rocq projects
-      benchmark: 6,199 theorems across CompCert, Coq-Art, Ext-Lib, and VFA
-    method:
-      summary: LLM-mined reusable symbolic tactics, validity and generalization checks, and integration into CoqHammer
-      tags: [deterministic-search, verifier-loop, static-analysis]
-    evidence:
-      result: "Mined tactics let CoqHammer prove 23.87% more theorems; integrating the improved prover with Claude Code increases the overall number proved by 9.90%."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: configuration-ablation
-      source_location: ASE 2026 official abstract
-      caveats: The public conference record does not report the Claude Code version, backbone model, absolute theorem counts for the product ablation, or budget parity.
-
-  - id: agentradio-2026
-    title: "AgentRadio: Passive Awareness for Long-Horizon Multi-Agent Collaboration"
-    authors: [Xinxing Ren, Qianbo Zang, Ziyan Wang, Caelum Forder, Suman Deb, Peter Carroll, Zekun Guo]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: AgentRadio
-    paper_url: https://arxiv.org/abs/2607.28430
-    artifact_url: https://github.com/Coral-Protocol/AgentRadio
-    artifact_status: official
-    arxiv_id: "2607.28430"
-    published_at: "2026-07-30"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Opus 4.6
-        version: not-reported
-    task:
-      summary: Long-horizon repository question answering
-      benchmark: SWE-Atlas QnA, 124 tasks and 1,306 rubrics
-    method:
-      summary: Four Claude Code agents coordinated through asynchronous threads, messages, passive mention watching, and a five-phase negotiation protocol
-      tags: [multi-agent, coordination, parallelism]
-    evidence:
-      result: "AgentRadio reaches 62.1% task accuracy versus 32.3% for single-agent Claude Code; a near-cost six-run baseline reaches 37.9%, and single-agent Opus 4.8 reaches 57.2%."
-      same_model: "yes"
-      same_budget: "no"
-      strength: high
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Figure 1 and Tables 1 to 2
-      caveats: The four-agent method costs about six times a single Opus 4.6 run, although the paper includes a near-cost resampling baseline.
-
-  - id: context-files-ablation-2026
-    title: "Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories"
-    authors: [Prakhar Khatri]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: related
-    system: Context-file ablation
-    paper_url: https://arxiv.org/abs/2607.27250
-    artifact_url: https://github.com/codeprakhar25/context-files-coding-agents
-    artifact_status: official
-    arxiv_id: "2607.27250"
-    published_at: "2026-07-28"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: Claude Sonnet 4.6
-        version: not-reported
-      - product: codex-cli
-        role: evaluated
-        model: GPT-5.5
-        version: not-reported
-    task:
-      summary: Repository repair under different persistent-context strategies
-      benchmark: 17 real tasks from three Python repositories; 288 evaluated runs
-    method:
-      summary: Within-task comparison of no context, always-on AGENTS.md, and selectively retrieved repository wiki context with gold tests and equivalence testing
-      tags: [repository-instructions, retrieval]
-    evidence:
-      result: "Claude Code pass rates are 53.3%, 55.6%, and 55.6%; Codex rates are 58.8%, 56.9%, and 52.9%, with no detectable strategy effect and bounded null effects of 10 to 15 points."
-      same_model: "yes"
-      same_budget: "yes"
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: configuration-ablation
-      source_location: Table 1 and Sections 3.4 to 4.4
-      caveats: Only three Python repositories are studied; Claude and Codex receive injected context through different channels, and two selective-context corpora are larger than AGENTS.md.
-
-  - id: guardrails-guidance-2026
-    title: "Guardrails Beat Guidance: A Large-Scale Study of Rules, Skills, and Persistent Configuration for Coding Agents"
-    authors: [Xing Zhang, Guanghui Wang, Yanwei Cui, Wei Qiu, Ziyuan Li, Bing Zhu, Peiyang He]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: Guardrails Beat Guidance
-    paper_url: https://arxiv.org/abs/2604.11088
-    artifact_status: not-found
-    arxiv_id: "2604.11088"
-    published_at: "2026-04-13"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Opus 4.6
-        version: not-reported
-    task:
-      summary: Repository repair under persistent rule-file configurations
-      benchmark: SWE-bench Verified; more than 5,000 Claude Code runs
-    method:
-      summary: Paired rule-file experiments over source, count, polarity, type, and composition, backed by a corpus of 25,532 rules
-      tags: [repository-instructions]
-    evidence:
-      result: "Random and expert-curated rule files both reach 63.8% pass rate versus 50.0% with no rules; only negative constraints are individually beneficial in the reported ablation."
-      same_model: "yes"
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: configuration-ablation
-      source_location: Figure 1 and Tables 1 to 5
-      caveats: Results are limited to Claude Code with Opus 4.6 on a discriminative Python subset; several headline pairwise differences do not reach conventional significance.
-
-  - id: lcm-2026
-    title: "LCM: Lossless Context Management"
-    authors: [Clint Ehrlich, Theodore Blackman]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [systems-performance]
-    publication_status: preprint
-    classification: direct
-    system: Volt with LCM
-    paper_url: https://arxiv.org/abs/2605.04050
-    artifact_url: https://github.com/Martian-Engineering/volt
-    artifact_status: official
-    arxiv_id: "2605.04050"
-    published_at: "2026-02-14"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Opus 4.6
-        version: 2.1.4
-    task:
-      summary: Long-context reasoning and aggregation
-      benchmark: OOLONG trec_coarse, 8K to 1M-token contexts
-    method:
-      summary: Lossless message storage, hierarchical summary DAGs, deterministic recursive compression, and engine-managed parallel map operators
-      tags: [memory, context-reduction, parallelism]
-    evidence:
-      result: "Volt averages 74.8 versus 70.3 for Claude Code and wins at every tested context length from 32K to 1M tokens, with gaps up to 12.6 points."
-      same_model: "yes"
-      same_budget: unknown
-      strength: high
-      claim_type: quality
-      comparison_scope: product-level
-      source_location: Section 4.2 and Figures 6 to 7
-      caveats: OOLONG may be contaminated in Opus 4.6, and the paper does not provide a matched end-to-end cost comparison for LCM's auxiliary calls.
-
-  - id: brief-product-context-2026
-    title: "Context-Augmented Code Generation: How Product Context Improves AI Coding Agent Decision Compliance by 49%"
-    authors: [Drew Dillon, Kasyap Varanasi]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering]
-    publication_status: preprint
-    classification: direct
-    system: Brief
-    paper_url: https://arxiv.org/abs/2605.08112
-    artifact_url: https://github.com/brief-hq/dcbench
-    artifact_status: official
-    arxiv_id: "2605.08112"
-    published_at: "2026-04-27"
-    products:
-      - product: claude-code
-        role: baseline
-        model: Claude Sonnet 4.6
-        version: not-reported
-    task:
-      summary: Product-decision-compliant feature implementation
-      benchmark: DCBench, eight tasks with 41 weighted decision points and 48 runs
-    method:
-      summary: Retrieval over recorded product decisions, personas, customer signals, and competitive context during specification and implementation
-      tags: [retrieval, structured-state, test-feedback]
-    evidence:
-      result: "Decision compliance rises from 19/41 (46%) for Claude Code to 39/41 (95%) with Brief; cost per merge-ready task falls 68% despite 28% higher total spend."
-      same_model: "no"
-      same_budget: "no"
-      strength: high
-      claim_type: mixed
-      comparison_scope: product-level
-      source_location: Tables 2 to 5
-      caveats: The augmented arm adds Opus planning, a longer timeout, generated specifications, tests, and retrieval, so the 49-point gain is not attributable to product context alone.
-
-  - id: swe-bench-science-2026
-    title: "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?"
-    authors: [Zhipeng Xu, Jiahao Lu, Yining Zheng, Yuxin Wang, Xipeng Qiu]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering, scientific-computing]
-    publication_status: preprint
-    classification: evaluation
-    system: SWE-bench Science
-    paper_url: https://arxiv.org/abs/2608.19799
-    artifact_url: https://github.com/OpenMOSS/SWE-bench-Science
-    artifact_status: official
-    arxiv_id: "2608.19799"
-    published_at: "2026-08-20"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: Claude Opus 5 and DeepSeek V4 variants
-        version: not-reported
-      - product: codex-cli
-        role: evaluated
-        model: GPT-5.6, GLM 5.2, Nex N2, and Qwen 3.5 variants
-        version: not-reported
-    task:
-      summary: Repository repair in scientific software
-      benchmark: 119 tasks, 98 repositories, and 20 scientific domains
-    method:
-      summary: Three-paradigm benchmark with private tests, a scientific failure taxonomy, and paired ablations of explicit scientific guidance
-      tags: [benchmark-design, observability]
-    evidence:
-      result: "The best configuration, Claude Code with Opus 5 at max effort, reaches 47.90% Pass@1; no evaluated agent crosses 50%, and scientific guidance helps some models but hurts others."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: benchmark-only
-      source_location: Tables 2 to 3 and Figures 5 to 7
-      caveats: Results span different models, harnesses, and reasoning settings; the paper is a benchmark and failure analysis, not a method that beats the products.
-
-  - id: swe-bench-mobile-2026
-    title: "SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?"
-    authors: [Muxin Tian, Zhe Wang, Blair Yang, Zhenwei Tang, Kunlun Zhu, Honghua Dong, Hanchen Li, Xinni Xie, Guangjing Wang, Jiaxuan You]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [software-engineering, web-ui]
-    publication_status: preprint
-    classification: evaluation
-    system: SWE-Bench Mobile
-    paper_url: https://arxiv.org/abs/2602.09540
-    artifact_status: not-found
-    arxiv_id: "2602.09540"
-    published_at: "2026-02-10"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: multiple
-        version: 2.1.37
-      - product: codex-cli
-        role: evaluated
-        model: multiple
-        version: 0.77.0
-    task:
-      summary: Industry-scale iOS feature development from PRDs and Figma designs
-      benchmark: 50 tasks over a 500,000-line Swift and Objective-C production codebase
-    method:
-      summary: Multimodal mobile benchmark with private tests, cross-agent model controls, cost analysis, prompt ablations, and error taxonomy
-      tags: [benchmark-design, visual-review, test-feedback]
-    evidence:
-      result: "Across 22 configurations, the best task success is 12%; the same Opus 4.5 model varies by up to 6x across agents, and a defensive-programming prompt raises Claude Code test pass from 19.3% to 26.7%."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: benchmark-only
-      source_location: Figures 4 to 7 and Tables 3 to 6
-      caveats: The public artifact URL reported in the PDF was unavailable during review; product results vary across models and include MCP-assisted visual access.
-
-  - id: sec-bench-pro-2026
-    title: "SEC-bench Pro: Can Language Models Solve Long-Horizon Software Security Tasks?"
-    authors: [Hwiwon Lee, Jiawei Liu, Dongjun Kim, Wubing Xia, Ziqi Zhang, Chunqiu Steven Xia, Lingming Zhang]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [security]
-    publication_status: preprint
-    classification: evaluation
-    system: SEC-bench Pro
-    paper_url: https://arxiv.org/abs/2605.26548
-    artifact_url: https://github.com/SEC-bench/SEC-bench-Pro
-    artifact_status: official
-    arxiv_id: "2605.26548"
-    published_at: "2026-05-26"
-    products:
-      - product: claude-code
-        role: evaluated
-        model: Claude Opus 4.6
-        version: not-reported
-      - product: codex-cli
-        role: evaluated
-        model: GPT-5.4 and GPT-5.5
-        version: not-reported
-    task:
-      summary: Long-horizon proof-of-concept synthesis for disclosed vulnerabilities
-      benchmark: 344 validated V8, SpiderMonkey, and Linux kernel vulnerabilities
-    method:
-      summary: Self-evolving reconstruction pipeline, three-image execution oracle, and LLM judge for vulnerability-specific PoC attribution
-      tags: [benchmark-design, verifier-loop]
-    evidence:
-      result: "Codex with GPT-5.5 solves 58% of all instances; Claude Code with Opus 4.6 times out often but solves most completed attempts, while GLM-5 solves 13 of 344."
-      same_model: unknown
-      same_budget: unknown
-      strength: high
-      claim_type: diagnostic
-      comparison_scope: benchmark-only
-      source_location: Abstract and main agent-results tables
-      caveats: The configurations use different models and completion behavior; this is comparative capability measurement rather than a proposed system beating a product baseline.
-
-  - id: aria-2026
-    title: "Harnessing Code Agents for Automatic Software Verification"
-    authors: [Shuangxiang Kan, Shuanglong Kan, Sebastian Ertel]
-    year: 2026
-    conference: arXiv
-    venue: arXiv
-    domains: [formal-methods]
-    publication_status: preprint
-    classification: related
-    system: Aria
-    paper_url: https://arxiv.org/abs/2607.06341
-    artifact_status: not-found
-    arxiv_id: "2607.06341"
-    published_at: "2026-07-07"
-    products:
-      - product: claude-code
-        role: host
-        model: Claude Opus 4.7
-        version: SDK, not-reported
-    task:
-      summary: Fully automatic proof construction for verified software
-      benchmark: 4,257 Iris lemmas, 217 Rust-library lemmas, 318 reglang theorems, and 72 Lean-port lemmas
-    method:
-      summary: A reusable harness that lets the code agent choose whole-proof strategy while prover kernels enforce soundness, completeness, retries, and termination
-      tags: [verifier-loop, test-feedback]
-    evidence:
-      result: "Aria proves all 4,257 targeted Iris lemmas, all 217 Rust-library lemmas, all 318 reglang theorems, and 72 not-yet-ported Lean lemmas; prior reglang provers manage about one in eight."
-      same_model: "no"
-      same_budget: "no"
-      strength: high
-      claim_type: quality
-      comparison_scope: component-level
-      source_location: Abstract, Tables 1 and 3 to 4, and Sections 4 to 6
-      caveats: Claude Code is the host harness, not a separately measured baseline; comparisons to prior provers mix models, systems, and compute budgets.
+- id: qlcoder-2026
+  title: 'QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities'
+  authors:
+  - Claire Wang
+  - Ziyang Li
+  - Saikat Dutta
+  - Mayur Naik
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - security
+  publication_status: main
+  classification: direct
+  system: QLCoder
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/2adf01ab15adde8820622f7f24bd516b-Abstract-Conference.html
+  artifact_url: https://github.com/neuralprogram/qlcoder
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: maximum 10 iterations per CVE and agent baseline
+    runs: not-reported
+    tool_permissions: Claude Code framework with CodeQL MCP/LSP and execution feedback
+  - product: codex-cli
+    role: baseline
+    model: GPT-5
+    version: not-reported
+    reasoning_mode: minimal and medium
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: maximum 10 iterations per CVE and agent baseline
+    runs: not-reported
+    tool_permissions: Codex CLI official tools; exact permissions not reported
+  task:
+    summary: CodeQL query synthesis from CVE metadata
+    benchmark: 176 CVEs across 111 Java projects
+  method:
+    summary: CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back
+      into iterative query repair.
+    tags:
+    - retrieval
+    - verifier-loop
+    - static-analysis
+  evidence:
+    result: QLCoder synthesizes correct queries for 53.4% of CVEs versus 10% for Claude Code-only; its query F1 is 0.70, versus
+      0.048 for IRIS and 0.073 for CodeQL suites.
+    same_model: unknown
+    same_budget: unknown
+    strength: high
+    claim_type: quality
+    comparison_scope: product-level
+    source_location: Section 4.1 Experimental Setup; Table 2; Table 5; Appendix A
+    caveats: The task is CodeQL security-query synthesis, not general repository-level software engineering; GPT-5 reasoning
+      settings differ across Codex baseline rows.
+  experiment:
+    reasoning_mode: Codex GPT-5 minimal and medium; Claude Sonnet 4 not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: maximum 10 iterations per CVE and agent baseline
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: QLCoder MCP interface exposes CodeQL LSP, retrieval, and execution feedback; baseline permissions are
+      product defaults
+    baseline_config: Claude Code-only; Codex with GPT-5 minimal/medium; Gemini CLI; static-analysis baselines IRIS and CodeQL
+      suites
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: scaling-laws-2026
+  title: 'Can Language Models Discover Scaling Laws?'
+  authors:
+  - Haowei Lin
+  - Haotian Ye
+  - Wenzheng Feng
+  - Quzhe Huang
+  - Yujun Li
+  - Hubert Lim
+  - Zhengrui Li
+  - Xiangyu Wang
+  - Jianzhu Ma
+  - Yitao Liang
+  - James Zou
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - machine-learning
+  - scientific-computing
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: SLDAgent
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/636d57c09a5baacd83722639265802f6-Abstract-Conference.html
+  artifact_status: not-found
+  products:
+  - product: claude-code
+    role: baseline
+    model: Claude-Haiku-4.5; Claude-Sonnet-4.5
+    version: 1.0.102
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Baseline budget not reported; SLDAgent uses 50 evolutionary iterations
+    runs: 5 runs for provider-specific comparisons
+    tool_permissions: Native CLI agent with upstream defaults
+  - product: codex-cli
+    role: baseline
+    model: o4-mini; GPT-5
+    version: 0.29.0
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Baseline budget not reported; SLDAgent uses 50 evolutionary iterations
+    runs: 5 runs for provider-specific comparisons
+    tool_permissions: Native Codex agent with upstream defaults
+  task:
+    summary: Discover symbolic scaling laws from experimental data with executable code agents.
+    benchmark: SLDBench, eight scaling-law discovery tasks
+  method:
+    summary: Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection.
+    tags:
+    - benchmark-design
+    - deterministic-search
+    - performance-feedback
+    - test-feedback
+  evidence:
+    result: SLDAgent reaches average R2 0.748 with GPT-5 versus 0.550 for Codex GPT-5, and improves over Claude Code rows for both Claude-Haiku-4.5 and Claude-Sonnet-4.5.
+    same_model: 'yes'
+    same_budget: unknown
+    strength: high
+    claim_type: quality
+    comparison_scope: benchmark-only
+    source_location: Section 4.1 Agent baselines; Table 3; Appendix B.5; Appendix D
+    caveats: Provider-specific rows compare SLDAgent with native agents under different harnesses; the paper reports product versions but not exact token or temperature settings.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: 50 evolutionary iterations for SLDAgent; baseline turns not reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: 5 runs for provider-specific comparisons
+    tool_permissions: Native CLI agent defaults; SLDAgent uses terminal execution and verifier feedback
+    baseline_config: Claude Code with Claude-Haiku-4.5/Claude-Sonnet-4.5; Codex with o4-mini/GPT-5; Gemini CLI and other terminal agents
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: cybergym-2026
+  title: 'CyberGym: Evaluating AI Agents'' Real-World Cybersecurity Capabilities at Scale'
+  authors:
+  - Zhun Wang
+  - Tianneng Shi
+  - Jingxuan He
+  - Matthew Cai
+  - Jialin Zhang
+  - Dawn Song
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - security
+  - software-engineering
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: CyberGym
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/c876a2935a90aff21874e14c07dc3e33-Abstract-Conference.html
+  artifact_url: https://github.com/sunblaze-ucb/cybergym
+  artifact_status: official
+  products:
+  - product: codex-cli
+    role: evaluated
+    model: GPT-4.1
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Approximately 2.0 USD per task; maximum 100 iterations
+    runs: not-reported
+    tool_permissions: Default Codex CLI tools in repository-level vulnerability reproduction tasks
+  task:
+    summary: Generate proof-of-concept tests that reproduce real vulnerabilities in source repositories.
+    benchmark: CyberGym, 1,507 vulnerabilities across 188 software projects
+  method:
+    summary: A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis.
+    tags:
+    - benchmark-design
+    - verifier-loop
+    - adversarial-testing
+    - observability
+  evidence:
+    result: Codex CLI with GPT-4.1 is directly compared with OpenHands, EnIGMA, and Cybench agent; the union of four agents reaches 18.4% Level-1 success, exposing complementary failure modes.
+    same_model: 'yes'
+    same_budget: unknown
+    strength: high
+    claim_type: diagnostic
+    comparison_scope: benchmark-only
+    source_location: Section 4 experimental evaluation; Figure 5; Appendix C Detailed Agent Settings
+    caveats: The Codex comparison uses a calibrated approximate cost budget and 100-iteration cap; the paper does not report a Codex CLI version or exact per-call token settings.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: maximum 100 iterations per task
+    token_budget: not-reported
+    api_budget: approximately 2.0 USD per task
+    runs: not-reported
+    tool_permissions: Repository files, shell execution, and Codex CLI defaults; task-specific tool details are not reported
+    baseline_config: Codex CLI with GPT-4.1 compared with OpenHands, EnIGMA, and Cybench agent using the same approximate cost/iteration constraints
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: deepscientist-2026
+  title: 'DeepScientist: Advancing Frontier-Pushing Scientific Findings Progressively'
+  authors:
+  - Yixuan Weng
+  - Minjun Zhu
+  - Qiujie Xie
+  - Qiyao Sun
+  - Zhen Lin
+  - Sifan Liu
+  - Yue Zhang
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - scientific-computing
+  - machine-learning
+  publication_status: conference
+  classification: related
+  system: DeepScientist
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/4f64494ecc3442f1c9261baa036378bc-Abstract-Conference.html
+  artifact_url: https://github.com/ResearAI/DeepScientist
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: host
+    model: Claude-4-opus
+    version: v1.0.53
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Month-long exploration on 16 H800 GPUs; Claude Code task budget not separately reported
+    runs: not-reported
+    tool_permissions: Sandboxed Docker repository with command-line re-execution and human inspection
+  task:
+    summary: Long-horizon autonomous scientific discovery with code implementation, experiment validation, and analysis/report generation.
+    benchmark: Three frontier scientific tasks; five generated research papers and multi-week operational logs
+  method:
+    summary: A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration.
+    tags:
+    - structured-state
+    - memory
+    - performance-feedback
+    - verifier-loop
+    - parallelism
+  evidence:
+    result: Claude Code executes all code implementation and analysis tasks as a host component; the system reports 21 validated innovations and 60% simulated acceptance under the stated review protocol.
+    same_model: unknown
+    same_budget: unknown
+    strength: high
+    claim_type: mixed
+    comparison_scope: component-level
+    source_location: Section F Implementation Details; Section 4.2 Experimental Setup; Figure 4
+    caveats: Claude Code is a host executor rather than the paper''s comparison baseline; the scientific reasoning backbone is Gemini-2.5-pro and product-level Claude Code ablations are not reported.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: Month-long cycle; one AI text-detection run lasted 14 days
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: Claude Code confined to a duplicated sandbox repository; independent command-line verification after completion
+    baseline_config: Claude-4-opus in Claude Code v1.0.53 for code execution; Gemini-2.5-pro for scientific reasoning
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: devops-gym-2026
+  title: 'DevOps-Gym: Benchmarking AI Agents in Software DevOps Cycle'
+  authors:
+  - Yuheng Tang
+  - Kaijie Zhu
+  - Bonan Ruan
+  - Chuqi Zhang
+  - Michael Yang
+  - Hongwei Li
+  - Suyue Guo
+  - Tianneng Shi
+  - Zekun Li
+  - Christopher Kruegel
+  - Giovanni Vigna
+  - Dawn Song
+  - William Yang Wang
+  - Lun Wang
+  - Yangruibo Ding
+  - Zhenkai Liang
+  - Wenbo Guo
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: DevOps-Gym
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/15e35461247bbd05fa890d384060c847-Abstract-Conference.html
+  artifact_status: not-found
+  products:
+  - product: claude-code
+    role: evaluated
+    model: Claude-4-Sonnet
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: '0.7'
+    max_output_tokens: not-reported
+    budget: 704 tasks plus 14 end-to-end pipeline tasks; five-run stability subset uses 50 tasks
+    runs: 5 independent runs on the 50-task subset
+    tool_permissions: Isolated DevOps-Gym Docker environment with terminal and DevOps-specific tools
+  task:
+    summary: Evaluate coding agents across build/configuration, monitoring, issue resolving, and test generation.
+    benchmark: DevOps-Gym, 704 tasks from 30+ Java/Go projects plus 14 end-to-end pipeline tasks
+  method:
+    summary: A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics.
+    tags:
+    - benchmark-design
+    - observability
+    - test-feedback
+    - coordination
+  evidence:
+    result: Claude Code with Claude-4-Sonnet reports 51.85% build/configuration, 20.56% monitoring, 23.87% issue resolving, and 13.87% test generation success.
+    same_model: 'yes'
+    same_budget: unknown
+    strength: high
+    claim_type: diagnostic
+    comparison_scope: benchmark-only
+    source_location: Section 4.1 Experimental Setup; Table 1; Appendix D.3 Table 4
+    caveats: The paper evaluates Claude Code as one agent framework; exact product version and per-task token budget are not reported.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: '0.7'
+    max_output_tokens: not-reported
+    time_budget: 60-second inference timeout; Docker task limits otherwise not reported
+    turn_budget: not-reported
+    token_budget: maximum 256K context length
+    api_budget: not-reported
+    runs: 5 independent runs on a sampled 50-task subset
+    tool_permissions: DevOps-Gym isolated Docker containers; terminal-format tool interfaces and dynamic runtime tools
+    baseline_config: Claude Code, OpenHands, mini-SWE-agent, and Aider with multiple backbone models; Claude Code uses Claude-4-Sonnet
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: featurebench-2026
+  title: 'FeatureBench: Benchmarking Agentic Coding for Complex Feature Development'
+  authors:
+  - Qixing Zhou
+  - Jiacheng Zhang
+  - Haiyang Wang
+  - Rui Hao
+  - Jiahe Wang
+  - Minghao Han
+  - Yuxue Yang
+  - Shuzhe Wu
+  - Feiyang Pan
+  - Lue Fan
+  - Dandan Tu
+  - Zhaoxiang Zhang
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: FeatureBench
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/25203d1cc8c58381eab578f4fcf9c4f8-Abstract-Conference.html
+  artifact_url: https://github.com/LiberCoders/FeatureBench
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Opus 4.5
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Maximum 500 steps per task; token I/O reported per repository
+    runs: not-reported
+    tool_permissions: FeatureBench repository environment with internet access and agentic file/tool actions
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.1-Codex
+    version: not-reported
+    reasoning_mode: medium
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Maximum 500 steps per task; token I/O reported per repository
+    runs: not-reported
+    tool_permissions: FeatureBench repository environment with internet access and Codex scaffold
+  task:
+    summary: Implement large, cross-file features in existing repositories and pass comprehensive tests.
+    benchmark: FeatureBench, 210 complex feature tasks across 24 repositories; Lite set has 30 tasks
+  method:
+    summary: Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls.
+    tags:
+    - benchmark-design
+    - test-feedback
+    - verifier-loop
+    - repository-instructions
+  evidence:
+    result: Claude Code with Claude Opus 4.5 resolves 11.0% of Full tasks and Codex with GPT-5.1-Codex resolves 12.5%; the paper reports passed rates, token I/O, and failure modes.
+    same_model: 'no'
+    same_budget: unknown
+    strength: high
+    claim_type: diagnostic
+    comparison_scope: benchmark-only
+    source_location: Section 4.1.1 Baseline; Table 2; Table 8; Appendix C Table 16
+    caveats: The two products use different provider models; Claude Code's routing configuration and exact CLI version are not reported.
+  experiment:
+    reasoning_mode: Claude Opus 4.5 not reported; GPT-5.1-Codex medium
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: maximum 500 steps per task
+    token_budget: Table 2 reports aggregate token I/O per configuration/repository
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: Internet access freely available; no specific browser tool; repository file editing and test execution
+    baseline_config: Claude Code + Claude Opus 4.5; Codex + GPT-5.1-Codex; OpenHands, Gemini CLI, and other scaffolds
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: appforge-2026
+  title: 'From Assistant to Independent Developer — Are GPTs Ready for Software Development?'
+  authors:
+  - Dezhi Ran
+  - Yuan Cao
+  - Mengzhou Wu
+  - Simin Chen
+  - Yuzhe Guo
+  - Jun Ren
+  - Zihe Song
+  - Hao Yu
+  - Jialei Wei
+  - Linyi Li
+  - Wei Yang
+  - Baishakhi Ray
+  - Tao Xie
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  - web-ui
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: AppForge
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/a421e88bb7db67cd0401475a0ed4a17d-Abstract-Conference.html
+  artifact_url: https://github.com/TongmingLAIC/AppForge
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: evaluated
+    model: Qwen3-Coder
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: '0.2'
+    max_output_tokens: not-reported
+    budget: 101 Android app development tasks; pass@1 evaluation
+    runs: pass@1
+    tool_permissions: Android project repository, Gradle build, emulator, UIAutomator tests, and compilation feedback
+  task:
+    summary: Build complete Android applications from natural-language specifications and pass functional/runtime tests.
+    benchmark: AppForge, 101 software-development problems from real-world Android apps
+  method:
+    summary: Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark.
+    tags:
+    - benchmark-design
+    - visual-review
+    - test-feedback
+    - verifier-loop
+  evidence:
+    result: Claude Code with Qwen3-Coder reaches 6.93% functional success; the paper reports that coding-agent gains are marginal and that multi-file integration and lifecycle behavior remain bottlenecks.
+    same_model: 'no'
+    same_budget: unknown
+    strength: high
+    claim_type: diagnostic
+    comparison_scope: benchmark-only
+    source_location: Section 4.3 Table 2; Appendix C.1 Setup; Appendix C.2 detailed statistics
+    caveats: The paper reports Claude Code as CC with Qwen3-Coder; it does not report a product version or a separate CLI iteration budget.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: '0.2 (greedy decoding)'
+    max_output_tokens: not-reported
+    time_budget: 600-second fuzzing duration shown for the evaluation environment
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: pass@1
+    tool_permissions: Android emulator API 31, Gradle 7.5.1, UIAutomator, compilation feedback, and runtime fuzzing
+    baseline_config: Claude Code and mini-SWE-agent compared with standalone LLMs on AppForge
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: innogym-2026
+  title: 'InnoGym: Benchmarking the Innovation Potential of AI Agents'
+  authors:
+  - Jintian Zhang
+  - Kewei Xu
+  - Jingsheng Zheng
+  - Zhuoyun Yu
+  - Yuqi Zhu
+  - Yujie Luo
+  - Lanning Wei
+  - Shuofei Qiao
+  - Lun Du
+  - Da Zheng
+  - Shumin Deng
+  - Huajun Chen
+  - Ningyu Zhang
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - machine-learning
+  - scientific-computing
+  publication_status: dataset-benchmark
+  classification: related
+  system: InnoGym
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/743514dfa1ef705f378424bd1effb57b-Abstract-Conference.html
+  artifact_url: https://github.com/zjunlp/igym
+  artifact_status: official
+  products:
+  - product: codex-cli
+    role: host
+    model: GPT-5
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: Up to 12 hours per task-agent-model configuration; Codex judge budget not separately reported
+    runs: 3 runs for main agent configurations; Codex judge count not separately reported
+    tool_permissions: Solution-repository access for structural extraction and novelty comparison prompts
+  task:
+    summary: Evaluate whether ML/scientific agents improve solution performance while producing methodologically novel solutions.
+    benchmark: InnoGym/iBench, 18 tasks with a 10-task main evaluation subset
+  method:
+    summary: Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions.
+    tags:
+    - benchmark-design
+    - structured-state
+    - performance-feedback
+    - deterministic-search
+  evidence:
+    result: Codex with GPT-5 is actually used as the extraction and novelty-evaluation host; the benchmark compares MLAB, CodeAct, and AIDE rather than using Codex as a primary agent baseline.
+    same_model: unknown
+    same_budget: unknown
+    strength: high
+    claim_type: mixed
+    comparison_scope: component-level
+    source_location: Section 3.2 Novelty Evaluation; Section 4.1; Appendix F.1
+    caveats: The paper calls the host product Codex rather than Codex CLI and does not report its product version or exact decoding settings; it is included as a related host use, not a direct product comparison.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: Up to 12 hours per task-agent-model configuration
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: 3 runs for main configurations; host judge count not reported
+    tool_permissions: Codex reads solution repositories and emits summary.md/pseudocode.tex; novelty prompt uses GPT-5 scoring
+    baseline_config: MLAB, CodeAct, and AIDE are the main agent frameworks; Codex is the novelty-evaluation host
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: rpg-zerorepo-2026
+  title: 'RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation'
+  authors:
+  - Jane Luo
+  - Xin Zhang
+  - Steven Liu
+  - Jie Wu
+  - Jianfeng Liu
+  - Yiming Huang
+  - Yangyu Huang
+  - Chengyu Yin
+  - Ying Xin
+  - Yuefeng Zhan
+  - Hao Sun
+  - Qi Chen
+  - Scarlett Li
+  - Mao Yang
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  publication_status: main
+  classification: direct
+  system: ZeroRepo / RPG
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/9482f45fdd89aba9130bb04c44f788a9-Abstract-Conference.html
+  artifact_url: https://github.com/microsoft/RPG-ZeroRepo
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: baseline
+    model: claude 4 sonnet
+    version: not-reported
+    reasoning_mode: official strongest model; exact effort not reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: averaged across 30 rounds
+    runs: 30 rounds
+    tool_permissions: terminal agent with web search enabled
+  - product: codex-cli
+    role: baseline
+    model: o3 pro
+    version: not-reported
+    reasoning_mode: official strongest model; exact effort not reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: averaged across 30 rounds
+    runs: 30 rounds
+    tool_permissions: terminal agent with web search enabled
+  task:
+    summary: Repository-level codebase generation
+    benchmark: RepoCraft
+  method:
+    summary: A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged
+      generation, dependency-aware planning, and validation.
+    tags:
+    - structured-state
+    - repository-graph
+    - dependency-aware-planning
+    - test-feedback
+  evidence:
+    result: ZeroRepo reaches 81.5% functional coverage and 69.7% test accuracy, improving over Claude Code by 27.3 and 35.8
+      points; it produces about 36K lines and 445K code tokens.
+    same_model: 'no'
+    same_budget: unknown
+    strength: high
+    claim_type: quality
+    comparison_scope: product-level
+    source_location: Section 3.3 Baselines; Section 4.3; RepoCraft main-results table
+    caveats: ZeroRepo uses a different backbone/configuration from each terminal-product baseline, so model and harness effects
+      are mixed.
+  experiment:
+    reasoning_mode: Codex CLI o3 pro; Claude Code CLI claude 4 sonnet; exact effort not reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: 30 rounds for strong baselines and ZeroRepo
+    tool_permissions: Terminal agents can retrieve real-world knowledge via web search
+    baseline_config: Claude Code CLI, Codex CLI, Gemini CLI, OpenHands, and workflow baselines compared with ZeroRepo/RPG
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: artemis-2026
+  title: Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing
+  authors:
+  - Justin W. Lin
+  - Eliot Krzysztof Jones
+  - Donovan Julian Jasper
+  - Ethan Jun-shen Ho
+  - Anna Wu
+  - Arnold Tianyi Yang
+  - Neil Perry
+  - Andy Zou
+  - Matt Fredrikson
+  - J. Zico Kolter
+  - Percy Liang
+  - Dan Boneh
+  - Daniel E. Ho
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - security
+  publication_status: main
+  classification: direct
+  system: ARTEMIS
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/0410c2ff9f872efe5a7c61a4323a5da3-Abstract-Conference.html
+  artifact_url: https://github.com/Stanford-Trinity/ARTEMIS
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: runs to completion; human-comparison window is 10 hours
+    runs: not-reported
+    tool_permissions: live enterprise-network penetration-testing environment
+  - product: codex-cli
+    role: baseline
+    model: GPT-5
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: runs to completion; human-comparison window is 10 hours
+    runs: not-reported
+    tool_permissions: live enterprise-network penetration-testing environment
+  task:
+    summary: Long-horizon penetration testing in a live enterprise network
+    benchmark: Approximately 8,000 hosts across 12 subnets
+  method:
+    summary: Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management,
+      triage, and reporting
+    tags:
+    - multi-agent
+    - dynamic-specialization
+    - parallelism
+    - memory
+    - verifier-loop
+  evidence:
+    result: ARTEMIS finds 9 valid vulnerabilities with an 82% valid-submission rate, ranks second overall, and outperforms
+      9 of 10 human participants in the reported penetration-testing study.
+    same_model: unknown
+    same_budget: 'no'
+    strength: medium
+    claim_type: mixed
+    comparison_scope: product-level
+    source_location: Section 4.2 Agent Results; Table 1; Appendix A and J
+    caveats: This is live-network cybersecurity, not general coding; runtime limits, model mixtures, refusal behavior, and
+      product policies differ.
+  experiment:
+    reasoning_mode: ARTEMIS A1 uses GPT-5; A2 uses a multi-model supervisor ensemble with Claude Sonnet 4 sub-agents
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: ARTEMIS configurations execute for 16 hours; first 10 hours evaluated for human comparability
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: same VM/live network setting for agents; scaffold-specific capabilities differ
+    baseline_config: OpenAI Codex with GPT-5, Claude Code with Claude Sonnet 4, CyAgent, Incalmo, MAPTA, and human professionals
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: formact-2026
+  title: 'FormAct: Agentic Source Editing for Rich-Format Document Generation'
+  authors:
+  - Eugene J. Yu
+  - Xingxing Zhang
+  - Yuan Xia
+  - Tao Ge
+  - Xun Wang
+  - FNU Kartik
+  - Vishwas Suryanarayanan
+  - Cheng Yang
+  - Amanda Jiang
+  - Jiayu Ding
+  - Xiangyu Wong
+  - Tengchao Lv
+  - Lei Cui
+  - Si-Qing Chen
+  - Furu Wei
+  - Sujian Li
+  year: 2026
+  conference: ICML
+  venue: ICML Main Conference
+  domains:
+  - documents
+  publication_status: main
+  classification: direct
+  system: FormAct
+  paper_url: https://openreview.net/forum?id=n7Ta0YEcgw
+  artifact_status: not-found
+  products:
+  - product: codex-cli
+    role: baseline
+    model: gpt-5.2-2025-12-11
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: '1.0'
+    max_output_tokens: '32768'
+    budget: multi-pass; exact budget not reported
+    runs: not-reported
+    tool_permissions: not-reported
+  task:
+    summary: Rich-format document generation and editing
+    benchmark: RichDocBench and RichDocFuzz
+  method:
+    summary: HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered
+      context compression
+    tags:
+    - retrieval
+    - context-reduction
+    - verifier-loop
+    - visual-review
+  evidence:
+    result: Render correctness is 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate is 0.760 versus 0.140. Content
+      alignment is the caveat where Codex is slightly higher.
+    same_model: 'yes'
+    same_budget: unknown
+    strength: high
+    claim_type: mixed
+    comparison_scope: product-level
+    source_location: Section 5.1 Experimental Setup; Section 5.2; main comparison table; review-refinement ablation
+    caveats: The task is rich-format document editing rather than source-code repair; the paper does not report a CLI version
+      or a matched multi-pass budget.
+  source_type: openreview-conference
+  experiment:
+    reasoning_mode: not-reported
+    temperature: '1.0'
+    max_output_tokens: '32768'
+    time_budget: not-reported
+    turn_budget: multi-pass baseline; exact turn budget not reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: not-reported
+    baseline_config: Repo Codex (OpenAI, 2025), multi-pass; all methods and evaluation use gpt-5.2-2025-12-11
+  year_tag: 2026
+  conference_tag: ICML
+  audit_status: included
+- id: terminal-bench-2-2026
+  title: 'Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces'
+  authors:
+  - Mike A. Merrill
+  - Alexander G. Shaw
+  - Nicholas Carlini
+  - Boxuan Li
+  - Harsh Raj
+  - Ivan Bercovich
+  - Lin Shi
+  - Jeong Yeon Shin
+  - Thomas Walshe
+  - E. Kelly Buchanan
+  - Junhong Shen
+  - Guanghao Ye
+  - Haowei Lin
+  - Jason Poulos
+  - Maoyu Wang
+  - Marianna Nezhurina
+  - Jenia Jitsev
+  - Di Lu
+  - Orfeas Menis Mastromichalakis
+  - Zhiwei Xu
+  - Zizhao Chen
+  - Yue Liu
+  - Robert Zhang
+  - Leon Liangyu Chen
+  - Anurag Kashyap
+  - Jan-Lucas Uslu
+  - Jeffrey Li
+  - Jianbo Wu
+  - Minghao Yan
+  - Song Bian
+  - Vedang Sharma
+  - Ke Sun
+  - Steven Dillmann
+  - Akshay Anand
+  - Andrew Lanpouthakoun
+  - Bardia Koopah
+  - Changran Hu
+  - Etash Guha
+  - Gabriel H. S. Dreiman
+  - Jiacheng Zhu
+  - Karl Krauth
+  - Li Zhong
+  - Niklas Muennighoff
+  - Robert Amanfu
+  - Shangyin Tan
+  - Shreyas Pimpalgaonkar
+  - Tushar Aggarwal
+  - Xiangning Lin
+  - Xin Lan
+  - Xuandong Zhao
+  - Yiqing Liang
+  - Yuanli Wang
+  - Zilong Wang
+  - Changzhi Zhou
+  - David Heineman
+  - Hange Liu
+  - Harsh Trivedi
+  - John Yang
+  - Junhong Lin
+  - Manish Shetty
+  - Michael Yang
+  - Nabil Omi
+  - Negin Raoof
+  - Shanda Li
+  - Terry Yue Zhuo
+  - Wuwei Lin
+  - Yiwei Dai
+  - Yuxin Wang
+  - Wenhao Chai
+  - Shang Zhou
+  - Dariush Wahdany
+  - Ziyu She
+  - Jiaming Hu
+  - Zhikang Dong
+  - Yuxuan Zhu
+  - Sasha Cui
+  - Ahson Saiyed
+  - Arinbjörn Kolbeinsson
+  - Jesse Hu
+  - Christopher Michael Rytting
+  - Ryan Marten
+  - Yixin Wang
+  - Alex Dimakis
+  - Andy Konwinski
+  - Ludwig Schmidt
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  - systems-performance
+  publication_status: dataset-benchmark
+  classification: evaluation
+  system: Terminal-Bench 2.0
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/444a3737adaee10d86ad2ef5f74468e6-Abstract-Conference.html
+  artifact_url: https://github.com/harbor-framework/terminal-bench-2
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: evaluated
+    model: Claude Opus 4.5; Claude Sonnet 4.5; Claude Opus 4.1; Claude Haiku 4.5
+    version: not-reported
+    reasoning_mode: provider default medium
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: 89 tasks; token totals vary by agent-model combination
+    runs: not-reported
+    tool_permissions: Claude Code tool scaffold in Harbor
+  - product: codex-cli
+    role: evaluated
+    model: GPT-5.2; GPT-5; GPT-5-Mini; GPT-5-Nano
+    version: not-reported
+    reasoning_mode: provider default medium
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: 89 tasks; token totals vary by agent-model combination
+    runs: not-reported
+    tool_permissions: Codex CLI tool scaffold in Harbor
+  task:
+    summary: Evaluate industrial and open-source agents on realistic command-line tasks with executable tests.
+    benchmark: 'Terminal-Bench 2.0: 89 hard tasks, Harbor harness, containerized environments'
+  method:
+    summary: A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized
+      Harbor tasks, and failure-mode analysis.
+    tags:
+    - benchmark-design
+    - verifier-loop
+    - observability
+    - adversarial-testing
+  evidence:
+    result: Codex CLI with GPT-5.2 reaches 62.9% resolution; Claude Code with Claude Opus 4.5 reaches 52.1%, with lower Claude
+      Code rows for Sonnet 4.5, Opus 4.1, and Haiku 4.5 reported in Table 2.
+    same_model: 'no'
+    same_budget: 'no'
+    strength: high
+    claim_type: diagnostic
+    comparison_scope: benchmark-only
+    source_location: Section 3.2 Agents; Section 3.3 Models; Table 2; Appendix B
+    caveats: This paper evaluates products and models rather than proposing a method that beats them; token and cost budgets
+      vary substantially across agent-model combinations.
+  source_type: official-proceedings
+  experiment:
+    reasoning_mode: provider default medium for configurable Anthropic/OpenAI models
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: most attempts under 20 minutes; some up to 2 hours
+    turn_budget: not-reported
+    token_budget: Table 2 reports aggregate input/output tokens per 74 tasks; per-task budgets vary
+    api_budget: approximately $1–$100 per run depending on model
+    runs: not-reported
+    tool_permissions: Harbor containerized terminal tasks; Claude Code and Codex CLI use their product scaffolds
+    baseline_config: Claude Code, Codex CLI, Gemini CLI, OpenHands, Mini-SWE-Agent, and Terminus 2 across 89 Terminal-Bench
+      2.0 tasks
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included
+- id: helmsman-2026
+  title: 'Helmsman: Autonomous Synthesis of Federated Learning Systems via Collaborative LLM Agents'
+  authors:
+  - Haoyuan Li
+  - Mathias Funk
+  - Aaqib Saeed
+  year: 2026
+  conference: ICLR
+  venue: ICLR Conference
+  domains:
+  - software-engineering
+  - machine-learning
+  publication_status: main
+  classification: direct
+  system: Helmsman
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/1c364d98a5cdc426fd8c76fbb2c10e34-Abstract-Conference.html
+  artifact_url: https://github.com/haoyuan-l/Helmsman
+  artifact_status: official
+  products:
+  - product: claude-code
+    role: baseline
+    model: Claude Sonnet 4.5
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: 16 AgentFL-Bench tasks; baseline token and cost budgets are reported per task in Appendix Tables 8-12
+    runs: 3 independent runs for reported benchmark averages
+    tool_permissions: not-reported for the Claude Code baseline
+  - product: codex-cli
+    role: baseline
+    model: GPT-5.1-Codex
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: 16 AgentFL-Bench tasks; baseline token and cost budgets are reported per task in Appendix Tables 8-12
+    runs: 3 independent runs for reported benchmark averages
+    tool_permissions: not-reported for the Codex CLI baseline
+  task:
+    summary: End-to-end synthesis of federated learning systems from high-level specifications.
+    benchmark: AgentFL-Bench, 16 tasks across five federated-learning research areas; cross-silo (5 clients) and cross-device (10 clients) settings
+  method:
+    summary: Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification.
+    tags:
+    - multi-agent
+    - coordination
+    - verifier-loop
+    - test-feedback
+    - benchmark-design
+  evidence:
+    result: Claude Code with Claude Sonnet 4.5 reports 43.75% success and Codex with GPT-5.1-Codex reports 37.50%; Helmsman with Claude Sonnet 4.5 and GPT-5.1 reports 100% success in the paper's 16-task comparison.
+    same_model: 'no'
+    same_budget: unknown
+    strength: high
+    claim_type: mixed
+    comparison_scope: product-level
+    source_location: Section 4.2 Implementation Details; Appendix A.1 Tables 8-12; Appendix A.2 Table 12; PDF p. 15
+    caveats: The paper compares a multi-agent federated-learning system synthesis framework against product code-synthesis baselines. CLI versions, temperature, tool permissions, and exact budget caps are not reported. Helmsman's main backbone uses Gemini-2.5-flash for planning and Claude-Sonnet-4.0 for coding and evaluation; additional experiments use Claude-Sonnet-4.5 and GPT-5.1.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: Maximum 10 debugging attempts in Helmsman evaluation; baseline turn and iteration caps are not reported
+    token_budget: Appendix Tables 8-12 report per-task and average total tokens for each configuration
+    api_budget: Appendix Tables 8-12 report per-task and average dollar costs; no common budget cap is declared
+    runs: 3 independent runs for reported benchmark averages; Appendix A.2 reproducibility study
+    tool_permissions: Sandboxed simulation, terminal and code execution, and hierarchical runtime and semantic verification; exact Claude Code and Codex CLI permissions are not reported
+    baseline_config: Codex (GPT-5.1-Codex) and Claude Code (Claude Sonnet 4.5) compared with Helmsman variants and task-specific federated-learning baselines
+  source_type: official-proceedings
+  year_tag: 2026
+  conference_tag: ICLR
+  audit_status: included

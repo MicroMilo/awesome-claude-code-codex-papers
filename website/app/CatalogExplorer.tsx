@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type ProductId = "claude-code" | "codex-cli" | "openai-codex-model";
 type Classification = "direct" | "related" | "evaluation" | "historical";
+type EvidenceStrength = "high" | "medium" | "contextual";
 type Language = "en" | "zh";
 type ConferenceId =
   | "AAAI"
@@ -12,8 +13,11 @@ type ConferenceId =
   | "ICSE"
   | "ISSTA"
   | "NeurIPS"
-  | "arXiv"
-  | "Other";
+  | "IJCAI"
+  | "KDD"
+  | "PLDI"
+  | "POPL"
+  | "OOPSLA";
 type DomainId =
   | "software-engineering"
   | "security"
@@ -29,16 +33,19 @@ export type Paper = {
   title: string;
   authors: string[];
   year: number;
+  year_tag: 2026;
   conference: ConferenceId;
+  conference_tag: ConferenceId;
   venue: string;
   domains: DomainId[];
   publication_status: string;
   classification: Classification;
   system: string;
   paper_url: string;
+  source_type: string;
+  audit_status: "included";
   artifact_url?: string;
   artifact_status: "official" | "community" | "not-found";
-  arxiv_id?: string;
   doi?: string;
   published_at?: string;
   products: Array<{
@@ -46,12 +53,30 @@ export type Paper = {
     role: string;
     model: string;
     version: string;
+    reasoning_mode?: string;
+    temperature?: string;
+    max_output_tokens?: string;
+    budget?: string;
+    runs?: string;
+    tool_permissions?: string;
   }>;
   task: { summary: string; benchmark: string };
+  experiment: {
+    reasoning_mode: string;
+    temperature: string;
+    max_output_tokens: string;
+    time_budget: string;
+    turn_budget: string;
+    token_budget: string;
+    api_budget: string;
+    runs: string;
+    tool_permissions: string;
+    baseline_config: string;
+  };
   method: { summary: string; tags: string[] };
   evidence: {
     result: string;
-    strength: "high" | "medium" | "contextual";
+    strength: EvidenceStrength;
     same_model: "yes" | "no" | "unknown";
     same_budget: "yes" | "no" | "unknown";
     claim_type: string;
@@ -102,8 +127,11 @@ const CONFERENCE_ORDER: ConferenceId[] = [
   "ICSE",
   "ISSTA",
   "NeurIPS",
-  "arXiv",
-  "Other",
+  "IJCAI",
+  "KDD",
+  "PLDI",
+  "POPL",
+  "OOPSLA",
 ];
 
 const DOMAIN_ORDER = Object.keys(DOMAIN_LABELS.en) as DomainId[];
@@ -113,6 +141,7 @@ const copy = {
     papers: "Papers",
     coverage: "Coverage",
     methods: "Patterns",
+    insights: "Insights",
     star: "Star on GitHub ↗",
     eyebrow: "Evidence, not leaderboard hype",
     heroLead: "What actually beats",
@@ -120,6 +149,7 @@ const copy = {
     heroDeck:
       "A readable research index for the models, methods, results, and caveats behind production coding-agent comparisons.",
     explore: "Explore the evidence ↓",
+    readInsights: "Read the synthesis →",
     reviewed: "Last reviewed",
     reviewedPapers: "reviewed papers",
     directComparisons: "direct comparisons",
@@ -137,7 +167,10 @@ const copy = {
     product: "Product",
     modelsUsed: "Models used",
     evidenceClass: "Evidence class",
+    evidenceStrength: "Evidence strength",
     conference: "Conference / source",
+    year: "Year",
+    modelFilter: "Model",
     exactVenue: "Exact venue",
     method: "Method",
     all: "All",
@@ -181,6 +214,7 @@ const copy = {
     papers: "论文",
     coverage: "收录范围",
     methods: "方法",
+    insights: "洞察",
     star: "去 GitHub 点 Star ↗",
     eyebrow: "看证据，不看榜单气氛",
     heroLead: "到底什么方法能超越",
@@ -188,6 +222,7 @@ const copy = {
     heroDeck:
       "把工业 coding agent 论文里的模型、方法、结果和限制条件，整理成真正读得下去的研究索引。",
     explore: "开始看证据 ↓",
+    readInsights: "阅读综合结论 →",
     reviewed: "最近审计",
     reviewedPapers: "篇已审论文",
     directComparisons: "篇直接对比",
@@ -205,7 +240,10 @@ const copy = {
     product: "产品",
     modelsUsed: "使用的模型",
     evidenceClass: "证据类型",
+    evidenceStrength: "证据强度",
     conference: "会议 / 来源",
+    year: "年份",
+    modelFilter: "模型",
     exactVenue: "准确 venue / track",
     method: "方法",
     all: "全部",
@@ -266,6 +304,13 @@ function readableValue(value: string, fallback: string) {
     : value;
 }
 
+function modelNames(value: string) {
+  return value
+    .split(";")
+    .map((item) => item.trim())
+    .filter((item) => item && item !== "not-reported" && item !== "not-applicable");
+}
+
 type Props = { papers: Paper[]; reviewedAt: string };
 
 export function CatalogExplorer({ papers, reviewedAt }: Props) {
@@ -276,7 +321,12 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     "all" | Classification
   >("all");
   const [conference, setConference] = useState<"all" | ConferenceId>("all");
+  const [year, setYear] = useState<"all" | number>("all");
   const [domain, setDomain] = useState<"all" | DomainId>("all");
+  const [evidenceStrength, setEvidenceStrength] = useState<
+    "all" | EvidenceStrength
+  >("all");
+  const [model, setModel] = useState("all");
   const [method, setMethod] = useState("all");
   const [activePaper, setActivePaper] = useState<Paper | null>(null);
   const dialogCloseButton = useRef<HTMLButtonElement>(null);
@@ -311,6 +361,34 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
       const count = counts.get(item);
       return count ? ([[item, count]] as Array<[DomainId, number]>) : [];
     });
+  }, [papers]);
+
+  const yearCounts = useMemo(() => {
+    const counts = new Map<number, number>();
+    papers.forEach((paper) => counts.set(paper.year, (counts.get(paper.year) ?? 0) + 1));
+    return [...counts.entries()].sort(([yearA], [yearB]) => yearB - yearA);
+  }, [papers]);
+
+  const evidenceStrengthCounts = useMemo(() => {
+    const counts = new Map<EvidenceStrength, number>();
+    papers.forEach((paper) => {
+      const value = paper.evidence.strength;
+      counts.set(value, (counts.get(value) ?? 0) + 1);
+    });
+    return (["high", "medium", "contextual"] as EvidenceStrength[]).flatMap(
+      (item) => {
+        const count = counts.get(item);
+        return count ? ([[item, count]] as Array<[EvidenceStrength, number]>) : [];
+      },
+    );
+  }, [papers]);
+
+  const modelOptions = useMemo(() => {
+    const values = new Set<string>();
+    papers.forEach((paper) =>
+      paper.products.forEach((item) => modelNames(item.model).forEach((name) => values.add(name))),
+    );
+    return [...values].sort((modelA, modelB) => modelA.localeCompare(modelB));
   }, [papers]);
 
   const methodCounts = useMemo(() => {
@@ -362,7 +440,12 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           classification === "all" || paper.classification === classification;
         const matchesConference =
           conference === "all" || paper.conference === conference;
+        const matchesYear = year === "all" || paper.year === year;
         const matchesDomain = domain === "all" || paper.domains.includes(domain);
+        const matchesStrength =
+          evidenceStrength === "all" || paper.evidence.strength === evidenceStrength;
+        const matchesModel =
+          model === "all" || paper.products.some((item) => modelNames(item.model).includes(model));
         const matchesMethod =
           method === "all" || paper.method.tags.includes(method);
         return (
@@ -370,7 +453,10 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           matchesProduct &&
           matchesClass &&
           matchesConference &&
+          matchesYear &&
           matchesDomain &&
+          matchesStrength &&
+          matchesModel &&
           matchesMethod
         );
       })
@@ -380,14 +466,29 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           paperB.year - paperA.year ||
           paperA.system.localeCompare(paperB.system),
       );
-  }, [classification, conference, domain, language, method, papers, product, query]);
+  }, [
+    classification,
+    conference,
+    domain,
+    evidenceStrength,
+    language,
+    method,
+    model,
+    papers,
+    product,
+    query,
+    year,
+  ]);
 
   const filtersActive =
     query !== "" ||
     product !== "all" ||
     classification !== "all" ||
     conference !== "all" ||
+    year !== "all" ||
     domain !== "all" ||
+    evidenceStrength !== "all" ||
+    model !== "all" ||
     method !== "all";
 
   useEffect(() => {
@@ -414,7 +515,10 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     setProduct("all");
     setClassification("all");
     setConference("all");
+    setYear("all");
     setDomain("all");
+    setEvidenceStrength("all");
+    setModel("all");
     setMethod("all");
   };
 
@@ -445,6 +549,7 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <span>Agent Papers</span>
         </a>
         <nav aria-label="Primary navigation">
+          <a href="./insights/">{t.insights}</a>
           <a href="#coverage">{t.coverage}</a>
           <a href="#catalog">{t.papers}</a>
           <a href="#method-patterns">{t.methods}</a>
@@ -468,6 +573,9 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <div className="hero-actions">
             <a className="primary-action" href="#catalog">
               {t.explore}
+            </a>
+            <a className="secondary-action" href="./insights/">
+              {t.readInsights}
             </a>
             <span>
               {t.reviewed} {reviewedAt}
@@ -634,6 +742,23 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           </label>
 
           <label>
+            <span>{t.year}</span>
+            <select
+              value={year}
+              onChange={(event) =>
+                setYear(event.target.value === "all" ? "all" : Number(event.target.value))
+              }
+            >
+              <option value="all">{t.all}</option>
+              {yearCounts.map(([item, count]) => (
+                <option value={item} key={item}>
+                  {item} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
             <span>{t.domains}</span>
             <select
               value={domain}
@@ -645,6 +770,35 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
               {domainCounts.map(([item, count]) => (
                 <option value={item} key={item}>
                   {DOMAIN_LABELS[language][item]} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span>{t.evidenceStrength}</span>
+            <select
+              value={evidenceStrength}
+              onChange={(event) =>
+                setEvidenceStrength(event.target.value as "all" | EvidenceStrength)
+              }
+            >
+              <option value="all">{t.all}</option>
+              {evidenceStrengthCounts.map(([item, count]) => (
+                <option value={item} key={item}>
+                  {item} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span>{t.modelFilter}</span>
+            <select value={model} onChange={(event) => setModel(event.target.value)}>
+              <option value="all">{t.all}</option>
+              {modelOptions.map((item) => (
+                <option value={item} key={item}>
+                  {item}
                 </option>
               ))}
             </select>

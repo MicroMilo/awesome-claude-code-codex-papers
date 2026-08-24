@@ -14,6 +14,7 @@
 
 <p align="center">
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/"><img alt="打开网站" src="https://img.shields.io/badge/打开-可交互论文网站-f16f51?style=for-the-badge"></a>
+  <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/insights/"><img alt="阅读洞察" src="https://img.shields.io/badge/阅读-证据洞察-4bcbd5?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -25,12 +26,12 @@
 
 <!-- CATALOG:STATS:START -->
 <p align="center">
-  <img alt="papers: 32" src="https://img.shields.io/badge/papers-32-16616a">
-  <img alt="direct comparisons: 19" src="https://img.shields.io/badge/direct%20comparisons-19-dc6b46">
-  <img alt="official artifacts: 18" src="https://img.shields.io/badge/official%20artifacts-18-2563eb">
-  <img alt="domains: 8" src="https://img.shields.io/badge/domains-8-4bcbd5">
-  <img alt="conference groups: 8" src="https://img.shields.io/badge/conference%20groups-8-7c3aed">
-  <img alt="reviewed: 2026-08-21" src="https://img.shields.io/badge/reviewed-2026--08--21-475569">
+  <img alt="papers: 13" src="https://img.shields.io/badge/papers-13-16616a">
+  <img alt="direct comparisons: 5" src="https://img.shields.io/badge/direct%20comparisons-5-dc6b46">
+  <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
+  <img alt="domains: 7" src="https://img.shields.io/badge/domains-7-4bcbd5">
+  <img alt="conference groups: 2" src="https://img.shields.io/badge/conference%20groups-2-7c3aed">
+  <img alt="reviewed: 2026-08-24" src="https://img.shields.io/badge/reviewed-2026--08--24-475569">
 </p>
 <!-- CATALOG:STATS:END -->
 
@@ -39,28 +40,30 @@
 <!-- CATALOG:COVERAGE:START -->
 <p align="center">
   <a href="views/by-domain.md"><strong>研究领域</strong></a><br>
-  <code>软件工程 · 21</code> · <code>安全 · 5</code> · <code>系统与性能 · 5</code> · <code>机器学习 · 1</code> · <code>科学计算 · 2</code> · <code>形式化方法 · 2</code> · <code>Web 与 UI · 3</code> · <code>文档 · 1</code><br><br>
+  <code>软件工程 · 7</code> · <code>安全 · 3</code> · <code>系统与性能 · 1</code> · <code>机器学习 · 4</code> · <code>科学计算 · 3</code> · <code>Web 与 UI · 1</code> · <code>文档 · 1</code><br><br>
   <a href="views/by-conference.md"><strong>会议 / 来源</strong></a><br>
-  <code>ASE · 1</code> · <code>FSE · 1</code> · <code>ICLR · 4</code> · <code>ICML · 1</code> · <code>ICSE · 2</code> · <code>ISSTA · 3</code> · <code>NeurIPS · 2</code> · <code>arXiv · 18</code>
+  <code>ICLR · 12</code> · <code>ICML · 1</code>
 </p>
 <!-- CATALOG:COVERAGE:END -->
 
-这个仓库是**网页优先论文目录**背后的开放数据与维护层。只收录把 **Claude Code** 和 **Codex CLI** 当作完整产品进行评测、分析或超越的论文，而不是只要用了 Claude 或 GPT 系列模型就算。
+这个仓库是**网页优先论文目录**背后的开放数据与维护层。主目录只收录**2026 年、拥有正式会议 / proceedings / OpenReview 会议记录**，并且把 **Claude Code** 或 **Codex CLI** 当作完整产品进行评测、分析或超越的论文；只使用 Claude 或 GPT 系列模型的论文不会混入主目录。
 
 ## 先看网站
 
 [可交互论文目录](https://micromilo.github.io/awesome-claude-code-codex-papers/)适合直接：
 
 - 搜索系统、任务、方法、作者和论文结果；
-- 先选择研究领域或会议，再按产品、证据类型和方法细筛；
+- 按研究领域、会议、年份、产品、证据强度、精确模型和方法筛选；
 - 查看 baseline 模型、版本、预算、证据位置和限制；
 - 在中英文之间切换，不再阅读超长 Markdown 表格。
+
+独立的[证据洞察页](https://micromilo.github.io/awesome-claude-code-codex-papers/insights/)会综合这些产品的薄弱能力，并把每条推理直接映射到支撑论文、原始结果、证据位置与对比限制。
 
 ## 证据标准
 
 这不是排行榜。产品版本、底层模型、预算、工具权限和任务领域经常不同。每条记录都会分开呈现论文报告的结果、实验控制和限制；论文没写清的内容会保留为 `unknown`。
 
-需要原始或生成资料时，可以查看[论文证据页](papers/README.md)、[按领域浏览](views/by-domain.md)、[按会议浏览](views/by-conference.md)或[机器可读 JSON](data/papers.json)。
+需要原始或生成资料时，可以查看[论文证据页](papers/README.md)、[按领域浏览](views/by-domain.md)、[按会议浏览](views/by-conference.md)、[机器可读 JSON](data/papers.json)或[2026 会议全量审计报告](docs/2026-conference-census.md)。
 
 ## 参与贡献
 

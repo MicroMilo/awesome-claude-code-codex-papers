@@ -10,11 +10,11 @@
 |---|---|
 | Authors | Justin W. Lin, Eliot Krzysztof Jones, Donovan Julian Jasper, Ethan Jun-shen Ho, Anna Wu, Arnold Tianyi Yang, Neil Perry, Andy Zou, Matt Fredrikson, J. Zico Kolter, Percy Liang, Dan Boneh, Daniel E. Ho |
 | Conference | ICLR |
-| Venue | ICLR 2026 (main) |
+| Venue | ICLR Conference 2026 (main) |
 | Domains | Security |
 | Evidence class | Direct comparison |
-| First published | 2025-12-10 |
-| Identifiers | [arXiv:2512.09882](https://arxiv.org/abs/2512.09882) |
+| First published | Not recorded |
+| Identifiers | Official conference source |
 | Artifact | [Official artifact](https://github.com/Stanford-Trinity/ARTEMIS) |
 
 ## Product configuration
@@ -38,7 +38,7 @@ Supervisor with dynamic expert agents, recursive task decomposition, parallel ex
 
 ## Reported evidence
 
-ARTEMIS found 9 valid vulnerabilities with an 82% valid-submission rate, ranked second overall, and outperformed 9 of 10 human participants.
+ARTEMIS finds 9 valid vulnerabilities with an 82% valid-submission rate, ranks second overall, and outperforms 9 of 10 human participants in the reported penetration-testing study.
 
 | Control | Recorded value |
 |---|---|
@@ -47,15 +47,15 @@ ARTEMIS found 9 valid vulnerabilities with an 82% valid-submission rate, ranked 
 | Evidence strength | medium |
 | Claim type | mixed |
 | Comparison scope | product-level |
-| Source location | Abstract and main penetration-testing results |
+| Source location | Section 4.2 Agent Results; Table 1; Appendix A and J |
 
 ## Caveat
 
-Runtime limits, model combinations, safety refusals, and product policies differ across systems.
+This is live-network cybersecurity, not general coding; runtime limits, model mixtures, refusal behavior, and product policies differ.
 
 ## Primary links
 
-- [Paper](https://arxiv.org/abs/2512.09882)
+- [Paper](https://proceedings.iclr.cc/paper_files/paper/2026/hash/0410c2ff9f872efe5a7c61a4323a5da3-Abstract-Conference.html)
 - [Artifact](https://github.com/Stanford-Trinity/ARTEMIS)
 
 ---
