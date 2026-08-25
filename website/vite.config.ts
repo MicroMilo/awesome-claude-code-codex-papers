@@ -15,6 +15,12 @@ export default defineConfig({
         insights: fileURLToPath(
           new URL("./insights/index.html", import.meta.url),
         ),
+        methods: fileURLToPath(
+          new URL("./methods/index.html", import.meta.url),
+        ),
+        skill: fileURLToPath(
+          new URL("./skill/index.html", import.meta.url),
+        ),
       },
     },
   },

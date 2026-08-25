@@ -1,13 +1,14 @@
 {
   "name": "awesome-claude-code-codex-papers-site",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "generate": "tsx scripts/generate-static-content.ts",
+    "build": "npm run generate && tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "npm run build && node --import tsx --test tests/catalog.test.tsx",
     "lint": "eslint . --ignore-pattern dist"

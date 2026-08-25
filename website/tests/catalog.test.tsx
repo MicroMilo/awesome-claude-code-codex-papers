@@ -4,6 +4,8 @@ import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { CatalogExplorer, type Paper } from "../app/CatalogExplorer";
 import { InsightsPage } from "../app/InsightsPage";
+import { MethodsPage } from "../app/MethodsPage";
+import { SkillPage } from "../app/SkillPage";
 import catalog from "../data/catalog.json";
 import { INSIGHT_DEFINITIONS } from "../data/insights";
 import pendingSummary from "../data/pending-summary.json";
@@ -82,6 +84,38 @@ test("renders a paper-traceable insights report", () => {
   assert.match(html, /APE-Bench/);
   assert.match(html, /first-party full-text endpoint returned an HTTP 403/);
   assert.match(html, /Star the repository/);
+  assert.match(html, /Copy finding link/);
+  assert.match(html, /\.\.\/papers\/featurebench-2026\//);
+});
+
+test("renders a shareable methods evidence matrix", () => {
+  const html = renderToStaticMarkup(
+    <MethodsPage
+      papers={catalog.papers as Paper[]}
+      reviewedAt={catalog.reviewed_at}
+    />,
+  );
+
+  assert.match(html, /How researchers go beyond/);
+  assert.match(html, /the product baseline/);
+  assert.match(html, /Paper-reported result/);
+  assert.match(html, /Comparison limit/);
+  assert.match(html, /gpt-5\.2-2025-12-11/);
+  assert.match(html, /papers\/formact-2026\//);
+  assert.match(html, /same model: yes/i);
+  assert.match(html, /Copy link/);
+});
+
+test("renders the reusable official-conference census skill", () => {
+  const html = renderToStaticMarkup(<SkillPage />);
+
+  assert.match(html, /knows when/);
+  assert.match(html, /not to download the PDF/);
+  assert.match(html, /official-conference-paper-census/);
+  assert.match(html, /Stable end to end/);
+  assert.match(html, /ICLR · AAAI/);
+  assert.match(html, /NeurIPS · IJCAI · KDD/);
+  assert.match(html, /no silent drops/i);
 });
 
 test("keeps the website pending queue synchronized and first-party only", () => {
@@ -120,6 +154,14 @@ test("ships GitHub Pages metadata without OpenAI hosting references", async () =
     new URL("../dist/insights/index.html", import.meta.url),
     "utf8",
   );
+  const methodsHtml = await readFile(
+    new URL("../dist/methods/index.html", import.meta.url),
+    "utf8",
+  );
+  const skillHtml = await readFile(
+    new URL("../dist/skill/index.html", import.meta.url),
+    "utf8",
+  );
 
   assert.match(html, /<title>Awesome Claude Code &amp; Codex Papers<\/title>/i);
   assert.match(
@@ -138,12 +180,42 @@ test("ships GitHub Pages metadata without OpenAI hosting references", async () =
     /awesome-claude-code-codex-papers\/insights\//,
   );
   assert.doesNotMatch(insightsHtml, /chatgpt\.site|vinext|wrangler/i);
+  assert.match(methodsHtml, /<title>Methods Beyond Claude Code &amp; Codex<\/title>/i);
+  assert.match(skillHtml, /<title>Official Conference Paper Census Skill<\/title>/i);
+  assert.match(html, /application\/atom\+xml/);
 
   const sitemap = await readFile(
     new URL("../dist/sitemap.xml", import.meta.url),
     "utf8",
   );
   assert.match(sitemap, /awesome-claude-code-codex-papers\/insights\//);
+  assert.match(sitemap, /awesome-claude-code-codex-papers\/methods\//);
+  assert.match(sitemap, /awesome-claude-code-codex-papers\/skill\//);
+  assert.match(sitemap, /papers\/formact-2026\//);
+  assert.match(sitemap, /insights\/visual-contracts\//);
+  assert.equal(sitemap.match(/<url>/g)?.length, 23);
+});
+
+test("generates one static paper page, one insight page, and one feed entry per record", async () => {
+  const paperPage = await readFile(
+    new URL("../dist/papers/formact-2026/index.html", import.meta.url),
+    "utf8",
+  );
+  const insightPage = await readFile(
+    new URL("../dist/insights/visual-contracts/index.html", import.meta.url),
+    "utf8",
+  );
+  const feed = await readFile(new URL("../dist/feed.xml", import.meta.url), "utf8");
+
+  assert.match(paperPage, /gpt-5\.2-2025-12-11/);
+  assert.match(paperPage, /Section 5\.1 Experimental Setup/);
+  assert.match(paperPage, /Compare methods/);
+  assert.match(insightPage, /Syntactically valid is not visually or behaviorally correct/);
+  assert.match(insightPage, /FormAct/);
+  assert.match(insightPage, /Evidence record/);
+  assert.equal(feed.match(/<entry>/g)?.length, catalog.papers.length);
+  assert.match(feed, /application\/atom\+xml/);
+  assert.doesNotMatch(feed, /arxiv\.org/i);
 });
 
 test("site catalog mirrors the repository JSON export", async () => {

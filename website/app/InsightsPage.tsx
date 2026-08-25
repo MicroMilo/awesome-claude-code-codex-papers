@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Paper } from "./CatalogExplorer";
+import { ShareButton } from "./ShareButton";
 import {
   INSIGHT_DEFINITIONS,
   MECHANISM_DEFINITIONS,
@@ -44,6 +45,8 @@ const copy = {
   en: {
     pageTitle: "Insights",
     catalog: "Paper catalog",
+    methods: "Methods",
+    skill: "Census skill",
     weaknesses: "Weakness map",
     mechanisms: "What works",
     evidenceRules: "Evidence limits",
@@ -66,6 +69,8 @@ const copy = {
       "This is a synthesis of the current catalog, not a universal capability claim. Every inference below links back to its paper evidence and carries its own confounders.",
     contents: "Six evidence-backed findings",
     finding: "Finding",
+    share: "Copy finding link",
+    shared: "Link copied ✓",
     diagnosis: "Diagnosis",
     whatWorks: "What appears to work",
     evidenceTrail: "Paper evidence trail",
@@ -75,6 +80,7 @@ const copy = {
     supports: "Why it supports the inference",
     reported: "Paper-reported evidence",
     products: "Product / model",
+    evidenceRecord: "Evidence record →",
     verify: "Verify in official paper ↗",
     source: "Evidence location",
     caveat: "Comparison limit",
@@ -116,6 +122,8 @@ const copy = {
   zh: {
     pageTitle: "洞察",
     catalog: "论文目录",
+    methods: "方法",
+    skill: "会议采集 Skill",
     weaknesses: "薄弱能力",
     mechanisms: "有效方法",
     evidenceRules: "证据边界",
@@ -138,6 +146,8 @@ const copy = {
       "这是基于当前目录的综合判断，不是普遍能力定论。下面每条推理都映射到具体论文，并单独写明混杂因素。",
     contents: "六条有论文证据的结论",
     finding: "结论",
+    share: "复制结论链接",
+    shared: "链接已复制 ✓",
     diagnosis: "问题判断",
     whatWorks: "看起来有效的方法",
     evidenceTrail: "论文证据链",
@@ -147,6 +157,7 @@ const copy = {
     supports: "它为什么支持这条推理",
     reported: "论文报告的原始结果",
     products: "产品 / 模型",
+    evidenceRecord: "查看证据记录 →",
     verify: "打开官方论文核验 ↗",
     source: "证据位置",
     caveat: "对比限制",
@@ -236,6 +247,8 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
           <a href="#pending-evidence">{t.pending}</a>
           <a href="#evidence-limits">{t.evidenceRules}</a>
           <a href="../#catalog">{t.catalog}</a>
+          <a href="../methods/">{t.methods}</a>
+          <a href="../skill/">{t.skill}</a>
           <button
             className="language-toggle"
             type="button"
@@ -327,7 +340,14 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
                     <span>{insight.number}</span>
                     <p>{insight.domain[language]}</p>
                   </div>
-                  <p>{t.finding}</p>
+                  <div className="insight-share-action">
+                    <p>{t.finding}</p>
+                    <ShareButton
+                      path={`insights/${insight.id}/`}
+                      label={t.share}
+                      copiedLabel={t.shared}
+                    />
+                  </div>
                 </header>
                 <h2>{insight.title[language]}</h2>
                 <div className="insight-diagnosis">
@@ -365,6 +385,9 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
                         </div>
                         <a href={paper.paper_url} target="_blank" rel="noreferrer">
                           {t.verify}
+                        </a>
+                        <a className="local-record-link" href={`../papers/${paper.id}/`}>
+                          {t.evidenceRecord}
                         </a>
                       </div>
                       <dl className="insight-evidence-body">
@@ -427,8 +450,8 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
                 <ul>
                   {matchingPapers.map((paper) => (
                     <li key={paper.id}>
-                      <a href={paper.paper_url} target="_blank" rel="noreferrer">
-                        {paper.system} ↗
+                      <a href={`../papers/${paper.id}/`}>
+                        {paper.system} →
                       </a>
                     </li>
                   ))}

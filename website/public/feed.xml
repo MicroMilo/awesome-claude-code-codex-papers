@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Awesome Claude Code &amp; Codex Papers</title>
+  <subtitle>Audited product-level coding-agent research updates</subtitle>
+  <id>https://micromilo.github.io/awesome-claude-code-codex-papers/</id>
+  <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/" />
+  <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/feed.xml" rel="self" type="application/atom+xml" />
+  <updated>2026-08-25T00:00:00Z</updated>
+  <author><name>MicroMilo</name><uri>https://github.com/MicroMilo</uri></author>
+  <entry>
+    <title>QLCoder: QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/qlcoder-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/qlcoder-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>CVE-grounded retrieval, AST/LSP guidance, an MCP interface, and an executable CodeQL validator that feeds back into iterative query repair. Reported evidence: QLCoder synthesizes correct queries for 53.4% of CVEs versus 10% for Claude Code-only; its query F1 is 0.70, versus 0.048 for IRIS and 0.073 for CodeQL suites.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>SLDAgent: Can Language Models Discover Scaling Laws?</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/scaling-laws-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/scaling-laws-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Evolution-based program search jointly optimizes symbolic expressions and fitting procedures, with execution feedback and MAP-Elites selection. Reported evidence: SLDAgent reaches average R2 0.748 with GPT-5 versus 0.550 for Codex GPT-5, and improves over Claude Code rows for both Claude-Haiku-4.5 and Claude-Sonnet-4.5.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>CyberGym: CyberGym: Evaluating AI Agents&#39; Real-World Cybersecurity Capabilities at Scale</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/cybergym-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/cybergym-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A scalable vulnerability-reproduction benchmark with difficulty levels, pre/post-patch execution validation, and zero-day discovery analysis. Reported evidence: Codex CLI with GPT-4.1 is directly compared with OpenHands, EnIGMA, and Cybench agent; the union of four agents reaches 18.4% Level-1 success, exposing complementary failure modes.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>DeepScientist: DeepScientist: Advancing Frontier-Pushing Scientific Findings Progressively</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/deepscientist-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/deepscientist-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A three-stage hypothesis, implementation/evaluation, and analysis loop backed by persistent Findings Memory and Bayesian exploration. Reported evidence: Claude Code executes all code implementation and analysis tasks as a host component; the system reports 21 validated innovations and 60% simulated acceptance under the stated review protocol.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>DevOps-Gym: DevOps-Gym: Benchmarking AI Agents in Software DevOps Cycle</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/devops-gym-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/devops-gym-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A realistic dynamic DevOps environment with standardized tool interfaces, multi-stage workflows, and stage-specific metrics. Reported evidence: Claude Code with Claude-4-Sonnet reports 51.85% build/configuration, 20.56% monitoring, 23.87% issue resolving, and 13.87% test generation success.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>FeatureBench: FeatureBench: Benchmarking Agentic Coding for Complex Feature Development</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/featurebench-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/featurebench-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Execution-traced feature extraction removes target functionality while preserving interfaces, producing realistic feature-completion tasks with visible tests and anti-cheating controls. Reported evidence: Claude Code with Claude Opus 4.5 resolves 11.0% of Full tasks and Codex with GPT-5.1-Codex resolves 12.5%; the paper reports passed rates, token I/O, and failure modes.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>AppForge: From Assistant to Independent Developer — Are GPTs Ready for Software Development?</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/appforge-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/appforge-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Formal task specifications, expert-verified UI interaction traces, automated compilation/testing, and runtime fuzz testing create a full-app benchmark. Reported evidence: Claude Code with Qwen3-Coder reaches 6.93% functional success; the paper reports that coding-agent gains are marginal and that multi-file integration and lifecycle behavior remain bottlenecks.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>InnoGym: InnoGym: Benchmarking the Innovation Potential of AI Agents</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/innogym-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/innogym-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Agent-as-judge extraction and comparison turns complete solution repositories into summaries/pseudocode and scores novelty against known solutions. Reported evidence: Codex with GPT-5 is actually used as the extraction and novelty-evaluation host; the benchmark compares MLAB, CodeAct, and AIDE rather than using Codex as a primary agent baseline.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>ZeroRepo / RPG: RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/rpg-zerorepo-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/rpg-zerorepo-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A persistent repository planning graph over features, functions, files, interfaces, and data flow guides staged generation, dependency-aware planning, and validation. Reported evidence: ZeroRepo reaches 81.5% functional coverage and 69.7% test accuracy, improving over Claude Code by 27.3 and 35.8 points; it produces about 36K lines and 445K code tokens.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>ARTEMIS: Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/artemis-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/artemis-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Supervisor with dynamic expert agents, recursive task decomposition, parallel exploration, context management, triage, and reporting Reported evidence: ARTEMIS finds 9 valid vulnerabilities with an 82% valid-submission rate, ranks second overall, and outperforms 9 of 10 human participants in the reported penetration-testing study.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>FormAct: FormAct: Agentic Source Editing for Rich-Format Document Generation</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/formact-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/formact-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>HTML source editor, template retrieval, rendered-page review agent, iterative refinement, and edit-triggered context compression Reported evidence: Render correctness is 4.81 versus 4.39 for multi-pass Codex; human rank-1 rate is 0.760 versus 0.140. Content alignment is the caveat where Codex is slightly higher.</summary>
+    <category term="ICML" />
+  </entry>
+  <entry>
+    <title>Terminal-Bench 2.0: Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/terminal-bench-2-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/terminal-bench-2-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A benchmark design with realistic terminal environments, human-written solutions, executable tests, standardized Harbor tasks, and failure-mode analysis. Reported evidence: Codex CLI with GPT-5.2 reaches 62.9% resolution; Claude Code with Claude Opus 4.5 reaches 52.1%, with lower Claude Code rows for Sonnet 4.5, Opus 4.1, and Haiku 4.5 reported in Table 2.</summary>
+    <category term="ICLR" />
+  </entry>
+  <entry>
+    <title>Helmsman: Helmsman: Autonomous Synthesis of Federated Learning Systems via Collaborative LLM Agents</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/helmsman-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/helmsman-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Human-in-the-loop planning, modular code generation by collaborative agent teams, and closed-loop sandboxed evaluation and refinement with hierarchical runtime and semantic verification. Reported evidence: Claude Code with Claude Sonnet 4.5 reports 43.75% success and Codex with GPT-5.1-Codex reports 37.50%; Helmsman with Claude Sonnet 4.5 and GPT-5.1 reports 100% success in the paper&#39;s 16-task comparison.</summary>
+    <category term="ICLR" />
+  </entry>
+</feed>

@@ -14,6 +14,7 @@
 
 <p align="center">
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/"><img alt="Open website" src="https://img.shields.io/badge/open-interactive%20website-f16f51?style=for-the-badge"></a>
+  <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/methods/"><img alt="Compare methods" src="https://img.shields.io/badge/compare-methods%20%2B%20evidence-4bcbd5?style=for-the-badge"></a>
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/insights/"><img alt="Read insights" src="https://img.shields.io/badge/read-evidence%20insights-4bcbd5?style=for-the-badge"></a>
 </p>
 
@@ -60,6 +61,8 @@ The [interactive catalog](https://micromilo.github.io/awesome-claude-code-codex-
 - switch between English and Chinese without reading giant Markdown tables.
 
 The separate [evidence insights page](https://micromilo.github.io/awesome-claude-code-codex-papers/insights/) synthesizes where the products struggle and maps every inference back to the supporting papers, reported results, source locations, and comparison caveats.
+
+Use the [methods matrix](https://micromilo.github.io/awesome-claude-code-codex-papers/methods/) to compare interventions without separating results from their controls, or reuse the [official-conference census skill](https://micromilo.github.io/awesome-claude-code-codex-papers/skill/) to build another auditable venue-wide scan.
 
 ## Evidence standard
 

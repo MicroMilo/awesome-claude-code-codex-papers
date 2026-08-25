@@ -14,6 +14,7 @@
 
 <p align="center">
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/"><img alt="打开网站" src="https://img.shields.io/badge/打开-可交互论文网站-f16f51?style=for-the-badge"></a>
+  <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/methods/"><img alt="对照方法" src="https://img.shields.io/badge/对照-方法与证据-4bcbd5?style=for-the-badge"></a>
   <a href="https://micromilo.github.io/awesome-claude-code-codex-papers/insights/"><img alt="阅读洞察" src="https://img.shields.io/badge/阅读-证据洞察-4bcbd5?style=for-the-badge"></a>
 </p>
 
@@ -60,6 +61,8 @@
 - 在中英文之间切换，不再阅读超长 Markdown 表格。
 
 独立的[证据洞察页](https://micromilo.github.io/awesome-claude-code-codex-papers/insights/)会综合这些产品的薄弱能力，并把每条推理直接映射到支撑论文、原始结果、证据位置与对比限制。
+
+可以在[方法证据矩阵](https://micromilo.github.io/awesome-claude-code-codex-papers/methods/)中对照干预方法而不把结果与控制条件拆开，也可以复用[官方会议论文采集 Skill](https://micromilo.github.io/awesome-claude-code-codex-papers/skill/)构建另一个可审计的会议全集。
 
 ## 证据标准
 

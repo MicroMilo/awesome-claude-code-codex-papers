@@ -9,3 +9,5 @@ candidate-report.md
 tmp/
 website/node_modules/
 website/dist/
+website/public/papers/
+website/public/insights/

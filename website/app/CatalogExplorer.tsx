@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ShareButton } from "./ShareButton";
 
 type ProductId = "claude-code" | "codex-cli";
 type Classification = "direct" | "related" | "evaluation";
@@ -139,8 +140,9 @@ const copy = {
   en: {
     papers: "Papers",
     coverage: "Coverage",
-    methods: "Patterns",
+    methods: "Methods",
     insights: "Insights",
+    skill: "Census skill",
     star: "Star on GitHub ↗",
     eyebrow: "Evidence, not leaderboard hype",
     heroLead: "What actually beats",
@@ -181,12 +183,15 @@ const copy = {
     noResults: "No paper matches these filters.",
     reset: "Reset the catalog",
     inspect: "Inspect evidence",
+    share: "Copy link",
+    shared: "Copied ✓",
     paper: "Paper ↗",
     artifact: "Artifact ↗",
     methodPattern: "Recurring method patterns",
     methodTitle: "Structure around the model keeps winning.",
     methodDeck:
       "Select a pattern to see the papers behind it. Counts are generated from the same reviewed catalog.",
+    compareMethods: "Compare every method and control →",
     task: "Task",
     benchmark: "Benchmark / scale",
     intervention: "What changed",
@@ -213,6 +218,7 @@ const copy = {
     coverage: "收录范围",
     methods: "方法",
     insights: "洞察",
+    skill: "会议采集 Skill",
     star: "去 GitHub 点 Star ↗",
     eyebrow: "看证据，不看榜单气氛",
     heroLead: "到底什么方法能超越",
@@ -253,11 +259,14 @@ const copy = {
     noResults: "没有论文符合当前筛选。",
     reset: "重置目录",
     inspect: "查看证据",
+    share: "复制链接",
+    shared: "已复制 ✓",
     paper: "打开论文 ↗",
     artifact: "打开 Artifact ↗",
     methodPattern: "反复出现的方法",
     methodTitle: "真正有效的，往往是模型周围的结构。",
     methodDeck: "点击方法即可筛选对应论文；数量直接来自审计后的目录。",
+    compareMethods: "对照全部方法与控制条件 →",
     task: "任务",
     benchmark: "Benchmark / 规模",
     intervention: "新增了什么",
@@ -544,9 +553,10 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
         </a>
         <nav aria-label="Primary navigation">
           <a href="./insights/">{t.insights}</a>
+          <a href="./methods/">{t.methods}</a>
           <a href="#coverage">{t.coverage}</a>
           <a href="#catalog">{t.papers}</a>
-          <a href="#method-patterns">{t.methods}</a>
+          <a href="./skill/">{t.skill}</a>
           <button className="language-toggle" type="button" onClick={toggleLanguage}>
             {language === "en" ? "中文" : "EN"}
           </button>
@@ -824,7 +834,7 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
         {filtered.length > 0 ? (
           <div className="paper-grid">
             {filtered.map((paper) => (
-              <article className="paper-card" key={paper.id}>
+              <article className="paper-card" id={`paper-${paper.id}`} key={paper.id}>
                 <div className="card-topline">
                   <span className={`class-pill ${paper.classification}`}>
                     {CLASS_LABELS[language][paper.classification]}
@@ -856,9 +866,16 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
                 <blockquote>{paper.evidence.result}</blockquote>
                 <div className="card-footer">
                   <span>{paper.method.tags.slice(0, 2).join(" · ")}</span>
-                  <button type="button" onClick={() => setActivePaper(paper)}>
-                    {t.inspect} →
-                  </button>
+                  <div className="card-actions">
+                    <ShareButton
+                      path={`papers/${paper.id}/`}
+                      label={t.share}
+                      copiedLabel={t.shared}
+                    />
+                    <button type="button" onClick={() => setActivePaper(paper)}>
+                      {t.inspect} →
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
@@ -895,6 +912,9 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
             </button>
           ))}
         </div>
+        <a className="method-page-link" href="./methods/">
+          {t.compareMethods}
+        </a>
       </section>
 
       <footer>
@@ -1026,6 +1046,11 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
             </div>
 
             <div className="dialog-actions">
+              <ShareButton
+                path={`papers/${activePaper.id}/`}
+                label={t.share}
+                copiedLabel={t.shared}
+              />
               <a href={activePaper.paper_url} target="_blank" rel="noreferrer">
                 {t.paper}
               </a>

@@ -9,6 +9,23 @@ All notable catalog and schema changes are recorded here.
 - Deeper audits of product versions, model snapshots, and execution budgets
 - Additional official artifacts and evidence anchors
 
+## [0.3.0] — 2026-08-25
+
+### Added
+
+- Shareable methods matrix connecting each product/model baseline to the intervention, reported result, comparison controls, source location, and caveat
+- Permanent static evidence pages for all 13 catalog papers and all six evidence-backed insights
+- Reusable official-conference paper census Skill page with current venue support and the metadata-first decision protocol
+- Atom feed, 23-URL sitemap, per-record structured metadata, and feed discovery across every primary page
+- Bilingual launch kit with channel-specific drafts, rule checks, author outreach templates, and a measurement plan
+- Deterministic 1280×640 repository Social Preview generated from source
+
+### Changed
+
+- Connected the catalog, methods matrix, insight synthesis, paper evidence records, and census Skill through direct website navigation
+- Added copyable permanent links so reported results can be shared with their exact models and caveats
+- Reduced the Open Graph image from 1.8 MB to roughly 50 KB while standardizing it on the repository's coral/cyan palette
+
 ## [0.2.0] — 2026-08-25
 
 ### Added
@@ -46,6 +63,7 @@ All notable catalog and schema changes are recorded here.
 - Weekly arXiv candidate discovery with deduplication and bounded issue reports
 - Contribution, citation, security, and community guidance
 
-[Unreleased]: https://github.com/MicroMilo/awesome-claude-code-codex-papers/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/MicroMilo/awesome-claude-code-codex-papers/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/MicroMilo/awesome-claude-code-codex-papers/releases/tag/v0.3.0
 [0.2.0]: https://github.com/MicroMilo/awesome-claude-code-codex-papers/releases/tag/v0.2.0
 [0.1.0]: https://github.com/MicroMilo/awesome-claude-code-codex-papers/releases/tag/v0.1.0
