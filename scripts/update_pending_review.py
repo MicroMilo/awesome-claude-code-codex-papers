@@ -18,10 +18,12 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-import yaml
+if __package__:
+    from .census_store import CENSUS_INDEX_PATH, load_census, write_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import CENSUS_INDEX_PATH, load_census, write_census
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 SUMMARY_PATH = ROOT / "data" / "audit" / "2026-pending-summary.json"
 
 PRODUCT_PATTERNS = {
@@ -76,11 +78,11 @@ def blocker_for(paper: dict[str, Any]) -> tuple[str, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--census", type=Path, default=CENSUS_PATH)
+    parser.add_argument("--census", type=Path, default=CENSUS_INDEX_PATH)
     parser.add_argument("--output", type=Path, default=SUMMARY_PATH)
     args = parser.parse_args()
 
-    census = yaml.safe_load(args.census.read_text(encoding="utf-8"))
+    census = load_census(args.census)
     reviewed_at = datetime.now(UTC).replace(microsecond=0).isoformat()
     blocker_counts: Counter[str] = Counter()
     conference_counts: Counter[str] = Counter()
@@ -160,10 +162,7 @@ def main() -> int:
     }
     census["last_audited_at"] = reviewed_at
 
-    args.census.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120),
-        encoding="utf-8",
-    )
+    write_census(census, args.census)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",

@@ -13,9 +13,13 @@ from pathlib import Path
 
 import yaml
 
+if __package__:
+    from .census_store import load_census, write_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import load_census, write_census
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "data" / "papers.yaml"
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 
 
 def normalize(value: str) -> str:
@@ -24,7 +28,7 @@ def normalize(value: str) -> str:
 
 def main() -> int:
     catalog = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8"))
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     catalog_by_title = {
         (paper["conference"], normalize(paper["title"])): paper for paper in catalog["papers"]
     }
@@ -63,10 +67,7 @@ def main() -> int:
 
     census["last_audited_at"] = datetime.now(UTC).replace(microsecond=0).isoformat()
     census["catalog_ids"] = sorted(set(promoted))
-    CENSUS_PATH.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120),
-        encoding="utf-8",
-    )
+    write_census(census)
     print(
         f"Promoted {len(set(promoted))} exact official records: {', '.join(sorted(set(promoted)))}"
     )

@@ -1,4 +1,4 @@
-.PHONY: install build validate test lint check site-check census census-extensions audit-report audit-check pending-review source-fetch
+.PHONY: install build validate test lint check site-check census census-extensions census-refresh census-split audit-report audit-check pending-review source-fetch
 
 install:
 	python -m pip install -r requirements-dev.txt
@@ -11,6 +11,11 @@ census:
 
 census-extensions:
 	python scripts/refresh_researchr_extensions.py
+
+census-refresh: census-extensions
+
+census-split:
+	python scripts/split_conference_census.py
 
 audit-report:
 	python scripts/build_audit_report.py

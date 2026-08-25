@@ -11,8 +11,12 @@ from urllib.parse import urlparse
 
 import yaml
 
+if __package__:
+    from .census_store import load_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import load_census
+
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 CATALOG_PATH = ROOT / "data" / "papers.yaml"
 MANIFEST_PATH = ROOT / "data" / "audit" / "2026-fulltext-scan.jsonl"
 PENDING_SUMMARY_PATH = ROOT / "data" / "audit" / "2026-pending-summary.json"
@@ -37,7 +41,7 @@ def latest_manifest() -> dict[tuple[str, str], dict]:
 
 
 def main() -> int:
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     catalog = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8"))
     manifest = latest_manifest()
     errors: list[str] = []

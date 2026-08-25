@@ -8,20 +8,47 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 if __package__:
-    from .build_conference_census import initial_disposition, parse_researchr
+    from .build_conference_census import initial_disposition, is_first_party_pdf, parse_researchr
+    from .census_store import load_census, write_census
     from .source_fetcher import RetryPolicy, StableFetcher, metadata_dict
 else:  # pragma: no cover - documented direct-script entry point
-    from build_conference_census import initial_disposition, parse_researchr
+    from build_conference_census import initial_disposition, is_first_party_pdf, parse_researchr
+    from census_store import load_census, write_census
     from source_fetcher import RetryPolicy, StableFetcher, metadata_dict
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 CACHE_DIR = ROOT / "tmp" / "census"
 
 VENUES: dict[str, dict[str, Any]] = {
+    "ASE": {
+        "official_url": "https://conf.researchr.org/track/ase-2026/ase-2026-research-track",
+        "list_url": "https://conf.researchr.org/track/ase-2026/ase-2026-research-track",
+        "snapshot": "ase-2026.html",
+        "tracks": ["Research Papers"],
+        "notes": "The official accepted-paper list is available; final ACM publication links are merged when Researchr exposes them.",
+    },
+    "FSE": {
+        "official_url": "https://conf.researchr.org/track/fse-2026/fse-2026-research-papers",
+        "list_url": "https://conf.researchr.org/track/fse-2026/fse-2026-research-papers",
+        "snapshot": "fse-2026-research.html",
+        "tracks": ["Research Papers"],
+        "notes": "The official Researchr list is refreshed together with PACMSE/ACM DOI links exposed after publication.",
+    },
+    "ISSTA": {
+        "official_url": "https://conf.researchr.org/track/issta-2026/issta-2026-research-papers",
+        "list_url": "https://conf.researchr.org/track/issta-2026/issta-2026-research-papers",
+        "snapshot": "issta-2026-research.html",
+        "tracks": ["Research papers"],
+        "notes": "The official accepted-paper list is available; PACMSE/ACM DOI links are merged when published.",
+    },
+    "ICSE": {
+        "official_url": "https://conf.researchr.org/track/icse-2026/icse-2026-research-track",
+        "list_url": "https://conf.researchr.org/track/icse-2026/icse-2026-research-track",
+        "snapshot": "icse-2026-research.html",
+        "tracks": ["Research Track"],
+        "notes": "The official Researchr program is refreshed without replacing prior per-paper audit decisions.",
+    },
     "PLDI": {
         "official_url": "https://pldi26.sigplan.org/track/pldi-2026-papers",
         "list_url": "https://pldi26.sigplan.org/track/pldi-2026-papers",
@@ -66,6 +93,28 @@ def new_record(raw: dict[str, Any], conference: str, list_url: str) -> dict[str,
     return record
 
 
+def merge_record(
+    current: dict[str, Any] | None,
+    raw: dict[str, Any],
+    conference: str,
+    list_url: str,
+) -> dict[str, Any]:
+    """Preserve review state while accepting newly exposed official identifiers."""
+
+    if current is None:
+        return new_record(raw, conference, list_url)
+    raw_official_url = str(raw.get("official_url", ""))
+    current_official_url = str(current.get("official_url", ""))
+    if current.get("pdf_url") and not is_first_party_pdf(current["pdf_url"], list_url):
+        current.pop("pdf_url", None)
+    if "/details/" in raw_official_url or not current_official_url:
+        current["official_url"] = raw_official_url
+    for field in ("pdf_url", "doi_url", "official_record_id"):
+        if raw.get(field):
+            current[field] = raw[field]
+    return current
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--conference", action="append", choices=sorted(VENUES))
@@ -106,7 +155,7 @@ def main() -> int:
     if args.dry_run:
         return 0
 
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     by_conference = {item["conference"]: item for item in census.get("conferences", [])}
     for conference in selected:
         venue = VENUES[conference]
@@ -122,7 +171,7 @@ def main() -> int:
         merged: list[dict[str, Any]] = []
         for raw in records:
             key = (normalize(raw.get("title")), normalize(raw.get("track")))
-            merged.append(existing.get(key) or new_record(raw, conference, str(venue["list_url"])))
+            merged.append(merge_record(existing.get(key), raw, conference, str(venue["list_url"])))
         section.update(
             {
                 "official_url": venue["official_url"],
@@ -152,10 +201,7 @@ def main() -> int:
             section[f"{disposition}_count"] = count
 
     census["last_audited_at"] = audited_at
-    CENSUS_PATH.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120),
-        encoding="utf-8",
-    )
+    write_census(census, only=selected)
     return 0
 
 

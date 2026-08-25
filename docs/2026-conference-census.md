@@ -1,10 +1,10 @@
 # 2026 conference census and full-text audit
 
-> Last audited: `2026-08-24T06:56:47+00:00`
+> Last audited: `2026-08-25T04:10:59+00:00`
 >
 > The main catalog is deliberately narrow: only 2026 records with a first-party conference/proceedings/OpenReview source and reviewed Claude Code or Codex CLI product evidence are imported.
 
-The complete per-paper record is in [`data/audit/2026-conference-census.yaml`](../data/audit/2026-conference-census.yaml). Every official-list record has an explicit `included`, `excluded`, `pending`, or `duplicate` disposition; no arXiv list is used as a conference census. ICLR records may also carry `full_text_scan: metadata-filtered`: the official abstract was screened and the PDF was intentionally not requested because it had no high-recall coding-agent signal.
+The complete per-paper record is split by venue under [`data/audit/2026-conference-census/`](../data/audit/2026-conference-census/index.yaml). The checksum index maps every conference to its own YAML file. Every official-list record has an explicit `included`, `excluded`, `pending`, or `duplicate` disposition; no arXiv list is used as a conference census. ICLR records may also carry `full_text_scan: metadata-filtered`: the official abstract was screened and the PDF was intentionally not requested because it had no high-recall coding-agent signal.
 
 ## Conference totals
 
@@ -25,6 +25,10 @@ The complete per-paper record is in [`data/audit/2026-conference-census.yaml`](.
 | OOPSLA | [official](https://conf.researchr.org/track/splash-2026/oopsla-2026) | accepted-list | 167 | 0 | 153 | 0 | 153 | 14 | 0 |
 
 ICLR's official [Downloads/2026](https://iclr.cc/Downloads/2026) page exposed 5513 events; the main-paper census uses 5351 proceedings records after excluding tutorials, talks, workshops, and demonstrations from the paper total. The exported official list contains 5466 paper records.
+
+## Official full-text refresh
+
+The latest official-page refresh rechecked **497** metadata-selected Researchr records across ASE, FSE, ICSE, ISSTA, OOPSLA. It found **23** target-paper ACM DOI/PDF endpoints; **474** records still exposed no first-party full text. Of the discovered endpoints, **21** were recorded as publisher challenges and **2** were not requested because the official abstract was unavailable. External GitHub and arXiv preprints are not counted as official PDFs.
 
 ## Global disposition
 
@@ -55,17 +59,15 @@ ICLR's official [Downloads/2026](https://iclr.cc/Downloads/2026) page exposed 55
 
 ## Excluded and pending evidence
 
-The YAML report retains the title, official URL, track, scan status, and reason for every excluded or pending record. The most common reasons in this run are:
+The per-conference YAML files retain the title, official URL, track, scan status, and reason for every excluded or pending record. The most common reasons in this run are:
 
 - **13254** — No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract. PDF download was not requested by the metadata-first policy.
 - **4247** — Full-text scan found no Claude Code/Codex CLI product string; generic coding-agent or model/API mentions do not qualify for the main catalog.
-- **476** — Official conference record found, but no first-party full-text PDF URL was exposed by the source adapter; arXiv is not used as a substitute.
-- **200** — Official record and first-party full-text URL found; full-text product/model scan is pending.
+- **470** — Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
+- **223** — Official record and first-party full-text URL found; full-text product/model scan is pending.
 - **50** — Full-text product-string hit reviewed as a reference/related-work mention, background discussion, or ancillary author code/writing assistance; no product-level baseline, evaluation, host configuration, or product-focused empirical analysis was found.
-- **14** — Official page did not expose a first-party PDF or OpenReview full-text link.
 - **4** — High-priority product candidate from the official title/abstract. The official conference record does not yet expose a first-party full-text PDF URL. Remains pending until first-party full text can be reviewed; arXiv is not used as a substitute.
 - **4** — High-priority product candidate from the official title/abstract. The first-party full-text endpoint returned an HTTP 403 browser-verification challenge. Remains pending until first-party full text can be reviewed; arXiv is not used as a substitute.
-- **3** — Official record found, but no first-party full-text PDF URL was exposed; a GitHub-hosted copy was discovered but is not used as evidence; arXiv is not used as a substitute.
 - **1** — The only OpenAI Codex hit is an entry in the References section (the OpenAI Codex Developer Documentation citation on page 23); the paper does not run, evaluate, host, or compare Codex CLI.
 - **1** — The only Claude Code hit is an Anthropic reference entry on page 8; the paper studies preference optimization for generated code and does not run, evaluate, host, or compare Claude Code.
 - **1** — The only Claude Code hit is an Anthropic reference entry on page 8; the paper studies source-code unlearning and does not run, evaluate, host, or compare Claude Code.
@@ -98,6 +100,7 @@ A product name in an official title or abstract is a prioritization signal, not 
 
 ## Audit artifacts
 
+- [`data/audit/2026-conference-census/index.yaml`](../data/audit/2026-conference-census/index.yaml) — ordered per-conference file map with record counts and SHA-256 checksums.
 - [`data/audit/current-catalog-audit.yaml`](../data/audit/current-catalog-audit.yaml) — field-by-field audit of the pre-migration 32-record catalog.
 - [`data/audit/2026-fulltext-scan.jsonl`](../data/audit/2026-fulltext-scan.jsonl) — page-level snippets, extraction method, product hits, and model candidates for official PDFs; PDFs are not committed.
 - [`data/audit/2026-pending-summary.json`](../data/audit/2026-pending-summary.json) — compact blocker counts and the high-priority direct-product pending queue.

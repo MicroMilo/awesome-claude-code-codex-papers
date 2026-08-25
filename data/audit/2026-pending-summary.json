@@ -1,7 +1,8 @@
 {
   "blocker_counts": {
-    "official-pdf-not-exposed": 497,
-    "official-source-challenge": 204
+    "full-text-scan-pending": 2,
+    "official-pdf-not-exposed": 474,
+    "official-source-challenge": 225
   },
   "conference_level_pending": [
     {
@@ -169,6 +170,6 @@
   ],
   "pending_record_count": 701,
   "policy": "Only official conference/proceedings/OpenReview records are used. A title/abstract product hit prioritizes review but never qualifies a paper for inclusion by itself.",
-  "reviewed_at": "2026-08-24T06:56:47+00:00",
+  "reviewed_at": "2026-08-25T04:07:03+00:00",
   "scope_year": 2026
 }

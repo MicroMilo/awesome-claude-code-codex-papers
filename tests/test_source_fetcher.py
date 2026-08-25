@@ -6,12 +6,13 @@ from pathlib import Path
 
 import pytest
 
+from scripts.build_conference_census import is_first_party_pdf
 from scripts.enrich_official_metadata import (
     extract_aaai_abstract,
     extract_icml_abstract,
     extract_researchr_modal,
 )
-from scripts.enrich_official_pdf_urls import acm_pdf_url
+from scripts.enrich_official_pdf_urls import acm_pdf_url, discover_from_page
 from scripts.fetch_iclr_sources import (
     build_download_payload,
     parse_proceedings_detail,
@@ -144,6 +145,36 @@ def test_acm_pdf_url_is_derived_only_from_an_official_acm_doi() -> None:
     )
     assert acm_pdf_url("https://doi.org/10.5555/example") is None
     assert acm_pdf_url("https://example.com/10.1145/3808347") is None
+
+
+def test_researchr_pdf_policy_rejects_preprints_on_external_hosts() -> None:
+    official = "https://conf.researchr.org/track/fse-2026/fse-2026-research-papers"
+
+    assert not is_first_party_pdf("https://github.com/example/paper.pdf", official)
+    assert not is_first_party_pdf("https://arxiv.org/pdf/2601.00001.pdf", official)
+    assert is_first_party_pdf("https://dl.acm.org/doi/pdf/10.1145/3808103", official)
+
+
+def test_official_page_acm_doi_is_promoted_to_first_party_pdf() -> None:
+    result = discover_from_page(
+        "FSE",
+        "https://conf.researchr.org/details/fse-2026/paper",
+        b'<div><label class="control-label">Link to Publication</label>'
+        b'<a href="https://dl.acm.org/doi/10.1145/3808103">publication</a></div>',
+    )
+
+    assert result["pdf_url"] == "https://dl.acm.org/doi/pdf/10.1145/3808103"
+    assert result["doi_url"] == "https://doi.org/10.1145/3808103"
+
+
+def test_researchr_detail_ignores_doi_from_embedded_session_program() -> None:
+    result = discover_from_page(
+        "FSE",
+        "https://conf.researchr.org/details/fse-2026/target",
+        b'<table class="session-table"><a href="https://doi.org/10.1145/wrong">DOI</a></table>',
+    )
+
+    assert result["status"] == "pending"
 
 
 def test_download_resumes_partial_file_and_replaces_atomically(tmp_path: Path) -> None:

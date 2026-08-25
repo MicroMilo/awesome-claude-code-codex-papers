@@ -9,8 +9,12 @@ from pathlib import Path
 
 import yaml
 
+if __package__:
+    from .census_store import load_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import load_census
+
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 CATALOG_PATH = ROOT / "data" / "papers.yaml"
 OUTPUT_PATH = ROOT / "docs" / "2026-conference-census.md"
 PENDING_SUMMARY_PATH = ROOT / "data" / "audit" / "2026-pending-summary.json"
@@ -21,7 +25,7 @@ def cell(value: object) -> str:
 
 
 def main() -> int:
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     catalog = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8"))
     conferences = census.get("conferences", [])
     records = [paper for conference in conferences for paper in conference.get("papers", [])]
@@ -45,7 +49,7 @@ def main() -> int:
         ">",
         "> The main catalog is deliberately narrow: only 2026 records with a first-party conference/proceedings/OpenReview source and reviewed Claude Code or Codex CLI product evidence are imported.",
         "",
-        "The complete per-paper record is in [`data/audit/2026-conference-census.yaml`](../data/audit/2026-conference-census.yaml). Every official-list record has an explicit `included`, `excluded`, `pending`, or `duplicate` disposition; no arXiv list is used as a conference census. ICLR records may also carry `full_text_scan: metadata-filtered`: the official abstract was screened and the PDF was intentionally not requested because it had no high-recall coding-agent signal.",
+        "The complete per-paper record is split by venue under [`data/audit/2026-conference-census/`](../data/audit/2026-conference-census/index.yaml). The checksum index maps every conference to its own YAML file. Every official-list record has an explicit `included`, `excluded`, `pending`, or `duplicate` disposition; no arXiv list is used as a conference census. ICLR records may also carry `full_text_scan: metadata-filtered`: the official abstract was screened and the PDF was intentionally not requested because it had no high-recall coding-agent signal.",
         "",
         "## Conference totals",
         "",
@@ -74,6 +78,32 @@ def main() -> int:
                 "tutorials, talks, workshops, and demonstrations from the paper total. "
                 f"The exported official list contains {iclr.get('downloads_export_record_count', 'not recorded')} "
                 "paper records.",
+            ]
+        )
+
+    enrichment = census.get("full_text_url_enrichment", {})
+    if enrichment:
+        enriched_records = [
+            paper
+            for conference in conferences
+            if conference.get("conference") in set(enrichment.get("conferences", []))
+            for paper in conference.get("papers", [])
+            if isinstance(paper.get("full_text_discovery"), dict)
+            and paper["full_text_discovery"].get("method")
+        ]
+        challenge_count = sum(
+            bool((paper.get("scan") or {}).get("challenge")) for paper in enriched_records
+        )
+        metadata_blocked_count = sum(
+            "metadata was not available" in str((paper.get("scan") or {}).get("reason", ""))
+            for paper in enriched_records
+        )
+        lines.extend(
+            [
+                "",
+                "## Official full-text refresh",
+                "",
+                f"The latest official-page refresh rechecked **{enrichment.get('found', 0) + enrichment.get('not_found', 0)}** metadata-selected Researchr records across {', '.join(enrichment.get('conferences', []))}. It found **{enrichment.get('found', 0)}** target-paper ACM DOI/PDF endpoints; **{enrichment.get('not_found', 0)}** records still exposed no first-party full text. Of the discovered endpoints, **{challenge_count}** were recorded as publisher challenges and **{metadata_blocked_count}** were not requested because the official abstract was unavailable. External GitHub and arXiv preprints are not counted as official PDFs.",
             ]
         )
 
@@ -120,7 +150,7 @@ def main() -> int:
             "",
             "## Excluded and pending evidence",
             "",
-            "The YAML report retains the title, official URL, track, scan status, and reason for every excluded or pending record. The most common reasons in this run are:",
+            "The per-conference YAML files retain the title, official URL, track, scan status, and reason for every excluded or pending record. The most common reasons in this run are:",
             "",
         ]
     )
@@ -128,7 +158,7 @@ def main() -> int:
         lines.append(f"- **{count}** — {reason}")
     if len(reasons) > 20:
         lines.append(
-            f"- **{len(reasons) - 20}** additional distinct reasons are retained in the YAML report."
+            f"- **{len(reasons) - 20}** additional distinct reasons are retained in the per-conference YAML files."
         )
 
     high_priority = pending_summary.get("high_priority_product_candidates", [])
@@ -178,6 +208,7 @@ def main() -> int:
             "",
             "## Audit artifacts",
             "",
+            "- [`data/audit/2026-conference-census/index.yaml`](../data/audit/2026-conference-census/index.yaml) — ordered per-conference file map with record counts and SHA-256 checksums.",
             "- [`data/audit/current-catalog-audit.yaml`](../data/audit/current-catalog-audit.yaml) — field-by-field audit of the pre-migration 32-record catalog.",
             "- [`data/audit/2026-fulltext-scan.jsonl`](../data/audit/2026-fulltext-scan.jsonl) — page-level snippets, extraction method, product hits, and model candidates for official PDFs; PDFs are not committed.",
             "- [`data/audit/2026-pending-summary.json`](../data/audit/2026-pending-summary.json) — compact blocker counts and the high-priority direct-product pending queue.",

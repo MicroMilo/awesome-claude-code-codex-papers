@@ -18,15 +18,18 @@ import re
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
-import yaml
 from bs4 import BeautifulSoup
+
+if __package__:
+    from .census_store import CENSUS_DIR, write_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import CENSUS_DIR, write_census
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE_DIR = ROOT / "tmp" / "census"
-OUTPUT_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 
 FETCHED_AT = datetime.now(UTC).replace(microsecond=0).isoformat()
 
@@ -168,6 +171,24 @@ def clean_text(value: str) -> str:
     return " ".join(value.split()).strip()
 
 
+def is_first_party_pdf(value: object, official_url: object) -> bool:
+    parsed = urlparse(str(value or ""))
+    official_host = urlparse(str(official_url or "")).netloc.lower()
+    allowed_hosts = {
+        official_host,
+        "dl.acm.org",
+        "ieeexplore.ieee.org",
+        "ojs.aaai.org",
+        "proceedings.iclr.cc",
+        "openreview.net",
+    }
+    path = parsed.path.casefold()
+    looks_like_pdf = path.endswith(".pdf") or (
+        parsed.netloc.lower() == "dl.acm.org" and "/doi/pdf/" in path
+    )
+    return looks_like_pdf and parsed.netloc.lower() in allowed_hosts
+
+
 def fetch(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     request_url = url
@@ -263,7 +284,7 @@ def parse_researchr(path: Path, registry: dict[str, object]) -> list[dict[str, o
         doi_url = None
         for link in row.find_all("a", href=True):
             href = link["href"]
-            if href.lower().endswith(".pdf") and "arxiv.org" not in href:
+            if is_first_party_pdf(href, registry["list_url"]):
                 pdf_url = href
             if "doi.org/" in href:
                 doi_url = href
@@ -480,7 +501,7 @@ def main() -> int:
     parser.add_argument(
         "--fetch", action="store_true", help="Fetch official pages into tmp/census before parsing."
     )
-    parser.add_argument("--output", type=Path, default=OUTPUT_PATH)
+    parser.add_argument("--output-dir", type=Path, default=CENSUS_DIR)
     args = parser.parse_args()
     try:
         registries = load_or_fetch_registry(args.fetch)
@@ -488,16 +509,13 @@ def main() -> int:
         print(f"census build failed: {error}", file=sys.stderr)
         return 1
     report = build_report(registries)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(
-        yaml.safe_dump(report, allow_unicode=True, sort_keys=False, width=120), encoding="utf-8"
-    )
+    index_path = write_census(report, args.output_dir)
     totals = {name: 0 for name in ["included", "excluded", "pending", "duplicate"]}
     for conference in report["conferences"]:
         for name in totals:
             totals[name] += int(conference[f"{name}_count"])
     print(
-        f"Wrote {args.output.relative_to(ROOT)}: "
+        f"Wrote {index_path.relative_to(ROOT)} and {len(report['conferences'])} conference files: "
         f"{sum(c['paper_count'] or 0 for c in report['conferences'])} records, "
         + ", ".join(f"{key}={value}" for key, value in totals.items())
     )

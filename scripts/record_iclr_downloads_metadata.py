@@ -10,11 +10,14 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import requests
-import yaml
 from bs4 import BeautifulSoup
 
+if __package__:
+    from .census_store import load_census, write_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import load_census, write_census
+
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 URL = "https://iclr.cc/Downloads/2026"
 EXPORT_PATH = ROOT / "tmp" / "census" / "iclr-2026-downloads.json"
 
@@ -36,7 +39,7 @@ def main() -> int:
         for link in soup.find_all("a", href=True)
         if "/virtual/2026/poster/" in str(link["href"])
     ]
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     conference = next(item for item in census["conferences"] if item["conference"] == "ICLR")
     conference["official_url"] = URL
     conference["downloads_url"] = URL
@@ -49,9 +52,7 @@ def main() -> int:
         conference["downloads_export_record_count"] = len(export_data)
         conference["downloads_export_sha256"] = hashlib.sha256(export_bytes).hexdigest()
         conference["downloads_export_format"] = "json"
-    CENSUS_PATH.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120), encoding="utf-8"
-    )
+    write_census(census, only={"ICLR"})
     print(
         f"Recorded ICLR Downloads metadata: events={conference['downloads_event_count']}, "
         f"poster_links={conference['downloads_poster_link_count']}"

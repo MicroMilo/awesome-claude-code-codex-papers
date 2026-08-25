@@ -23,18 +23,18 @@ from io import BytesIO
 from pathlib import Path
 from typing import Any
 
-import yaml
 from bs4 import BeautifulSoup
 
 if __package__:
+    from .census_store import CENSUS_INDEX_PATH, load_census, write_census
     from .metadata_relevance import screen_metadata
     from .source_fetcher import FetchError, RetryPolicy, StableFetcher, metadata_dict
 else:  # pragma: no cover - exercised by the documented direct-script command
+    from census_store import CENSUS_INDEX_PATH, load_census, write_census
     from metadata_relevance import screen_metadata
     from source_fetcher import FetchError, RetryPolicy, StableFetcher, metadata_dict
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 MANIFEST_PATH = ROOT / "data" / "audit" / "2026-fulltext-scan.jsonl"
 ICLR_DETAIL_RE = re.compile(
     r"^https://proceedings\.iclr\.cc/paper_files/paper/2026/hash/[0-9a-f]+-Abstract-Conference\.html$",
@@ -404,10 +404,10 @@ def main() -> int:
         help="Do not retry records whose latest fetch is an explicit browser-verification challenge.",
     )
     args = parser.parse_args()
-    if not CENSUS_PATH.exists():
-        print(f"Missing {CENSUS_PATH}", file=sys.stderr)
+    if not CENSUS_INDEX_PATH.exists():
+        print(f"Missing {CENSUS_INDEX_PATH}", file=sys.stderr)
         return 1
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     manifest_records = latest_manifest_records()
     if manifest_records:
         update_census(census, list(manifest_records.values()))
@@ -468,9 +468,7 @@ def main() -> int:
     append_manifest(checkpoint)
     if not args.no_update:
         update_census(census, results)
-        CENSUS_PATH.write_text(
-            yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120), encoding="utf-8"
-        )
+        write_census(census)
     counts: dict[str, int] = {}
     for result in results:
         key = result.get("disposition", result.get("status", "pending"))

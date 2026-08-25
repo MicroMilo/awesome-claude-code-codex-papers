@@ -12,10 +12,12 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-import yaml
+if __package__:
+    from .census_store import load_census, write_census
+else:  # pragma: no cover - documented direct-script entry point
+    from census_store import load_census, write_census
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 MANIFEST_PATH = ROOT / "data" / "audit" / "2026-fulltext-scan.jsonl"
 
 
@@ -75,7 +77,7 @@ def latest_manifest() -> dict[tuple[str, str], dict[str, object]]:
 
 
 def main() -> int:
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     manifest = latest_manifest()
     reviewed = 0
     excluded = 0
@@ -119,10 +121,7 @@ def main() -> int:
         "excluded_after_context_review": excluded,
         "policy": "Every non-ICLR product-string hit must be mapped to an explicit context review before finalization.",
     }
-    CENSUS_PATH.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120),
-        encoding="utf-8",
-    )
+    write_census(census)
     print(f"Reviewed {reviewed} non-ICLR product hits: excluded={excluded}.")
     return 0
 

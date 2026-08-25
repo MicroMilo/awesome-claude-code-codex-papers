@@ -1,0 +1,19 @@
+conference: NeurIPS
+year: 2026
+official_url: https://neurips.cc/
+list_url: https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference
+status: pending
+tracks:
+- Conference
+notes: The official OpenReview group exists, but an accepted-paper list/proceedings was not released at the audit time; no
+  preprint list is substituted.
+fetched_at: '2026-08-21T15:02:57+00:00'
+paper_count: null
+scanned_count: 0
+included_count: 0
+excluded_count: 0
+pending_count: 0
+duplicate_count: 0
+papers: []
+pdf_url_count: 0
+metadata_screened_count: 0

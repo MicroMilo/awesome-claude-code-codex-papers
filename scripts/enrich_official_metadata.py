@@ -26,16 +26,16 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
-import yaml
 from bs4 import BeautifulSoup
 
 if __package__:
+    from .census_store import load_census, write_census
     from .source_fetcher import FetchError, RetryPolicy, StableFetcher, metadata_dict
 else:  # pragma: no cover - exercised by the documented direct-script command
+    from census_store import load_census, write_census
     from source_fetcher import FetchError, RetryPolicy, StableFetcher, metadata_dict
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS_PATH = ROOT / "data" / "audit" / "2026-conference-census.yaml"
 MANIFEST_PATH = ROOT / "data" / "audit" / "2026-official-metadata.jsonl"
 CACHE_DIR = ROOT / "tmp" / "census"
 
@@ -268,10 +268,12 @@ def update_census(census: dict[str, Any], results: list[dict[str, Any]]) -> None
                 paper["details_url"] = result["details_url"]
             if result.get("fetch"):
                 paper["abstract_fetch"] = result["fetch"]
+    updated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
     census["official_metadata_enrichment"] = {
-        "updated_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
+        "updated_at": updated_at,
         "policy": "Only official conference, proceedings, publisher, or official OpenReview pages are queried; missing metadata remains pending.",
     }
+    census["last_audited_at"] = updated_at
 
 
 def main() -> int:
@@ -291,7 +293,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    census = yaml.safe_load(CENSUS_PATH.read_text(encoding="utf-8"))
+    census = load_census()
     selected = set(args.conference or ["ASE", "FSE", "ISSTA", "ICSE", "ICML", "AAAI"])
     latest = load_latest_manifest()
     forms: dict[str, dict[str, str]] = {}
@@ -351,9 +353,7 @@ def main() -> int:
     results.sort(key=lambda item: key_for(str(item["conference"]), str(item["title"])))
     append_manifest(checkpoint)
     update_census(census, results)
-    CENSUS_PATH.write_text(
-        yaml.safe_dump(census, allow_unicode=True, sort_keys=False, width=120), encoding="utf-8"
-    )
+    write_census(census, only=selected)
     counts: dict[str, int] = {}
     for result in results:
         status = str(result.get("status", "pending"))
