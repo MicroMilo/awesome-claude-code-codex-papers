@@ -252,6 +252,14 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
           zh: "Codex 在这里负责提取和 novelty 判断；这是有用的宿主使用证据，而不是产品 baseline 结果。",
         },
       },
+      {
+        paperId: "lean-refactor-2026",
+        weight: "context",
+        inference: {
+          en: "Version-filtered retrieval and executable Lean checking support the value of explicit, library-aware strategy memory, but the spotlight paper does not report a controlled Claude Code configuration.",
+          zh: "版本过滤检索与可执行 Lean 检查支持了“显式、库版本感知的策略记忆”这一方向，但 spotlight 论文没有报告可控的 Claude Code 配置。",
+        },
+      },
     ],
   },
   {

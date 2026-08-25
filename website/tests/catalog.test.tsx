@@ -2,11 +2,16 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { CatalogExplorer, type Paper } from "../app/CatalogExplorer";
+import {
+  CatalogExplorer,
+  type CensusSummary,
+  type Paper,
+} from "../app/CatalogExplorer";
 import { InsightsPage } from "../app/InsightsPage";
 import { MethodsPage } from "../app/MethodsPage";
 import { SkillPage } from "../app/SkillPage";
 import catalog from "../data/catalog.json";
+import censusSummary from "../data/census-summary.json";
 import { INSIGHT_DEFINITIONS } from "../data/insights";
 import pendingSummary from "../data/pending-summary.json";
 
@@ -15,6 +20,7 @@ test("renders the complete research catalog", () => {
     <CatalogExplorer
       papers={catalog.papers as Paper[]}
       reviewedAt={catalog.reviewed_at}
+      censusSummary={censusSummary as CensusSummary}
     />,
   );
 
@@ -27,6 +33,10 @@ test("renders the complete research catalog", () => {
   assert.match(html, /Research domains/);
   assert.match(html, /Software Engineering/);
   assert.match(html, /ICLR/);
+  assert.match(html, /KDD/);
+  assert.match(html, /20,673/);
+  assert.match(html, /0 \/ 1,415/);
+  assert.match(html, /Lean Refactor/);
   assert.match(html, /Terminal-Bench/);
   assert.match(html, /Models used/);
   assert.match(html, /Claude Sonnet 4/);
@@ -80,7 +90,7 @@ test("renders a paper-traceable insights report", () => {
   assert.match(html, /Do not turn this page into a vendor leaderboard/);
   assert.match(html, /same-budget comparisons/);
   assert.match(html, /Pending means blocked/);
-  assert.match(html, />701</);
+  assert.match(html, new RegExp(`>${pendingSummary.pending_record_count}<`));
   assert.match(html, /APE-Bench/);
   assert.match(html, /first-party full-text endpoint returned an HTTP 403/);
   assert.match(html, /Star the repository/);
@@ -119,7 +129,7 @@ test("renders the reusable official-conference census skill", () => {
 });
 
 test("keeps the website pending queue synchronized and first-party only", () => {
-  assert.equal(pendingSummary.pending_record_count, 701);
+  assert.equal(pendingSummary.pending_record_count, 2111);
   assert.equal(pendingSummary.high_priority_product_candidate_count, 8);
   assert.equal(
     Object.values(pendingSummary.blocker_counts).reduce(
@@ -132,6 +142,12 @@ test("keeps the website pending queue synchronized and first-party only", () => 
     pendingSummary.high_priority_product_candidates.every(
       (paper) => !paper.official_url.includes("arxiv.org"),
     ),
+  );
+  assert.equal(censusSummary.official_record_count, 20673);
+  assert.equal(censusSummary.conference_series_count, 13);
+  assert.equal(
+    censusSummary.conferences.find((item) => item.conference === "KDD")?.total,
+    1415,
   );
 });
 
@@ -193,7 +209,10 @@ test("ships GitHub Pages metadata without OpenAI hosting references", async () =
   assert.match(sitemap, /awesome-claude-code-codex-papers\/skill\//);
   assert.match(sitemap, /papers\/formact-2026\//);
   assert.match(sitemap, /insights\/visual-contracts\//);
-  assert.equal(sitemap.match(/<url>/g)?.length, 23);
+  assert.equal(
+    sitemap.match(/<url>/g)?.length,
+    catalog.papers.length + INSIGHT_DEFINITIONS.length + 4,
+  );
 });
 
 test("generates one static paper page, one insight page, and one feed entry per record", async () => {

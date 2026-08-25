@@ -5,9 +5,9 @@ list_url: https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference
 status: pending
 tracks:
 - Conference
-notes: The official OpenReview group exists, but an accepted-paper list/proceedings was not released at the audit time; no
+notes: The official OpenReview group is registered, but public submissions and an accepted-paper list are not released. No
   preprint list is substituted.
-fetched_at: '2026-08-21T15:02:57+00:00'
+fetched_at: '2026-08-25T08:36:15+00:00'
 paper_count: null
 scanned_count: 0
 included_count: 0
@@ -17,3 +17,16 @@ duplicate_count: 0
 papers: []
 pdf_url_count: 0
 metadata_screened_count: 0
+source_check:
+  group_id: NeurIPS.cc/2026/Conference
+  public_submissions: false
+  fetch:
+    url: https://api2.openreview.net/groups?id=NeurIPS.cc%2F2026%2FConference
+    status_code: 200
+    content_type: application/json; charset=utf-8
+    etag: W/"2bc9-FHoKSU72jzKj0z62lcmaD0I+c8M"
+    last_modified: null
+    sha256: 5e97bf96f8bb42617ea5ab750837db5d725a3529cc9e821921ff18063e430a30
+    byte_size: 11209
+    attempts: 1
+    retrieved_at: '2026-08-25T08:36:56+00:00'

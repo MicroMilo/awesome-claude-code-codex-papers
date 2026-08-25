@@ -124,6 +124,23 @@ An ACM browser-verification response remains an explicit
 `official-source-challenge`. It is not retried through challenge-bypass tools
 and is never replaced with arXiv.
 
+## IJCAI, KDD, and NeurIPS
+
+Refresh the official IJCAI track pages, both KDD paper cycles, and the NeurIPS
+OpenReview publication flag without resetting earlier review decisions:
+
+```bash
+python scripts/refresh_official_list_extensions.py
+```
+
+IJCAI's official accepted-paper pages expose abstracts and conference-hosted
+PDFs, so the normal metadata-first scanner can complete the high-recall pass.
+KDD's official paper page exposes titles, authors, tracks, and ACM DOIs but no
+abstracts. A missing KDD abstract therefore remains pending unless the title
+itself supplies a strong candidate signal; it is never silently excluded.
+NeurIPS remains conference-level pending until its official OpenReview group
+releases a public accepted-paper list.
+
 ## Failure policy
 
 - 408, 425, 429, 5xx, and transport failures use bounded exponential backoff.

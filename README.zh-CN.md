@@ -28,11 +28,11 @@
 
 <!-- CATALOG:STATS:START -->
 <p align="center">
-  <img alt="papers: 13" src="https://img.shields.io/badge/papers-13-16616a">
-  <img alt="official records indexed: 18,269" src="https://img.shields.io/badge/official%20records%20indexed-18%2C269-0f766e">
-  <img alt="direct comparisons: 5" src="https://img.shields.io/badge/direct%20comparisons-5-dc6b46">
+  <img alt="papers: 14" src="https://img.shields.io/badge/papers-14-16616a">
+  <img alt="official records indexed: 20,673" src="https://img.shields.io/badge/official%20records%20indexed-20%2C673-0f766e">
+  <img alt="direct comparisons: 6" src="https://img.shields.io/badge/direct%20comparisons-6-dc6b46">
   <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
-  <img alt="domains: 7" src="https://img.shields.io/badge/domains-7-4bcbd5">
+  <img alt="domains: 8" src="https://img.shields.io/badge/domains-8-4bcbd5">
   <img alt="conference series tracked: 13" src="https://img.shields.io/badge/conference%20series%20tracked-13-7c3aed">
   <img alt="reviewed: 2026-08-25" src="https://img.shields.io/badge/reviewed-2026--08--25-475569">
 </p>
@@ -43,9 +43,9 @@
 <!-- CATALOG:COVERAGE:START -->
 <p align="center">
   <a href="views/by-domain.md"><strong>研究领域</strong></a><br>
-  <code>软件工程 · 7</code> · <code>安全 · 3</code> · <code>系统与性能 · 1</code> · <code>机器学习 · 4</code> · <code>科学计算 · 3</code> · <code>Web 与 UI · 1</code> · <code>文档 · 1</code><br><br>
-  <a href="views/by-conference.md"><strong>会议 / 来源</strong></a><br>
-  <code>ICLR · 12</code> · <code>ICML · 1</code>
+  <code>软件工程 · 7</code> · <code>安全 · 3</code> · <code>系统与性能 · 1</code> · <code>机器学习 · 4</code> · <code>科学计算 · 4</code> · <code>形式化方法 · 1</code> · <code>Web 与 UI · 1</code> · <code>文档 · 1</code><br><br>
+  <a href="views/by-conference.md"><strong>会议：主目录 / 官方记录</strong></a><br>
+  <code>AAAI · 0 / 4,920</code> · <code>ASE · 0 / 263</code> · <code>FSE · 0 / 211</code> · <code>ICLR · 12 / 5,351</code> · <code>ICML · 1 / 6,628</code> · <code>ICSE · 0 / 321</code> · <code>ISSTA · 0 / 210</code> · <code>NeurIPS · 清单待发布</code> · <code>IJCAI · 1 / 989</code> · <code>KDD · 0 / 1,415</code> · <code>PLDI · 0 / 106</code> · <code>POPL · 0 / 92</code> · <code>OOPSLA · 0 / 167</code>
 </p>
 <!-- CATALOG:COVERAGE:END -->
 

@@ -78,6 +78,65 @@ papers:
   year_tag: 2026
   conference_tag: ICLR
   audit_status: included
+- id: lean-refactor-2026
+  title: Verifiable PDE Reasoning and Modeling with Neurosymbolics
+  authors:
+  - Wuyang Chen
+  year: 2026
+  conference: IJCAI
+  venue: IJCAI-ECAI 2026 Early Career Spotlight
+  domains:
+  - formal-methods
+  - scientific-computing
+  publication_status: conference
+  classification: direct
+  system: Lean Refactor
+  paper_url: https://2026.ijcai.org/accepted-papers/?ijtrack=early-career-spotlight
+  artifact_status: not-found
+  products:
+  - product: claude-code
+    role: baseline
+    model: not-reported
+    version: not-reported
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    budget: not-reported
+    runs: not-reported
+    tool_permissions: not-reported
+  task:
+    summary: Refactor Lean 4 proofs to reduce proof length and compilation cost while preserving correctness across library versions.
+    benchmark: Competition proof benchmarks and research Lean repositories; exact benchmark composition is not reported in the IJCAI spotlight paper.
+  method:
+    summary: A version-filtered strategy bank and multi-objective retrieve-and-rerank pipeline steer a frozen planner-refactorer-debugger agent without retraining.
+    tags:
+    - retrieval
+    - verifier-loop
+    - context-reduction
+  evidence:
+    result: Lean Refactor reports over 70% token-level compression on competition benchmarks, over 20% on research repositories, and up to 60% compilation-time reduction, while stating that it outperforms Claude Code.
+    same_model: unknown
+    same_budget: unknown
+    strength: contextual
+    claim_type: mixed
+    comparison_scope: product-level
+    source_location: Section 2.3 Formalizing Maintainable PDE Proofs in Lean; PDF page 3
+    caveats: The IJCAI Early Career Spotlight paper reports only aggregate Lean Refactor results and the Claude Code comparison claim. It does not identify the Claude Code model or CLI version, task-level results, run count, tool permissions, or a common budget, so comparison fairness cannot be established from the official paper.
+  experiment:
+    reasoning_mode: not-reported
+    temperature: not-reported
+    max_output_tokens: not-reported
+    time_budget: not-reported
+    turn_budget: not-reported
+    token_budget: not-reported
+    api_budget: not-reported
+    runs: not-reported
+    tool_permissions: not-reported
+    baseline_config: Claude Code is named as a baseline in the reported comparison; its underlying model, CLI version, prompts, permissions, and budget are not reported.
+  source_type: official-conference
+  year_tag: 2026
+  conference_tag: IJCAI
+  audit_status: included
 - id: scaling-laws-2026
   title: 'Can Language Models Discover Scaling Laws?'
   authors:

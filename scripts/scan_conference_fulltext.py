@@ -188,6 +188,8 @@ def scan_record(
                     }
                 )
                 return result
+        elif not metadata_result:
+            metadata_result = screen_metadata(title, None)
         if metadata_result:
             screen_status = metadata_result.get("screen_status", metadata_result.get("status"))
             screen_reason = metadata_result.get("screen_reason", metadata_result.get("reason"))
@@ -274,6 +276,10 @@ def scan_record(
         hits = snippets_for_pattern(pages, pattern)
         if hits:
             product_matches[product] = hits
+    product_model_candidates = {
+        product: model_candidates(" ".join(str(hit["snippet"]) for hit in hits))
+        for product, hits in product_matches.items()
+    }
     generic_hits = snippets_for_pattern(pages, GENERIC_PATTERN)
     result.update(
         {
@@ -282,6 +288,7 @@ def scan_record(
             "page_count": len(pages),
             "text_chars": len(text),
             "product_matches": product_matches,
+            "product_model_candidates": product_model_candidates,
             "generic_coding_agent_matches": generic_hits,
             "model_candidates": model_candidates(text),
             "fetch": metadata_dict(fetched.metadata),
@@ -418,6 +425,8 @@ def main() -> int:
         if allowed and name not in allowed:
             continue
         for paper in conference.get("papers", []):
+            if paper.get("disposition") == "duplicate":
+                continue
             if paper.get("full_text_scan") in {"scanned", "verified-manually"}:
                 continue
             previous = manifest_records.get(record_key(name, paper["title"]))

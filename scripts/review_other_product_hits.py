@@ -64,6 +64,28 @@ REFERENCE_ONLY = {
         "8; the paper evaluates temporal reasoning and does not run, evaluate, "
         "host, or compare Claude Code."
     ),
+    (
+        "IJCAI",
+        normalize(
+            "Visualizing Deep Agents in Long-Horizon Tasks: Towards Explainable and Trustworthy Agentic AI"
+        ),
+    ): (
+        "Claude Code appears only as an example of result-oriented CLI tooling in "
+        "Section 3.1. The evaluation compares the paper's 4D visualization with "
+        "LangSmith linear traces and does not run or evaluate Claude Code."
+    ),
+}
+
+INCLUDED = {
+    (
+        "IJCAI",
+        normalize("Verifiable PDE Reasoning and Modeling with Neurosymbolics"),
+    ): (
+        "lean-refactor-2026",
+        "Section 2.3 explicitly reports that Lean Refactor outperforms Claude Code "
+        "on Lean proof refactoring. The official spotlight paper omits the Claude "
+        "Code model and configuration, which remain recorded as not-reported.",
+    ),
 }
 
 
@@ -81,6 +103,8 @@ def main() -> int:
     manifest = latest_manifest()
     reviewed = 0
     excluded = 0
+    included_hits = 0
+    affected_conferences: set[str] = set()
     missing: list[str] = []
     for conference in census.get("conferences", []):
         name = str(conference["conference"])
@@ -92,6 +116,25 @@ def main() -> int:
             if not scan or not scan.get("product_matches"):
                 continue
             reviewed += 1
+            affected_conferences.add(name)
+            inclusion = INCLUDED.get(key)
+            if inclusion is not None:
+                catalog_id, reason = inclusion
+                paper["product_review"] = {
+                    "status": "promote-after-catalog-review",
+                    "catalog_id": catalog_id,
+                    "reason": reason,
+                    "match_pages": sorted(
+                        {
+                            int(snippet["page"])
+                            for snippets in scan.get("product_matches", {}).values()
+                            for snippet in snippets
+                            if str(snippet.get("page", "")).isdigit()
+                        }
+                    ),
+                }
+                included_hits += 1
+                continue
             reason = REFERENCE_ONLY.get(key)
             if reason is None:
                 missing.append(f"{name}: {paper['title']}")
@@ -118,11 +161,14 @@ def main() -> int:
     census["non_iclr_product_hit_review"] = {
         "reviewed_at": datetime.now(UTC).replace(microsecond=0).isoformat(),
         "product_hit_count": reviewed,
+        "promote_after_catalog_review": included_hits,
         "excluded_after_context_review": excluded,
         "policy": "Every non-ICLR product-string hit must be mapped to an explicit context review before finalization.",
     }
-    write_census(census)
-    print(f"Reviewed {reviewed} non-ICLR product hits: excluded={excluded}.")
+    write_census(census, only=affected_conferences)
+    print(
+        f"Reviewed {reviewed} non-ICLR product hits: promote={included_hits}, excluded={excluded}."
+    )
     return 0
 
 

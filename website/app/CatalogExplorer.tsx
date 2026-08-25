@@ -87,6 +87,26 @@ export type Paper = {
   };
 };
 
+export type CensusSummary = {
+  scope_year: 2026;
+  last_audited_at: string;
+  official_record_count: number;
+  conference_series_count: number;
+  published_conference_count: number;
+  conferences: Array<{
+    conference: ConferenceId;
+    official_url: string;
+    list_url: string;
+    status: string;
+    total: number | null;
+    included: number;
+    excluded: number;
+    pending: number;
+    duplicate: number;
+    scanned: number;
+  }>;
+};
+
 const REPOSITORY_URL =
   "https://github.com/MicroMilo/awesome-claude-code-codex-papers";
 
@@ -153,13 +173,16 @@ const copy = {
     readInsights: "Read the synthesis →",
     reviewed: "Last reviewed",
     reviewedPapers: "reviewed papers",
+    officialRecords: "official records indexed",
     directComparisons: "direct comparisons",
     officialArtifacts: "official artifacts",
     researchDomains: "research domains",
     coverageEyebrow: "What the catalog covers",
     coverageTitle: "Choose a domain or conference before opening a paper.",
     coverageDeck:
-      "Every entry uses a standardized domain and conference label, while preserving the exact venue in its evidence record.",
+      "Conference tiles show verified catalog entries / official-list records. A zero means the venue is indexed but no Claude Code or Codex paper has passed evidence review yet.",
+    catalogVsOfficial: "catalog / official",
+    acceptedListPending: "accepted list pending",
     domains: "Research domains",
     conferences: "Conferences / sources",
     catalogEyebrow: "Research catalog",
@@ -229,13 +252,16 @@ const copy = {
     readInsights: "阅读综合结论 →",
     reviewed: "最近审计",
     reviewedPapers: "篇已审论文",
+    officialRecords: "条官方会议记录",
     directComparisons: "篇直接对比",
     officialArtifacts: "个官方 Artifact",
     researchDomains: "个研究领域",
     coverageEyebrow: "目录收录什么",
     coverageTitle: "先选研究领域或会议，再打开论文。",
     coverageDeck:
-      "每篇论文都使用统一的领域与会议标签，同时在证据记录中保留准确的 venue / track。",
+      "会议卡片显示“已验证主目录 / 官方论文总数”。0 表示会议全集已经索引，但尚无 Claude Code 或 Codex 论文通过证据复核。",
+    catalogVsOfficial: "主目录 / 官方记录",
+    acceptedListPending: "接收清单待发布",
     domains: "研究领域",
     conferences: "会议 / 来源",
     catalogEyebrow: "论文目录",
@@ -315,9 +341,13 @@ function modelNames(value: string) {
     .filter((item) => item && item !== "not-reported" && item !== "not-applicable");
 }
 
-type Props = { papers: Paper[]; reviewedAt: string };
+type Props = {
+  papers: Paper[];
+  reviewedAt: string;
+  censusSummary: CensusSummary;
+};
 
-export function CatalogExplorer({ papers, reviewedAt }: Props) {
+export function CatalogExplorer({ papers, reviewedAt, censusSummary }: Props) {
   const [language, setLanguage] = useState<Language>("en");
   const [query, setQuery] = useState("");
   const [product, setProduct] = useState<"all" | ProductId>("all");
@@ -343,16 +373,26 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
     (paper) => paper.artifact_status === "official",
   ).length;
 
-  const conferenceCounts = useMemo(() => {
-    const counts = new Map<ConferenceId, number>();
-    papers.forEach((paper) => {
-      counts.set(paper.conference, (counts.get(paper.conference) ?? 0) + 1);
+  const conferenceCoverage = useMemo(() => {
+    const byConference = new Map(
+      censusSummary.conferences.map((item) => [item.conference, item]),
+    );
+    return CONFERENCE_ORDER.flatMap((conferenceId) => {
+      const item = byConference.get(conferenceId);
+      return item ? [item] : [];
     });
-    return CONFERENCE_ORDER.flatMap((item) => {
-      const count = counts.get(item);
-      return count ? ([[item, count]] as Array<[ConferenceId, number]>) : [];
-    });
-  }, [papers]);
+  }, [censusSummary]);
+
+  const conferenceCounts = useMemo(
+    () =>
+      conferenceCoverage.map(
+        (item) => [item.conference, item.included] as [ConferenceId, number],
+      ),
+    [conferenceCoverage],
+  );
+
+  const formatCount = (value: number) =>
+    new Intl.NumberFormat(language === "zh" ? "zh-CN" : "en-US").format(value);
 
   const domainCounts = useMemo(() => {
     const counts = new Map<DomainId, number>();
@@ -616,6 +656,10 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <span>{t.reviewedPapers}</span>
         </div>
         <div>
+          <strong>{formatCount(censusSummary.official_record_count)}</strong>
+          <span>{t.officialRecords}</span>
+        </div>
+        <div>
           <strong>{directCount}</strong>
           <span>{t.directComparisons}</span>
         </div>
@@ -656,16 +700,25 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
           <div className="coverage-group conference-group">
             <h3>{t.conferences}</h3>
             <div className="coverage-options conference-options">
-              {conferenceCounts.map(([item, count]) => (
+              {conferenceCoverage.map((item) => (
                 <button
-                  aria-pressed={conference === item}
-                  className={conference === item ? "active" : ""}
-                  key={item}
+                  aria-pressed={conference === item.conference}
+                  className={conference === item.conference ? "active" : ""}
+                  key={item.conference}
                   type="button"
-                  onClick={() => chooseConference(item)}
+                  onClick={() => chooseConference(item.conference)}
                 >
-                  <span>{item}</span>
-                  <strong>{count.toString().padStart(2, "0")}</strong>
+                  <span className="conference-coverage-label">
+                    <b>{item.conference}</b>
+                    <small>
+                      {item.total === null ? t.acceptedListPending : t.catalogVsOfficial}
+                    </small>
+                  </span>
+                  <strong>
+                    {item.total === null
+                      ? "pending"
+                      : `${item.included} / ${formatCount(item.total)}`}
+                  </strong>
                 </button>
               ))}
             </div>

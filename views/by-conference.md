@@ -28,3 +28,8 @@ Exact tracks and proceedings names remain in the venue field.
 | System | Exact venue / track | Year | Status | Evidence class |
 |---|---|---|---|---|
 | [FormAct](../papers/formact-2026.md) | ICML Main Conference | 2026 | main | Direct comparison |
+## IJCAI (1)
+
+| System | Exact venue / track | Year | Status | Evidence class |
+|---|---|---|---|---|
+| [Lean Refactor](../papers/lean-refactor-2026.md) | IJCAI-ECAI 2026 Early Career Spotlight | 2026 | conference | Direct comparison |

@@ -46,6 +46,7 @@ def main() -> int:
     manifest = latest_manifest()
     errors: list[str] = []
     census_records: dict[tuple[str, str], dict] = {}
+    all_census_records: list[tuple[str, dict]] = []
     included_ids: set[str] = set()
 
     for conference in census.get("conferences", []):
@@ -56,10 +57,22 @@ def main() -> int:
             errors.append(f"{name}: paper_count={expected_count} but records={len(papers)}")
         counts = Counter()
         for paper in papers:
+            all_census_records.append((name, paper))
             key = (name, normalize(paper.get("title", "")))
             if key in census_records:
-                errors.append(f"duplicate census record: {name}: {paper.get('title')}")
-            census_records[key] = paper
+                canonical = census_records[key]
+                if (
+                    paper.get("disposition") != "duplicate"
+                    and canonical.get("disposition") != "duplicate"
+                ):
+                    errors.append(f"duplicate census record: {name}: {paper.get('title')}")
+                elif (
+                    canonical.get("disposition") == "duplicate"
+                    and paper.get("disposition") != "duplicate"
+                ):
+                    census_records[key] = paper
+            else:
+                census_records[key] = paper
             disposition = paper.get("disposition")
             counts[disposition] += 1
             if disposition not in DISPOSITIONS:
@@ -137,7 +150,7 @@ def main() -> int:
         pending_summary = json.loads(PENDING_SUMMARY_PATH.read_text(encoding="utf-8"))
         pending_records = [
             (name, paper)
-            for (name, _title), paper in census_records.items()
+            for name, paper in all_census_records
             if paper.get("disposition") == "pending"
         ]
         if pending_summary.get("pending_record_count") != len(pending_records):

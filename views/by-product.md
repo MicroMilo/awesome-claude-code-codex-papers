@@ -7,7 +7,7 @@
 Product means the complete agent or harness evaluated by the paper,
 not merely a model from the same vendor.
 
-## Claude Code (10)
+## Claude Code (11)
 
 | System | Venue | Evidence class | Task | Strength |
 |---|---|---|---|---|
@@ -17,6 +17,7 @@ not merely a model from the same vendor.
 | [DevOps-Gym](../papers/devops-gym-2026.md) | ICLR Conference 2026 | Evaluation only | Evaluate coding agents across build/configuration, monitoring, issue resolving, and test generation. | high |
 | [FeatureBench](../papers/featurebench-2026.md) | ICLR Conference 2026 | Evaluation only | Implement large, cross-file features in existing repositories and pass comprehensive tests. | high |
 | [Helmsman](../papers/helmsman-2026.md) | ICLR Conference 2026 | Direct comparison | End-to-end synthesis of federated learning systems from high-level specifications. | high |
+| [Lean Refactor](../papers/lean-refactor-2026.md) | IJCAI-ECAI 2026 Early Career Spotlight 2026 | Direct comparison | Refactor Lean 4 proofs to reduce proof length and compilation cost while preserving correctness across library versions. | contextual |
 | [QLCoder](../papers/qlcoder-2026.md) | ICLR Conference 2026 | Direct comparison | CodeQL query synthesis from CVE metadata | high |
 | [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evaluation only | Discover symbolic scaling laws from experimental data with executable code agents. | high |
 | [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | Evaluation only | Evaluate industrial and open-source agents on realistic command-line tasks with executable tests. | high |

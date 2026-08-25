@@ -88,11 +88,14 @@ def main() -> int:
     conference_counts: Counter[str] = Counter()
     high_priority: list[dict[str, Any]] = []
     pending_total = 0
+    affected_conferences: set[str] = set()
 
     for conference in census.get("conferences", []):
         conference_name = str(conference["conference"])
         for paper in conference.get("papers", []):
             if paper.get("disposition") != "pending":
+                if paper.pop("pending_review", None) is not None:
+                    affected_conferences.add(conference_name)
                 continue
             pending_total += 1
             conference_counts[conference_name] += 1
@@ -100,7 +103,10 @@ def main() -> int:
             blocker_counts[blocker] += 1
             signals = direct_product_signals(paper)
             if not signals:
+                if paper.pop("pending_review", None) is not None:
+                    affected_conferences.add(conference_name)
                 continue
+            affected_conferences.add(conference_name)
             paper["pending_review"] = {
                 "priority": "high",
                 "status": "blocked-official-full-text",
@@ -162,7 +168,7 @@ def main() -> int:
     }
     census["last_audited_at"] = reviewed_at
 
-    write_census(census, args.census)
+    write_census(census, args.census, only=affected_conferences)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",

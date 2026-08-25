@@ -272,7 +272,7 @@ h1 span {
   border-bottom: 1px solid var(--line);
   border-top: 1px solid var(--line);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .stats > div {
@@ -400,6 +400,34 @@ h1 span {
 
 .coverage-options button.active strong {
   color: var(--cyan);
+}
+
+.conference-coverage-label b,
+.conference-coverage-label small {
+  display: block;
+}
+
+.conference-coverage-label b {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.conference-coverage-label small {
+  color: #788586;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  margin-top: 7px;
+  text-transform: uppercase;
+}
+
+.conference-options button strong {
+  font-size: 21px;
+  white-space: nowrap;
+}
+
+.conference-options button.active small {
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .catalog-section {

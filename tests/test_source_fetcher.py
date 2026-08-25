@@ -439,6 +439,34 @@ def test_fulltext_scanner_keeps_missing_non_iclr_metadata_pending() -> None:
     assert session.calls == []
 
 
+def test_fulltext_scanner_uses_direct_product_title_when_abstract_is_missing(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    session = FakeSession([FakeResponse(200, b"%PDF-1.7", {"content-type": "application/pdf"})])
+    fetcher = make_fetcher(session)
+    monkeypatch.setattr(
+        "scripts.scan_conference_fulltext.extract_pdf_text",
+        lambda _payload: ("We evaluate Claude Code as a baseline.", "test"),
+    )
+
+    result = scan_record(
+        "KDD",
+        {
+            "title": "Evaluating Claude Code",
+            "official_url": "https://doi.org/10.1145/1.2",
+            "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/1.2",
+        },
+        30,
+        fetcher,
+    )
+
+    assert result["status"] == "scanned"
+    assert result["disposition"] == "pending"
+    assert result["metadata_screen_status"] == "candidate"
+    assert result["product_model_candidates"] == {"claude-code": []}
+    assert len(session.calls) == 1
+
+
 def test_scan_checkpoint_does_not_undo_context_review() -> None:
     census = {
         "conferences": [

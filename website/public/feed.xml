@@ -16,6 +16,14 @@
     <category term="ICLR" />
   </entry>
   <entry>
+    <title>Lean Refactor: Verifiable PDE Reasoning and Modeling with Neurosymbolics</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/lean-refactor-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/lean-refactor-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A version-filtered strategy bank and multi-objective retrieve-and-rerank pipeline steer a frozen planner-refactorer-debugger agent without retraining. Reported evidence: Lean Refactor reports over 70% token-level compression on competition benchmarks, over 20% on research repositories, and up to 60% compilation-time reduction, while stating that it outperforms Claude Code.</summary>
+    <category term="IJCAI" />
+  </entry>
+  <entry>
     <title>SLDAgent: Can Language Models Discover Scaling Laws?</title>
     <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/scaling-laws-2026/</id>
     <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/scaling-laws-2026/" />

@@ -1,7 +1,7 @@
 {
   "blocker_counts": {
-    "full-text-scan-pending": 2,
-    "official-pdf-not-exposed": 474,
+    "full-text-scan-pending": 1410,
+    "official-pdf-not-exposed": 476,
     "official-source-challenge": 225
   },
   "conference_level_pending": [
@@ -9,21 +9,7 @@
       "conference": "NeurIPS",
       "list_url": "https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference",
       "official_url": "https://neurips.cc/",
-      "reason": "The official OpenReview group exists, but an accepted-paper list/proceedings was not released at the audit time; no preprint list is substituted.",
-      "status": "pending"
-    },
-    {
-      "conference": "IJCAI",
-      "list_url": "https://2026.ijcai.org/",
-      "official_url": "https://2026.ijcai.org/",
-      "reason": "Registered for the CCF-A extension pass; a complete first-party 2026 proceedings list was not imported in this run.",
-      "status": "pending"
-    },
-    {
-      "conference": "KDD",
-      "list_url": "https://www.kdd.org/kdd2026/",
-      "official_url": "https://www.kdd.org/kdd2026/",
-      "reason": "Registered for the CCF-A extension pass; the official proceedings list still needs a dedicated source adapter.",
+      "reason": "The official OpenReview group is registered, but public submissions and an accepted-paper list are not released. No preprint list is substituted.",
       "status": "pending"
     }
   ],
@@ -32,7 +18,9 @@
     "FSE": 77,
     "ICML": 199,
     "ICSE": 94,
+    "IJCAI": 2,
     "ISSTA": 84,
+    "KDD": 1408,
     "OOPSLA": 14,
     "PLDI": 4,
     "POPL": 1
@@ -168,8 +156,8 @@
       "title": "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework"
     }
   ],
-  "pending_record_count": 701,
+  "pending_record_count": 2111,
   "policy": "Only official conference/proceedings/OpenReview records are used. A title/abstract product hit prioritizes review but never qualifies a paper for inclusion by itself.",
-  "reviewed_at": "2026-08-25T04:07:03+00:00",
+  "reviewed_at": "2026-08-25T08:59:16+00:00",
   "scope_year": 2026
 }

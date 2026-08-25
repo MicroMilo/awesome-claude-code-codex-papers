@@ -33,12 +33,14 @@ def main() -> int:
         (paper["conference"], normalize(paper["title"])): paper for paper in catalog["papers"]
     }
     promoted: list[str] = []
+    affected_conferences: set[str] = set()
     for conference in census.get("conferences", []):
         conference_name = conference["conference"]
         for paper in conference.get("papers", []):
             catalog_paper = catalog_by_title.get((conference_name, normalize(paper["title"])))
             if not catalog_paper:
                 continue
+            affected_conferences.add(conference_name)
             paper["disposition"] = "included"
             paper["disposition_reason"] = (
                 "Exact official conference record and reviewed product-level evidence imported into the main catalog."
@@ -67,7 +69,7 @@ def main() -> int:
 
     census["last_audited_at"] = datetime.now(UTC).replace(microsecond=0).isoformat()
     census["catalog_ids"] = sorted(set(promoted))
-    write_census(census)
+    write_census(census, only=affected_conferences)
     print(
         f"Promoted {len(set(promoted))} exact official records: {', '.join(sorted(set(promoted)))}"
     )

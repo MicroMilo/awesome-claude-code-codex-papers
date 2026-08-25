@@ -1,6 +1,6 @@
 # 2026 conference census and full-text audit
 
-> Last audited: `2026-08-25T04:10:59+00:00`
+> Last audited: `2026-08-25T08:59:16+00:00`
 >
 > The main catalog is deliberately narrow: only 2026 records with a first-party conference/proceedings/OpenReview source and reviewed Claude Code or Codex CLI product evidence are imported.
 
@@ -14,12 +14,12 @@ The complete per-paper record is split by venue under [`data/audit/2026-conferen
 | FSE | [official](https://conf.researchr.org/track/fse-2026/fse-2026-research-papers) | accepted-list | 211 | 32 | 102 | 0 | 134 | 77 | 0 |
 | ISSTA | [official](https://conf.researchr.org/track/issta-2026/issta-2026-research-papers) | accepted-list | 210 | 5 | 121 | 0 | 126 | 84 | 0 |
 | ICSE | [official](https://conf.researchr.org/track/icse-2026/icse-2026-research-track) | accepted-list | 321 | 29 | 198 | 0 | 227 | 94 | 0 |
-| ICML | [official](https://icml.cc/) | official-list | 6628 | 0 | 6428 | 1 | 6428 | 199 | 0 |
+| ICML | [official](https://icml.cc/) | official-list | 6628 | 1 | 6428 | 1 | 6428 | 199 | 0 |
 | ICLR | [official](https://iclr.cc/Downloads/2026) | official-proceedings | 5351 | 4180 | 1171 | 12 | 5339 | 0 | 0 |
 | AAAI | [official](https://aaai.org/proceeding/aaai-40-2026/) | official-proceedings | 4920 | 64 | 4856 | 0 | 4920 | 0 | 0 |
 | NeurIPS | [official](https://neurips.cc/) | pending | pending | 0 | 0 | 0 | 0 | 0 | 0 |
-| IJCAI | [official](https://2026.ijcai.org/) | pending | pending | 0 | 0 | 0 | 0 | 0 | 0 |
-| KDD | [official](https://www.kdd.org/kdd2026/) | pending | pending | 0 | 0 | 0 | 0 | 0 | 0 |
+| IJCAI | [official](https://2026.ijcai.org/accepted-papers/) | accepted-list | 989 | 19 | 968 | 1 | 986 | 2 | 0 |
+| KDD | [official](https://kdd2026.kdd.org/) | official-proceedings | 1415 | 0 | 0 | 0 | 0 | 1408 | 7 |
 | PLDI | [official](https://pldi26.sigplan.org/track/pldi-2026-papers) | accepted-list | 106 | 0 | 102 | 0 | 102 | 4 | 0 |
 | POPL | [official](https://conf.researchr.org/track/POPL-2026/POPL-2026-popl-research-papers) | accepted-list | 92 | 0 | 91 | 0 | 91 | 1 | 0 |
 | OOPSLA | [official](https://conf.researchr.org/track/splash-2026/oopsla-2026) | accepted-list | 167 | 0 | 153 | 0 | 153 | 14 | 0 |
@@ -28,16 +28,16 @@ ICLR's official [Downloads/2026](https://iclr.cc/Downloads/2026) page exposed 55
 
 ## Official full-text refresh
 
-The latest official-page refresh rechecked **497** metadata-selected Researchr records across ASE, FSE, ICSE, ISSTA, OOPSLA. It found **23** target-paper ACM DOI/PDF endpoints; **474** records still exposed no first-party full text. Of the discovered endpoints, **21** were recorded as publisher challenges and **2** were not requested because the official abstract was unavailable. External GitHub and arXiv preprints are not counted as official PDFs.
+The latest official-page refresh rechecked **479** metadata-selected Researchr records across AAAI, ASE, FSE, ICML, ICSE, ISSTA, OOPSLA, PLDI, POPL. It found **5** target-paper ACM DOI/PDF endpoints; **474** records still exposed no first-party full text. Of the discovered endpoints, **26** were recorded as publisher challenges and **0** were not requested because the official abstract was unavailable. External GitHub and arXiv preprints are not counted as official PDFs.
 
 ## Global disposition
 
-- Official-list records: **18269**
-- Included in the main catalog: **13**
-- Explicitly excluded after full-text/source review: **17555**
-- Pending because official full text, acceptance status, or product context is incomplete: **701**
-- Duplicate official records: **0**
-- Main catalog records: **13**
+- Official-list records: **20673**
+- Included in the main catalog: **14**
+- Explicitly excluded after full-text/source review: **18541**
+- Pending because official full text, acceptance status, or product context is incomplete: **2111**
+- Duplicate official records: **7**
+- Main catalog records: **14**
 
 ## Included records
 
@@ -56,28 +56,32 @@ The latest official-page refresh rechecked **497** metadata-selected Researchr r
 | `qlcoder-2026` | ICLR | QLCoder: A Query Synthesizer For Static Analysis of Security Vulnerabilities | [official](https://proceedings.iclr.cc/paper_files/paper/2026/hash/2adf01ab15adde8820622f7f24bd516b-Abstract-Conference.html) | claude-code = Claude Sonnet 4; codex-cli = GPT-5 | Section 4.1 Experimental Setup; Table 2; Table 5; Appendix A |
 | `rpg-zerorepo-2026` | ICLR | RPG: A Repository Planning Graph for Unified and Scalable Codebase Generation | [official](https://proceedings.iclr.cc/paper_files/paper/2026/hash/9482f45fdd89aba9130bb04c44f788a9-Abstract-Conference.html) | claude-code = claude 4 sonnet; codex-cli = o3 pro | Section 3.3 Baselines; Section 4.3; RepoCraft main-results table |
 | `terminal-bench-2-2026` | ICLR | Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces | [official](https://proceedings.iclr.cc/paper_files/paper/2026/hash/444a3737adaee10d86ad2ef5f74468e6-Abstract-Conference.html) | claude-code = Claude Opus 4.5; Claude Sonnet 4.5; Claude Opus 4.1; Claude Haiku 4.5; codex-cli = GPT-5.2; GPT-5; GPT-5-Mini; GPT-5-Nano | Section 3.2 Agents; Section 3.3 Models; Table 2; Appendix B |
+| `lean-refactor-2026` | IJCAI | Verifiable PDE Reasoning and Modeling with Neurosymbolics | [official](https://2026.ijcai.org/accepted-papers/?ijtrack=early-career-spotlight) | claude-code = not-reported | Section 2.3 Formalizing Maintainable PDE Proofs in Lean; PDF page 3 |
 
 ## Excluded and pending evidence
 
 The per-conference YAML files retain the title, official URL, track, scan status, and reason for every excluded or pending record. The most common reasons in this run are:
 
-- **13254** — No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract. PDF download was not requested by the metadata-first policy.
-- **4247** — Full-text scan found no Claude Code/Codex CLI product string; generic coding-agent or model/API mentions do not qualify for the main catalog.
+- **14222** — No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract. PDF download was not requested by the metadata-first policy.
+- **4264** — Full-text scan found no Claude Code/Codex CLI product string; generic coding-agent or model/API mentions do not qualify for the main catalog.
+- **1408** — Official record and full-text URL found; the full-text product/model scan has not been recorded yet.
 - **470** — Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
 - **223** — Official record and first-party full-text URL found; full-text product/model scan is pending.
 - **50** — Full-text product-string hit reviewed as a reference/related-work mention, background discussion, or ancillary author code/writing assistance; no product-level baseline, evaluation, host configuration, or product-focused empirical analysis was found.
 - **4** — High-priority product candidate from the official title/abstract. The official conference record does not yet expose a first-party full-text PDF URL. Remains pending until first-party full text can be reviewed; arXiv is not used as a substitute.
 - **4** — High-priority product candidate from the official title/abstract. The first-party full-text endpoint returned an HTTP 403 browser-verification challenge. Remains pending until first-party full text can be reviewed; arXiv is not used as a substitute.
+- **2** — Official conference record found, but no first-party full-text PDF URL was exposed by the source adapter; arXiv is not used as a substitute.
 - **1** — The only OpenAI Codex hit is an entry in the References section (the OpenAI Codex Developer Documentation citation on page 23); the paper does not run, evaluate, host, or compare Codex CLI.
 - **1** — The only Claude Code hit is an Anthropic reference entry on page 8; the paper studies preference optimization for generated code and does not run, evaluate, host, or compare Claude Code.
 - **1** — The only Claude Code hit is an Anthropic reference entry on page 8; the paper studies source-code unlearning and does not run, evaluate, host, or compare Claude Code.
 - **1** — The only Claude Code hit is a citation in the References section on page 8; the paper evaluates temporal reasoning and does not run, evaluate, host, or compare Claude Code.
+- **1** — Claude Code appears only as an example of result-oriented CLI tooling in Section 3.1. The evaluation compares the paper's 4D visualization with LangSmith linear traces and does not run or evaluate Claude Code.
 
 ## Priority pending queue
 
 A product name in an official title or abstract is a prioritization signal, not inclusion evidence. These records remain pending until first-party full text and the exact product/model context can be reviewed.
 
-- Pending paper records: **701**
+- Pending paper records: **2111**
 - High-priority direct-product candidates: **8**
 - arXiv fallbacks used: **0**
 
@@ -94,9 +98,7 @@ A product name in an official title or abstract is a prioritization signal, not 
 
 ### Conference-level pending
 
-- **NeurIPS** — The official OpenReview group exists, but an accepted-paper list/proceedings was not released at the audit time; no preprint list is substituted. ([official](https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference))
-- **IJCAI** — Registered for the CCF-A extension pass; a complete first-party 2026 proceedings list was not imported in this run. ([official](https://2026.ijcai.org/))
-- **KDD** — Registered for the CCF-A extension pass; the official proceedings list still needs a dedicated source adapter. ([official](https://www.kdd.org/kdd2026/))
+- **NeurIPS** — The official OpenReview group is registered, but public submissions and an accepted-paper list are not released. No preprint list is substituted. ([official](https://openreview.net/group?id=NeurIPS.cc%2F2026%2FConference))
 
 ## Audit artifacts
 
@@ -104,7 +106,7 @@ A product name in an official title or abstract is a prioritization signal, not 
 - [`data/audit/current-catalog-audit.yaml`](../data/audit/current-catalog-audit.yaml) — field-by-field audit of the pre-migration 32-record catalog.
 - [`data/audit/2026-fulltext-scan.jsonl`](../data/audit/2026-fulltext-scan.jsonl) — page-level snippets, extraction method, product hits, and model candidates for official PDFs; PDFs are not committed.
 - [`data/audit/2026-pending-summary.json`](../data/audit/2026-pending-summary.json) — compact blocker counts and the high-priority direct-product pending queue.
-- [`data/papers.yaml`](../data/papers.yaml) — the 13 records promoted into the current official-source main catalog after this audit.
+- [`data/papers.yaml`](../data/papers.yaml) — the 14 records promoted into the current official-source main catalog after this audit.
 
 ## Source policy
 

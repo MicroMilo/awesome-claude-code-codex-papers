@@ -27,3 +27,8 @@ Main-conference, workshop, benchmark-track, and preprint status remain explicit.
 | System | Year | Status | Evidence class |
 |---|---|---|---|
 | [FormAct](../papers/formact-2026.md) | 2026 | main | Direct comparison |
+## IJCAI-ECAI 2026 Early Career Spotlight (1)
+
+| System | Year | Status | Evidence class |
+|---|---|---|---|
+| [Lean Refactor](../papers/lean-refactor-2026.md) | 2026 | conference | Direct comparison |

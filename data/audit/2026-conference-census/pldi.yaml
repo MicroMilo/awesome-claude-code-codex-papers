@@ -7,7 +7,7 @@ tracks:
 - PLDI Research Papers
 notes: The official PLDI Research Papers page exposes the 2026 accepted-paper list and DOI links; track labels are preserved
   per record.
-fetched_at: '2026-08-25T03:53:31+00:00'
+fetched_at: '2026-08-25T08:31:34+00:00'
 paper_count: 106
 scanned_count: 0
 included_count: 0
@@ -1317,8 +1317,10 @@ papers:
   full_text_discovery:
     pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808267
     full_text_url: https://doi.org/10.1145/3808267
+    doi_url: https://doi.org/10.1145/3808267
     method: official-acm-doi
     source_url: https://doi.org/10.1145/3808267
+  pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808267
 - title: Compiling to Recurrent Neurons
   official_url: https://pldi26.sigplan.org/track/pldi-2026-papers
   track: PLDI Research Papers
@@ -2265,8 +2267,10 @@ papers:
   full_text_discovery:
     pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808332
     full_text_url: https://doi.org/10.1145/3808332
+    doi_url: https://doi.org/10.1145/3808332
     method: official-acm-doi
     source_url: https://doi.org/10.1145/3808332
+  pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808332
 - title: Exploiting Sophisticated Static Analysis for Verilog
   official_url: https://pldi26.sigplan.org/track/pldi-2026-papers
   track: PLDI Research Papers
@@ -3773,8 +3777,10 @@ papers:
   full_text_discovery:
     pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808322
     full_text_url: https://doi.org/10.1145/3808322
+    doi_url: https://doi.org/10.1145/3808322
     method: official-acm-doi
     source_url: https://doi.org/10.1145/3808322
+  pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808322
 - title: 'NEURA: A Unified and Retargetable Compilation Framework for Coarse-Grained Reconfigurable Architectures'
   official_url: https://pldi26.sigplan.org/details/pldi-2026-papers/42/NEURA-A-Unified-and-Retargetable-Compilation-Framework-for-Coarse-Grained-Reconfigur
   track: PLDI Research Papers
@@ -6053,8 +6059,10 @@ papers:
   full_text_discovery:
     pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808347
     full_text_url: https://doi.org/10.1145/3808347
+    doi_url: https://doi.org/10.1145/3808347
     method: official-acm-doi
     source_url: https://doi.org/10.1145/3808347
+  pdf_url: https://dl.acm.org/doi/pdf/10.1145/3808347
 - title: Typestate via Revocable Capabilities
   official_url: https://pldi26.sigplan.org/track/pldi-2026-papers
   track: PLDI Research Papers
@@ -6599,7 +6607,7 @@ papers:
     reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
       PDF download was not requested by the metadata-first policy.
     status: metadata-filtered
-pdf_url_count: 0
+pdf_url_count: 4
 metadata_screened_count: 102
 list_fetch:
   url: https://pldi26.sigplan.org/track/pldi-2026-papers
@@ -6607,7 +6615,7 @@ list_fetch:
   content_type: text/html;charset=UTF-8
   etag: null
   last_modified: null
-  sha256: 748f2e5cf7116d1b57d9f0bfc0053f43db4f9de0ef017ee59845cef5894f3fad
+  sha256: 39424313ea5e201824a78e0b05d834a7b7b619be581e7ed11c3c1f494db1e025
   byte_size: 528897
   attempts: 1
-  retrieved_at: '2026-08-25T03:51:43+00:00'
+  retrieved_at: '2026-08-25T08:31:42+00:00'

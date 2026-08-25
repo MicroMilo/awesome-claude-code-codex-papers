@@ -107,6 +107,44 @@ def load_catalog() -> dict:
         return yaml.safe_load(handle)
 
 
+def load_census_summary() -> dict:
+    """Read conference-level fields without parsing the large paper arrays."""
+
+    index = yaml.safe_load(CENSUS_INDEX_PATH.read_text(encoding="utf-8"))
+    conferences = []
+    for entry in index.get("conference_files", []):
+        path = CENSUS_INDEX_PATH.parent / entry["path"]
+        prefix_lines = []
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if line.startswith("papers:"):
+                break
+            prefix_lines.append(line)
+        metadata = yaml.safe_load("\n".join(prefix_lines)) or {}
+        total = metadata.get("paper_count")
+        conferences.append(
+            {
+                "conference": metadata["conference"],
+                "official_url": metadata.get("official_url"),
+                "list_url": metadata.get("list_url"),
+                "status": metadata.get("status", "not-recorded"),
+                "total": total if isinstance(total, int) else None,
+                "included": int(metadata.get("included_count", 0)),
+                "excluded": int(metadata.get("excluded_count", 0)),
+                "pending": int(metadata.get("pending_count", 0)),
+                "duplicate": int(metadata.get("duplicate_count", 0)),
+                "scanned": int(metadata.get("scanned_count", 0)),
+            }
+        )
+    return {
+        "scope_year": 2026,
+        "last_audited_at": index.get("last_audited_at"),
+        "official_record_count": sum(item["total"] or 0 for item in conferences),
+        "conference_series_count": len(conferences),
+        "published_conference_count": sum(item["total"] is not None for item in conferences),
+        "conferences": conferences,
+    }
+
+
 def escape_cell(value: object) -> str:
     return str(value).replace("|", "\\|").replace("\n", " ").strip()
 
@@ -221,7 +259,7 @@ def generate_stats(catalog: dict) -> str:
     return '<p align="center">\n  ' + "\n  ".join(images) + "\n</p>"
 
 
-def generate_coverage(catalog: dict, language: str) -> str:
+def generate_coverage(catalog: dict, census_summary: dict, language: str) -> str:
     papers = catalog["papers"]
     domain_counts: dict[str, int] = defaultdict(int)
     conference_counts: dict[str, int] = defaultdict(int)
@@ -236,13 +274,21 @@ def generate_coverage(catalog: dict, language: str) -> str:
         for domain in DOMAIN_LABELS
         if domain_counts[domain]
     )
+    census_by_conference = {item["conference"]: item for item in census_summary["conferences"]}
+    pending_label = "清单待发布" if language == "zh" else "list pending"
     conference_items = " · ".join(
-        f"<code>{conference} · {conference_counts[conference]}</code>"
+        (
+            f"<code>{conference} · {conference_counts[conference]} / "
+            f"{census_by_conference[conference]['total']:,}</code>"
+            if census_by_conference[conference]["total"] is not None
+            else f"<code>{conference} · {pending_label}</code>"
+        )
         for conference in CONFERENCE_ORDER
-        if conference_counts[conference]
     )
     domain_title = "研究领域" if language == "zh" else "Research domains"
-    conference_title = "会议 / 来源" if language == "zh" else "Conferences / sources"
+    conference_title = (
+        "会议：主目录 / 官方记录" if language == "zh" else "Conferences: catalog / official records"
+    )
     return (
         '<p align="center">\n'
         f'  <a href="views/by-domain.md"><strong>{domain_title}</strong></a><br>\n'
@@ -262,10 +308,12 @@ def replace_section(text: str, start: str, end: str, content: str) -> str:
     return updated
 
 
-def render_marked_readme(path: Path, catalog: dict, language: str) -> str:
+def render_marked_readme(path: Path, catalog: dict, census_summary: dict, language: str) -> str:
     text = path.read_text(encoding="utf-8")
     text = replace_section(text, *STATS_MARKERS, generate_stats(catalog))
-    return replace_section(text, *COVERAGE_MARKERS, generate_coverage(catalog, language))
+    return replace_section(
+        text, *COVERAGE_MARKERS, generate_coverage(catalog, census_summary, language)
+    )
 
 
 def short_authors(paper: dict) -> str:
@@ -650,14 +698,17 @@ Main-conference, workshop, benchmark-track, and preprint status remain explicit.
 
 def render_all() -> dict[Path, str]:
     catalog = load_catalog()
+    census_summary = load_census_summary()
     catalog_json = json.dumps(catalog, indent=2, ensure_ascii=False) + "\n"
+    census_summary_json = json.dumps(census_summary, indent=2, ensure_ascii=False) + "\n"
     pending_summary = json.loads(PENDING_SUMMARY_PATH.read_text(encoding="utf-8"))
     pending_summary_json = json.dumps(pending_summary, indent=2, ensure_ascii=False) + "\n"
     outputs = {
-        README_PATH: render_marked_readme(README_PATH, catalog, "en"),
-        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, "zh"),
+        README_PATH: render_marked_readme(README_PATH, catalog, census_summary, "en"),
+        README_ZH_PATH: render_marked_readme(README_ZH_PATH, catalog, census_summary, "zh"),
         ROOT / "data" / "papers.json": catalog_json,
         ROOT / "website" / "data" / "catalog.json": catalog_json,
+        ROOT / "website" / "data" / "census-summary.json": census_summary_json,
         ROOT / "website" / "data" / "pending-summary.json": pending_summary_json,
         ROOT / "papers" / "README.md": render_paper_index(catalog),
         ROOT / "views" / "README.md": render_views_index(),

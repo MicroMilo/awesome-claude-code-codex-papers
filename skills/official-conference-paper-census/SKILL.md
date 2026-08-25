@@ -70,6 +70,7 @@ The exporter streams to `<output>.part`, validates JSON before replacement, and 
 - `scripts/census_store.py`: atomically read/write the checksum-indexed per-conference census.
 - `scripts/split_conference_census.py`: one-time migration from a legacy monolithic census.
 - `scripts/refresh_researchr_extensions.py`: refresh and merge ASE, FSE, ISSTA, ICSE, PLDI, POPL, and OOPSLA official Researchr lists without resetting prior audit decisions.
+- `scripts/refresh_official_list_extensions.py`: refresh and merge IJCAI and KDD official lists, and recheck whether NeurIPS has released public accepted submissions, without resetting prior audit decisions.
 - `scripts/export_iclr_downloads.py`: stream the official ICLR event export.
 - `scripts/fetch_iclr_sources.py`: acquire proceedings, track exports, and OpenReview enrichment with a resumable source ledger.
 - `scripts/source_fetcher.py`: shared per-host limiter, retry policy, resumable download, hashing, and JSONL ledger primitives.

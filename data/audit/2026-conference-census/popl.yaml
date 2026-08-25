@@ -6,7 +6,7 @@ status: accepted-list
 tracks:
 - POPL
 notes: The official POPL Research Papers page exposes the complete accepted-paper list with DOI links.
-fetched_at: '2026-08-25T03:53:31+00:00'
+fetched_at: '2026-08-25T08:31:34+00:00'
 paper_count: 92
 scanned_count: 0
 included_count: 0
@@ -3644,8 +3644,10 @@ papers:
   full_text_discovery:
     pdf_url: https://dl.acm.org/doi/pdf/10.1145/3776645
     full_text_url: https://doi.org/10.1145/3776645
+    doi_url: https://doi.org/10.1145/3776645
     method: official-acm-doi
     source_url: https://doi.org/10.1145/3776645
+  pdf_url: https://dl.acm.org/doi/pdf/10.1145/3776645
 - title: On Circuit Description Languages, Indexed Monads, and Resource Analysis
   official_url: https://conf.researchr.org/track/POPL-2026/POPL-2026-popl-research-papers
   track: POPL
@@ -5492,7 +5494,7 @@ papers:
     reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
       PDF download was not requested by the metadata-first policy.
     status: metadata-filtered
-pdf_url_count: 0
+pdf_url_count: 1
 metadata_screened_count: 91
 list_fetch:
   url: https://conf.researchr.org/track/POPL-2026/POPL-2026-popl-research-papers
@@ -5500,7 +5502,7 @@ list_fetch:
   content_type: text/html;charset=UTF-8
   etag: null
   last_modified: null
-  sha256: 3c01f8c70a120be0ccfb7ea7e873aedea27232eb4964c3cf38f556670c8252f2
+  sha256: e7c80100b1a6d81e7ed2a4b06e045ad731bc69ba402a3d22b56b91597c9f2100
   byte_size: 481178
   attempts: 1
-  retrieved_at: '2026-08-25T03:51:48+00:00'
+  retrieved_at: '2026-08-25T08:31:37+00:00'

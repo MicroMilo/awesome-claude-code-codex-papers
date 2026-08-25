@@ -140,7 +140,12 @@ def invariant_errors(catalog: dict) -> list[str]:
 
 
 def model_manifest_errors(papers: list[dict]) -> list[str]:
-    """Reject ``not-reported`` when the recorded full-text scan found models."""
+    """Reject ``not-reported`` only when product-local evidence found a model.
+
+    A paper can mention unrelated models elsewhere in the full text.  Global
+    model candidates therefore cannot prove which model backed Claude Code or
+    Codex CLI; the candidate must occur in the saved product-context snippets.
+    """
 
     if not FULLTEXT_MANIFEST_PATH.exists():
         return []
@@ -157,14 +162,24 @@ def model_manifest_errors(papers: list[dict]) -> list[str]:
         record = records.get(key)
         if not record or record.get("status") != "scanned":
             continue
-        candidates = record.get("model_candidates", [])
-        if candidates and all(
-            item.get("model") == "not-reported" for item in paper.get("products", [])
-        ):
-            errors.append(
-                f"{paper.get('id')}: model=not-reported conflicts with full-text model candidates: "
-                + ", ".join(candidates[:6])
-            )
+        product_candidates = record.get("product_model_candidates", {})
+        if not product_candidates:
+            global_candidates = [str(value) for value in record.get("model_candidates", [])]
+            product_candidates = {}
+            for product, snippets in record.get("product_matches", {}).items():
+                context = " ".join(str(item.get("snippet", "")) for item in snippets).casefold()
+                product_candidates[product] = [
+                    candidate for candidate in global_candidates if candidate.casefold() in context
+                ]
+        for product in paper.get("products", []):
+            if product.get("model") != "not-reported":
+                continue
+            candidates = product_candidates.get(product.get("product"), [])
+            if candidates:
+                errors.append(
+                    f"{paper.get('id')}: {product.get('product')} model=not-reported "
+                    "conflicts with product-context model candidates: " + ", ".join(candidates[:6])
+                )
     return errors
 
 

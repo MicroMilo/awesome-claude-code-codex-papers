@@ -14,9 +14,11 @@ not use arXiv as a conference paper list.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from datetime import UTC, datetime
+from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -32,6 +34,31 @@ ROOT = Path(__file__).resolve().parents[1]
 CACHE_DIR = ROOT / "tmp" / "census"
 
 FETCHED_AT = datetime.now(UTC).replace(microsecond=0).isoformat()
+
+IJCAI_TRACKS = [
+    ("main-track", "Main Track"),
+    ("special-track-on-ai-and-health", "Special Track on AI and Health"),
+    ("special-track-on-ai-and-robotics", "Special Track on AI and Robotics"),
+    ("special-track-on-ai-and-social-good", "Special Track on AI and Social Good"),
+    (
+        "special-track-on-ai4tech-ai-enabling-critical-technologies",
+        "Special Track on AI4Tech: AI Enabling Critical Technologies",
+    ),
+    ("special-track-on-human-centred-ai", "Special Track on Human-Centred AI"),
+    ("journal-track", "Journal Track"),
+    ("sister-conferences-best-papers-track", "Sister Conferences Best Papers Track"),
+    ("survey-track", "Survey Track"),
+    ("early-career-spotlight", "Early Career Spotlight"),
+    ("demonstrations-track", "Demonstrations Track"),
+]
+
+KDD_TRACK_LABELS = {
+    "rtp": "Research",
+    "ads": "Applied Data Science",
+    "dtb": "Datasets and Benchmarks",
+    "bsi": "Blue Sky Ideas",
+    "ais": "AI for Sciences",
+}
 
 REGISTRY: list[dict[str, object]] = [
     {
@@ -118,21 +145,22 @@ REGISTRY: list[dict[str, object]] = [
     # absence is visible rather than silently omitted from the scope.
     {
         "conference": "IJCAI",
-        "official_url": "https://2026.ijcai.org/",
-        "list_url": "https://2026.ijcai.org/",
-        "parser": "pending",
-        "status": "pending",
-        "tracks": ["Conference"],
-        "notes": "Registered for the CCF-A extension pass; a complete first-party 2026 proceedings list was not imported in this run.",
+        "official_url": "https://2026.ijcai.org/accepted-papers/",
+        "list_url": "https://2026.ijcai.org/accepted-papers/",
+        "parser": "ijcai",
+        "status": "accepted-list",
+        "tracks": [label for _, label in IJCAI_TRACKS],
+        "notes": "The official accepted-paper pages expose all 2026 tracks, abstracts, and conference-hosted preprint PDFs; track labels are preserved per record.",
     },
     {
         "conference": "KDD",
-        "official_url": "https://www.kdd.org/kdd2026/",
-        "list_url": "https://www.kdd.org/kdd2026/",
-        "parser": "pending",
-        "status": "pending",
-        "tracks": ["Conference"],
-        "notes": "Registered for the CCF-A extension pass; the official proceedings list still needs a dedicated source adapter.",
+        "official_url": "https://kdd2026.kdd.org/",
+        "list_url": "https://kdd2026.kdd.org/papers/",
+        "snapshot": "kdd-2026-papers.html",
+        "parser": "kdd",
+        "status": "official-proceedings",
+        "tracks": list(KDD_TRACK_LABELS.values()),
+        "notes": "The official KDD papers page exposes both 2026 submission cycles, track labels, authors, and ACM DOI records. The page does not expose abstracts, so records without a strong title signal remain pending under the metadata-first policy.",
     },
     {
         "conference": "PLDI",
@@ -181,6 +209,7 @@ def is_first_party_pdf(value: object, official_url: object) -> bool:
         "ojs.aaai.org",
         "proceedings.iclr.cc",
         "openreview.net",
+        "ijcai-preprints.s3.us-west-1.amazonaws.com",
     }
     path = parsed.path.casefold()
     looks_like_pdf = path.endswith(".pdf") or (
@@ -334,6 +363,97 @@ def parse_aaai(landing_path: Path, issue_paths: list[tuple[str, Path]]) -> list[
     return sorted(records, key=lambda item: str(item["title"]).lower())
 
 
+def parse_ijcai(path: Path, registry: dict[str, object]) -> list[dict[str, object]]:
+    """Parse one official IJCAI track page, including its embedded abstracts."""
+
+    soup = BeautifulSoup(path.read_text(encoding="utf-8", errors="ignore"), "html.parser")
+    track = str(registry.get("track_name") or "Unknown track")
+    records: list[dict[str, object]] = []
+    seen: set[str] = set()
+    for item in soup.select("li.ij-paper"):
+        title_node = item.select_one(".ij-ptitle")
+        id_node = item.select_one(".ij-pid")
+        if title_node is None or id_node is None:
+            continue
+        title = clean_text(title_node.get_text(" ", strip=True))
+        record_id = clean_text(id_node.get_text(" ", strip=True)).lstrip("#")
+        if not title or not record_id or record_id in seen:
+            continue
+        seen.add(record_id)
+        record: dict[str, object] = {
+            "title": title,
+            "official_url": str(registry["list_url"]),
+            "track": track,
+            "official_record_id": record_id,
+            "authors": [
+                clean_text(node.get_text(" ", strip=True))
+                for node in item.select(".ij-author")
+                if clean_text(node.get_text(" ", strip=True))
+            ],
+        }
+        abstract_node = item.select_one(".ij-abstract")
+        abstract = clean_text(abstract_node.get_text(" ", strip=True)) if abstract_node else ""
+        if abstract:
+            record["abstract"] = abstract
+            record["abstract_source_url"] = str(registry["list_url"])
+        pdf_link = item.select_one(".ij-pdflink a[href]")
+        if pdf_link and is_first_party_pdf(pdf_link.get("href"), registry["list_url"]):
+            record["pdf_url"] = str(pdf_link["href"])
+        keywords = [
+            clean_text(node.get_text(" ", strip=True))
+            for node in item.select(".ij-kw")
+            if clean_text(node.get_text(" ", strip=True))
+        ]
+        if keywords:
+            record["keywords"] = keywords
+        records.append(record)
+    return sorted(records, key=lambda item: str(item["title"]).casefold())
+
+
+def parse_kdd(path: Path, registry: dict[str, object]) -> list[dict[str, object]]:
+    """Parse both official KDD 2026 paper cycles from their embedded JSON."""
+
+    payload = path.read_text(encoding="utf-8", errors="ignore")
+    records: list[dict[str, object]] = []
+    for cycle_id, cycle_label in (("cycle1", "February Cycle"), ("cycle2", "July Cycle")):
+        match = re.search(
+            rf"const {cycle_id}Papers = (\[.*?\])\.map\(\(paper, index\)",
+            payload,
+            re.DOTALL,
+        )
+        if match is None:
+            raise RuntimeError(f"Official KDD page is missing {cycle_id}Papers JSON")
+        papers = json.loads(match.group(1))
+        occurrences: dict[str, int] = {}
+        for raw in papers:
+            title = clean_text(unescape(str(raw.get("title", ""))))
+            doi_url = str(raw.get("url", ""))
+            doi_match = re.fullmatch(r"https://doi\.org/(10\.1145/.+)", doi_url)
+            if not title or doi_match is None:
+                continue
+            doi = doi_match.group(1)
+            occurrences[doi] = occurrences.get(doi, 0) + 1
+            occurrence = occurrences[doi]
+            record_id = f"{cycle_id}:{doi}"
+            if occurrence > 1:
+                record_id = f"{record_id}:duplicate-{occurrence}"
+            track_code = str(raw.get("track", ""))
+            track_label = KDD_TRACK_LABELS.get(track_code, track_code or "Unknown track")
+            records.append(
+                {
+                    "title": title,
+                    "official_url": doi_url,
+                    "doi_url": doi_url,
+                    "pdf_url": f"https://dl.acm.org/doi/pdf/{doi}",
+                    "track": f"{cycle_label} · {track_label}",
+                    "cycle": cycle_label,
+                    "official_record_id": record_id,
+                    "authors": clean_text(unescape(str(raw.get("authors", "")))),
+                }
+            )
+    return sorted(records, key=lambda item: str(item["title"]).casefold())
+
+
 def load_or_fetch_registry(fetch_pages: bool) -> list[dict[str, object]]:
     entries: list[dict[str, object]] = []
     for item in REGISTRY:
@@ -343,6 +463,22 @@ def load_or_fetch_registry(fetch_pages: bool) -> list[dict[str, object]]:
             entries.append(registry)
             continue
         snapshot = registry.get("snapshot")
+        if registry["parser"] == "ijcai":
+            records: list[dict[str, object]] = []
+            for track_slug, track_name in IJCAI_TRACKS:
+                track_url = f"{registry['list_url']}?ijtrack={track_slug}"
+                track_path = CACHE_DIR / f"ijcai-2026-{track_slug}.html"
+                if fetch_pages:
+                    fetch(track_url, track_path)
+                if not track_path.exists():
+                    raise FileNotFoundError(
+                        f"Missing {track_path}; run with --fetch to acquire official IJCAI tracks."
+                    )
+                track_registry = {**registry, "list_url": track_url, "track_name": track_name}
+                records.extend(parse_ijcai(track_path, track_registry))
+            registry["papers"] = sorted(records, key=lambda item: str(item["title"]).casefold())
+            entries.append(registry)
+            continue
         if fetch_pages:
             if registry["parser"] == "aaai-ojs":
                 landing = CACHE_DIR / str(snapshot)
@@ -408,6 +544,8 @@ def parse_with_parser(
         return parse_virtual(path, registry)
     if parser == "researchr":
         return parse_researchr(path, registry)
+    if parser == "kdd":
+        return parse_kdd(path, registry)
     raise ValueError(f"Unknown parser: {parser}")
 
 
@@ -445,7 +583,16 @@ def build_report(registries: list[dict[str, object]]) -> dict[str, object]:
                 "disposition_reason": reason,
                 "full_text_scan": "pending",
             }
-            for field in ("pdf_url", "doi_url", "official_record_id"):
+            for field in (
+                "pdf_url",
+                "doi_url",
+                "official_record_id",
+                "abstract",
+                "abstract_source_url",
+                "authors",
+                "keywords",
+                "cycle",
+            ):
                 if raw.get(field):
                     paper[field] = raw[field]
             papers.append(paper)

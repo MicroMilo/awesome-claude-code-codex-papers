@@ -18,14 +18,18 @@ disposition_definitions:
   pending: Cannot be imported yet because acceptance, full text, or product/model evidence is incomplete.
   duplicate: Duplicate official record or title; points to the first occurrence.
 full_text_url_enrichment:
-  audited_at: '2026-08-25T04:04:25+00:00'
+  audited_at: '2026-08-25T08:49:47+00:00'
   conferences:
+  - AAAI
   - ASE
   - FSE
+  - ICML
   - ICSE
   - ISSTA
   - OOPSLA
-  found: 23
+  - PLDI
+  - POPL
+  found: 5
   not_found: 474
   policy: Only official conference pages, official proceedings pages, official publisher pages, and official OpenReview full
     text are accepted.
@@ -37,11 +41,12 @@ iclr_product_hit_review:
   policy: Recall-oriented full-text hits require context review; incidental/reference/author-assistance mentions are excluded
     from the main catalog.
 non_iclr_product_hit_review:
-  reviewed_at: '2026-08-24T06:13:36+00:00'
-  product_hit_count: 4
-  excluded_after_context_review: 4
+  reviewed_at: '2026-08-25T08:55:49+00:00'
+  product_hit_count: 6
+  promote_after_catalog_review: 1
+  excluded_after_context_review: 5
   policy: Every non-ICLR product-string hit must be mapped to an explicit context review before finalization.
-last_audited_at: '2026-08-25T04:10:59+00:00'
+last_audited_at: '2026-08-25T08:59:16+00:00'
 catalog_ids:
 - appforge-2026
 - artemis-2026
@@ -52,6 +57,7 @@ catalog_ids:
 - formact-2026
 - helmsman-2026
 - innogym-2026
+- lean-refactor-2026
 - qlcoder-2026
 - rpg-zerorepo-2026
 - scaling-laws-2026
@@ -61,12 +67,12 @@ official_metadata_enrichment:
   policy: Only official conference, proceedings, publisher, or official OpenReview pages are queried; missing metadata remains
     pending.
 pending_review_summary:
-  reviewed_at: '2026-08-25T04:07:03+00:00'
-  pending_record_count: 701
+  reviewed_at: '2026-08-25T08:59:16+00:00'
+  pending_record_count: 2111
   high_priority_product_candidate_count: 8
   blocker_counts:
-    full-text-scan-pending: 2
-    official-pdf-not-exposed: 474
+    full-text-scan-pending: 1410
+    official-pdf-not-exposed: 476
     official-source-challenge: 225
   summary_path: data/audit/2026-pending-summary.json
 storage_format: per-conference-v1
@@ -74,23 +80,23 @@ conference_files:
 - conference: ASE
   path: ase.yaml
   record_count: 263
-  sha256: e75b7214b5dcde756a5889f7610f794d977551500d66448cfe9e482986cde428
+  sha256: bcda0be7939dab3e1ee52f92295db9768ee6cd4b990269a991ee20ee609d3ccc
 - conference: FSE
   path: fse.yaml
   record_count: 211
-  sha256: b9ab3825882fd79d0d4868db9afe23c3298d101ea7b45adf38d49289f76bb0ed
+  sha256: 2ecd69cd97573279d9cf70dc94a1d55753aca36cabb86d6f430c2ef5c3142737
 - conference: ISSTA
   path: issta.yaml
   record_count: 210
-  sha256: 33ddfaca76611464c22462df2d22d2ae0f309d9b650c4b2661995b7b9f244d52
+  sha256: d6d9ae1f5f3bfd780b2c9b23f22f6310fd1fe7707fdcb41737b8073a19b85070
 - conference: ICSE
   path: icse.yaml
   record_count: 321
-  sha256: 51a1eed24c4ed295a0820feceb99ce3f942632c3529f9ceb843651e6f938657c
+  sha256: ffe332a7114d78158e31f374758c9cd58f499233f27f360a56db44a4ebd7dda9
 - conference: ICML
   path: icml.yaml
   record_count: 6628
-  sha256: 73bdeb8324c4c816ffe2b285023b9d5434c466dbe1f010015b42c798368a917d
+  sha256: 85afbf0f7f00bba2396341f6a312582c97d06f8e77236c778ebf19f63374df25
 - conference: ICLR
   path: iclr.yaml
   record_count: 5351
@@ -102,24 +108,24 @@ conference_files:
 - conference: NeurIPS
   path: neurips.yaml
   record_count: 0
-  sha256: d78136aec88e80b66af415ff0b231721f9bd6834da1b11e307b552f4f798c71a
+  sha256: 3df29d88f61102fb1d5850d90def2cda31effde6342c120906c3835ae075d108
 - conference: IJCAI
   path: ijcai.yaml
-  record_count: 0
-  sha256: bd6c46cf8d4ffdf28252e4d2632a0e00572d2bb450c5d024fd68827f107073be
+  record_count: 989
+  sha256: 3170f4c2d34a51703e9544de938df340d75139768fb9a3e0b1588b38afbd8a49
 - conference: KDD
   path: kdd.yaml
-  record_count: 0
-  sha256: 0c27a74faefbda4e76a1099c0952e5c07006d47dd6b2c1778dacab084f449d9e
+  record_count: 1415
+  sha256: af4771feb7dddcf9d9b90640caf1e08e046cb0bc226fece1cabc6e50c9959a15
 - conference: PLDI
   path: pldi.yaml
   record_count: 106
-  sha256: d38fcae662e473d79731882c38eda1acbfce3f613d58c98c0a940e1894a2207f
+  sha256: 4266ca0578480e77a64a3a9bdcd17c57ea63197602ec48077ffe8add85724ac5
 - conference: POPL
   path: popl.yaml
   record_count: 92
-  sha256: 1c6e76f58b00b0a0803c85f264bf918df7609556a9e1ded888be7a474d78ac62
+  sha256: 31211b1e6ee26c6b76c75d35cdbd7cea377a2e6fd554f0995bd8d8e391af4b05
 - conference: OOPSLA
   path: oopsla.yaml
   record_count: 167
-  sha256: afbce1d888ea8ca928a6e497805dc8f6cbfc2223ac112a800564630e734f7539
+  sha256: b60d888c7b72c95ed0a4a08cbfa834c37f18e61d4828248ee248298993772994
