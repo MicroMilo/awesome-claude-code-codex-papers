@@ -448,36 +448,41 @@ papers:
     retrieved_at: '2026-08-24T06:44:01+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1196
       matched_signals:
-        product: {}
         agent: {}
+        code-domain:
+          code-task:
+          - static analysis
         language-model:
+          language-model:
+          - language models
           llm:
           - Large language models
           - LLMs
           - LLM
-          language-model:
-          - language models
-        code-domain:
-          code-task:
-          - static analysis
-      matched_terms: &id001
+        product: {}
+      matched_terms:
       - Large language models
       - LLMs
       - LLM
       - language models
       - static analysis
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - Large language models
+    - LLMs
+    - LLM
+    - language models
+    - static analysis
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id001
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/68/A-Tale-of-1001-LoC-Potential-Runtime-Error-Guided-Specification-Synthesis-for-Verify
@@ -1211,7 +1216,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798214
   official_record_id: c010f0c9-6c89-494f-b1d8-905039c9c8ca
@@ -1242,32 +1247,51 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:04+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 1256
-      matched_signals:
-        agent: {}
-        code-domain:
-          code-task:
-          - static analysis
-        language-model: {}
-        product: {}
-      matched_terms:
-      - static analysis
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - static analysis
+      abstract_chars: 1256
+      matched_signals: &id002
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain:
+          code-task:
+          - static analysis
+      matched_terms: &id001
+      - static analysis
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id001
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 1256
+  metadata_matched_signals: *id002
+  metadata_matched_terms: *id001
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798214
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7153093904
+    used_for:
+    - abstract
+    version: metadata
 - title: 'Beyond Coverage: Automatic Test Suite Augmentation for Enhanced Effectiveness Using Large Language Models'
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -1313,22 +1337,9 @@ papers:
     retrieved_at: '2026-08-24T06:44:04+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 2485
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - Large Language Models
-          - LLMs
-          - LLM
-          language-model:
-          - Language Models
         code-domain:
           code:
           - code
@@ -1336,7 +1347,15 @@ papers:
           - software engineering
           - test generation
           - code generation
-      matched_terms: &id002
+        language-model:
+          language-model:
+          - Language Models
+          llm:
+          - Large Language Models
+          - LLMs
+          - LLM
+        product: {}
+      matched_terms:
       - Large Language Models
       - LLMs
       - LLM
@@ -1345,11 +1364,24 @@ papers:
       - software engineering
       - test generation
       - code generation
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - Large Language Models
+    - LLMs
+    - LLM
+    - Language Models
+    - code
+    - software engineering
+    - test generation
+    - code generation
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id002
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/51/Beyond-Coverage-Automatic-Test-Suite-Augmentation-for-Enhanced-Effectiveness-Using-L
@@ -1695,7 +1727,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798227
   official_record_id: ca89454a-ee3a-4e6b-b7b1-4b1700228745
@@ -1737,36 +1769,54 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:05+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
+      screen_decision: excluded
+      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
+        or abstract.
+      screen_source: title+abstract
       abstract_chars: 2588
-      matched_signals:
+      matched_signals: &id004
+        product: {}
         agent: {}
+        language-model: {}
         code-domain:
           code:
           - code
           code-task:
           - Compiler
-        language-model: {}
-        product: {}
-      matched_terms:
+      matched_terms: &id003
       - code
       - Compiler
-      screen_decision: excluded
-      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-        or abstract.
-      screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - code
-    - Compiler
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id003
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 2588
+  metadata_matched_signals: *id004
+  metadata_matched_terms: *id003
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798227
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7153259110
+    used_for:
+    - abstract
+    version: metadata
 - title: Classifying Capabilities
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -2104,7 +2154,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798210
   official_record_id: 082be025-8652-4e4a-8f5e-9ddbd171d998
@@ -2135,36 +2185,54 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:07+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
+      screen_decision: excluded
+      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
+        or abstract.
+      screen_source: title+abstract
       abstract_chars: 1267
-      matched_signals:
+      matched_signals: &id006
+        product: {}
         agent: {}
+        language-model: {}
         code-domain:
           code:
           - code
           code-task:
           - compiler
-        language-model: {}
-        product: {}
-      matched_terms:
+      matched_terms: &id005
       - code
       - compiler
-      screen_decision: excluded
-      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-        or abstract.
-      screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - code
-    - compiler
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id005
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 1267
+  metadata_matched_signals: *id006
+  metadata_matched_terms: *id005
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798210
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7152992030
+    used_for:
+    - abstract
+    version: metadata
 - title: Compiling Bioinformatics Recurrences
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -2492,7 +2560,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798213
   official_record_id: 33b68160-dd37-4bc9-a7c6-57d9798918ad
@@ -2520,35 +2588,53 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:08+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 862
-      matched_signals:
-        agent: {}
-        code-domain:
-          code-task:
-          - Debugging
-          - compiler
-        language-model: {}
-        product: {}
-      matched_terms:
-      - Debugging
-      - compiler
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - Debugging
-    - compiler
+      abstract_chars: 862
+      matched_signals: &id008
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain:
+          code-task:
+          - Debugging
+          - compiler
+      matched_terms: &id007
+      - Debugging
+      - compiler
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id007
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 862
+  metadata_matched_signals: *id008
+  metadata_matched_terms: *id007
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798213
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7153267335
+    used_for:
+    - abstract
+    version: metadata
 - title: 'DeCo: A Core Calculus for Incremental Functional Programming with Generic Data Types'
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -3172,37 +3258,42 @@ papers:
     retrieved_at: '2026-08-24T06:44:11+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 2601
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - Large language models
-          - LLMs
-          language-model:
-          - language models
         code-domain:
           code:
           - Code
           code-task:
           - Developer
-      matched_terms: &id003
+        language-model:
+          language-model:
+          - language models
+          llm:
+          - Large language models
+          - LLMs
+        product: {}
+      matched_terms:
       - Large language models
       - LLMs
       - language models
       - Code
       - Developer
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - Large language models
+    - LLMs
+    - language models
+    - Code
+    - Developer
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id003
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/49/EditFlow-Benchmarking-and-Optimizing-Code-Edit-Recommendation-Systems-via-Reconstruc
@@ -3480,36 +3571,41 @@ papers:
     retrieved_at: '2026-08-24T06:44:12+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 779
       matched_signals:
-        product: {}
         agent: {}
+        code-domain:
+          code-task:
+          - compiler
         language-model:
+          language-model:
+          - language models
           llm:
           - large language models
           - LLMs
           - LLM
-          language-model:
-          - language models
-        code-domain:
-          code-task:
-          - compiler
-      matched_terms: &id004
+        product: {}
+      matched_terms:
       - large language models
       - LLMs
       - LLM
       - language models
       - compiler
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - large language models
+    - LLMs
+    - LLM
+    - language models
+    - compiler
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id004
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/96/Equivalence-Checking-of-ML-GPU-Kernels
@@ -3766,7 +3862,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798203
   official_record_id: 1731932d-de84-4b57-8c09-3350dc912b25
@@ -3799,11 +3895,19 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:13+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
+      screen_decision: excluded
+      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
+        or abstract.
+      screen_source: title+abstract
       abstract_chars: 1549
-      matched_signals:
+      matched_signals: &id010
+        product: {}
         agent: {}
+        language-model: {}
         code-domain:
           code:
           - code
@@ -3811,30 +3915,60 @@ papers:
           code-task:
           - program repair
           - source code
-        language-model: {}
-        product: {}
-      matched_terms:
+      matched_terms: &id009
       - code
       - repositories
       - program repair
       - source code
-      screen_decision: excluded
-      screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-        or abstract.
-      screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - code
-    - repositories
-    - program repair
-    - source code
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id009
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 1549
+  metadata_matched_signals: *id010
+  metadata_matched_terms: *id009
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798203
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W4414761314
+    used_for:
+    - abstract
+    version: metadata
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: openalex-location-for-exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798203
+    license: cc-by
+    provider: arxiv
+    source_role: full-text
+    url: https://arxiv.org/pdf/2509.04936
+    used_for:
+    - full-text
+    - evidence
+    version: submittedVersion
+  resolved_pdf_url: https://arxiv.org/pdf/2509.04936
+  resolved_content_source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2509.04936
+    version: submittedVersion
+    license: cc-by
+    identity_status: verified
+    identity_method: openalex-location-for-exact-doi
+    identity_value: 10.1145/3798203
+    discovered_at: '2026-08-25T10:11:09+00:00'
 - title: 'Formalizing the Linux eBPF Core ISA: A Mechanized Operational Semantics and Its Real-World Applications'
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -3996,34 +4130,38 @@ papers:
     retrieved_at: '2026-08-24T06:44:14+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 2224
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - LLM
         code-domain:
           code:
           - code
           code-task:
           - software engineering
           - source code
-      matched_terms: &id005
+        language-model:
+          llm:
+          - LLM
+        product: {}
+      matched_terms:
       - LLM
       - code
       - software engineering
       - source code
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLM
+    - code
+    - software engineering
+    - source code
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id005
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/165/From-Similarity-Ranking-to-Definitive-Verdict-LLM-Enhanced-Source-to-Binary-Function
@@ -4470,7 +4608,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798231
   official_record_id: cab68d7b-f82f-455a-a984-59fef2e82839
@@ -4505,32 +4643,73 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:16+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 1727
-      matched_signals:
-        agent: {}
-        code-domain:
-          code-task:
-          - compiler
-        language-model: {}
-        product: {}
-      matched_terms:
-      - compiler
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - compiler
+      abstract_chars: 1727
+      matched_signals: &id012
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain:
+          code-task:
+          - compiler
+      matched_terms: &id011
+      - compiler
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id011
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 1727
+  metadata_matched_signals: *id012
+  metadata_matched_terms: *id011
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798231
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7137987555
+    used_for:
+    - abstract
+    version: metadata
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: openalex-location-for-exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798231
+    license: cc-by
+    provider: arxiv
+    source_role: full-text
+    url: https://arxiv.org/pdf/2603.12485
+    used_for:
+    - full-text
+    - evidence
+    version: submittedVersion
+  resolved_pdf_url: https://arxiv.org/pdf/2603.12485
+  resolved_content_source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2603.12485
+    version: submittedVersion
+    license: cc-by
+    identity_status: verified
+    identity_method: openalex-location-for-exact-doi
+    identity_value: 10.1145/3798231
+    discovered_at: '2026-08-25T10:11:09+00:00'
 - title: Hybrid Game Control Envelope Synthesis
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -4674,29 +4853,31 @@ papers:
     retrieved_at: '2026-08-24T06:44:17+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1221
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - LLM
         code-domain:
           code-task:
           - Program Synthesis
-      matched_terms: &id006
+        language-model:
+          llm:
+          - LLM
+        product: {}
+      matched_terms:
       - LLM
       - Program Synthesis
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLM
+    - Program Synthesis
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id006
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/86/Incremental-Program-Synthesis-from-Event-Logs
@@ -4814,24 +4995,11 @@ papers:
     retrieved_at: '2026-08-24T06:44:17+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Agent and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1749
       matched_signals:
-        product: {}
         agent:
           agentic:
           - agentic
-        language-model:
-          llm:
-          - LLM
-          - Large Language Models
-          - LLMs
-          language-model:
-          - Language Models
         code-domain:
           code:
           - code
@@ -4840,7 +5008,15 @@ papers:
           - program repair
           - bug-fix
           - software engineering
-      matched_terms: &id007
+        language-model:
+          language-model:
+          - Language Models
+          llm:
+          - LLM
+          - Large Language Models
+          - LLMs
+        product: {}
+      matched_terms:
       - agentic
       - LLM
       - Large Language Models
@@ -4851,11 +5027,26 @@ papers:
       - program repair
       - bug-fix
       - software engineering
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Agent and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - agentic
+    - LLM
+    - Large Language Models
+    - LLMs
+    - Language Models
+    - code
+    - debugging
+    - program repair
+    - bug-fix
+    - software engineering
     metadata_screen_reason: Agent and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id007
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/38/InspectCoder-Dynamic-Analysis-Driven-Self-Repair-through-interactive-LLM-Debugger-Co
@@ -5141,7 +5332,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798200
   official_record_id: 2bc0e8f2-2202-403e-8b05-c7c392e9c858
@@ -5169,28 +5360,48 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:19+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 933
-      matched_signals:
-        agent: {}
-        code-domain: {}
-        language-model: {}
-        product: {}
-      matched_terms: []
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches: []
+      abstract_chars: 933
+      matched_signals: &id014
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain: {}
+      matched_terms: &id013 []
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id013
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 933
+  metadata_matched_signals: *id014
+  metadata_matched_terms: *id013
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798200
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7153070655
+    used_for:
+    - abstract
+    version: metadata
 - title: LLM assisted Unsatisfiability Proofs for Satisfiability Modulo Theories, Oracles and Natural Language
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -5235,39 +5446,45 @@ papers:
     retrieved_at: '2026-08-24T06:44:19+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 2412
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - LLM
-          - large language models
-          - LLMs
-          language-model:
-          - language models
         code-domain:
           code:
           - code
           code-task:
           - source code
-      matched_terms: &id008
+        language-model:
+          language-model:
+          - language models
+          llm:
+          - LLM
+          - large language models
+          - LLMs
+        product: {}
+      matched_terms:
       - LLM
       - large language models
       - LLMs
       - language models
       - code
       - source code
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLM
+    - large language models
+    - LLMs
+    - language models
+    - code
+    - source code
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id008
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/77/LLM-assisted-Unsatisfiability-Proofs-for-Satisfiability-Modulo-Theories-Oracles-and-
@@ -5318,36 +5535,41 @@ papers:
     retrieved_at: '2026-08-24T06:44:19+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1509
       matched_signals:
-        product: {}
         agent: {}
+        code-domain:
+          code-task:
+          - static analysis
         language-model:
+          language-model:
+          - language models
           llm:
           - LLM
           - large language models
           - LLMs
-          language-model:
-          - language models
-        code-domain:
-          code-task:
-          - static analysis
-      matched_terms: &id009
+        product: {}
+      matched_terms:
       - LLM
       - large language models
       - LLMs
       - language models
       - static analysis
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLM
+    - large language models
+    - LLMs
+    - language models
+    - static analysis
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id009
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/162/LLM-Based-Alarm-Resolution-Guided-by-Bayesian-Program-Analysis
@@ -5562,7 +5784,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798260
   official_record_id: 9c9041a3-4162-4e5b-ab6a-60688cb67cdc
@@ -5589,28 +5811,48 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:20+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 804
-      matched_signals:
-        agent: {}
-        code-domain: {}
-        language-model: {}
-        product: {}
-      matched_terms: []
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches: []
+      abstract_chars: 804
+      matched_signals: &id016
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain: {}
+      matched_terms: &id015 []
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id015
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 804
+  metadata_matched_signals: *id016
+  metadata_matched_terms: *id015
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798260
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W7153296769
+    used_for:
+    - abstract
+    version: metadata
 - title: Metamorphic Testing for Infrastructure-as-Code Engines
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -6362,39 +6604,45 @@ papers:
     retrieved_at: '2026-08-24T06:44:23+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1882
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - LLMs
-          - Large Language Models
-          language-model:
-          - Language Models
         code-domain:
           code:
           - code
           code-task:
           - compiler
           - source code
-      matched_terms: &id010
+        language-model:
+          language-model:
+          - Language Models
+          llm:
+          - LLMs
+          - Large Language Models
+        product: {}
+      matched_terms:
       - LLMs
       - Large Language Models
       - Language Models
       - code
       - compiler
       - source code
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLMs
+    - Large Language Models
+    - Language Models
+    - code
+    - compiler
+    - source code
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id010
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/26/Phaedrus-Predicting-Dynamic-Application-Behavior-with-Lightweight-Generative-Models-
@@ -6765,39 +7013,45 @@ papers:
     retrieved_at: '2026-08-24T06:44:25+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Agent and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 2426
       matched_signals:
-        product: {}
         agent:
           agentic:
           - Agentic
+        code-domain:
+          code-task:
+          - SWE-bench
         language-model:
+          language-model:
+          - Language Models
           llm:
           - Large Language Models
           - LLMs
           - LLM
-          language-model:
-          - Language Models
-        code-domain:
-          code-task:
-          - SWE-bench
-      matched_terms: &id011
+        product: {}
+      matched_terms:
       - Agentic
       - Large Language Models
       - LLMs
       - LLM
       - Language Models
       - SWE-bench
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Agent and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - Agentic
+    - Large Language Models
+    - LLMs
+    - LLM
+    - Language Models
+    - SWE-bench
     metadata_screen_reason: Agent and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id011
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/74/Process-Centric-Analysis-of-Agentic-Software-Systems
@@ -7452,30 +7706,25 @@ papers:
     retrieved_at: '2026-08-24T06:44:27+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1567
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - LLM
-          - Large language models
-          - LLMs
-          language-model:
-          - language models
-          named-model:
-          - GPT-4
         code-domain:
           code:
           - Code
           code-task:
           - test generation
-      matched_terms: &id012
+        language-model:
+          language-model:
+          - language models
+          llm:
+          - LLM
+          - Large language models
+          - LLMs
+          named-model:
+          - GPT-4
+        product: {}
+      matched_terms:
       - LLM
       - Large language models
       - LLMs
@@ -7483,11 +7732,23 @@ papers:
       - GPT-4
       - Code
       - test generation
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - LLM
+    - Large language models
+    - LLMs
+    - language models
+    - GPT-4
+    - Code
+    - test generation
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id012
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/151/Reducing-Hallucinations-in-LLM-Generated-Code-via-Semantic-Triangulation
@@ -7604,34 +7865,38 @@ papers:
     retrieved_at: '2026-08-24T06:44:28+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1657
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - large language models
-          - LLMs
-          language-model:
-          - language models
         code-domain:
           code-task:
           - static analysis
-      matched_terms: &id013
+        language-model:
+          language-model:
+          - language models
+          llm:
+          - large language models
+          - LLMs
+        product: {}
+      matched_terms:
       - large language models
       - LLMs
       - language models
       - static analysis
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - large language models
+    - LLMs
+    - language models
+    - static analysis
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id013
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/70/Reframing-Paths-as-Logic-Semantic-Segmentation-for-Vulnerability-Detection
@@ -8303,7 +8568,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798228
   official_record_id: 42bcf861-a78e-4cd9-8def-195c671dc9e5
@@ -8332,28 +8597,70 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:31+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 993
-      matched_signals:
-        agent: {}
-        code-domain: {}
-        language-model: {}
-        product: {}
-      matched_terms: []
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches: []
+      abstract_chars: 993
+      matched_signals: &id018
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain: {}
+      matched_terms: &id017 []
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id017
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 993
+  metadata_matched_signals: *id018
+  metadata_matched_terms: *id017
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798228
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W4415064630
+    used_for:
+    - abstract
+    version: metadata
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: openalex-location-for-exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798228
+    license: not-reported
+    provider: arxiv
+    source_role: full-text
+    url: https://arxiv.org/pdf/2504.15844
+    used_for:
+    - full-text
+    - evidence
+    version: submittedVersion
+  resolved_pdf_url: https://arxiv.org/pdf/2504.15844
+  resolved_content_source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2504.15844
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: openalex-location-for-exact-doi
+    identity_value: 10.1145/3798228
+    discovered_at: '2026-08-25T10:11:09+00:00'
 - title: Sound and Complete Solving for Multi-Width Parametric Bitvectors via Principled Reductions
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -9245,30 +9552,25 @@ papers:
     retrieved_at: '2026-08-24T06:44:34+00:00'
   scan:
     metadata_screen:
-      screen_version: conference-metadata-relevance-v2
-      screen_status: candidate
-      screen_decision: candidate
-      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-      screen_source: title+abstract
       abstract_chars: 1560
       matched_signals:
-        product: {}
         agent: {}
-        language-model:
-          llm:
-          - Large Language Models
-          - LLMs
-          - LLM
-          language-model:
-          - Language Models
-          named-model:
-          - GPT-4
         code-domain:
           code:
           - code
           code-task:
           - debugging
-      matched_terms: &id014
+        language-model:
+          language-model:
+          - Language Models
+          llm:
+          - Large Language Models
+          - LLMs
+          - LLM
+          named-model:
+          - GPT-4
+        product: {}
+      matched_terms:
       - Large Language Models
       - LLMs
       - LLM
@@ -9276,11 +9578,23 @@ papers:
       - GPT-4
       - code
       - debugging
-    metadata_screen_status: candidate
+      screen_decision: candidate
+      screen_reason: Language-model and code/software-engineering signals found in title or abstract.
+      screen_source: title+abstract
+      screen_status: candidate
+      screen_version: conference-metadata-relevance-v2
+    metadata_screen_matches:
+    - Large Language Models
+    - LLMs
+    - LLM
+    - Language Models
+    - GPT-4
+    - code
+    - debugging
     metadata_screen_reason: Language-model and code/software-engineering signals found in title or abstract.
-    metadata_screen_matches: *id014
-    status: pending
+    metadata_screen_status: candidate
     reason: No first-party PDF URL was exposed by the official list adapter after metadata screening.
+    status: pending
   full_text_discovery:
     reason: Official page did not expose a first-party PDF, ACM DOI, or OpenReview full-text link.
     source_url: https://2026.splashcon.org/details/oopsla-2026/78/T-REX-Teaching-Large-Language-Models-to-Reason-with-Verbalized-Execution-Semantics
@@ -9299,7 +9613,7 @@ papers:
   track: OOPSLA
   disposition: excluded
   disposition_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
-    or abstract. PDF download was not requested by the metadata-first policy.
+    or abstract. Decision used an identity-verified OpenAlex abstract for the official conference DOI; no PDF was requested.
   full_text_scan: metadata-filtered
   doi_url: https://doi.org/10.1145/3798202
   official_record_id: 57927234-a47f-419a-abe8-85de9c33830d
@@ -9330,33 +9644,74 @@ papers:
     attempts: 1
     retrieved_at: '2026-08-24T06:44:35+00:00'
   scan:
-    disposition: excluded
+    status: metadata-filtered
     metadata_screen:
-      abstract_chars: 1223
-      matched_signals:
-        agent: {}
-        code-domain:
-          code-task:
-          - compiler
-        language-model: {}
-        product: {}
-      matched_terms:
-      - compiler
+      screen_version: conference-metadata-relevance-v2
+      screen_status: filtered
       screen_decision: excluded
       screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title
         or abstract.
       screen_source: title+abstract
-      screen_status: filtered
-      screen_version: conference-metadata-relevance-v2
-    metadata_screen_matches:
-    - compiler
+      abstract_chars: 1223
+      matched_signals: &id020
+        product: {}
+        agent: {}
+        language-model: {}
+        code-domain:
+          code-task:
+          - compiler
+      matched_terms: &id019
+      - compiler
+    metadata_screen_status: filtered
     metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
       title or abstract.
-    metadata_screen_status: filtered
-    reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in title or abstract.
-      PDF download was not requested by the metadata-first policy.
-    status: metadata-filtered
+    metadata_screen_matches: *id019
+    metadata_source: identity-verified OpenAlex record for the official DOI
+    disposition: excluded
   pdf_url: https://dl.acm.org/doi/pdf/10.1145/3798202
+  metadata_screen_version: conference-metadata-relevance-v2
+  metadata_screen_status: filtered
+  metadata_screen_decision: excluded
+  metadata_screen_reason: No high-recall coding-agent, code, software-engineering, or language-model combination found in
+    title or abstract.
+  metadata_screen_source: title+abstract
+  metadata_abstract_chars: 1223
+  metadata_matched_signals: *id020
+  metadata_matched_terms: *id019
+  content_sources:
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798202
+    license: not-reported
+    provider: openalex
+    source_role: metadata
+    url: https://openalex.org/W4385964675
+    used_for:
+    - abstract
+    version: metadata
+  - discovered_at: '2026-08-25T10:11:09+00:00'
+    identity_method: openalex-location-for-exact-doi
+    identity_status: verified
+    identity_value: 10.1145/3798202
+    license: not-reported
+    provider: arxiv
+    source_role: full-text
+    url: https://arxiv.org/pdf/2308.01554
+    used_for:
+    - full-text
+    - evidence
+    version: submittedVersion
+  resolved_pdf_url: https://arxiv.org/pdf/2308.01554
+  resolved_content_source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2308.01554
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: openalex-location-for-exact-doi
+    identity_value: 10.1145/3798202
+    discovered_at: '2026-08-25T10:11:09+00:00'
 - title: 'TensorRocq: Enabling diagrammatic reasoning in Rocq'
   official_url: https://conf.researchr.org/track/splash-2026/oopsla-2026
   track: OOPSLA
@@ -10851,3 +11206,18 @@ list_fetch:
   byte_size: 307398
   attempts: 1
   retrieved_at: '2026-08-25T08:31:40+00:00'
+scholarly_content_enrichment:
+  official_doi_records: 11
+  openalex_matched: 10
+  abstracts: 10
+  verified_full_text_sources: 4
+  overrides_applied: 0
+  metadata_candidates: 0
+  metadata_excluded: 10
+  metadata_pending: 0
+  updated_at: '2026-08-25T10:16:25+00:00'
+  acceptance_authority: official conference/proceedings/publisher record
+  content_policy: Auxiliary metadata/full text is accepted only with an explicit identity match; it never replaces the official
+    acceptance source.
+  ledger: data/audit/2026-scholarly-content.jsonl
+  overrides: data/audit/content-source-overrides.yaml

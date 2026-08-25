@@ -7,13 +7,15 @@ import {
   type CensusSummary,
   type Paper,
 } from "../app/CatalogExplorer";
-import { InsightsPage } from "../app/InsightsPage";
+import { InsightsPage, type PendingSummary } from "../app/InsightsPage";
 import { MethodsPage } from "../app/MethodsPage";
 import { SkillPage } from "../app/SkillPage";
 import catalog from "../data/catalog.json";
 import censusSummary from "../data/census-summary.json";
 import { INSIGHT_DEFINITIONS } from "../data/insights";
 import pendingSummary from "../data/pending-summary.json";
+
+const typedPendingSummary = pendingSummary as PendingSummary;
 
 test("renders the complete research catalog", () => {
   const html = renderToStaticMarkup(
@@ -35,7 +37,8 @@ test("renders the complete research catalog", () => {
   assert.match(html, /ICLR/);
   assert.match(html, /KDD/);
   assert.match(html, /20,673/);
-  assert.match(html, /0 \/ 1,415/);
+  assert.match(html, /1 \/ 1,415/);
+  assert.match(html, /SWE-Bench Mobile/);
   assert.match(html, /Lean Refactor/);
   assert.match(html, /Terminal-Bench/);
   assert.match(html, /Models used/);
@@ -76,7 +79,7 @@ test("renders a paper-traceable insights report", () => {
     <InsightsPage
       papers={catalog.papers as Paper[]}
       reviewedAt={catalog.reviewed_at}
-      pendingSummary={pendingSummary}
+      pendingSummary={typedPendingSummary}
     />,
   );
 
@@ -90,9 +93,11 @@ test("renders a paper-traceable insights report", () => {
   assert.match(html, /Do not turn this page into a vendor leaderboard/);
   assert.match(html, /same-budget comparisons/);
   assert.match(html, /Pending means blocked/);
-  assert.match(html, new RegExp(`>${pendingSummary.pending_record_count}<`));
+  assert.match(html, new RegExp(`>${typedPendingSummary.pending_record_count}<`));
+  assert.match(html, /No abstract-level Claude Code or Codex candidate/);
   assert.match(html, /APE-Bench/);
-  assert.match(html, /first-party full-text endpoint returned an HTTP 403/);
+  assert.match(html, /LLM2Ltac/);
+  assert.match(html, /57\.3%/);
   assert.match(html, /Star the repository/);
   assert.match(html, /Copy finding link/);
   assert.match(html, /\.\.\/papers\/featurebench-2026\//);
@@ -123,23 +128,24 @@ test("renders the reusable official-conference census skill", () => {
   assert.match(html, /not to download the PDF/);
   assert.match(html, /official-conference-paper-census/);
   assert.match(html, /Stable end to end/);
-  assert.match(html, /ICLR · AAAI/);
-  assert.match(html, /NeurIPS · IJCAI · KDD/);
+  assert.match(html, /ICLR · AAAI · IJCAI/);
+  assert.match(html, /NeurIPS/);
+  assert.match(html, /identity-verified open copies/i);
   assert.match(html, /no silent drops/i);
 });
 
-test("keeps the website pending queue synchronized and first-party only", () => {
-  assert.equal(pendingSummary.pending_record_count, 2111);
-  assert.equal(pendingSummary.high_priority_product_candidate_count, 8);
+test("keeps the website pending queue synchronized with official acceptance records", () => {
+  assert.equal(typedPendingSummary.pending_record_count, 1013);
+  assert.equal(typedPendingSummary.high_priority_product_candidate_count, 0);
   assert.equal(
-    Object.values(pendingSummary.blocker_counts).reduce(
+    Object.values(typedPendingSummary.blocker_counts).reduce(
       (total, count) => total + count,
       0,
     ),
-    pendingSummary.pending_record_count,
+    typedPendingSummary.pending_record_count,
   );
   assert.ok(
-    pendingSummary.high_priority_product_candidates.every(
+    typedPendingSummary.high_priority_product_candidates.every(
       (paper) => !paper.official_url.includes("arxiv.org"),
     ),
   );
@@ -162,6 +168,15 @@ test("ships filterable domain and conference metadata for every paper", () => {
   assert.ok(papers.every((paper) => paper.conference.length > 0));
   assert.ok(papers.every((paper) => paper.domains.length > 0));
   assert.ok(papers.every((paper) => !paper.paper_url.includes("arxiv.org")));
+  const mobile = papers.find((paper) => paper.id === "swe-bench-mobile-2026");
+  assert.ok(mobile);
+  assert.equal(mobile.paper_url, "https://doi.org/10.1145/3770855.3818488");
+  assert.ok(
+    mobile.content_sources?.some(
+      (source) =>
+        source.provider === "arxiv" && source.identity_status === "verified",
+    ),
+  );
 });
 
 test("ships GitHub Pages metadata without OpenAI hosting references", async () => {
@@ -220,6 +235,10 @@ test("generates one static paper page, one insight page, and one feed entry per 
     new URL("../dist/papers/formact-2026/index.html", import.meta.url),
     "utf8",
   );
+  const mobilePage = await readFile(
+    new URL("../dist/papers/swe-bench-mobile-2026/index.html", import.meta.url),
+    "utf8",
+  );
   const insightPage = await readFile(
     new URL("../dist/insights/visual-contracts/index.html", import.meta.url),
     "utf8",
@@ -229,6 +248,9 @@ test("generates one static paper page, one insight page, and one feed entry per 
   assert.match(paperPage, /gpt-5\.2-2025-12-11/);
   assert.match(paperPage, /Section 5\.1 Experimental Setup/);
   assert.match(paperPage, /Compare methods/);
+  assert.match(mobilePage, /Official paper/);
+  assert.match(mobilePage, /Evidence copy \(submittedVersion\)/);
+  assert.match(mobilePage, /Codex CLI · evaluated/);
   assert.match(insightPage, /Syntactically valid is not visually or behaviorally correct/);
   assert.match(insightPage, /FormAct/);
   assert.match(insightPage, /Evidence record/);

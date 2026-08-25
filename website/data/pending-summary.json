@@ -1,8 +1,8 @@
 {
   "blocker_counts": {
-    "full-text-scan-pending": 1410,
-    "official-pdf-not-exposed": 476,
-    "official-source-challenge": 225
+    "full-text-not-resolved": 472,
+    "full-text-scan-pending": 342,
+    "official-source-challenge": 199
   },
   "conference_level_pending": [
     {
@@ -14,150 +14,20 @@
     }
   ],
   "conference_pending_counts": {
-    "ASE": 228,
-    "FSE": 77,
-    "ICML": 199,
-    "ICSE": 94,
+    "ASE": 227,
+    "FSE": 71,
+    "ICML": 195,
+    "ICSE": 91,
     "IJCAI": 2,
-    "ISSTA": 84,
-    "KDD": 1408,
+    "ISSTA": 81,
+    "KDD": 329,
     "OOPSLA": 14,
-    "PLDI": 4,
-    "POPL": 1
+    "PLDI": 3
   },
-  "high_priority_product_candidate_count": 8,
-  "high_priority_product_candidates": [
-    {
-      "abstract_source_url": "https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving",
-      "blocker": "official-pdf-not-exposed",
-      "blocker_reason": "The official conference record does not yet expose a first-party full-text PDF URL.",
-      "conference": "ASE",
-      "official_url": "https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving",
-      "pdf_url": null,
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "Mining Tactics for Automated Theorem Proving"
-    },
-    {
-      "abstract_source_url": "https://icml.cc/virtual/2026/poster/64323",
-      "blocker": "official-source-challenge",
-      "blocker_reason": "The first-party full-text endpoint returned an HTTP 403 browser-verification challenge.",
-      "conference": "ICML",
-      "official_url": "https://icml.cc/virtual/2026/poster/64323",
-      "pdf_url": "https://openreview.net/pdf?id=OjeKfGXLOn",
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        },
-        {
-          "matched_text": "Codex CLI",
-          "product": "codex-cli"
-        }
-      ],
-      "title": "APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries"
-    },
-    {
-      "abstract_source_url": "https://icml.cc/virtual/2026/poster/66755",
-      "blocker": "official-source-challenge",
-      "blocker_reason": "The first-party full-text endpoint returned an HTTP 403 browser-verification challenge.",
-      "conference": "ICML",
-      "official_url": "https://icml.cc/virtual/2026/poster/66755",
-      "pdf_url": "https://openreview.net/pdf?id=0bTEd4LpQr",
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "Numina-Lean-Agent: An Open and General Agentic Reasoning System for Formal Mathematics"
-    },
-    {
-      "abstract_source_url": "https://icml.cc/virtual/2026/poster/63667",
-      "blocker": "official-source-challenge",
-      "blocker_reason": "The first-party full-text endpoint returned an HTTP 403 browser-verification challenge.",
-      "conference": "ICML",
-      "official_url": "https://icml.cc/virtual/2026/poster/63667",
-      "pdf_url": "https://openreview.net/pdf?id=UnjxMTe57e",
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        },
-        {
-          "matched_text": "Codex Max",
-          "product": "codex-cli"
-        }
-      ],
-      "title": "PostTrainBench: Can LLM Agents Automate LLM Post-Training?"
-    },
-    {
-      "abstract_source_url": "https://icml.cc/virtual/2026/poster/64552",
-      "blocker": "official-source-challenge",
-      "blocker_reason": "The first-party full-text endpoint returned an HTTP 403 browser-verification challenge.",
-      "conference": "ICML",
-      "official_url": "https://icml.cc/virtual/2026/poster/64552",
-      "pdf_url": "https://openreview.net/pdf?id=MHXIvy3bsb",
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models"
-    },
-    {
-      "abstract_source_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A",
-      "blocker": "official-pdf-not-exposed",
-      "blocker_reason": "The official conference record does not yet expose a first-party full-text PDF URL.",
-      "conference": "ISSTA",
-      "official_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A",
-      "pdf_url": null,
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment"
-    },
-    {
-      "abstract_source_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based",
-      "blocker": "official-pdf-not-exposed",
-      "blocker_reason": "The official conference record does not yet expose a first-party full-text PDF URL.",
-      "conference": "ISSTA",
-      "official_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based",
-      "pdf_url": null,
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair"
-    },
-    {
-      "abstract_source_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame",
-      "blocker": "official-pdf-not-exposed",
-      "blocker_reason": "The official conference record does not yet expose a first-party full-text PDF URL.",
-      "conference": "ISSTA",
-      "official_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame",
-      "pdf_url": null,
-      "signals": [
-        {
-          "matched_text": "Claude Code",
-          "product": "claude-code"
-        }
-      ],
-      "title": "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework"
-    }
-  ],
-  "pending_record_count": 2111,
-  "policy": "Only official conference/proceedings/OpenReview records are used. A title/abstract product hit prioritizes review but never qualifies a paper for inclusion by itself.",
-  "reviewed_at": "2026-08-25T08:59:16+00:00",
+  "high_priority_product_candidate_count": 0,
+  "high_priority_product_candidates": [],
+  "pending_record_count": 1013,
+  "policy": "Official conference/proceedings/OpenReview/publisher records establish acceptance. Identity-verified auxiliary copies may supply content evidence. A title/abstract hit never qualifies a paper by itself.",
+  "reviewed_at": "2026-08-25T14:46:08+00:00",
   "scope_year": 2026
 }

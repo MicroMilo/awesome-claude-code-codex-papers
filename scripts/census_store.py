@@ -94,6 +94,72 @@ def load_census(path: Path | None = None) -> dict[str, Any]:
     return result
 
 
+def load_conference(name: str, path: Path | None = None) -> dict[str, Any]:
+    """Load and checksum-verify one conference shard without parsing the census.
+
+    Conference enrichment jobs are intentionally shard-local.  Loading the
+    entire 20k-record YAML census for every checkpoint is both slow and makes
+    an interrupted venue refresh harder to recover from.
+    """
+
+    index_path = _resolve_index(path)
+    index = yaml.safe_load(index_path.read_text(encoding="utf-8")) or {}
+    entry = next(
+        (
+            item
+            for item in index.get("conference_files", [])
+            if isinstance(item, dict) and str(item.get("conference")) == name
+        ),
+        None,
+    )
+    if entry is None:
+        raise KeyError(f"conference is not present in census index: {name}")
+    relative_path = Path(str(entry.get("path", "")))
+    if relative_path.is_absolute() or ".." in relative_path.parts:
+        raise ValueError(f"unsafe conference path in census index: {relative_path}")
+    conference_path = index_path.parent / relative_path
+    raw = conference_path.read_bytes()
+    expected_hash = str(entry.get("sha256", ""))
+    actual_hash = hashlib.sha256(raw).hexdigest()
+    if expected_hash and expected_hash != actual_hash:
+        raise ValueError(f"checksum mismatch for {conference_path}")
+    conference = yaml.safe_load(raw)
+    if not isinstance(conference, dict) or conference.get("conference") != name:
+        raise ValueError(f"conference identity mismatch in {conference_path}")
+    return conference
+
+
+def write_conference(conference: dict[str, Any], path: Path | None = None) -> Path:
+    """Atomically update one shard and its checksum-index entry."""
+
+    name = str(conference.get("conference", ""))
+    if not name:
+        raise ValueError("conference shard must contain a conference name")
+    index_path = _resolve_index(path)
+    index = yaml.safe_load(index_path.read_text(encoding="utf-8")) or {}
+    entries = index.get("conference_files", [])
+    entry = next(
+        (
+            item
+            for item in entries
+            if isinstance(item, dict) and str(item.get("conference")) == name
+        ),
+        None,
+    )
+    if entry is None:
+        raise KeyError(f"conference is not present in census index: {name}")
+    relative_path = Path(str(entry.get("path", "")))
+    if relative_path.is_absolute() or ".." in relative_path.parts:
+        raise ValueError(f"unsafe conference path in census index: {relative_path}")
+    raw = _yaml_bytes(conference)
+    entry["record_count"] = len(conference.get("papers", []))
+    entry["sha256"] = hashlib.sha256(raw).hexdigest()
+    destination = index_path.parent / relative_path
+    _atomic_write(destination, raw)
+    _atomic_write(index_path, _yaml_bytes(index))
+    return destination
+
+
 def write_census(
     census: dict[str, Any],
     path: Path | None = None,

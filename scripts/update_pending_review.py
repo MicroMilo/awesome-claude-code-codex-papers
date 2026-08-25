@@ -5,7 +5,7 @@ The full census remains the source of truth.  This pass adds an explicit,
 auditable ``pending_review`` object to records whose official title or abstract
 already names Claude Code or Codex, and writes a compact JSON summary for
 humans and downstream website/report tooling.  It never promotes a paper and
-never treats arXiv as a full-text source.
+never treats an auxiliary copy as conference-acceptance evidence.
 """
 
 from __future__ import annotations
@@ -56,22 +56,31 @@ def direct_product_signals(paper: dict[str, Any]) -> list[dict[str, str]]:
 def blocker_for(paper: dict[str, Any]) -> tuple[str, str]:
     scan = paper.get("scan") if isinstance(paper.get("scan"), dict) else {}
     reason = normalized(paper.get("disposition_reason") or scan.get("reason"))
+    resolved_source = (
+        paper.get("resolved_content_source")
+        if isinstance(paper.get("resolved_content_source"), dict)
+        else {}
+    )
+    has_verified_content = bool(
+        paper.get("resolved_pdf_url") and resolved_source.get("identity_status") == "verified"
+    )
     challenge = bool(scan.get("challenge"))
     http_status = scan.get("http_status")
-    if challenge or http_status == 403 or "HTTP 403" in reason:
+    if (challenge or http_status == 403 or "HTTP 403" in reason) and not has_verified_content:
         return (
             "official-source-challenge",
-            "The first-party full-text endpoint returned an HTTP 403 browser-verification challenge.",
+            "The publisher full-text endpoint returned an HTTP 403 challenge and no identity-verified open copy has been resolved.",
         )
-    if not paper.get("pdf_url"):
+    if not paper.get("pdf_url") and not has_verified_content:
         return (
-            "official-pdf-not-exposed",
-            "The official conference record does not yet expose a first-party full-text PDF URL.",
+            "full-text-not-resolved",
+            "The official record proves acceptance, but no identity-verified full-text copy has been resolved yet.",
         )
     if paper.get("full_text_scan") == "pending":
         return (
             "full-text-scan-pending",
-            reason or "A first-party PDF exists, but the full-text scan has not completed.",
+            reason
+            or "An official or identity-verified full-text copy exists, but scanning has not completed.",
         )
     return ("manual-review-pending", reason or "The record still requires manual review.")
 
@@ -109,17 +118,16 @@ def main() -> int:
             affected_conferences.add(conference_name)
             paper["pending_review"] = {
                 "priority": "high",
-                "status": "blocked-official-full-text",
+                "status": "blocked-content-evidence",
                 "signals": signals,
                 "blocker": blocker,
                 "reason": blocker_reason,
                 "reviewed_at": reviewed_at,
-                "policy": "No catalog promotion until first-party full text and product-level experimental context are reviewed; arXiv is not a substitute.",
+                "policy": "No catalog promotion until product-level context is reviewed in official or identity-verified full text. Auxiliary copies never replace the official acceptance record.",
             }
             paper["disposition_reason"] = (
                 "High-priority product candidate from the official title/abstract. "
-                f"{blocker_reason} Remains pending until first-party full text can be reviewed; "
-                "arXiv is not used as a substitute."
+                f"{blocker_reason} It remains pending until product-level evidence can be reviewed."
             )
             high_priority.append(
                 {
@@ -127,6 +135,8 @@ def main() -> int:
                     "title": paper.get("title"),
                     "official_url": paper.get("details_url") or paper.get("official_url"),
                     "pdf_url": paper.get("pdf_url"),
+                    "resolved_pdf_url": paper.get("resolved_pdf_url"),
+                    "resolved_content_source": paper.get("resolved_content_source"),
                     "signals": signals,
                     "blocker": blocker,
                     "blocker_reason": blocker_reason,
@@ -157,7 +167,7 @@ def main() -> int:
             key=lambda item: (str(item["conference"]), str(item["title"]).casefold()),
         ),
         "conference_level_pending": conference_level_pending,
-        "policy": "Only official conference/proceedings/OpenReview records are used. A title/abstract product hit prioritizes review but never qualifies a paper for inclusion by itself.",
+        "policy": "Official conference/proceedings/OpenReview/publisher records establish acceptance. Identity-verified auxiliary copies may supply content evidence. A title/abstract hit never qualifies a paper by itself.",
     }
     census["pending_review_summary"] = {
         "reviewed_at": reviewed_at,

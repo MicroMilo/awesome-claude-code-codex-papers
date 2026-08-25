@@ -143,6 +143,7 @@ function renderPaperPage(paper: Paper) {
 
       <div class="record-links">
         <a class="primary" href="${escapeHtml(paper.paper_url)}">Official paper ↗</a>
+        ${paper.evidence.source_url && paper.evidence.source_url !== paper.paper_url ? `<a href="${escapeHtml(paper.evidence.source_url)}">Evidence copy (${escapeHtml(paper.evidence.source_version ?? "unknown version")}) ↗</a>` : ""}
         ${paper.artifact_url ? `<a href="${escapeHtml(paper.artifact_url)}">Artifact ↗</a>` : ""}
         <a href="${BASE_PATH}methods/#${escapeHtml(paper.id)}">Compare methods →</a>
       </div>

@@ -7,7 +7,7 @@ const REPOSITORY_URL =
   "https://github.com/MicroMilo/awesome-claude-code-codex-papers";
 const SKILL_URL = `${REPOSITORY_URL}/tree/main/skills/official-conference-paper-census`;
 const PROMPT =
-  "Use $official-conference-paper-census to build or audit an official conference paper census with metadata-first triage, resumable full-text evidence, and explicit included/excluded/pending/duplicate dispositions.";
+  "Use $official-conference-paper-census to build an official acceptance census, resolve identity-verified abstracts and full text, apply metadata-first triage, and retain explicit included/excluded/pending/duplicate evidence.";
 
 const copy = {
   en: {
@@ -19,35 +19,35 @@ const copy = {
     heroLead: "A conference crawler that knows when",
     heroAccent: "not to download the PDF.",
     heroDeck:
-      "The repository ships the exact skill behind its 2026 census: official-source collection, high-recall metadata triage, bounded PDF scanning, exact model extraction, and an auditable decision for every paper.",
+      "The repository ships the exact skill behind its 2026 census: official acceptance records, DOI-bound metadata, identity-verified open content, bounded candidate scanning, and an auditable decision for every paper.",
     openSkill: "Open the skill on GitHub ↗",
     copyPrompt: "Copy starter prompt",
     copied: "Prompt copied ✓",
     why: "Why use it",
     whyTitle: "The crawler is a protocol, not a pile of scraping scripts.",
     whyDeck:
-      "It keeps source authority, recall, download cost, and failure state separate. A blocked PDF remains pending; an unrelated abstract can be excluded without a PDF request; a product name is never treated as product-level evidence by itself.",
-    source: "Official source first",
-    sourceDeck: "Conference pages, proceedings, publishers, and official OpenReview records define the census.",
+      "It separates acceptance authority from content bytes, then keeps recall, download cost, and failure state explicit. A DOI-bound abstract can exclude an unrelated paper without a PDF request; a product name never becomes product evidence by itself.",
+    source: "Official acceptance first",
+    sourceDeck: "Conference pages, proceedings, publishers, and official OpenReview records define venue identity and the primary paper URL.",
     metadata: "Metadata before PDFs",
-    metadataDeck: "Every title and official abstract is screened before candidates enter the bounded PDF queue.",
+    metadataDeck: "Every title and identity-bound abstract is screened before candidates enter the bounded content queue.",
     audit: "Every record accounted for",
     auditDeck: "Included, excluded, pending, and duplicate decisions keep the missing papers visible.",
     workflow: "Five-stage workflow",
     stages: [
       ["01", "Freeze the official list", "Capture track scope, source URL, count, timestamp, and response hashes."],
-      ["02", "Screen official metadata", "Use a high-recall title/abstract filter; missing metadata stays pending."],
-      ["03", "Scan candidates only", "Fetch first-party PDFs with bounded concurrency, checkpoints, and host-aware retries."],
+      ["02", "Resolve and screen metadata", "Prefer first-party abstracts; otherwise bind OpenAlex metadata to the official DOI."],
+      ["03", "Scan candidates only", "Fetch official or identity-verified open copies with bounded retries, checkpoints, versions, and hashes."],
       ["04", "Review product context", "Separate Claude Code/Codex CLI use from APIs, citations, acknowledgements, and model-only use."],
       ["05", "Promote with evidence", "Preserve exact model strings, budgets, tools, source locations, caveats, and census disposition."],
     ],
     support: "Current venue support",
-    supportTitle: "Stable paths for 10 venues; honest pending states for the rest.",
+    supportTitle: "Stable census paths for 12 venues; one accepted list still pending.",
     stable: "Stable end to end",
-    gated: "Stable metadata; PDF publication or host gated",
+    gated: "Stable census/metadata; candidate content availability gated",
     pending: "Registered / pending adapter or list",
     availability:
-      "“Stable” describes a bounded, resumable first-party path. It does not promise that a venue has published every 2026 artifact.",
+      "“Stable” means official acceptance identity plus a bounded, resumable content path. Open copies may provide bytes, never venue status.",
     start: "Start from the protocol",
     startDeck:
       "Clone the repository, open the skill directory in your coding-agent workspace, and use this prompt. The skill links every adapter, audit invariant, and recovery path it expects the agent to follow.",
@@ -68,35 +68,35 @@ const copy = {
     heroLead: "一个知道什么时候",
     heroAccent: "不该下载 PDF 的会议爬虫。",
     heroDeck:
-      "仓库直接提供生成 2026 census 的会议采集 Skill：一手来源收集、高召回 metadata 初筛、限速全文扫描、准确模型抽取，以及每篇论文都可审计的处理结果。",
+      "仓库直接提供生成 2026 census 的会议采集 Skill：官方接收记录、DOI 绑定 metadata、身份验证过的开放全文、限速候选扫描，以及每篇论文都可审计的处理结果。",
     openSkill: "在 GitHub 打开 Skill ↗",
     copyPrompt: "复制启动 Prompt",
     copied: "Prompt 已复制 ✓",
     why: "为什么值得复用",
     whyTitle: "它是一套采集协议，不是一堆临时爬虫脚本。",
     whyDeck:
-      "它把来源权威性、召回率、下载成本和失败状态分开处理。PDF 受阻会保留 pending；明显无关的摘要可以不下载 PDF；只出现产品名不会被误判成产品级证据。",
-    source: "一手来源优先",
-    sourceDeck: "会议官网、正式 proceedings、出版平台和官方 OpenReview 记录定义全集。",
+      "它把会议身份与内容字节分开，再把召回率、下载成本和失败状态显式记录。DOI 绑定摘要可以先排除无关论文；只出现产品名不会被误判成产品级证据。",
+    source: "官方接收来源优先",
+    sourceDeck: "会议官网、正式 proceedings、出版平台和官方 OpenReview 记录定义会议身份与主论文 URL。",
     metadata: "先 metadata，后 PDF",
-    metadataDeck: "先筛每篇标题与官方摘要，再把候选送进有并发上限的 PDF 队列。",
+    metadataDeck: "先筛每篇标题与身份绑定摘要，再把候选送进有并发上限的全文队列。",
     audit: "每条记录都有去向",
     auditDeck: "included、excluded、pending、duplicate 都会保留，不能静默丢论文。",
     workflow: "五阶段工作流",
     stages: [
       ["01", "冻结官方清单", "记录 track 范围、来源 URL、数量、时间戳和响应哈希。"],
-      ["02", "筛选官方 metadata", "使用高召回标题/摘要规则；metadata 缺失就保持 pending。"],
-      ["03", "只扫描候选全文", "按 host 限速抓取一手 PDF，并使用断点、检查点和受控重试。"],
+      ["02", "解析并筛选 metadata", "优先官方摘要；缺失时通过官方 DOI 绑定 OpenAlex metadata。"],
+      ["03", "只扫描候选全文", "限速获取官方或身份验证过的开放副本，并保存断点、版本和哈希。"],
       ["04", "审核产品上下文", "区分 Claude Code/Codex CLI 产品使用与 API、引用、致谢和模型名命中。"],
       ["05", "携证据导入", "保留准确模型、预算、工具、证据位置、限制条件和 census disposition。"],
     ],
     support: "当前会议支持",
-    supportTitle: "10 个会议已有稳定路径，其余会议诚实保留 pending。",
+    supportTitle: "12 个会议已有稳定 census 路径，另 1 个仍等待接收清单。",
     stable: "端到端稳定",
-    gated: "metadata 稳定；PDF 受发布时间或 host 限制",
+    gated: "census/metadata 稳定；候选全文受可用性限制",
     pending: "已注册 / 等待 adapter 或官方清单",
     availability:
-      "“稳定”表示存在限速、可恢复的一手来源路径，不代表会议已经公开全部 2026 artifact。",
+      "“稳定”表示官方会议身份与限速、可恢复的内容路径都明确；开放副本只能提供内容，不能证明接收。",
     start: "从协议开始",
     startDeck:
       "克隆仓库，在 coding agent 工作区打开 Skill 目录，再使用下面的 Prompt。Skill 已链接所需 adapter、审计不变量和失败恢复路径。",
@@ -153,7 +153,7 @@ export function SkillPage() {
           </div>
         </div>
         <aside className="skill-state-machine" aria-label="Metadata-first decision rule">
-          <span>official title + abstract</span>
+          <span>official title + identity-bound abstract</span>
           <div><strong>no signal</strong><small>excluded · no PDF</small></div>
           <div><strong>relevant signal</strong><small>candidate · scan PDF</small></div>
           <div><strong>missing / failed</strong><small>pending · no inference</small></div>
@@ -188,9 +188,9 @@ export function SkillPage() {
           <h2>{t.supportTitle}</h2>
         </header>
         <div className="support-ledger">
-          <article data-status="stable"><span>{t.stable}</span><strong>ICLR · AAAI</strong></article>
-          <article data-status="gated"><span>{t.gated}</span><strong>ASE · FSE · ISSTA · ICSE · ICML · PLDI · POPL · OOPSLA</strong></article>
-          <article data-status="pending"><span>{t.pending}</span><strong>NeurIPS · IJCAI · KDD</strong></article>
+          <article data-status="stable"><span>{t.stable}</span><strong>ICLR · AAAI · IJCAI</strong></article>
+          <article data-status="gated"><span>{t.gated}</span><strong>ASE · FSE · ISSTA · ICSE · ICML · KDD · PLDI · POPL · OOPSLA</strong></article>
+          <article data-status="pending"><span>{t.pending}</span><strong>NeurIPS</strong></article>
         </div>
         <p className="support-note">{t.availability}</p>
       </section>

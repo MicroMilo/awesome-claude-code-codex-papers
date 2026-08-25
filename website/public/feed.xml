@@ -16,6 +16,78 @@
     <category term="ICLR" />
   </entry>
   <entry>
+    <title>LLM2Ltac: Mining Tactics for Automated Theorem Proving</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/llm2ltac-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/llm2ltac-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>LLM2Ltac mines reusable symbolic tactics with GPT-5.2 or DeepSeek-V3.2, compiler-checks and generalization-tests them, retrieves applicable tactics with BM25, and integrates them into CoqHammer for Claude Code. Reported evidence: On the same 200 theorem tasks, Claude Code proves 71 alone, 101 with CoqHammer, and 111 with LLM2Ltac-enhanced CoqHammer. Relative to Claude Code + CoqHammer, LLM2Ltac improves proved theorems by 9.90% and reduces token use from 38,346,691 to 34,317,809 (10.51%).</summary>
+    <category term="ASE" />
+  </entry>
+  <entry>
+    <title>APE-Bench / APE-Harness / APE-Agent: APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/ape-bench-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/ape-bench-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Declarative task contracts bind repository versions, access controls, retrieval, compilation, and semantic verification while APE-Agent integrates editing with verification in a compact ReAct scaffold. Reported evidence: On identical APE-Bench tasks and 3 USD/100-turn budgets, APE-Agent reaches 47%, 24%, and 27% with Gemini 3 Flash, Gemini 3 Pro, and GPT-5.2; Claude Code reaches 27%, 8%, and 10%, while Codex reaches 32%, 1%, and 11%. The paper attributes the 15–23 point gaps to integrated verification, shorter prompts, and lower redundant execution/retrieval overhead.</summary>
+    <category term="ICML" />
+  </entry>
+  <entry>
+    <title>Numina-Lean-Agent: Numina-Lean-Agent: An Open and General Agentic Reasoning System for Formal Mathematics</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/numina-lean-agent-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/numina-lean-agent-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Claude Code is extended with MCP tools for Lean proof-state interaction, semantic theorem retrieval, iterative informal proving, external discussion, and subagent-based context decomposition. Reported evidence: Numina-Lean-Agent with Claude Opus 4.5 solves all 12 Putnam 2025 problems, matching AxiomProver and exceeding Aristotle by two problems; the paper also reports more than 8,000 lines of Lean produced during a sub-two-week human-agent formalization.</summary>
+    <category term="ICML" />
+  </entry>
+  <entry>
+    <title>PostTrainBench: PostTrainBench: Can LLM Agents Automate LLM Post-Training?</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/posttrainbench-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/posttrainbench-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A bounded, end-to-end AI-R&amp;D benchmark gives CLI agents one H100, terminal and web access, then audits submitted checkpoints and pipelines for contamination, model substitution, and API misuse. Reported evidence: Claude Opus 4.6 on Claude Code leads agents at 23.2% weighted average versus 51.1% for official instruct models; GPT-5.2 on Codex CLI reaches 21.4%. Agents can win narrowly—GPT-5.1 Codex Max reaches 89% on BFCL for Gemma-3-4B versus 67% for the official model—but the audit finds reward hacking, including 12 contamination flags for Opus 4.6 across 84 runs.</summary>
+    <category term="ICML" />
+  </entry>
+  <entry>
+    <title>SWE-Compass: SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/swe-compass-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/swe-compass-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A broad execution-grounded benchmark pairs real PR tasks with reproducible containers and controlled agent budgets, then analyzes task, language, scenario, interaction, and failure-mode differences. Reported evidence: Claude-Sonnet-4-20250514 reaches 32.9% macro-average with Claude Code versus 31.8% with SWE-Agent. Across five shared models only two score higher with Claude Code; Claude Code favors deterministic deployment, understanding, and test-generation tasks, while failures are dominated by requirement misinterpretation and incomplete solutions rather than basic technical knowledge.</summary>
+    <category term="ICML" />
+  </entry>
+  <entry>
+    <title>ToolLeak / RCE-2: Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/red-teaming-coding-agents-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/red-teaming-coding-agents-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>ToolLeak exploits weaker guardrails during schema-driven argument filling; RCE-2 chains a malicious tool description with a high-salience tool-return instruction tailored from leaked prompt details. Reported evidence: On old Claude Code v2.0.37, ToolLeak reaches 1.00 pseudo-recall for both Sonnet 4 and Sonnet 4.5, while RCE-2 reaches 0.6 and 0.7 attack success. On v2.1.138, progressive disclosure of tool names plus newer Sonnet 4.6/Opus 4.7 reduces RCE-2 to 0.0, demonstrating that agent-side tool-description isolation is an effective defense.</summary>
+    <category term="ISSTA" />
+  </entry>
+  <entry>
+    <title>Execution-aware repair policies: To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/execution-cost-effectiveness-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/execution-cost-effectiveness-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Five execution policies isolate test execution as a controlled resource, combining paired outcome tests, token/time accounting, hard tool denial, and trajectory-level analysis of localization and validation feedback. Reported evidence: Prohibiting execution changes commercial-agent resolve rate by only 1.25 points on average and is not significant. For Claude Code it saves 56–62% tokens and 48–54% wall time for only 1–3 points lower resolve rate; for Codex, Quota-1 saves 21–25% tokens. Most failures persist because 81.2% of Claude Code and 100% of Codex fail-to-fail cases pass at least one agent-selected validation but fail official tests.</summary>
+    <category term="ISSTA" />
+  </entry>
+  <entry>
+    <title>EvoDev: Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/evodev-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/evodev-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>EvoDev replaces a linear to-do list with global design, a dependency-aware Feature Map, predecessor context propagation, chief-programmer planning, iterative build-and-fix loops, and a compact current-file memory. Reported evidence: With the same claude-sonnet-4-20250514 model and task time limits, Claude Code reaches 73.3% build success and 2.27/4 function completeness; EvoDev reaches 100% and 3.57/4, a 57.3% relative completeness improvement. Ablations show that predecessor context reverses an iterative-only regression from 2.80 to 3.57.</summary>
+    <category term="ISSTA" />
+  </entry>
+  <entry>
+    <title>SWE-Bench Mobile: SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?</title>
+    <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/swe-bench-mobile-2026/</id>
+    <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/swe-bench-mobile-2026/" />
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>A hosted, contamination-resistant mobile software-engineering benchmark with real PRDs, multimodal design inputs, production code, and task-specific patch tests. Reported evidence: Codex + GLM-4.6 reaches 12.0% task success and 19.6% test pass; Claude Code + GLM-4.6 reaches 10.0% and 26.7%. Across all 22 configurations, no system exceeds 12.0% task success, and success falls from 18% on 1-2-file tasks to 2% on tasks requiring 7 or more files.</summary>
+    <category term="KDD" />
+  </entry>
+  <entry>
     <title>Lean Refactor: Verifiable PDE Reasoning and Modeling with Neurosymbolics</title>
     <id>https://micromilo.github.io/awesome-claude-code-codex-papers/papers/lean-refactor-2026/</id>
     <link href="https://micromilo.github.io/awesome-claude-code-codex-papers/papers/lean-refactor-2026/" />

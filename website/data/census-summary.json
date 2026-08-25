@@ -1,6 +1,6 @@
 {
   "scope_year": 2026,
-  "last_audited_at": "2026-08-25T08:59:16+00:00",
+  "last_audited_at": "2026-08-25T14:46:08+00:00",
   "official_record_count": 20673,
   "conference_series_count": 13,
   "published_conference_count": 12,
@@ -11,11 +11,11 @@
       "list_url": "https://conf.researchr.org/track/ase-2026/ase-2026-research-track",
       "status": "accepted-list",
       "total": 263,
-      "included": 0,
+      "included": 1,
       "excluded": 35,
-      "pending": 228,
+      "pending": 227,
       "duplicate": 0,
-      "scanned": 3
+      "scanned": 4
     },
     {
       "conference": "FSE",
@@ -24,10 +24,10 @@
       "status": "accepted-list",
       "total": 211,
       "included": 0,
-      "excluded": 134,
-      "pending": 77,
+      "excluded": 140,
+      "pending": 71,
       "duplicate": 0,
-      "scanned": 32
+      "scanned": 38
     },
     {
       "conference": "ISSTA",
@@ -35,11 +35,11 @@
       "list_url": "https://conf.researchr.org/track/issta-2026/issta-2026-research-papers",
       "status": "accepted-list",
       "total": 210,
-      "included": 0,
+      "included": 3,
       "excluded": 126,
-      "pending": 84,
+      "pending": 81,
       "duplicate": 0,
-      "scanned": 5
+      "scanned": 8
     },
     {
       "conference": "ICSE",
@@ -48,10 +48,10 @@
       "status": "accepted-list",
       "total": 321,
       "included": 0,
-      "excluded": 227,
-      "pending": 94,
+      "excluded": 230,
+      "pending": 91,
       "duplicate": 0,
-      "scanned": 29
+      "scanned": 32
     },
     {
       "conference": "ICML",
@@ -59,11 +59,11 @@
       "list_url": "https://icml.cc/Downloads/2026",
       "status": "official-list",
       "total": 6628,
-      "included": 1,
+      "included": 5,
       "excluded": 6428,
-      "pending": 199,
+      "pending": 195,
       "duplicate": 0,
-      "scanned": 1
+      "scanned": 5
     },
     {
       "conference": "ICLR",
@@ -119,11 +119,11 @@
       "list_url": "https://kdd2026.kdd.org/papers/",
       "status": "official-proceedings",
       "total": 1415,
-      "included": 0,
-      "excluded": 0,
-      "pending": 1408,
+      "included": 1,
+      "excluded": 1078,
+      "pending": 329,
       "duplicate": 7,
-      "scanned": 0
+      "scanned": 10
     },
     {
       "conference": "PLDI",
@@ -132,8 +132,8 @@
       "status": "accepted-list",
       "total": 106,
       "included": 0,
-      "excluded": 102,
-      "pending": 4,
+      "excluded": 103,
+      "pending": 3,
       "duplicate": 0,
       "scanned": 0
     },
@@ -144,8 +144,8 @@
       "status": "accepted-list",
       "total": 92,
       "included": 0,
-      "excluded": 91,
-      "pending": 1,
+      "excluded": 92,
+      "pending": 0,
       "duplicate": 0,
       "scanned": 0
     },

@@ -89,7 +89,7 @@ REGISTRY: list[dict[str, object]] = [
         "parser": "researchr",
         "status": "accepted-list",
         "tracks": ["Research papers"],
-        "notes": "The official track page exposes the accepted-paper list; papers without a first-party full-text link remain pending.",
+        "notes": "The official track page exposes the accepted-paper list; unresolved full text remains pending until an official or identity-verified copy is found.",
     },
     {
         "conference": "ICSE",
@@ -109,7 +109,7 @@ REGISTRY: list[dict[str, object]] = [
         "parser": "virtual",
         "status": "official-list",
         "tracks": ["Main Conference posters"],
-        "notes": "The official ICML downloads page exposes the 2026 poster list. An official PDF URL is not exposed by every poster record; no arXiv fallback is used.",
+        "notes": "The official ICML downloads page exposes the 2026 poster list. An official PDF URL is not exposed by every poster record; auxiliary content requires a separate identity check.",
     },
     {
         "conference": "ICLR",
@@ -160,7 +160,7 @@ REGISTRY: list[dict[str, object]] = [
         "parser": "kdd",
         "status": "official-proceedings",
         "tracks": list(KDD_TRACK_LABELS.values()),
-        "notes": "The official KDD papers page exposes both 2026 submission cycles, track labels, authors, and ACM DOI records. The page does not expose abstracts, so records without a strong title signal remain pending under the metadata-first policy.",
+        "notes": "The official KDD papers page exposes both 2026 submission cycles, track labels, authors, and ACM DOI records. DOI-bound scholarly metadata supplies abstract triage; unresolved candidate full text remains pending.",
     },
     {
         "conference": "PLDI",
@@ -553,7 +553,7 @@ def initial_disposition(record: dict[str, object], conference: str) -> tuple[str
     if not record.get("pdf_url"):
         return (
             "pending",
-            "Official conference record found, but no first-party full-text PDF URL was exposed by the source adapter; arXiv is not used as a substitute.",
+            "Official conference record found, but no official or identity-verified auxiliary full-text URL has been resolved yet.",
         )
     return (
         "pending",

@@ -53,6 +53,30 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
         },
       },
       {
+        paperId: "swe-bench-mobile-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "On production mobile features, no configuration exceeds 12% task success, and success falls from 18% for 1-2-file tasks to 2% for tasks touching 7 or more files.",
+          zh: "在生产级移动端功能任务上，所有配置最高只有 12% 完整成功率；当任务从修改 1-2 个文件增长到 7 个以上文件时，成功率从 18% 降到 2%。",
+        },
+      },
+      {
+        paperId: "evodev-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "With the same Claude snapshot and task time limits, a feature dependency map and predecessor context raise function completeness from Claude Code's 2.27/4 to 3.57/4; removing predecessor context makes iterative development regress.",
+          zh: "在相同 Claude snapshot 和任务时限下，特征依赖图与前序上下文把功能完整度从 Claude Code 的 2.27/4 提升到 3.57/4；去掉前序上下文后，迭代开发反而退化。",
+        },
+      },
+      {
+        paperId: "swe-compass-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Across 2,000 repository tasks, Claude Code failures are dominated by requirement misinterpretation and incomplete solutions, while performance varies sharply by task type and language.",
+          zh: "在 2,000 个仓库任务中，Claude Code 的主要失败不是基础语法，而是需求误解与方案不完整；表现还会随任务类型和语言显著波动。",
+        },
+      },
+      {
         paperId: "rpg-zerorepo-2026",
         weight: "diagnostic",
         inference: {
@@ -110,6 +134,14 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
           zh: "即使使用 coding-agent harness，功能成功率仍只有 6.93%，说明问题超出了单纯代码生成，落在集成与生命周期上。",
         },
       },
+      {
+        paperId: "posttrainbench-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Under a ten-hour single-H100 budget, the best Claude Code and Codex configurations remain far below official instruction-tuned models overall, and some apparent wins rely on reward hacking or contamination.",
+          zh: "在单张 H100、10 小时预算下，最佳 Claude Code/Codex 配置的整体表现仍远低于官方指令微调模型，而且部分表面胜利来自 reward hacking 或污染。",
+        },
+      },
     ],
   },
   {
@@ -142,6 +174,14 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
         inference: {
           en: "Grounded retrieval and an executable CodeQL validator raise correct-query synthesis from the Claude Code-only ablation's 10% to 53.4%.",
           zh: "领域检索与可执行 CodeQL 验证器，把 Claude Code-only 消融中的 10% 提升到 53.4%。",
+        },
+      },
+      {
+        paperId: "red-teaming-coding-agents-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Tool-description isolation is not cosmetic: progressive disclosure in newer Claude Code configurations reduces the reported RCE-2 attack success from 0.6-0.7 to 0.0.",
+          zh: "工具描述隔离并非表面改动：新版 Claude Code 的渐进式披露把论文报告的 RCE-2 攻击成功率从 0.6-0.7 降到 0.0。",
         },
       },
       {
@@ -208,26 +248,42 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
     id: "structured-search",
     number: "05",
     domain: {
-      en: "Open-ended search and science",
-      zh: "开放式搜索与科学任务",
+      en: "Formal reasoning and open-ended search",
+      zh: "形式化推理与开放式搜索",
     },
     title: {
-      en: "Open-ended discovery rewards explicit search state.",
-      zh: "开放式探索更依赖显式搜索状态。",
+      en: "Search works when state and verification are explicit.",
+      zh: "搜索过程只有把状态与验证显式化，才更可靠。",
     },
     thesis: {
-      en: "A conversational trajectory is a poor substitute for an experiment ledger, population, or persistent findings memory. Structured exploration can preserve diversity, revisit evidence, and separate generation from evaluation.",
-      zh: "一条不断变长的对话轨迹，不能替代实验账本、候选种群或持久化 findings memory。结构化探索能保留多样性、回访证据，并把生成与评估分开。",
+      en: "A conversational trajectory is a poor substitute for a verified proof state, tactic library, experiment ledger, population, or persistent findings memory. Structured exploration preserves alternatives and separates generation from evaluation.",
+      zh: "一条不断变长的对话轨迹，不能替代经验证的证明状态、策略库、实验账本、候选种群或持久化 findings memory。结构化探索能保留备选路径，并把生成与评估分开。",
     },
     whatWorks: {
-      en: "Evolutionary search, executable scoring, persistent findings memory, Bayesian exploration, and explicit novelty comparison.",
-      zh: "进化搜索、可执行评分、持久化 findings memory、贝叶斯探索，以及显式 novelty 比较。",
+      en: "Compiler-checked tactics, semantic retrieval, compact agent contracts, evolutionary search, executable scoring, persistent findings memory, and explicit novelty comparison.",
+      zh: "编译器验证的策略、语义检索、紧凑 agent 契约、进化搜索、可执行评分、持久化 findings memory，以及显式 novelty 比较。",
     },
     caution: {
       en: "DeepScientist and InnoGym use Claude Code or Codex as host components. They inform workflow design but are not evidence that the host product was beaten.",
       zh: "DeepScientist 和 InnoGym 把 Claude Code 或 Codex 当作宿主组件。它们能启发工作流设计，但不能证明宿主产品被击败。",
     },
     evidence: [
+      {
+        paperId: "ape-bench-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Across the same models and 3 USD/100-turn task caps, a compact scaffold with integrated verification beats both product scaffolds by 15-23 percentage points.",
+          zh: "在相同模型和每题 3 美元/100 轮上限下，集成验证的紧凑 scaffold 比两款产品 scaffold 高 15-23 个百分点。",
+        },
+      },
+      {
+        paperId: "llm2ltac-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Compiler-checked, generalization-tested symbolic tactics raise Claude Code + CoqHammer from 101 to 111 solved theorems on the same 200 tasks while using 10.51% fewer tokens.",
+          zh: "经编译与泛化测试的符号策略，在同一批 200 个任务上把 Claude Code + CoqHammer 从 101 个成功提升到 111 个，同时少用 10.51% token。",
+        },
+      },
       {
         paperId: "scaling-laws-2026",
         weight: "diagnostic",
@@ -242,6 +298,14 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
         inference: {
           en: "Persistent findings and staged hypothesis/evaluation loops show how Claude Code can be embedded as an executor in a larger research controller.",
           zh: "持久化 findings 与分阶段假设/评估循环，展示了如何把 Claude Code 作为执行器嵌入更大的研究控制器。",
+        },
+      },
+      {
+        paperId: "numina-lean-agent-2026",
+        weight: "context",
+        inference: {
+          en: "Claude Code acts as the host for proof-state tools, semantic retrieval, discussion, and subagent decomposition; the result supports the surrounding workflow, not a claim that Claude Code itself was beaten.",
+          zh: "Claude Code 在这里承载证明状态工具、语义检索、讨论和子 agent 分解；它支持的是外围工作流设计，不能被读成 Claude Code 本身被击败。",
         },
       },
       {
@@ -292,6 +356,14 @@ export const INSIGHT_DEFINITIONS: InsightDefinition[] = [
         inference: {
           en: "Codex reaches 62.9% and Claude Code 52.1%, preventing the synthesis from turning into a blanket claim that these products cannot execute real tasks.",
           zh: "Codex 达到 62.9%、Claude Code 达到 52.1%，因此不能把结论泛化成“这些产品无法执行真实任务”。",
+        },
+      },
+      {
+        paperId: "execution-cost-effectiveness-2026",
+        weight: "diagnostic",
+        inference: {
+          en: "Removing execution changes resolve rate by only 1.25 points on average; many failed repairs pass an agent-selected check but fail the official test, so test selection matters more than simply having a shell.",
+          zh: "禁用执行后平均解决率只变化 1.25 个百分点；许多失败补丁通过了 agent 自选检查却未通过官方测试，因此测试选择比“有没有 shell”更关键。",
         },
       },
     ],

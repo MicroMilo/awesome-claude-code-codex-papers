@@ -41,62 +41,71 @@ iclr_product_hit_review:
   policy: Recall-oriented full-text hits require context review; incidental/reference/author-assistance mentions are excluded
     from the main catalog.
 non_iclr_product_hit_review:
-  reviewed_at: '2026-08-25T08:55:49+00:00'
-  product_hit_count: 6
-  promote_after_catalog_review: 1
+  reviewed_at: '2026-08-25T14:43:40+00:00'
+  product_hit_count: 15
+  promote_after_catalog_review: 10
   excluded_after_context_review: 5
   policy: Every non-ICLR product-string hit must be mapped to an explicit context review before finalization.
-last_audited_at: '2026-08-25T08:59:16+00:00'
+last_audited_at: '2026-08-25T14:46:08+00:00'
 catalog_ids:
+- ape-bench-2026
 - appforge-2026
 - artemis-2026
 - cybergym-2026
 - deepscientist-2026
 - devops-gym-2026
+- evodev-2026
+- execution-cost-effectiveness-2026
 - featurebench-2026
 - formact-2026
 - helmsman-2026
 - innogym-2026
 - lean-refactor-2026
+- llm2ltac-2026
+- numina-lean-agent-2026
+- posttrainbench-2026
 - qlcoder-2026
+- red-teaming-coding-agents-2026
 - rpg-zerorepo-2026
 - scaling-laws-2026
+- swe-bench-mobile-2026
+- swe-compass-2026
 - terminal-bench-2-2026
 official_metadata_enrichment:
   updated_at: '2026-08-25T04:10:59+00:00'
   policy: Only official conference, proceedings, publisher, or official OpenReview pages are queried; missing metadata remains
     pending.
 pending_review_summary:
-  reviewed_at: '2026-08-25T08:59:16+00:00'
-  pending_record_count: 2111
-  high_priority_product_candidate_count: 8
+  reviewed_at: '2026-08-25T14:46:08+00:00'
+  pending_record_count: 1013
+  high_priority_product_candidate_count: 0
   blocker_counts:
-    full-text-scan-pending: 1410
-    official-pdf-not-exposed: 476
-    official-source-challenge: 225
+    full-text-not-resolved: 472
+    full-text-scan-pending: 342
+    official-source-challenge: 199
   summary_path: data/audit/2026-pending-summary.json
 storage_format: per-conference-v1
 conference_files:
 - conference: ASE
   path: ase.yaml
   record_count: 263
-  sha256: bcda0be7939dab3e1ee52f92295db9768ee6cd4b990269a991ee20ee609d3ccc
+  sha256: 49a1142c5293c79c79f232490d5ad55182d6d8c5bde03a78472ed64aa6869859
 - conference: FSE
   path: fse.yaml
   record_count: 211
-  sha256: 2ecd69cd97573279d9cf70dc94a1d55753aca36cabb86d6f430c2ef5c3142737
+  sha256: 543845dc3052867399158ccd460b210d459e0679035892a1a5246d52cb826160
 - conference: ISSTA
   path: issta.yaml
   record_count: 210
-  sha256: d6d9ae1f5f3bfd780b2c9b23f22f6310fd1fe7707fdcb41737b8073a19b85070
+  sha256: ce1811577686ed7d61ad10a1007506e3bd248105c96fd06f429ed091eed8f444
 - conference: ICSE
   path: icse.yaml
   record_count: 321
-  sha256: ffe332a7114d78158e31f374758c9cd58f499233f27f360a56db44a4ebd7dda9
+  sha256: a9f37641cd8c27d1f3c4fe5769df4bc33577b15bb5388582b421bb015c03285c
 - conference: ICML
   path: icml.yaml
   record_count: 6628
-  sha256: 85afbf0f7f00bba2396341f6a312582c97d06f8e77236c778ebf19f63374df25
+  sha256: f61bffa3b790d8dbff6c655f6b1257e4604bde45cb21ebf3d9d0a331ff7651b1
 - conference: ICLR
   path: iclr.yaml
   record_count: 5351
@@ -112,20 +121,20 @@ conference_files:
 - conference: IJCAI
   path: ijcai.yaml
   record_count: 989
-  sha256: 3170f4c2d34a51703e9544de938df340d75139768fb9a3e0b1588b38afbd8a49
+  sha256: fa543df075869b207593499e58872251feaa60e8d2c06105eeabf43e921ce6e5
 - conference: KDD
   path: kdd.yaml
   record_count: 1415
-  sha256: af4771feb7dddcf9d9b90640caf1e08e046cb0bc226fece1cabc6e50c9959a15
+  sha256: 96a7c693b7e63920efb0354d1ed67e11780bba097e6bfb2f6e3e9623959f9d47
 - conference: PLDI
   path: pldi.yaml
   record_count: 106
-  sha256: 4266ca0578480e77a64a3a9bdcd17c57ea63197602ec48077ffe8add85724ac5
+  sha256: 1e5dbbe65e8dc0b135e6947887f1cb9aa64689d0081ca6eec61b6d9f37288bcf
 - conference: POPL
   path: popl.yaml
   record_count: 92
-  sha256: 31211b1e6ee26c6b76c75d35cdbd7cea377a2e6fd554f0995bd8d8e391af4b05
+  sha256: 4e2af6388650b7e89ac13cc583162da7a5d2ca2dc8d8a7599ecea9bee855ff21
 - conference: OOPSLA
   path: oopsla.yaml
   record_count: 167
-  sha256: b60d888c7b72c95ed0a4a08cbfa834c37f18e61d4828248ee248298993772994
+  sha256: 9b5ce9ff4ce97db7383d30c789e245dccee2b0e711069c5f86c9d69841de5e86

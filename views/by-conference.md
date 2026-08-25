@@ -7,6 +7,11 @@
 Conference is a standardized series label used for filtering.
 Exact tracks and proceedings names remain in the venue field.
 
+## ASE (1)
+
+| System | Exact venue / track | Year | Status | Evidence class |
+|---|---|---|---|---|
+| [LLM2Ltac](../papers/llm2ltac-2026.md) | ASE Research Papers | 2026 | main | Direct comparison |
 ## ICLR (12)
 
 | System | Exact venue / track | Year | Status | Evidence class |
@@ -23,13 +28,29 @@ Exact tracks and proceedings names remain in the venue field.
 | [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference | 2026 | dataset-benchmark | Evaluation only |
 | [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference | 2026 | dataset-benchmark | Evaluation only |
 | [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference | 2026 | main | Direct comparison |
-## ICML (1)
+## ICML (5)
 
 | System | Exact venue / track | Year | Status | Evidence class |
 |---|---|---|---|---|
+| [APE-Bench / APE-Harness / APE-Agent](../papers/ape-bench-2026.md) | ICML Main Conference | 2026 | dataset-benchmark | Direct comparison |
 | [FormAct](../papers/formact-2026.md) | ICML Main Conference | 2026 | main | Direct comparison |
+| [Numina-Lean-Agent](../papers/numina-lean-agent-2026.md) | ICML Main Conference | 2026 | main | Related method |
+| [PostTrainBench](../papers/posttrainbench-2026.md) | ICML Main Conference | 2026 | dataset-benchmark | Evaluation only |
+| [SWE-Compass](../papers/swe-compass-2026.md) | ICML Main Conference | 2026 | dataset-benchmark | Evaluation only |
+## ISSTA (3)
+
+| System | Exact venue / track | Year | Status | Evidence class |
+|---|---|---|---|---|
+| [EvoDev](../papers/evodev-2026.md) | ISSTA Research Papers | 2026 | main | Direct comparison |
+| [Execution-aware repair policies](../papers/execution-cost-effectiveness-2026.md) | ISSTA Research Papers | 2026 | main | Direct comparison |
+| [ToolLeak / RCE-2](../papers/red-teaming-coding-agents-2026.md) | ISSTA Research Papers | 2026 | main | Evaluation only |
 ## IJCAI (1)
 
 | System | Exact venue / track | Year | Status | Evidence class |
 |---|---|---|---|---|
 | [Lean Refactor](../papers/lean-refactor-2026.md) | IJCAI-ECAI 2026 Early Career Spotlight | 2026 | conference | Direct comparison |
+## KDD (1)
+
+| System | Exact venue / track | Year | Status | Evidence class |
+|---|---|---|---|---|
+| [SWE-Bench Mobile](../papers/swe-bench-mobile-2026.md) | KDD 2026 Applied Data Science Track (July Cycle) | 2026 | dataset-benchmark | Evaluation only |

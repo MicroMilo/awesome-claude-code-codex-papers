@@ -19,7 +19,7 @@ from scripts.fetch_iclr_sources import (
     parse_proceedings_index,
 )
 from scripts.metadata_relevance import SCREEN_VERSION, screen_metadata
-from scripts.scan_conference_fulltext import scan_record, update_census
+from scripts.scan_conference_fulltext import scan_record, select_pdf_source, update_census
 from scripts.source_fetcher import (
     FetchError,
     JsonlLedger,
@@ -136,6 +136,20 @@ def test_pending_review_prioritizes_product_signal_without_promoting() -> None:
         {"product": "codex-cli", "matched_text": "Codex CLI"},
     ]
     assert blocker_for(paper)[0] == "official-source-challenge"
+
+
+def test_verified_open_content_unblocks_a_publisher_challenge() -> None:
+    paper = {
+        "resolved_pdf_url": "https://arxiv.org/pdf/2601.00001",
+        "resolved_content_source": {"identity_status": "verified"},
+        "full_text_scan": "pending",
+        "scan": {"challenge": True, "http_status": 403},
+    }
+
+    blocker, reason = blocker_for(paper)
+
+    assert blocker == "full-text-scan-pending"
+    assert "identity-verified" in reason
 
 
 def test_acm_pdf_url_is_derived_only_from_an_official_acm_doi() -> None:
@@ -389,6 +403,28 @@ def test_fulltext_scanner_uses_shared_fetcher(monkeypatch: pytest.MonkeyPatch) -
     assert result["fetch"]["sha256"]
 
 
+def test_fulltext_scanner_prefers_identity_verified_auxiliary_content() -> None:
+    record = {
+        "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/1.2",
+        "resolved_pdf_url": "https://arxiv.org/pdf/2601.00001",
+        "content_sources": [
+            {
+                "provider": "arxiv",
+                "url": "https://arxiv.org/pdf/2601.00001",
+                "source_role": "full-text",
+                "version": "submittedVersion",
+                "identity_status": "verified",
+                "identity_method": "exact-title-and-author-list",
+            }
+        ],
+    }
+
+    url, source = select_pdf_source(record)
+
+    assert url == "https://arxiv.org/pdf/2601.00001"
+    assert source["identity_status"] == "verified"
+
+
 def test_fulltext_scanner_skips_unrelated_iclr_pdf_after_abstract_screen() -> None:
     detail_html = b"""
     <html><body>
@@ -478,6 +514,11 @@ def test_scan_checkpoint_does_not_undo_context_review() -> None:
                         "disposition": "excluded",
                         "product_review": {"status": "excluded-after-context-review"},
                     },
+                    {
+                        "title": "Metadata-filtered paper",
+                        "disposition": "excluded",
+                        "full_text_scan": "metadata-filtered",
+                    },
                     {"title": "Promoted catalog paper", "disposition": "included"},
                 ],
             }
@@ -496,6 +537,13 @@ def test_scan_checkpoint_does_not_undo_context_review() -> None:
             },
             {
                 "conference": "ICLR",
+                "title": "Metadata-filtered paper",
+                "status": "pending",
+                "disposition": "pending",
+                "reason": "stale",
+            },
+            {
+                "conference": "ICLR",
                 "title": "Promoted catalog paper",
                 "status": "scanned",
                 "disposition": "pending",
@@ -506,4 +554,6 @@ def test_scan_checkpoint_does_not_undo_context_review() -> None:
 
     papers = census["conferences"][0]["papers"]
     assert papers[0]["disposition"] == "excluded"
-    assert papers[1]["disposition"] == "included"
+    assert papers[1]["disposition"] == "excluded"
+    assert papers[1]["full_text_scan"] == "metadata-filtered"
+    assert papers[2]["disposition"] == "included"

@@ -10,7 +10,7 @@ import {
 const REPOSITORY_URL =
   "https://github.com/MicroMilo/awesome-claude-code-codex-papers";
 
-type PendingSummary = {
+export type PendingSummary = {
   reviewed_at: string;
   pending_record_count: number;
   high_priority_product_candidate_count: number;
@@ -92,7 +92,7 @@ const copy = {
     limitationsEyebrow: "Evidence discipline",
     limitationsTitle: "Do not turn this page into a vendor leaderboard.",
     limitationsDeck:
-      "Only a minority of records hold the underlying model constant, and none report a clean same-budget comparison. Model snapshot, product harness, tool permissions, policy, and task budget are often entangled.",
+      "Only a minority of records hold the underlying model constant or report comparable task caps. Model snapshot, product harness, tool permissions, policy, and observed compute or API cost are often still entangled.",
     ruleOne: "A product baseline is diagnostic only when the product actually runs the task.",
     ruleTwo: "Host and judge uses inform workflow design, but do not show that the product was beaten.",
     ruleThree: "Cross-paper scores are never compared as if they came from one benchmark.",
@@ -102,12 +102,14 @@ const copy = {
     pendingEyebrow: "Unresolved evidence queue",
     pendingTitle: "Pending means blocked—not silently rejected.",
     pendingDeck:
-      "These records are outside the six findings until an official full text can be checked. A product name in an abstract prioritizes review; it never proves product-level use by itself.",
+      "These records stay outside the six findings until official or identity-verified full text can be checked. A product name in an abstract prioritizes review; it never proves product-level use by itself.",
     pendingRecords: "pending paper records",
     priorityCandidates: "direct-product candidates",
-    sourceChallenges: "first-party host challenges",
-    missingPdfs: "official PDFs not exposed",
+    sourceChallenges: "publisher challenges without open copy",
+    missingPdfs: "full-text copies not resolved",
     priorityTitle: "Highest-priority paper queue",
+    priorityEmpty:
+      "No abstract-level Claude Code or Codex candidate is currently blocked on full-text review.",
     prioritySignal: "Abstract signal",
     blocker: "Current blocker",
     officialRecord: "Official record ↗",
@@ -169,7 +171,7 @@ const copy = {
     limitationsEyebrow: "证据纪律",
     limitationsTitle: "不要把这一页读成厂商排行榜。",
     limitationsDeck:
-      "只有少数论文固定了底层模型，没有任何一篇报告干净的同预算对比。模型 snapshot、产品 harness、工具权限、策略和任务预算经常纠缠在一起。",
+      "只有少数论文固定了底层模型或给出可比较的任务上限。模型 snapshot、产品 harness、工具权限、策略，以及实际计算/API 成本仍经常纠缠在一起。",
     ruleOne: "只有产品真的运行了目标任务，产品 baseline 才能用于诊断。",
     ruleTwo: "宿主或裁判用途能启发工作流，但不能证明该产品被超越。",
     ruleThree: "不同论文的分数绝不被当作来自同一个 benchmark 横向比较。",
@@ -178,12 +180,13 @@ const copy = {
     pendingEyebrow: "尚未解决的证据队列",
     pendingTitle: "Pending 是证据受阻，不是被静默排除。",
     pendingDeck:
-      "在官方全文完成核验前，这些记录不会参与上面的六条结论。摘要出现产品名只会提高审核优先级，不能单独证明论文真正运行了该产品。",
+      "在官方或身份验证过的全文完成核验前，这些记录不会参与上面的六条结论。摘要出现产品名只会提高审核优先级，不能单独证明论文真正运行了该产品。",
     pendingRecords: "篇 pending 论文记录",
     priorityCandidates: "篇产品名直接命中候选",
-    sourceChallenges: "个一手来源挑战",
-    missingPdfs: "篇尚未公开官方 PDF",
+    sourceChallenges: "个出版平台受阻且无开放副本",
+    missingPdfs: "篇尚未解析到同一论文全文",
     priorityTitle: "最高优先级论文队列",
+    priorityEmpty: "当前没有因全文审核受阻的 Claude Code 或 Codex 摘要级候选。",
     prioritySignal: "摘要信号",
     blocker: "当前阻塞",
     officialRecord: "打开官方记录 ↗",
@@ -485,7 +488,7 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
             <span>{t.sourceChallenges}</span>
           </div>
           <div>
-            <strong>{pendingSummary.blocker_counts["official-pdf-not-exposed"] ?? 0}</strong>
+            <strong>{pendingSummary.blocker_counts["full-text-not-resolved"] ?? 0}</strong>
             <span>{t.missingPdfs}</span>
           </div>
         </div>
@@ -495,6 +498,9 @@ export function InsightsPage({ papers, reviewedAt, pendingSummary }: Props) {
             <h3>{t.priorityTitle}</h3>
             <span>{pendingSummary.high_priority_product_candidates.length}</span>
           </div>
+          {pendingSummary.high_priority_product_candidates.length === 0 ? (
+            <p className="pending-empty">{t.priorityEmpty}</p>
+          ) : null}
           {pendingSummary.high_priority_product_candidates.map((paper) => (
             <article key={`${paper.conference}-${paper.title}`}>
               <div className="pending-paper-title">

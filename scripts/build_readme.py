@@ -361,6 +361,12 @@ def render_paper_page(paper: dict) -> str:
         if paper.get("artifact_url")
         else "- No official artifact was found during the latest review."
     )
+    primary_links = f"- [Paper]({paper['paper_url']})\n{artifact_item}"
+    if evidence.get("source_url") and evidence["source_url"] != paper["paper_url"]:
+        primary_links += (
+            f"\n- [Identity-verified evidence copy]({evidence['source_url']}) "
+            f"({evidence.get('source_version', 'unknown version')}; not the acceptance source)"
+        )
     return f"""{GENERATED_NOTICE}
 
 [← Paper index](README.md) · [Home](../README.md)
@@ -417,8 +423,7 @@ def render_paper_page(paper: dict) -> str:
 
 ## Primary links
 
-- [Paper]({paper["paper_url"]})
-{artifact_item}
+{primary_links}
 
 ---
 

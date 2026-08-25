@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Scan official conference PDFs for industrial coding-agent evidence.
+"""Scan identity-verified conference-paper content for product evidence.
 
 The scanner keeps PDFs out of the repository.  It stores only a compact audit
 manifest (page-level snippets, extraction method, and model candidates) and
 updates the census disposition. Records with official title/abstract metadata
 use a high-recall gate before a PDF request; ``--pdf-scope all`` disables that
-optimization. If the official metadata is missing, the record is ``pending``
-rather than silently triggering a full-PDF crawl. A product hit is deliberately
-left pending for human/context review; absence of a product hit after
-successful full-text extraction is recorded as an explicit exclusion.
+optimization. The conference/proceedings record remains the acceptance source,
+while the selected content bytes may come from a verified open repository. If
+metadata is missing, the record is ``pending`` rather than silently triggering
+a full-PDF crawl. A product hit is deliberately left pending for human/context
+review; absence of a product hit after successful extraction is an exclusion.
 """
 
 from __future__ import annotations
@@ -61,6 +62,44 @@ MODEL_PATTERNS = [
 
 def normalize(value: str) -> str:
     return " ".join(value.split()).strip()
+
+
+def verified_full_text_sources(record: dict[str, Any]) -> list[dict[str, Any]]:
+    sources = record.get("content_sources")
+    if not isinstance(sources, list):
+        return []
+    return [
+        source
+        for source in sources
+        if isinstance(source, dict)
+        and source.get("source_role") == "full-text"
+        and source.get("identity_status") == "verified"
+        and str(source.get("url", "")).startswith("https://")
+    ]
+
+
+def select_pdf_source(record: dict[str, Any]) -> tuple[str | None, dict[str, Any] | None]:
+    """Prefer an explicitly resolved, identity-verified content copy."""
+
+    verified = verified_full_text_sources(record)
+    resolved_url = str(record.get("resolved_pdf_url") or "")
+    if resolved_url:
+        matched = next((source for source in verified if source.get("url") == resolved_url), None)
+        if matched:
+            return resolved_url, matched
+    if verified:
+        return str(verified[0]["url"]), verified[0]
+    official_pdf = str(record.get("pdf_url") or "")
+    if official_pdf:
+        return official_pdf, {
+            "provider": "official",
+            "url": official_pdf,
+            "source_role": "full-text",
+            "version": "publishedVersion",
+            "identity_status": "verified",
+            "identity_method": "official-record-adapter",
+        }
+    return None, None
 
 
 def extract_official_abstract(payload: bytes) -> str:
@@ -136,12 +175,13 @@ def scan_record(
     pdf_scope: str = "metadata",
 ) -> dict[str, Any]:
     title = str(record.get("title", ""))
-    pdf_url = record.get("pdf_url")
+    pdf_url, pdf_source = select_pdf_source(record)
     result: dict[str, Any] = {
         "conference": conference,
         "title": title,
         "official_url": record.get("official_url"),
         "pdf_url": pdf_url,
+        "content_source": pdf_source,
     }
     active_fetcher = fetcher or StableFetcher(
         user_agent="awesome-coding-agent-papers-fulltext/2.0 (+official-source-audit)",
@@ -239,7 +279,10 @@ def scan_record(
         result.update(
             {
                 "status": "pending",
-                "reason": "No first-party PDF URL was exposed by the official list adapter after metadata screening.",
+                "reason": (
+                    "No official or identity-verified auxiliary full-text URL was available "
+                    "after metadata screening."
+                ),
             }
         )
         return result
@@ -319,6 +362,12 @@ def update_census(census: dict[str, Any], results: list[dict[str, Any]]) -> None
             result = by_key.get(record_key(conference_name, paper["title"]))
             if not result:
                 continue
+            if result.get("status") == "pending" and paper.get("full_text_scan") in {
+                "scanned",
+                "verified-manually",
+                "metadata-filtered",
+            }:
+                continue
             paper["full_text_scan"] = result["status"]
             paper["scan"] = {
                 key: value
@@ -336,9 +385,12 @@ def update_census(census: dict[str, Any], results: list[dict[str, Any]]) -> None
                     paper["disposition_reason"] = result["reason"]
             elif result_disposition == "pending":
                 # A stale scan checkpoint must not undo a catalog promotion or
-                # a later context review. Unreviewed records may advance to
-                # pending when their PDF/metadata attempt fails.
-                if current_disposition not in {"included", "duplicate"} and not reviewed_exclusion:
+                # a later metadata/context exclusion. Only unresolved records
+                # may remain pending when a PDF/metadata attempt fails.
+                if (
+                    current_disposition not in {"included", "duplicate", "excluded"}
+                    and not reviewed_exclusion
+                ):
                     paper["disposition"] = "pending"
                     paper["disposition_reason"] = result["reason"]
         counts = {
@@ -391,7 +443,12 @@ def main() -> int:
     parser.add_argument(
         "--pdf-only",
         action="store_true",
-        help="Skip official records without a first-party PDF URL; they remain pending in the census.",
+        help="Skip records without an official or identity-verified content URL.",
+    )
+    parser.add_argument(
+        "--verified-content-only",
+        action="store_true",
+        help="Scan only identity-verified auxiliary full text; do not request publisher PDF endpoints.",
     )
     parser.add_argument("--no-update", action="store_true", help="Only write the JSONL manifest.")
     parser.add_argument(
@@ -427,19 +484,26 @@ def main() -> int:
         for paper in conference.get("papers", []):
             if paper.get("disposition") == "duplicate":
                 continue
-            if paper.get("full_text_scan") in {"scanned", "verified-manually"}:
+            if paper.get("full_text_scan") in {
+                "scanned",
+                "verified-manually",
+                "metadata-filtered",
+            }:
                 continue
             previous = manifest_records.get(record_key(name, paper["title"]))
             if previous and previous.get("status") in {"scanned", "metadata-filtered"}:
                 continue
             if args.skip_known_challenges and previous and previous.get("challenge"):
                 continue
-            if args.pdf_only and not paper.get("pdf_url"):
+            _, selected_source = select_pdf_source(paper)
+            if args.pdf_only and selected_source is None:
+                continue
+            if args.verified_content_only and not verified_full_text_sources(paper):
                 continue
             jobs.append((name, paper))
     if args.limit:
         jobs = jobs[: args.limit]
-    print(f"Scanning {len(jobs)} official PDF records with {args.workers} workers.")
+    print(f"Scanning {len(jobs)} identity-bound paper content records with {args.workers} workers.")
     fetcher = StableFetcher(
         user_agent="awesome-coding-agent-papers-fulltext/2.0 (+official-source-audit)",
         retry_policy=RetryPolicy(max_attempts=max(1, args.retries)),
@@ -477,7 +541,7 @@ def main() -> int:
     append_manifest(checkpoint)
     if not args.no_update:
         update_census(census, results)
-        write_census(census)
+        write_census(census, only=allowed or None)
     counts: dict[str, int] = {}
     for result in results:
         key = result.get("disposition", result.get("status", "pending"))

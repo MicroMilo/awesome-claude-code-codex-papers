@@ -28,10 +28,10 @@
 
 <!-- CATALOG:STATS:START -->
 <p align="center">
-  <img alt="papers: 14" src="https://img.shields.io/badge/papers-14-16616a">
+  <img alt="papers: 23" src="https://img.shields.io/badge/papers-23-16616a">
   <img alt="official records indexed: 20,673" src="https://img.shields.io/badge/official%20records%20indexed-20%2C673-0f766e">
-  <img alt="direct comparisons: 6" src="https://img.shields.io/badge/direct%20comparisons-6-dc6b46">
-  <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
+  <img alt="direct comparisons: 10" src="https://img.shields.io/badge/direct%20comparisons-10-dc6b46">
+  <img alt="official artifacts: 18" src="https://img.shields.io/badge/official%20artifacts-18-2563eb">
   <img alt="domains: 8" src="https://img.shields.io/badge/domains-8-4bcbd5">
   <img alt="conference series tracked: 13" src="https://img.shields.io/badge/conference%20series%20tracked-13-7c3aed">
   <img alt="reviewed: 2026-08-25" src="https://img.shields.io/badge/reviewed-2026--08--25-475569">
@@ -43,13 +43,13 @@
 <!-- CATALOG:COVERAGE:START -->
 <p align="center">
   <a href="views/by-domain.md"><strong>Research domains</strong></a><br>
-  <code>Software Engineering · 7</code> · <code>Security · 3</code> · <code>Systems & Performance · 1</code> · <code>Machine Learning · 4</code> · <code>Scientific Computing · 4</code> · <code>Formal Methods · 1</code> · <code>Web & UI · 1</code> · <code>Documents · 1</code><br><br>
+  <code>Software Engineering · 14</code> · <code>Security · 4</code> · <code>Systems & Performance · 2</code> · <code>Machine Learning · 5</code> · <code>Scientific Computing · 5</code> · <code>Formal Methods · 4</code> · <code>Web & UI · 3</code> · <code>Documents · 1</code><br><br>
   <a href="views/by-conference.md"><strong>Conferences: catalog / official records</strong></a><br>
-  <code>AAAI · 0 / 4,920</code> · <code>ASE · 0 / 263</code> · <code>FSE · 0 / 211</code> · <code>ICLR · 12 / 5,351</code> · <code>ICML · 1 / 6,628</code> · <code>ICSE · 0 / 321</code> · <code>ISSTA · 0 / 210</code> · <code>NeurIPS · list pending</code> · <code>IJCAI · 1 / 989</code> · <code>KDD · 0 / 1,415</code> · <code>PLDI · 0 / 106</code> · <code>POPL · 0 / 92</code> · <code>OOPSLA · 0 / 167</code>
+  <code>AAAI · 0 / 4,920</code> · <code>ASE · 1 / 263</code> · <code>FSE · 0 / 211</code> · <code>ICLR · 12 / 5,351</code> · <code>ICML · 5 / 6,628</code> · <code>ICSE · 0 / 321</code> · <code>ISSTA · 3 / 210</code> · <code>NeurIPS · list pending</code> · <code>IJCAI · 1 / 989</code> · <code>KDD · 1 / 1,415</code> · <code>PLDI · 0 / 106</code> · <code>POPL · 0 / 92</code> · <code>OOPSLA · 0 / 167</code>
 </p>
 <!-- CATALOG:COVERAGE:END -->
 
-This repository is the open data and maintenance layer behind the **web-first research catalog**. The main catalog is restricted to **2026 papers with an official conference, proceedings, or OpenReview conference record** that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model. Every official-list record remains auditable as `included`, `excluded`, `pending`, or `duplicate`, so a compact catalog reflects strict scope rather than silent filtering.
+This repository is the open data and maintenance layer behind the **web-first research catalog**. The main catalog is restricted to **2026 papers with an official conference, proceedings, or OpenReview conference record** that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model. Every official-list record remains auditable as `included`, `excluded`, `pending`, or `duplicate`, so a compact catalog reflects strict scope rather than silent filtering. Official records prove venue identity; identity-verified open copies may supply content evidence but never replace the primary paper URL.
 
 ## Start with the website
 

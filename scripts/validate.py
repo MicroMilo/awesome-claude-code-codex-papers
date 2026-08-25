@@ -125,6 +125,39 @@ def invariant_errors(catalog: dict) -> list[str]:
         source_host = urlparse(paper.get("paper_url", "")).netloc.lower()
         if "arxiv.org" in source_host:
             errors.append(f"{paper_id}: arXiv cannot be the primary paper source")
+        content_sources = paper.get("content_sources", [])
+        content_urls = {
+            str(source.get(key))
+            for source in content_sources
+            if isinstance(source, dict)
+            for key in ("url", "landing_page_url")
+            if source.get(key)
+        }
+        for source in content_sources:
+            source_url = str(source.get("url", ""))
+            source_host = urlparse(source_url).netloc.lower()
+            if source.get("identity_status") != "verified":
+                errors.append(f"{paper_id}: auxiliary content source is not identity-verified")
+            if "arxiv.org" in source_host:
+                expected_identity = str(paper.get("doi") or paper.get("paper_url") or "")
+                if str(source.get("identity_value", "")).casefold() != (
+                    expected_identity.casefold()
+                ):
+                    errors.append(
+                        f"{paper_id}: arXiv auxiliary identity must bind to the official "
+                        "DOI or conference record"
+                    )
+        evidence_source_url = str(paper.get("evidence", {}).get("source_url", ""))
+        if evidence_source_url:
+            if (
+                evidence_source_url != paper.get("paper_url")
+                and evidence_source_url not in content_urls
+            ):
+                errors.append(
+                    f"{paper_id}: evidence.source_url is not a declared paper/content source"
+                )
+            if not paper.get("evidence", {}).get("source_version"):
+                errors.append(f"{paper_id}: evidence.source_url requires source_version")
         if any(not item.get("model", "").strip() for item in products):
             errors.append(f"{paper_id}: model cannot be empty")
         if any(

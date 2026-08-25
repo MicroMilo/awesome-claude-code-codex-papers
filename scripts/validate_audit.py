@@ -95,6 +95,26 @@ def main() -> int:
                 errors.append(
                     f"{name}: arXiv cannot be the official census source: {paper.get('title')}"
                 )
+            content_sources = paper.get("content_sources", [])
+            verified_urls = set()
+            for source in content_sources if isinstance(content_sources, list) else []:
+                if not isinstance(source, dict):
+                    errors.append(f"{name}: invalid content source: {paper.get('title')}")
+                    continue
+                content_url = str(source.get("url", ""))
+                if not content_url.startswith("https://"):
+                    errors.append(f"{name}: non-HTTPS content source: {paper.get('title')}")
+                if source.get("identity_status") != "verified":
+                    errors.append(
+                        f"{name}: unverified auxiliary content source: {paper.get('title')}"
+                    )
+                else:
+                    verified_urls.add(content_url)
+            resolved_pdf_url = str(paper.get("resolved_pdf_url", ""))
+            if resolved_pdf_url and resolved_pdf_url not in verified_urls:
+                errors.append(
+                    f"{name}: resolved PDF is not identity-verified: {paper.get('title')}"
+                )
         for disposition in DISPOSITIONS:
             actual = counts.get(disposition, 0)
             if conference.get(f"{disposition}_count", 0) != actual:

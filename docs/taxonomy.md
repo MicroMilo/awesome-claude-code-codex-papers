@@ -26,6 +26,12 @@ Domains describe the task or evidence area studied by a paper. They are multi-va
 
 Each main-catalog record also carries `year_tag: 2026`, `conference_tag` (equal to `conference`), `source_type`, and `audit_status: included`. `source_type` makes the provenance machine-checkable; `audit_status` prevents an unreviewed census record from being silently promoted.
 
+`paper_url` is always the official acceptance/proceedings/publisher record.
+Optional `content_sources` identify auxiliary abstract or full-text copies and
+must record provider, version, identity method, official DOI binding,
+discovery time, and intended use. An arXiv URL may appear there as content
+evidence, but never as the primary paper source.
+
 ## Evidence classes
 
 ### Direct comparison

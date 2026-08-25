@@ -54,6 +54,11 @@ def test_every_paper_has_filterable_domain_and_conference() -> None:
     assert all(paper["source_type"] != "arxiv" for paper in papers)
     assert all("arxiv.org" not in paper["paper_url"] for paper in papers)
     assert all(
+        source["identity_status"] == "verified"
+        for paper in papers
+        for source in paper.get("content_sources", [])
+    )
+    assert all(
         product["product"] in {"claude-code", "codex-cli"}
         for paper in papers
         for product in paper["products"]

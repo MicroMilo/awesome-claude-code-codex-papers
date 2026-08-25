@@ -1,4 +1,4 @@
-.PHONY: install build validate test lint check site-check census census-extensions census-official-extensions census-refresh census-split audit-report audit-check pending-review source-fetch
+.PHONY: install build validate test lint check site-check census census-extensions census-official-extensions census-refresh census-split audit-report audit-check pending-review scholarly-content source-fetch
 
 install:
 	python -m pip install -r requirements-dev.txt
@@ -28,6 +28,9 @@ audit-check:
 
 pending-review:
 	python scripts/update_pending_review.py
+
+scholarly-content:
+	python scripts/enrich_scholarly_content.py $(SCHOLARLY_ARGS)
 
 source-fetch:
 	python scripts/fetch_iclr_sources.py $(SOURCE_ARGS)

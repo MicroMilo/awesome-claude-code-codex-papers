@@ -78,6 +78,83 @@ REFERENCE_ONLY = {
 
 INCLUDED = {
     (
+        "ASE",
+        normalize("Mining Tactics for Automated Theorem Proving"),
+    ): (
+        "llm2ltac-2026",
+        "Section 5.3 and Table 4 run Claude Code with Claude Sonnet 4.6 "
+        "alone, with CoqHammer, and with LLM2Ltac-enhanced CoqHammer on the "
+        "same 200 theorem tasks and 600-second task limit.",
+    ),
+    (
+        "ICML",
+        normalize("APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries"),
+    ): (
+        "ape-bench-2026",
+        "Sections 6.1 and 6.4 plus Figures 3-4 run APE-Agent, Claude Code, and "
+        "Codex CLI on identical proof-engineering task contracts with the same three "
+        "models, 100-turn limit, and 3 USD task budget.",
+    ),
+    (
+        "ICML",
+        normalize(
+            "Numina-Lean-Agent: An Open and General Agentic Reasoning System for Formal Mathematics"
+        ),
+    ): (
+        "numina-lean-agent-2026",
+        "Sections 2-4 use Claude Code with Claude Opus 4.5 as the host scaffold, "
+        "extend it with Numina-Lean-MCP, and report all 12 Putnam 2025 problems solved.",
+    ),
+    (
+        "ICML",
+        normalize("PostTrainBench: Can LLM Agents Automate LLM Post-Training?"),
+    ): (
+        "posttrainbench-2026",
+        "Sections 2-5 and Table 1 evaluate multiple Claude Code and Codex CLI "
+        "configurations under a ten-hour single-H100 budget and audit reward hacking.",
+    ),
+    (
+        "ICML",
+        normalize(
+            "SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models"
+        ),
+    ): (
+        "swe-compass-2026",
+        "Section 4, Table 2, and Appendix A.4 run five models through Claude Code "
+        "under a controlled 2,000-task software-engineering benchmark.",
+    ),
+    (
+        "ISSTA",
+        normalize(
+            "Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment"
+        ),
+    ): (
+        "red-teaming-coding-agents-2026",
+        "Sections 6-7 and Tables 2-5 evaluate old and new Claude Code versions "
+        "directly for prompt leakage and tool-invocation hijacking across exact backend models.",
+    ),
+    (
+        "ISSTA",
+        normalize(
+            "To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair"
+        ),
+    ): (
+        "execution-cost-effectiveness-2026",
+        "Sections 3-4 report exact Claude Code and Codex versions/models and 2,000 "
+        "controlled product runs across five execution-access configurations.",
+    ),
+    (
+        "ISSTA",
+        normalize(
+            "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework"
+        ),
+    ): (
+        "evodev-2026",
+        "Sections 4.3-5.5 and Tables 3, 6, and 7 compare Claude Code with "
+        "EvoDev on the same 15 Android tasks and exact claude-sonnet-4-20250514 "
+        "base model, then ablate planning and predecessor-context mechanisms.",
+    ),
+    (
         "IJCAI",
         normalize("Verifiable PDE Reasoning and Modeling with Neurosymbolics"),
     ): (
@@ -85,6 +162,18 @@ INCLUDED = {
         "Section 2.3 explicitly reports that Lean Refactor outperforms Claude Code "
         "on Lean proof refactoring. The official spotlight paper omits the Claude "
         "Code model and configuration, which remain recorded as not-reported.",
+    ),
+    (
+        "KDD",
+        normalize(
+            "SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?"
+        ),
+    ): (
+        "swe-bench-mobile-2026",
+        "Sections 3.1-3.9, Appendix B Tables 5-6, and Appendix E run Codex CLI "
+        "v0.77.0 and Claude Code CLI v2.1.37 across multiple models on 50 mobile "
+        "software-engineering tasks. The evidence copy is arXiv v1, identity-matched "
+        "to the official KDD DOI by exact title and complete author list.",
     ),
 }
 

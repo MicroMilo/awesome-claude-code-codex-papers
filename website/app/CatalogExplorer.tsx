@@ -49,6 +49,19 @@ export type Paper = {
   artifact_status: "official" | "community" | "not-found";
   doi?: string;
   published_at?: string;
+  content_sources?: Array<{
+    provider: string;
+    url: string;
+    landing_page_url?: string;
+    source_role: "metadata" | "full-text" | "evidence";
+    version: string;
+    license: string;
+    identity_status: "verified";
+    identity_method: string;
+    identity_value: string;
+    discovered_at: string;
+    used_for: string[];
+  }>;
   products: Array<{
     product: ProductId;
     role: string;
@@ -83,6 +96,8 @@ export type Paper = {
     claim_type: string;
     comparison_scope: string;
     source_location: string;
+    source_url?: string;
+    source_version?: string;
     caveats: string;
   };
 };
@@ -209,6 +224,7 @@ const copy = {
     share: "Copy link",
     shared: "Copied ✓",
     paper: "Paper ↗",
+    evidenceCopy: "Evidence copy ↗",
     artifact: "Artifact ↗",
     methodPattern: "Recurring method patterns",
     methodTitle: "Structure around the model keeps winning.",
@@ -288,6 +304,7 @@ const copy = {
     share: "复制链接",
     shared: "已复制 ✓",
     paper: "打开论文 ↗",
+    evidenceCopy: "打开证据副本 ↗",
     artifact: "打开 Artifact ↗",
     methodPattern: "反复出现的方法",
     methodTitle: "真正有效的，往往是模型周围的结构。",
@@ -1107,6 +1124,17 @@ export function CatalogExplorer({ papers, reviewedAt, censusSummary }: Props) {
               <a href={activePaper.paper_url} target="_blank" rel="noreferrer">
                 {t.paper}
               </a>
+              {activePaper.evidence.source_url &&
+                activePaper.evidence.source_url !== activePaper.paper_url && (
+                  <a
+                    href={activePaper.evidence.source_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={activePaper.evidence.source_version}
+                  >
+                    {t.evidenceCopy}
+                  </a>
+                )}
               {activePaper.artifact_url && (
                 <a href={activePaper.artifact_url} target="_blank" rel="noreferrer">
                   {t.artifact}

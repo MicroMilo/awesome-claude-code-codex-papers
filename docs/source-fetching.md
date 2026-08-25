@@ -3,6 +3,16 @@
 The repository separates source acquisition from catalog promotion. A fetch
 failure is a `pending` source record, never an exclusion.
 
+It also separates two kinds of provenance. The official conference,
+proceedings, OpenReview, or publisher record establishes acceptance and stays
+in `paper_url`. Abstract/full-text bytes may come from that source or from an
+OpenAlex-resolved or manually reviewed open copy. Auxiliary copies are usable
+only after an explicit DOI or reviewed bibliographic identity match; their
+URL, version, identity method, and retrieval hash remain in the audit ledger.
+For a renamed accepted paper, the mapping must preserve both titles and match
+the complete author list plus the abstract, method, datasets, and exact results.
+Title similarity by itself is never sufficient.
+
 ## ICLR 2026
 
 The main-paper authority is the official proceedings book. The Downloads page
@@ -122,7 +132,8 @@ python scripts/enrich_official_pdf_urls.py \
 
 An ACM browser-verification response remains an explicit
 `official-source-challenge`. It is not retried through challenge-bypass tools
-and is never replaced with arXiv.
+and never triggers bulk scraping. A separately identity-verified open copy may
+still provide content while the ACM DOI remains the acceptance authority.
 
 ## IJCAI, KDD, and NeurIPS
 
@@ -136,8 +147,22 @@ python scripts/refresh_official_list_extensions.py
 IJCAI's official accepted-paper pages expose abstracts and conference-hosted
 PDFs, so the normal metadata-first scanner can complete the high-recall pass.
 KDD's official paper page exposes titles, authors, tracks, and ACM DOIs but no
-abstracts. A missing KDD abstract therefore remains pending unless the title
-itself supplies a strong candidate signal; it is never silently excluded.
+abstracts. Resolve those official DOIs in batches before requesting any PDF:
+
+```bash
+python scripts/enrich_scholarly_content.py --conference KDD
+python scripts/scan_conference_fulltext.py \
+  --conference KDD --verified-content-only
+```
+
+The first command checkpoints OpenAlex results in
+`data/audit/2026-scholarly-content.jsonl`, reconstructs DOI-bound abstracts,
+and applies reviewed candidate overrides from
+`data/audit/content-source-overrides.yaml`. The second command downloads only
+metadata-selected candidates with verified open content. It does not crawl ACM
+systematically. Missing abstracts or unresolved candidate full text remain
+pending.
+
 NeurIPS remains conference-level pending until its official OpenReview group
 releases a public accepted-paper list.
 
@@ -148,11 +173,13 @@ releases a public accepted-paper list.
 - Downloads resume from `.part` files and replace the final file atomically.
 - First-party challenge/CAPTCHA responses (including OpenReview and ACM) are
   recorded as `pending`.
-- Proxy rotation, CAPTCHA bypass, and arXiv substitution are not part of the
-  acquisition layer.
+- Proxy rotation and CAPTCHA bypass are not part of the acquisition layer.
+- An open copy can supply content only after identity verification; it can
+  never substitute for an official acceptance record.
 
 The shared implementation is in `scripts/source_fetcher.py`; venue-specific
-logic is in `scripts/fetch_iclr_sources.py`, and the deterministic title/abstract
-policy is in `scripts/metadata_relevance.py`. Run
+logic is in `scripts/fetch_iclr_sources.py`, DOI-bound open-content enrichment
+is in `scripts/enrich_scholarly_content.py`, and the deterministic
+title/abstract policy is in `scripts/metadata_relevance.py`. Run
 `scripts/update_pending_review.py` after a retry pass to update the compact
 blocker summary and high-priority direct-product queue.

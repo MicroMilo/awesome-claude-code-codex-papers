@@ -1,0 +1,202 @@
+version: 1
+policy: >-
+  These mappings provide content bytes only. Conference acceptance and the primary paper URL must remain an official
+  conference, proceedings, OpenReview, or publisher record. Every override requires a reviewed identity match.
+sources:
+- conference: ASE
+  official_url: https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving
+  title: Mining Tactics for Automated Theorem Proving
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2605.08694v1
+    landing_page_url: https://arxiv.org/abs/2605.08694v1
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: complete-author-list-and-materially-identical-abstract-with-reviewed-title-change
+    identity_value: https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving
+    identity_evidence: >-
+      The official ASE record and arXiv v1 list the same three authors and describe the same LLM2Ltac method, Rocq 8.20.0
+      implementation, 11,725 mining theorems, 6,199 evaluation theorems, 23.87% CoqHammer improvement, and 9.90%
+      Claude Code improvement. The submitted manuscript is titled "A Learning Method for Symbolic Systems Using Large
+      Language Models" while the accepted paper is titled "Mining Tactics for Automated Theorem Proving"; this reviewed
+      title change is retained explicitly, and the ASE page remains the acceptance authority.
+    verified_at: '2026-08-25T14:39:18+00:00'
+    discovered_at: '2026-08-25T14:39:18+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ICML
+  official_url: https://icml.cc/virtual/2026/poster/64323
+  title: 'APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2504.19110v3
+    landing_page_url: https://arxiv.org/abs/2504.19110v3
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-matching-abstract-and-author-maintained-artifact-link
+    identity_value: https://icml.cc/virtual/2026/poster/64323
+    identity_evidence: >-
+      The ICML poster and arXiv v3 have the same title and materially identical abstract. The repository maintained by lead
+      author Huajian Xin identifies arXiv:2504.19110v3 as the paper behind APE-Bench. The manuscript author list differs from
+      the ICML poster, so the exact submittedVersion and this caveat are retained instead of claiming a complete-author match.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ICML
+  official_url: https://icml.cc/virtual/2026/poster/66755
+  title: 'Numina-Lean-Agent: An Open and General Agentic Reasoning System for Formal Mathematics'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2601.14027v1
+    landing_page_url: https://arxiv.org/abs/2601.14027v1
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-matching-abstract-and-author-maintained-artifact-link
+    identity_value: https://icml.cc/virtual/2026/poster/66755
+    identity_evidence: >-
+      The title and abstract match the ICML record, and the author-maintained Numina-Lean-Agent repository links
+      arXiv:2601.14027 as its paper. The arXiv v1 list contains the twelve ICML-listed authors plus Ran Wang; the retained
+      submittedVersion label makes that authorship difference explicit.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ICML
+  official_url: https://icml.cc/virtual/2026/poster/63667
+  title: 'PostTrainBench: Can LLM Agents Automate LLM Post-Training?'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2603.08640v1
+    landing_page_url: https://arxiv.org/abs/2603.08640v1
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-abstract-and-complete-author-list
+    identity_value: https://icml.cc/virtual/2026/poster/63667
+    identity_evidence: >-
+      The title, abstract, and seven authors match the ICML poster (Ameya Prabhu is expanded to Ameya Pandurang Prabhu on
+      the official page). The paper's project site also links the same arXiv record.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ICML
+  official_url: https://icml.cc/virtual/2026/poster/64552
+  title: 'SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2511.05459v3
+    landing_page_url: https://arxiv.org/abs/2511.05459v3
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-matching-abstract-and-reviewed-authorship
+    identity_value: https://icml.cc/virtual/2026/poster/64552
+    identity_evidence: >-
+      The title and abstract match the ICML poster and its OpenReview manuscript. The long author list was checked against
+      the official record; the submitted manuscript contains authorship revisions, so this source is retained specifically
+      as arXiv v3 rather than represented as the camera-ready version.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ISSTA
+  official_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A
+  title: 'Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2509.05755v6
+    landing_page_url: https://arxiv.org/abs/2509.05755v6
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-matching-abstract-and-reviewed-authorship
+    identity_value: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A
+    identity_evidence: >-
+      The title and abstract match the official ISSTA detail page. The arXiv v6 manuscript contains ten of the twelve official
+      authors; the official page additionally lists Ci Tao and Changhui Wang. This explicit version/authorship caveat is retained,
+      and the ISSTA page remains the acceptance authority.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ISSTA
+  official_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based
+  title: 'To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2606.26978v1
+    landing_page_url: https://arxiv.org/abs/2606.26978v1
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-abstract-and-complete-author-list
+    identity_value: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based
+    identity_evidence: >-
+      The exact title, abstract, and eight authors match the official ISSTA detail page. The arXiv copy is retained only as
+      the submitted full-text version and does not replace the official acceptance record.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: ISSTA
+  official_url: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame
+  title: 'Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2511.02399v3
+    landing_page_url: https://arxiv.org/abs/2511.02399v3
+    source_role: full-text
+    version: submittedVersion
+    license: not-reported
+    identity_status: verified
+    identity_method: exact-title-abstract-and-complete-author-list-with-acceptance-note
+    identity_value: https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame
+    identity_evidence: >-
+      arXiv v3 and the official ISSTA record have the same title, eight authors, abstract, 57.3% Claude Code comparison,
+      and 16.0%-58.5% same-model improvement range. The arXiv record explicitly says "Accepted by ISSTA 2026". The
+      submittedVersion supplies content bytes only; the ISSTA page remains the acceptance authority.
+    verified_at: '2026-08-25T14:39:18+00:00'
+    discovered_at: '2026-08-25T14:39:18+00:00'
+    used_for:
+    - full-text
+    - evidence
+- conference: KDD
+  doi: 10.1145/3770855.3818488
+  title: 'SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?'
+  source:
+    provider: arxiv
+    url: https://arxiv.org/pdf/2602.09540v1
+    landing_page_url: https://arxiv.org/abs/2602.09540v1
+    source_role: full-text
+    version: submittedVersion
+    license: cc-by-4.0
+    identity_status: verified
+    identity_method: exact-title-and-complete-author-list
+    identity_value: 10.1145/3770855.3818488
+    identity_evidence: >-
+      The arXiv v1 title and all ten authors match the official KDD DOI record; the benchmark site maintained by the
+      paper authors also links this arXiv record as its paper.
+    verified_at: '2026-08-25T00:00:00+00:00'
+    discovered_at: '2026-08-25T00:00:00+00:00'
+    used_for:
+    - full-text
+    - evidence

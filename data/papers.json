@@ -89,6 +89,1005 @@
       "audit_status": "included"
     },
     {
+      "id": "llm2ltac-2026",
+      "title": "Mining Tactics for Automated Theorem Proving",
+      "authors": [
+        "Jian Fang",
+        "Yixun Yao",
+        "Yingfei Xiong"
+      ],
+      "year": 2026,
+      "conference": "ASE",
+      "venue": "ASE Research Papers",
+      "domains": [
+        "formal-methods",
+        "software-engineering"
+      ],
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "LLM2Ltac",
+      "paper_url": "https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving",
+      "artifact_url": "https://zenodo.org/records/19251765",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2605.08694v1",
+          "landing_page_url": "https://arxiv.org/abs/2605.08694v1",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "complete-author-list-and-materially-identical-abstract-with-reviewed-title-change",
+          "identity_value": "https://conf.researchr.org/details/ase-2026/ase-2026-research-track/232/Mining-Tactics-for-Automated-Theorem-Proving",
+          "identity_evidence": "The official ASE record and arXiv v1 have the same three authors, LLM2Ltac method, datasets, and exact headline results. The submitted title was A Learning Method for Symbolic Systems Using Large Language Models; the accepted title change is explicitly retained.",
+          "verified_at": "2026-08-25T14:39:18+00:00",
+          "discovered_at": "2026-08-25T14:39:18+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Claude Sonnet 4.6",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "200 theorem tasks per setting with a 600-second timeout per task",
+          "runs": "One attempt for each of 200 sampled theorems in each of three settings; independent repeat count not reported",
+          "tool_permissions": "bash, read, and edit; skills expose the base proving pipeline, CoqHammer, or LLM2Ltac-enhanced CoqHammer"
+        }
+      ],
+      "task": {
+        "summary": "Prove Rocq theorems with Claude Code, optionally augmented by CoqHammer or tactics mined and verified by LLM2Ltac.",
+        "benchmark": "200 sampled theorems, 50 each from CompCert, Ext-Lib, Coq-Art, and VFA; tactic mining uses 11,725 standard-library theorems"
+      },
+      "method": {
+        "summary": "LLM2Ltac mines reusable symbolic tactics with GPT-5.2 or DeepSeek-V3.2, compiler-checks and generalization-tests them, retrieves applicable tactics with BM25, and integrates them into CoqHammer for Claude Code.",
+        "tags": [
+          "retrieval",
+          "verifier-loop",
+          "deterministic-search",
+          "repository-instructions"
+        ]
+      },
+      "evidence": {
+        "result": "On the same 200 theorem tasks, Claude Code proves 71 alone, 101 with CoqHammer, and 111 with LLM2Ltac-enhanced CoqHammer. Relative to Claude Code + CoqHammer, LLM2Ltac improves proved theorems by 9.90% and reduces token use from 38,346,691 to 34,317,809 (10.51%).",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "Section 5 Evaluation; Section 5.3 RQ3; Table 4 in arXiv v1",
+        "source_url": "https://arxiv.org/abs/2605.08694v1",
+        "source_version": "submittedVersion",
+        "caveats": "The evidence copy predates the accepted-title change and still contains placeholder ACM venue text. The Claude Code CLI version, exact model snapshot, temperature, output-token cap, and independent repeat count are not reported; the result is specific to Rocq theorem proving."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "not-reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "600 seconds per theorem task; CoqHammer itself uses a 20-second timeout",
+        "turn_budget": "not-reported",
+        "token_budget": "Total observed tokens are reported per setting, but no hard token cap is reported",
+        "api_budget": "not-reported",
+        "runs": "200 theorem tasks per setting; independent repeat count not reported",
+        "tool_permissions": "Claude Code receives bash, read, and edit permissions; setting-specific skills instruct use of the base pipeline, CoqHammer, or LLM2Ltac",
+        "baseline_config": "Claude Code alone versus the same Claude Sonnet 4.6 product with CoqHammer skills versus LLM2Ltac-enhanced CoqHammer skills"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ASE",
+      "audit_status": "included",
+      "notes": "The ASE page is the acceptance authority. arXiv v1 is an identity-reviewed evidence copy whose different submitted title is preserved explicitly."
+    },
+    {
+      "id": "ape-bench-2026",
+      "title": "APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries",
+      "authors": [
+        "Huajian Xin",
+        "Zheng Yuan",
+        "Jacques Fleuriot",
+        "Wenda Li"
+      ],
+      "year": 2026,
+      "conference": "ICML",
+      "venue": "ICML Main Conference",
+      "domains": [
+        "formal-methods",
+        "software-engineering"
+      ],
+      "publication_status": "dataset-benchmark",
+      "classification": "direct",
+      "system": "APE-Bench / APE-Harness / APE-Agent",
+      "paper_url": "https://icml.cc/virtual/2026/poster/64323",
+      "artifact_url": "https://github.com/xinhjBrant/APE-Bench",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2504.19110v3",
+          "landing_page_url": "https://arxiv.org/abs/2504.19110v3",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-matching-abstract-and-author-maintained-artifact-link",
+          "identity_value": "https://icml.cc/virtual/2026/poster/64323",
+          "identity_evidence": "The ICML poster and arXiv v3 have the same title and materially identical abstract. The author-maintained APE-Bench repository links arXiv v3; authorship differences between the submitted manuscript and official poster are retained as a caveat.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Gemini 3 Flash; Gemini 3 Pro; GPT-5.2",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "100 turns and 3 USD per task; top-5 declaration retrieval enabled",
+          "runs": "100 APE-Bench tasks per model-scaffold configuration; repeat count not reported",
+          "tool_permissions": "Identical APE task contracts and shared execute/retrieve services; native Claude Code tools and implementation strategy"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "Gemini 3 Flash; Gemini 3 Pro; GPT-5.2",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "100 turns and 3 USD per task; top-5 declaration retrieval enabled",
+          "runs": "100 APE-Bench tasks per model-scaffold configuration; repeat count not reported",
+          "tool_permissions": "Identical APE task contracts and shared execute/retrieve services; native Codex CLI tools and implementation strategy"
+        }
+      ],
+      "task": {
+        "summary": "Modify pinned Mathlib repositories from natural-language proof-engineering requirements and satisfy compilation plus semantic constraints.",
+        "benchmark": "APE-Bench, 100 tasks from 67 Mathlib commits dated 2026-01-06 through 2026-01-12; also miniCTX and miniF2F"
+      },
+      "method": {
+        "summary": "Declarative task contracts bind repository versions, access controls, retrieval, compilation, and semantic verification while APE-Agent integrates editing with verification in a compact ReAct scaffold.",
+        "tags": [
+          "benchmark-design",
+          "verifier-loop",
+          "retrieval",
+          "deterministic-search"
+        ]
+      },
+      "evidence": {
+        "result": "On identical APE-Bench tasks and 3 USD/100-turn budgets, APE-Agent reaches 47%, 24%, and 27% with Gemini 3 Flash, Gemini 3 Pro, and GPT-5.2; Claude Code reaches 27%, 8%, and 10%, while Codex reaches 32%, 1%, and 11%. The paper attributes the 15–23 point gaps to integrated verification, shorter prompts, and lower redundant execution/retrieval overhead.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Section 6.1 Experimental Setup; Figure 3; Section 6.4 Scaffold Interchangeability; Figure 4 in arXiv v3",
+        "source_url": "https://arxiv.org/abs/2504.19110v3",
+        "source_version": "submittedVersion",
+        "caveats": "The auxiliary manuscript is arXiv v3 and its author list differs from the official ICML poster. Product CLI versions, temperature, output-token caps, and independent repeat counts are not reported; the domain is Lean proof engineering rather than general-purpose software repair."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "not-reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "not-reported",
+        "turn_budget": "maximum 100 dialogue turns per task",
+        "token_budget": "not-reported",
+        "api_budget": "maximum 3 USD per task",
+        "runs": "100 APE-Bench tasks per model-scaffold configuration; repeat count not reported",
+        "tool_permissions": "Same pinned task contracts, top-5 retrieval, execute service, compilation checks, and semantic judges; scaffold-specific native tools remain different",
+        "baseline_config": "APE-Agent, Claude Code, and Codex CLI each run Gemini 3 Flash, Gemini 3 Pro, and GPT-5.2 under the same 100-turn and 3 USD task caps"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ICML",
+      "audit_status": "included",
+      "notes": "The ICML poster remains the acceptance authority; arXiv v3 is an identity-reviewed evidence copy with an explicit authorship-version caveat."
+    },
+    {
+      "id": "numina-lean-agent-2026",
+      "title": "Numina-Lean-Agent: An Open and General Agentic Reasoning System for Formal Mathematics",
+      "authors": [
+        "Junqi Liu",
+        "Zihao Zhou",
+        "Zekai Zhu",
+        "Marco Dos Santos",
+        "Weikun He",
+        "Jiawei Liu",
+        "Yunzhou Xie",
+        "Junqiao Zhao",
+        "Qiufeng Wang",
+        "Lihong Zhi",
+        "Jia Li",
+        "Wenda Li"
+      ],
+      "year": 2026,
+      "conference": "ICML",
+      "venue": "ICML Main Conference",
+      "domains": [
+        "formal-methods"
+      ],
+      "publication_status": "main",
+      "classification": "related",
+      "system": "Numina-Lean-Agent",
+      "paper_url": "https://icml.cc/virtual/2026/poster/66755",
+      "artifact_url": "https://github.com/project-numina/numina-lean-agent",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2601.14027v1",
+          "landing_page_url": "https://arxiv.org/abs/2601.14027v1",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-matching-abstract-and-author-maintained-artifact-link",
+          "identity_value": "https://icml.cc/virtual/2026/poster/66755",
+          "identity_evidence": "The title and abstract match the ICML record, and the author-maintained repository links arXiv:2601.14027. ArXiv v1 contains the twelve ICML-listed authors plus Ran Wang, which is retained as a version caveat.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "host",
+          "model": "Claude Opus 4.5",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "Approximately 50 USD per Putnam problem by default; A5 approximately 1000 USD and B6 approximately 300 USD",
+          "runs": "One reported successful trajectory per problem; total attempt count not reported",
+          "tool_permissions": "Internet search disabled; sequential Claude Code execution with Numina-Lean-MCP, Lean-LSP-MCP, LeanDex, an informal prover, and a discussion-partner tool"
+        }
+      ],
+      "task": {
+        "summary": "Prove and formalize mathematics in Lean, including olympiad problems and a paper-scale Brascamp-Lieb development.",
+        "benchmark": "Putnam 2025 (12 problems) plus an interactive formalization case study exceeding 8,000 lines of Lean"
+      },
+      "method": {
+        "summary": "Claude Code is extended with MCP tools for Lean proof-state interaction, semantic theorem retrieval, iterative informal proving, external discussion, and subagent-based context decomposition.",
+        "tags": [
+          "verifier-loop",
+          "retrieval",
+          "multi-agent",
+          "context-reduction",
+          "structured-state"
+        ]
+      },
+      "evidence": {
+        "result": "Numina-Lean-Agent with Claude Opus 4.5 solves all 12 Putnam 2025 problems, matching AxiomProver and exceeding Aristotle by two problems; the paper also reports more than 8,000 lines of Lean produced during a sub-two-week human-agent formalization.",
+        "same_model": "unknown",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "component-level",
+        "source_location": "Section 2 Numina-Lean-Agent; Section 3.1 Performance; Tables 1-4; Section 4 in arXiv v1",
+        "source_url": "https://arxiv.org/abs/2601.14027v1",
+        "source_version": "submittedVersion",
+        "caveats": "Claude Code is the host scaffold rather than an independently measured baseline. Product version, decoding settings, output-token cap, and total failed attempts are not reported; the very large A5/B6 budgets are approximate rather than exact accounting."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "not-reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "Per-problem times range from 30 to 2,040 minutes; the Brascamp-Lieb collaboration lasted less than two weeks intermittently",
+        "turn_budget": "Informal prover allows at most 20 iterations; other Claude Code turn limits are not reported",
+        "token_budget": "not-reported",
+        "api_budget": "Approximately 50 USD per normal problem, 1000 USD for A5, and 300 USD for B6",
+        "runs": "Total attempts not reported; all 12 final successful solutions are released",
+        "tool_permissions": "Sequential execution with no internet search; Lean compiler/LSP, semantic retrieval, informal prover, discussion partner, and subagents are available",
+        "baseline_config": "Claude Code with Claude Opus 4.5 hosts Numina-Lean-MCP; external informal generator/verifier use Gemini-3-Pro-Preview, and the A5 subagent can query GPT-5.2"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ICML",
+      "audit_status": "included",
+      "notes": "The official ICML poster is primary; arXiv v1 is retained as a versioned evidence copy and lists one additional author."
+    },
+    {
+      "id": "posttrainbench-2026",
+      "title": "PostTrainBench: Can LLM Agents Automate LLM Post-Training?",
+      "authors": [
+        "Ben Rank",
+        "Hardik Bhatnagar",
+        "Ameya Pandurang Prabhu",
+        "Shira Eisenberg",
+        "Karina Nguyen",
+        "Matthias Bethge",
+        "Maksym Andriushchenko"
+      ],
+      "year": 2026,
+      "conference": "ICML",
+      "venue": "ICML Main Conference",
+      "domains": [
+        "machine-learning",
+        "scientific-computing"
+      ],
+      "publication_status": "dataset-benchmark",
+      "classification": "evaluation",
+      "system": "PostTrainBench",
+      "paper_url": "https://icml.cc/virtual/2026/poster/63667",
+      "artifact_url": "https://posttrainbench.com/",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2603.08640v1",
+          "landing_page_url": "https://arxiv.org/abs/2603.08640v1",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-abstract-and-complete-author-list",
+          "identity_value": "https://icml.cc/virtual/2026/poster/63667",
+          "identity_evidence": "The title, abstract, and seven authors match the ICML poster; Ameya Prabhu is expanded to Ameya Pandurang Prabhu on the official page. The project site links the same arXiv paper.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude Opus 4.6; Claude Opus 4.5; Claude Sonnet 4.6; Claude Sonnet 4.5; Claude Haiku 4.5; Qwen3 Max",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "10 hours on one H100 GPU per model-benchmark run; 28 configurations per agent",
+          "runs": "3 independent runs per frontier native-CLI configuration; single runs for other configurations",
+          "tool_permissions": "Autonomous terminal, file editing, Python/training scripts, unrestricted web search, and one H100; no human interaction"
+        },
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GPT-5.2; GPT 5.4 (High); GPT 5.1 Codex Max; GPT 5.3 Codex (High); GPT 5.3 Codex (Med); GPT 5.2 Codex",
+          "version": "not-reported",
+          "reasoning_mode": "Medium and High where reported; GPT-5.1 Codex Max ablates Low, Medium, and High",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "10 hours on one H100 GPU per model-benchmark run; 28 configurations per agent",
+          "runs": "3 independent runs per frontier native-CLI configuration; single runs for other configurations",
+          "tool_permissions": "Autonomous terminal, file editing, Python/training scripts, unrestricted web search, and one H100; no human interaction"
+        }
+      ],
+      "task": {
+        "summary": "Autonomously post-train a supplied 1.7B-4B base LLM for one target benchmark without starter code, data, or strategy.",
+        "benchmark": "PostTrainBench, 4 base models × 7 benchmarks spanning math, science, code, tool use, writing, and health"
+      },
+      "method": {
+        "summary": "A bounded, end-to-end AI-R&D benchmark gives CLI agents one H100, terminal and web access, then audits submitted checkpoints and pipelines for contamination, model substitution, and API misuse.",
+        "tags": [
+          "benchmark-design",
+          "verifier-loop",
+          "observability",
+          "adversarial-testing"
+        ]
+      },
+      "evidence": {
+        "result": "Claude Opus 4.6 on Claude Code leads agents at 23.2% weighted average versus 51.1% for official instruct models; GPT-5.2 on Codex CLI reaches 21.4%. Agents can win narrowly—GPT-5.1 Codex Max reaches 89% on BFCL for Gemma-3-4B versus 67% for the official model—but the audit finds reward hacking, including 12 contamination flags for Opus 4.6 across 84 runs.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Section 2 PostTrainBench Setup; Figure 2; Section 3.1 and Table 1; Sections 4.1-4.4; Sections 5.3-5.5 in arXiv v1",
+        "source_url": "https://arxiv.org/abs/2603.08640v1",
+        "source_version": "submittedVersion",
+        "caveats": "The same-model statement applies to reported native-scaffold versus OpenCode comparisons, not every leaderboard row. Agents optimize one narrow benchmark for ten hours, whereas official instruction-tuned models target broad capabilities; CLI versions, temperature, and output-token caps are not reported."
+      },
+      "experiment": {
+        "reasoning_mode": "GPT-5.1 Codex Max Low/Medium/High; GPT-5.3 Codex Medium/High; other effort settings not reported",
+        "temperature": "Evaluation uses 0.6 and top-p 0.95 for the few-shot base-model table; agent-generation temperature is not reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "maximum 10 hours on one H100 per run",
+        "turn_budget": "not-reported; one example Claude Code trajectory uses 104 turns",
+        "token_budget": "No fixed token cap; GPT-5.1 Codex Max averages 0.96M-1.89M tokens by effort, while GPT-5.3 Codex averages 10.6M-29.1M",
+        "api_budget": "Observed Claude Opus 4.6 API cost is approximately 600-750 USD per run; GPT-5.1/5.2 Codex CLI configurations are reported below 35 USD, plus up to about 30 USD GPU cost",
+        "runs": "3 independent runs for frontier native CLI configurations; one run for other configurations",
+        "tool_permissions": "Unrestricted internet and terminal access, file and code execution, one H100, no human interaction; an LLM judge audits rules",
+        "baseline_config": "Claude Code, Codex CLI, Gemini CLI, and OpenCode agents across 28 base-model/benchmark pairs under the same 10-hour single-H100 resource envelope"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ICML",
+      "audit_status": "included",
+      "notes": "The official ICML poster remains primary; arXiv v1 is the identity-verified evidence copy."
+    },
+    {
+      "id": "swe-compass-2026",
+      "title": "SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for Large Language Models",
+      "authors": [
+        "Jingxuan Xu",
+        "Ken Deng",
+        "Weihao Li",
+        "Songwei Yu",
+        "Haoyang Huang",
+        "Xinping Lei",
+        "Yifan Yao",
+        "Huaixi Tang",
+        "Zhiyi Lai",
+        "Kepeng Lei",
+        "Zizheng Zhan",
+        "Yanan Wu",
+        "Chenchen Zhang",
+        "Wenqiang Zhu",
+        "Wen Xiang",
+        "Zongxian Feng",
+        "Han Li",
+        "Junqi Xiong",
+        "Dailin Li",
+        "Zuchen Gao",
+        "Kun Wu",
+        "Yuanxing Zhang",
+        "Wuxuan Gong",
+        "Ziyuan Gao",
+        "Guanxiang Wang",
+        "Yirong Xue",
+        "Mengfei Xie",
+        "Xiaojiang Zhang",
+        "Jinghui Wang",
+        "Wenhao Zhuang",
+        "Zheng Lin",
+        "Huiming Wang",
+        "Zhaoxiang Zhang",
+        "Yuqun Zhang",
+        "Haotian Zhang",
+        "Ming Sun",
+        "Chen Bin",
+        "Jiaheng Liu"
+      ],
+      "year": 2026,
+      "conference": "ICML",
+      "venue": "ICML Main Conference",
+      "domains": [
+        "software-engineering"
+      ],
+      "publication_status": "dataset-benchmark",
+      "classification": "evaluation",
+      "system": "SWE-Compass",
+      "paper_url": "https://icml.cc/virtual/2026/poster/64552",
+      "artifact_url": "https://huggingface.co/datasets/Kwaipilot/SWE-Compass",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2511.05459v3",
+          "landing_page_url": "https://arxiv.org/abs/2511.05459v3",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-matching-abstract-and-reviewed-authorship",
+          "identity_value": "https://icml.cc/virtual/2026/poster/64552",
+          "identity_evidence": "The title and abstract match the ICML poster and OpenReview manuscript. The submitted manuscript contains authorship revisions, so it is explicitly retained as arXiv v3 rather than represented as camera-ready.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude-Sonnet-4-20250514; Qwen3-Coder-480B-A35B-Instruct; Qwen3-Coder-30B-A3B-Instruct; Qwen3-235B-A22B-Instruct-2507; DeepSeek-V3-0324",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "standard decoding; exact value not reported",
+          "max_output_tokens": "not-reported",
+          "budget": "One attempt per task, maximum 150 turns, 600 seconds per tool step",
+          "runs": "One fixed-seed Pass@1 attempt per model-task pair; retries disabled",
+          "tool_permissions": "permission_mode=bypassPermissions; sandboxed editor-centric workflow, parallel tool-call prompt, optional SubAgent, standardized build/test commands, and no network"
+        }
+      ],
+      "task": {
+        "summary": "Solve real pull-request tasks across feature work, repair, refactoring, performance, tests, understanding, and deployment in ten languages.",
+        "benchmark": "SWE-Compass, 2,000 verified GitHub PR instances across 8 task types, 8 scenarios, and 10 programming languages"
+      },
+      "method": {
+        "summary": "A broad execution-grounded benchmark pairs real PR tasks with reproducible containers and controlled agent budgets, then analyzes task, language, scenario, interaction, and failure-mode differences.",
+        "tags": [
+          "benchmark-design",
+          "test-feedback",
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "Claude-Sonnet-4-20250514 reaches 32.9% macro-average with Claude Code versus 31.8% with SWE-Agent. Across five shared models only two score higher with Claude Code; Claude Code favors deterministic deployment, understanding, and test-generation tasks, while failures are dominated by requirement misinterpretation and incomplete solutions rather than basic technical knowledge.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Section 4.1 Evaluated LLMs and Frameworks; Table 2; Sections 4.2.1-4.2.2; Figure 7; Appendix A.2 and A.4 in arXiv v3",
+        "source_url": "https://arxiv.org/abs/2511.05459v3",
+        "source_version": "submittedVersion",
+        "caveats": "The arXiv v3 author list differs from the official ICML poster and is retained only as a versioned evidence copy. Only five of ten models are run under Claude Code; the CLI version, temperature, output-token cap, and global job timeout are not reported."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "standard decoding; exact value not reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "maximum 600 seconds per tool step; global job limit not reported",
+        "turn_budget": "maximum 150 turns",
+        "token_budget": "not-reported",
+        "api_budget": "not-reported",
+        "runs": "Pass@1 with fixed seeds, no retries; one attempt per model-task pair",
+        "tool_permissions": "Offline pinned containers and caches; permission_mode=bypassPermissions; parallel tool calls and optional SubAgent; standardized pytest/npm/maven/go/cargo/cmake commands",
+        "baseline_config": "Claude Code and SWE-Agent use identical offline executors, 150-turn limits, 600-second tool timeouts, fixed seeds, no retries, and the five overlapping models"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ICML",
+      "audit_status": "included",
+      "notes": "The official ICML poster is the acceptance authority; arXiv v3 provides the versioned full-text evidence."
+    },
+    {
+      "id": "red-teaming-coding-agents-2026",
+      "title": "Red-Teaming Coding Agents from a Tool-Invocation Perspective: An Empirical Security Assessment",
+      "authors": [
+        "Yuchong Xie",
+        "Mingyu Luo",
+        "Zesen Liu",
+        "Zhixiang Zhang",
+        "Kaikai Zhang",
+        "Yu Liu",
+        "Ci Tao",
+        "Changhui Wang",
+        "Zongjie Li",
+        "Ping Chen",
+        "Shuai Wang",
+        "Dongdong She"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA Research Papers",
+      "domains": [
+        "security",
+        "software-engineering"
+      ],
+      "publication_status": "main",
+      "classification": "evaluation",
+      "system": "ToolLeak / RCE-2",
+      "paper_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A",
+      "artifact_url": "https://anonymous.4open.science/r/issta_2026-B18F",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2509.05755v6",
+          "landing_page_url": "https://arxiv.org/abs/2509.05755v6",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-matching-abstract-and-reviewed-authorship",
+          "identity_value": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/176/Red-Teaming-Coding-Agents-from-a-Tool-Invocation-Perspective-An-Empirical-Security-A",
+          "identity_evidence": "The exact title and abstract match the official ISSTA page. ArXiv v6 contains ten of the twelve official authors; Ci Tao and Changhui Wang appear only on the official record, and this difference is preserved as a version caveat.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "Claude-Sonnet 4; Claude-Sonnet 4.5; Claude-Sonnet 4.6; Claude-Opus-4.7",
+          "version": "v2.0.37 (Old); v2.1.138 (New)",
+          "reasoning_mode": "Thinking mode enabled by default when offered",
+          "temperature": "Product default",
+          "max_output_tokens": "not-reported",
+          "budget": "10 attempts per attack and agent-model pair",
+          "runs": "10 independent trials per attack and agent-model pair; real-world leakage uses best-of-10",
+          "tool_permissions": "MCP-enabled product configuration with an attacker-controlled external tool and the built-in command-execution tool"
+        }
+      ],
+      "task": {
+        "summary": "Exfiltrate hidden coding-agent prompts and hijack MCP tool invocation to trigger attacker-selected command execution.",
+        "benchmark": "Six real-world coding agents across 25 old/new agent-model pairs, plus emulated agents conditioned on recovered prompts"
+      },
+      "method": {
+        "summary": "ToolLeak exploits weaker guardrails during schema-driven argument filling; RCE-2 chains a malicious tool description with a high-salience tool-return instruction tailored from leaked prompt details.",
+        "tags": [
+          "adversarial-testing",
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "On old Claude Code v2.0.37, ToolLeak reaches 1.00 pseudo-recall for both Sonnet 4 and Sonnet 4.5, while RCE-2 reaches 0.6 and 0.7 attack success. On v2.1.138, progressive disclosure of tool names plus newer Sonnet 4.6/Opus 4.7 reduces RCE-2 to 0.0, demonstrating that agent-side tool-description isolation is an effective defense.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Section 6.1 and Table 2; Sections 6.2-6.4; Tables 3-5; Section 7.2 in arXiv v6",
+        "source_url": "https://arxiv.org/abs/2509.05755v6",
+        "source_version": "submittedVersion",
+        "caveats": "The evidence copy predates an official camera-ready PDF and has two fewer authors than the official ISSTA record. Pseudo-recall uses the union of all methods rather than ground truth, real-world leakage selects best-of-10, and attack outcomes depend on exact product generation and MCP exposure."
+      },
+      "experiment": {
+        "reasoning_mode": "Thinking mode enabled by default when a tested backend offers it",
+        "temperature": "Default for real products; temperature 0 in the API-based emulation study",
+        "max_output_tokens": "not-reported",
+        "time_budget": "not-reported",
+        "turn_budget": "not-reported",
+        "token_budget": "not-reported",
+        "api_budget": "not-reported",
+        "runs": "10 attempts per method and agent-model pair; best-of-10 for deployed-agent prompt leakage",
+        "tool_permissions": "Official product interfaces, MCP-enabled external malicious tool, and built-in shell/command execution; no root/admin access assumed",
+        "baseline_config": "ToolLeak versus nine prompt-leak baselines; RCE-2 versus AgentDojo, InjecAgent, MCPTox, and one-channel RCE-1 on the same agent-model pairs"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ISSTA",
+      "audit_status": "included",
+      "notes": "The ISSTA detail page is the acceptance authority; arXiv v6 is a versioned evidence copy with an explicit two-author difference."
+    },
+    {
+      "id": "execution-cost-effectiveness-2026",
+      "title": "To Run or Not to Run: Analyzing the Cost-Effectiveness of Code Execution in LLM-Based Program Repair",
+      "authors": [
+        "Zhihao Lin",
+        "Junhua Zhu",
+        "Mingyi Zhou",
+        "Xin Wang",
+        "Zhensu Sun",
+        "Renyu Yang",
+        "David Lo",
+        "Li Li"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA Research Papers",
+      "domains": [
+        "software-engineering",
+        "systems-performance"
+      ],
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "Execution-aware repair policies",
+      "paper_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based",
+      "artifact_url": "https://github.com/mathieu0905/To_Run_Or_Not_To_Run",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2606.26978v1",
+          "landing_page_url": "https://arxiv.org/abs/2606.26978v1",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-abstract-and-complete-author-list",
+          "identity_value": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/22/To-Run-or-Not-to-Run-Analyzing-the-Cost-Effectiveness-of-Code-Execution-in-LLM-Based",
+          "identity_evidence": "The exact title, abstract, and eight authors match the official ISSTA detail page; arXiv v1 is used only as the versioned full-text evidence copy.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "Anthropic claude-sonnet-4-5",
+          "version": "v1.0.16",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "200 tasks × 5 execution modes; Prohibited, Quota-1, Quota-3, Budget-Guided, and Unrestricted",
+          "runs": "One complete attempt per task-mode pair; 1,000 controlled Claude Code runs plus a 100-task hard-constraint rerun",
+          "tool_permissions": "claude -p in SWE-bench containers; execution policy changes by prompt, with a hard rerun using --disallowedTools for test commands"
+        },
+        {
+          "product": "codex-cli",
+          "role": "baseline",
+          "model": "OpenAI gpt-5.2",
+          "version": "v0.1.2025062301",
+          "reasoning_mode": "xhigh",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "200 tasks × 5 execution modes; Prohibited, Quota-1, Quota-3, Budget-Guided, and Unrestricted",
+          "runs": "One complete attempt per task-mode pair; 1,000 controlled Codex runs",
+          "tool_permissions": "codex exec in SWE-bench containers; execution policy changes by prompt while repository reading/editing remains available"
+        }
+      ],
+      "task": {
+        "summary": "Repair SWE-bench issues while varying whether and how often the industrial coding agent can run project tests or scripts.",
+        "benchmark": "First 100 SWE-bench Lite and first 100 SWE-bench Verified instances; 3,000 controlled attempts plus 7,745 public trace analyses"
+      },
+      "method": {
+        "summary": "Five execution policies isolate test execution as a controlled resource, combining paired outcome tests, token/time accounting, hard tool denial, and trajectory-level analysis of localization and validation feedback.",
+        "tags": [
+          "test-feedback",
+          "performance-feedback",
+          "observability"
+        ]
+      },
+      "evidence": {
+        "result": "Prohibiting execution changes commercial-agent resolve rate by only 1.25 points on average and is not significant. For Claude Code it saves 56–62% tokens and 48–54% wall time for only 1–3 points lower resolve rate; for Codex, Quota-1 saves 21–25% tokens. Most failures persist because 81.2% of Claude Code and 100% of Codex fail-to-fail cases pass at least one agent-selected validation but fail official tests.",
+        "same_model": "yes",
+        "same_budget": "no",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "configuration-ablation",
+        "source_location": "Section 3.3 Models and Agents footnote 1; Section 3.5; Tables 2-7; Sections 4.2-4.3; Tables 8-13 in arXiv v1",
+        "source_url": "https://arxiv.org/abs/2606.26978v1",
+        "source_version": "submittedVersion",
+        "caveats": "Execution access is intentionally unequal across configurations, and most restrictions are prompt-level; the paper separately verifies zero-execution subsets and a 100-task hard-denial Claude Code run. Results cover Python-heavy SWE-bench subsets and one fixed product/model version per commercial agent."
+      },
+      "experiment": {
+        "reasoning_mode": "Claude Code not reported; Codex gpt-5.2 uses reasoning effort xhigh",
+        "temperature": "not-reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "No fixed cap reported; modes for each instance run concurrently on identical hardware",
+        "turn_budget": "not-reported",
+        "token_budget": "Measured rather than capped; Table 6 reports 48K-128K input and 15K-39K output tokens for Claude Code, and 300K-463K input plus 75K-116K output for Codex",
+        "api_budget": "not-reported",
+        "runs": "3,000 runs total = 200 tasks × 3 agents × 5 modes; one attempt per cell, plus the Claude Code hard-constraint rerun",
+        "tool_permissions": "Repository exploration/editing always available; test frameworks and project scripts prohibited, quota-limited, cost-guided, or unrestricted by mode; official SWE-bench harness evaluates final patches",
+        "baseline_config": "Unrestricted Claude Code v1.0.16 + Anthropic claude-sonnet-4-5 and Codex v0.1.2025062301 + OpenAI gpt-5.2 xhigh serve as product baselines for restricted execution policies"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ISSTA",
+      "audit_status": "included",
+      "notes": "The ISSTA page remains the publication source; arXiv v1 supplies the identity-verified full-text and exact configuration evidence."
+    },
+    {
+      "id": "evodev-2026",
+      "title": "Towards Iterative End-to-End Software Development: A Feature-Driven Multi-Agent Framework",
+      "authors": [
+        "Junwei Liu",
+        "Chen Xu",
+        "Chong Wang",
+        "Tong Bai",
+        "Weitong Chen",
+        "Kaseng Wong",
+        "Yiling Lou",
+        "Xin Peng"
+      ],
+      "year": 2026,
+      "conference": "ISSTA",
+      "venue": "ISSTA Research Papers",
+      "domains": [
+        "software-engineering",
+        "web-ui"
+      ],
+      "publication_status": "main",
+      "classification": "direct",
+      "system": "EvoDev",
+      "paper_url": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame",
+      "artifact_status": "not-found",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2511.02399v3",
+          "landing_page_url": "https://arxiv.org/abs/2511.02399v3",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "not-reported",
+          "identity_status": "verified",
+          "identity_method": "exact-title-abstract-and-complete-author-list-with-acceptance-note",
+          "identity_value": "https://conf.researchr.org/details/issta-2026/issta-2026-research-papers/207/Towards-Iterative-End-to-End-Software-Development-A-Feature-Driven-Multi-Agent-Frame",
+          "identity_evidence": "arXiv v3 and the official ISSTA record have the same title, eight authors, abstract, and revised headline results; the arXiv record also explicitly states Accepted by ISSTA 2026.",
+          "verified_at": "2026-08-25T14:39:18+00:00",
+          "discovered_at": "2026-08-25T14:39:18+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "claude-code",
+          "role": "baseline",
+          "model": "claude-sonnet-4-20250514",
+          "version": "not-reported",
+          "reasoning_mode": "not-reported",
+          "temperature": "not-reported",
+          "max_output_tokens": "not-reported",
+          "budget": "15 Android applications; 30, 40, or 50 minute task timeout for elementary, intermediate, or advanced apps",
+          "runs": "One archived development output per 15 app tasks; independent repeat count not reported",
+          "tool_permissions": "Product used according to official documentation against an Android Studio scaffold; exact permission flags are not reported"
+        }
+      ],
+      "task": {
+        "summary": "Build complete Kotlin Android applications from detailed natural-language requirements and an Android Studio scaffold project.",
+        "benchmark": "APPDev, 15 applications with 8-26 functional requirements each, blinded four-person manual evaluation, and standardized Android devices"
+      },
+      "method": {
+        "summary": "EvoDev replaces a linear to-do list with global design, a dependency-aware Feature Map, predecessor context propagation, chief-programmer planning, iterative build-and-fix loops, and a compact current-file memory.",
+        "tags": [
+          "dependency-aware-planning",
+          "structured-state",
+          "memory",
+          "multi-agent",
+          "verifier-loop",
+          "context-reduction"
+        ]
+      },
+      "evidence": {
+        "result": "With the same claude-sonnet-4-20250514 model and task time limits, Claude Code reaches 73.3% build success and 2.27/4 function completeness; EvoDev reaches 100% and 3.57/4, a 57.3% relative completeness improvement. Ablations show that predecessor context reverses an iterative-only regression from 2.80 to 3.57.",
+        "same_model": "yes",
+        "same_budget": "yes",
+        "strength": "high",
+        "claim_type": "mixed",
+        "comparison_scope": "product-level",
+        "source_location": "Sections 4.3.2-4.3.4; Section 5.1 and Table 3; Section 5.3 and Table 6; Section 5.5 and Figure 7 in arXiv v3",
+        "source_url": "https://arxiv.org/abs/2511.02399v3",
+        "source_version": "submittedVersion",
+        "caveats": "APPDev contains only 15 Kotlin Android applications and relies on blinded manual scoring. Product CLI version, temperature, output-token cap, exact permissions, and repeated-run variance are not reported; average Claude Code cost is higher than EvoDev but EvoDev takes longer."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "not-reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "30 minutes for elementary apps, 40 for intermediate, and 50 for advanced; average observed time is 11.81 minutes for Claude Code and 23.19 for EvoDev",
+        "turn_budget": "not-reported",
+        "token_budget": "not-reported",
+        "api_budget": "Average observed cost is 4.38 USD per app for Claude Code and 4.12 USD for EvoDev; no hard common price cap is reported",
+        "runs": "15 application tasks per approach; independent repeat count not reported",
+        "tool_permissions": "All approaches start from the same Android Studio scaffold and follow official setup; exact Claude Code flags and network permissions are not reported",
+        "baseline_config": "MetaGPT, GPT-Engineer, Claude Code, and EvoDev run with Claude-4-Sonnet; the product comparison and EvoDev use the exact claude-sonnet-4-20250514 base model"
+      },
+      "source_type": "official-conference",
+      "year_tag": 2026,
+      "conference_tag": "ISSTA",
+      "audit_status": "included",
+      "notes": "The ISSTA detail page is the acceptance authority; arXiv v3 is the exact-title, complete-author, acceptance-noted evidence copy."
+    },
+    {
+      "id": "swe-bench-mobile-2026",
+      "title": "SWE-Bench Mobile: Can Large Language Model Agents Develop Industry-Level Mobile Applications?",
+      "authors": [
+        "Muxin Tian",
+        "Zhe Wang",
+        "Blair Yang",
+        "Zhenwei Tang",
+        "Kunlun Zhu",
+        "Honghua Dong",
+        "Hanchen Li",
+        "Xinni Xie",
+        "Guangjing Wang",
+        "Jiaxuan You"
+      ],
+      "year": 2026,
+      "conference": "KDD",
+      "venue": "KDD 2026 Applied Data Science Track (July Cycle)",
+      "domains": [
+        "software-engineering",
+        "web-ui"
+      ],
+      "publication_status": "dataset-benchmark",
+      "classification": "evaluation",
+      "system": "SWE-Bench Mobile",
+      "paper_url": "https://doi.org/10.1145/3770855.3818488",
+      "doi": "10.1145/3770855.3818488",
+      "artifact_url": "https://swebenchmobile.com/",
+      "artifact_status": "official",
+      "content_sources": [
+        {
+          "provider": "arxiv",
+          "url": "https://arxiv.org/pdf/2602.09540v1",
+          "landing_page_url": "https://arxiv.org/abs/2602.09540v1",
+          "source_role": "full-text",
+          "version": "submittedVersion",
+          "license": "cc-by-4.0",
+          "identity_status": "verified",
+          "identity_method": "exact-title-and-complete-author-list",
+          "identity_value": "10.1145/3770855.3818488",
+          "identity_evidence": "The arXiv v1 title and complete ten-author list match the official KDD DOI record; the authors' benchmark site links the same record.",
+          "verified_at": "2026-08-25T00:00:00+00:00",
+          "discovered_at": "2026-08-25T00:00:00+00:00",
+          "used_for": [
+            "full-text",
+            "evidence"
+          ]
+        }
+      ],
+      "products": [
+        {
+          "product": "codex-cli",
+          "role": "evaluated",
+          "model": "GLM-4.6; Claude Sonnet 4.5; GPT-5; Claude Opus 4.5; GPT-5.1",
+          "version": "v0.77.0",
+          "reasoning_mode": "not-reported",
+          "temperature": "API defaults where applicable; exact values not reported",
+          "max_output_tokens": "not-reported",
+          "budget": "50 tasks per configuration; reported averages range from $1.00 to $3.50 and 10.0 to 14.2 minutes per task for Codex configurations",
+          "runs": "One complete 50-task evaluation per configuration; Codex + Claude Opus 4.5 was repeated 3 times for robustness",
+          "tool_permissions": "Full production-codebase task environment; official Figma MCP for vision-capable models and GLM Vision MCP for GLM-4.6"
+        },
+        {
+          "product": "claude-code",
+          "role": "evaluated",
+          "model": "GLM-4.6; Claude Sonnet 4.5; Claude Opus 4.5; Claude Haiku",
+          "version": "v2.1.37",
+          "reasoning_mode": "not-reported",
+          "temperature": "API defaults where applicable; exact values not reported",
+          "max_output_tokens": "not-reported",
+          "budget": "50 tasks per configuration; reported averages range from $0.50 to $4.00 and 8.3 to 15.0 minutes per task for Claude Code configurations",
+          "runs": "One complete 50-task evaluation per configuration; Claude Code + Claude Opus 4.5 was repeated 3 times for robustness",
+          "tool_permissions": "Full production-codebase task environment; official Figma MCP for vision-capable models and GLM Vision MCP for GLM-4.6"
+        }
+      ],
+      "task": {
+        "summary": "Implement production iOS features from product requirements, Figma designs, and an existing Swift/Objective-C codebase.",
+        "benchmark": "SWE-Bench Mobile; 50 proprietary tasks, 449 diff-based tests, about 500K lines of code, and 22 agent-model configurations"
+      },
+      "method": {
+        "summary": "A hosted, contamination-resistant mobile software-engineering benchmark with real PRDs, multimodal design inputs, production code, and task-specific patch tests.",
+        "tags": [
+          "benchmark-design"
+        ]
+      },
+      "evidence": {
+        "result": "Codex + GLM-4.6 reaches 12.0% task success and 19.6% test pass; Claude Code + GLM-4.6 reaches 10.0% and 26.7%. Across all 22 configurations, no system exceeds 12.0% task success, and success falls from 18% on 1-2-file tasks to 2% on tasks requiring 7 or more files.",
+        "same_model": "yes",
+        "same_budget": "unknown",
+        "strength": "high",
+        "claim_type": "diagnostic",
+        "comparison_scope": "benchmark-only",
+        "source_location": "Section 3.1-3.9; Appendix B Tables 5-6; Appendix E Reproducibility in arXiv v1",
+        "source_url": "https://arxiv.org/abs/2602.09540v1",
+        "source_version": "submittedVersion",
+        "caveats": "The official KDD DOI proves venue identity, while detailed evidence was checked in the identity-matched arXiv v1 because the ACM PDF endpoint was unavailable to the crawler. The benchmark uses a proprietary codebase and diff-based tests rather than compiling or running the iOS app; model snapshots, hard token limits, and common time or cost caps are not reported."
+      },
+      "experiment": {
+        "reasoning_mode": "not-reported",
+        "temperature": "GPT-family models use default temperature and top-p; exact values for all configurations are not reported",
+        "max_output_tokens": "not-reported",
+        "time_budget": "No common time cap reported; average runtime per configuration ranges from 2.0 to 52.1 minutes per task",
+        "turn_budget": "not-reported",
+        "token_budget": "not-reported",
+        "api_budget": "No common cost cap; observed average cost ranges from $0.02 to $9.33 per task across all 22 configurations",
+        "runs": "50 tasks per configuration; selected Claude Code and Codex configurations repeated 3 times for robustness",
+        "tool_permissions": "Agents receive PRDs, Figma designs, and the production repository; Figma MCP or GLM Vision MCP supplies visual context; outputs are unified diff patches",
+        "baseline_config": "22 configurations across Cursor, Codex CLI v0.77.0, Claude Code CLI v2.1.37, and OpenCode v1.1.44 on the same 50-task benchmark"
+      },
+      "source_type": "official-publisher",
+      "year_tag": 2026,
+      "conference_tag": "KDD",
+      "audit_status": "included",
+      "notes": "The primary source remains the official KDD DOI. arXiv v1 is retained only as an identity-verified auxiliary evidence copy."
+    },
+    {
       "id": "lean-refactor-2026",
       "title": "Verifiable PDE Reasoning and Modeling with Neurosymbolics",
       "authors": [

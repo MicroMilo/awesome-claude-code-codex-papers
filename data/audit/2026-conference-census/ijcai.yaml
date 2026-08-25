@@ -51228,8 +51228,8 @@ papers:
   official_url: https://2026.ijcai.org/accepted-papers/?ijtrack=early-career-spotlight
   track: Early Career Spotlight
   disposition: pending
-  disposition_reason: Official conference record found, but no first-party full-text PDF URL was exposed by the source adapter;
-    arXiv is not used as a substitute.
+  disposition_reason: Official conference record found, but no official or identity-verified auxiliary full-text URL has been
+    resolved yet.
   full_text_scan: pending
   official_record_id: EC14
   authors:
@@ -53977,8 +53977,8 @@ papers:
   official_url: https://2026.ijcai.org/accepted-papers/?ijtrack=journal-track
   track: Journal Track
   disposition: pending
-  disposition_reason: Official conference record found, but no first-party full-text PDF URL was exposed by the source adapter;
-    arXiv is not used as a substitute.
+  disposition_reason: Official conference record found, but no official or identity-verified auxiliary full-text URL has been
+    resolved yet.
   full_text_scan: pending
   official_record_id: JT6
   authors:

@@ -2815,6 +2815,15 @@ footer {
   text-transform: uppercase;
 }
 
+.pending-empty {
+  border-bottom: 1px solid var(--line);
+  color: #536566;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 24px 0;
+}
+
 .pending-ledger > article {
   align-items: center;
   border-bottom: 1px solid var(--line);
