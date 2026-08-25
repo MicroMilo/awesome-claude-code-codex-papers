@@ -14,6 +14,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "data" / "papers.yaml"
+CENSUS_INDEX_PATH = ROOT / "data" / "audit" / "2026-conference-census" / "index.yaml"
 PENDING_SUMMARY_PATH = ROOT / "data" / "audit" / "2026-pending-summary.json"
 README_PATH = ROOT / "README.md"
 README_ZH_PATH = ROOT / "README.zh-CN.md"
@@ -67,21 +68,18 @@ CONFERENCE_ORDER = [
 PRODUCT_LABELS = {
     "claude-code": "Claude Code",
     "codex-cli": "Codex CLI",
-    "openai-codex-model": "OpenAI Codex model",
 }
 
 CLASS_LABELS = {
     "direct": "Direct comparison",
     "related": "Related method",
     "evaluation": "Evaluation only",
-    "historical": "Historical model",
 }
 
 CLASS_LABELS_ZH = {
     "direct": "直接对比",
     "related": "相关方法",
     "evaluation": "仅评测",
-    "historical": "旧模型",
 }
 
 CONTROL_LABELS = {
@@ -194,23 +192,28 @@ def generate_table(papers: list[dict], language: str = "en", root_prefix: str = 
 
 def generate_stats(catalog: dict) -> str:
     papers = catalog["papers"]
+    census_index = yaml.safe_load(CENSUS_INDEX_PATH.read_text(encoding="utf-8"))
+    official_records = sum(
+        int(item.get("record_count", 0)) for item in census_index.get("conference_files", [])
+    )
+    tracked_conferences = len(census_index.get("conference_files", []))
     direct = sum(paper["classification"] == "direct" for paper in papers)
     artifacts = sum(paper["artifact_status"] == "official" for paper in papers)
-    conferences = len({paper["conference"] for paper in papers})
     domains = len({domain for paper in papers for domain in paper["domains"]})
     reviewed = catalog["reviewed_at"]
     badges = [
         ("papers", len(papers), "16616a"),
+        ("official records indexed", f"{official_records:,}", "0f766e"),
         ("direct comparisons", direct, "dc6b46"),
         ("official artifacts", artifacts, "2563eb"),
         ("domains", domains, "4bcbd5"),
-        ("conference groups", conferences, "7c3aed"),
+        ("conference series tracked", tracked_conferences, "7c3aed"),
         ("reviewed", reviewed, "475569"),
     ]
     images = []
     for label, value, color in badges:
         encoded_label = str(label).replace(" ", "%20")
-        encoded_value = str(value).replace("-", "--")
+        encoded_value = str(value).replace("-", "--").replace(",", "%2C")
         images.append(
             f'<img alt="{label}: {value}" '
             f'src="https://img.shields.io/badge/{encoded_label}-{encoded_value}-{color}">'
@@ -430,7 +433,7 @@ def render_views_index() -> str:
 
 def render_by_product(catalog: dict) -> str:
     sections = []
-    for product_id in ["claude-code", "codex-cli", "openai-codex-model"]:
+    for product_id in ["claude-code", "codex-cli"]:
         papers = [
             paper
             for paper in catalog["papers"]

@@ -90,15 +90,6 @@ def invariant_errors(catalog: dict) -> list[str]:
             if not has_baseline:
                 errors.append(f"{paper_id}: direct entries require a product baseline")
 
-        historical_products = {"openai-codex-model"}
-        has_historical_product = any(
-            item.get("product") in historical_products for item in products
-        )
-        if classification == "historical" and not has_historical_product:
-            errors.append(f"{paper_id}: historical entries require a historical product")
-        if classification != "historical" and has_historical_product:
-            errors.append(f"{paper_id}: historical products must use historical classification")
-
         if artifact_status in {"official", "community"} and not artifact_url:
             errors.append(f"{paper_id}: {artifact_status} artifact requires artifact_url")
         if artifact_status == "not-found" and artifact_url:
@@ -109,7 +100,6 @@ def invariant_errors(catalog: dict) -> list[str]:
             "direct": {"product-level", "configuration-ablation"},
             "related": {"component-level", "configuration-ablation"},
             "evaluation": {"benchmark-only"},
-            "historical": {"historical-model"},
         }
         if comparison_scope not in expected_scopes.get(classification, set()):
             errors.append(

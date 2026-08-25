@@ -53,6 +53,12 @@ def test_every_paper_has_filterable_domain_and_conference() -> None:
     assert all(paper["domains"] for paper in papers)
     assert all(paper["source_type"] != "arxiv" for paper in papers)
     assert all("arxiv.org" not in paper["paper_url"] for paper in papers)
+    assert all(
+        product["product"] in {"claude-code", "codex-cli"}
+        for paper in papers
+        for product in paper["products"]
+    )
+    assert all(paper["classification"] in {"direct", "related", "evaluation"} for paper in papers)
 
 
 def test_link_scan_excludes_dependencies_and_build_outputs(tmp_path: Path, monkeypatch) -> None:

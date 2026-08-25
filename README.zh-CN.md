@@ -19,6 +19,7 @@
 
 <p align="center">
   <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/actions/workflows/validate.yml"><img alt="目录校验" src="https://github.com/MicroMilo/awesome-claude-code-codex-papers/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/MicroMilo/awesome-claude-code-codex-papers?style=flat&logo=github&color=f16f51"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-4bcbd5"></a>
   <a href="CONTRIBUTING.md"><img alt="欢迎 PR" src="https://img.shields.io/badge/PRs-welcome-f16f51"></a>
   <a href="data/papers.yaml"><img alt="YAML 数据" src="https://img.shields.io/badge/catalog-YAML%20%2B%20JSON-2563eb"></a>
@@ -27,11 +28,12 @@
 <!-- CATALOG:STATS:START -->
 <p align="center">
   <img alt="papers: 13" src="https://img.shields.io/badge/papers-13-16616a">
+  <img alt="official records indexed: 18,269" src="https://img.shields.io/badge/official%20records%20indexed-18%2C269-0f766e">
   <img alt="direct comparisons: 5" src="https://img.shields.io/badge/direct%20comparisons-5-dc6b46">
   <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
   <img alt="domains: 7" src="https://img.shields.io/badge/domains-7-4bcbd5">
-  <img alt="conference groups: 2" src="https://img.shields.io/badge/conference%20groups-2-7c3aed">
-  <img alt="reviewed: 2026-08-24" src="https://img.shields.io/badge/reviewed-2026--08--24-475569">
+  <img alt="conference series tracked: 13" src="https://img.shields.io/badge/conference%20series%20tracked-13-7c3aed">
+  <img alt="reviewed: 2026-08-25" src="https://img.shields.io/badge/reviewed-2026--08--25-475569">
 </p>
 <!-- CATALOG:STATS:END -->
 
@@ -46,7 +48,7 @@
 </p>
 <!-- CATALOG:COVERAGE:END -->
 
-这个仓库是**网页优先论文目录**背后的开放数据与维护层。主目录只收录**2026 年、拥有正式会议 / proceedings / OpenReview 会议记录**，并且把 **Claude Code** 或 **Codex CLI** 当作完整产品进行评测、分析或超越的论文；只使用 Claude 或 GPT 系列模型的论文不会混入主目录。
+这个仓库是**网页优先论文目录**背后的开放数据与维护层。主目录只收录**2026 年、拥有正式会议 / proceedings / OpenReview 会议记录**，并且把 **Claude Code** 或 **Codex CLI** 当作完整产品进行评测、分析或超越的论文；只使用 Claude 或 GPT 系列模型的论文不会混入主目录。官方清单中的每条记录都会保留 `included`、`excluded`、`pending` 或 `duplicate` 状态，因此目录数量精简代表范围严格，而不是静默漏掉论文。
 
 ## 先看网站
 
@@ -67,11 +69,11 @@
 
 ## 参与贡献
 
-可以直接[推荐论文](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml)、修正证据记录，或阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。目录由 `data/papers.yaml` 自动生成并通过 CI 校验。
+可以直接[推荐论文](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml)、修正证据记录、参与[研究讨论](https://github.com/MicroMilo/awesome-claude-code-codex-papers/discussions)，或阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。目录由 `data/papers.yaml` 自动生成并通过 CI 校验。
 
 ---
 
 <p align="center">
   <strong>这个目录帮你省下了一轮翻论文的时间吗？</strong><br>
-  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers">去仓库点个 Star ★</a>，让更多研究者找到这些证据。
+  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/stargazers">去仓库点个 Star ★</a>，让更多研究者找到这些证据。
 </p>

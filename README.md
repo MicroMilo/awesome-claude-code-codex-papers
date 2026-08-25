@@ -19,6 +19,7 @@
 
 <p align="center">
   <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/actions/workflows/validate.yml"><img alt="Validate catalog" src="https://github.com/MicroMilo/awesome-claude-code-codex-papers/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/MicroMilo/awesome-claude-code-codex-papers?style=flat&logo=github&color=f16f51"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-4bcbd5"></a>
   <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-f16f51"></a>
   <a href="data/papers.yaml"><img alt="Data YAML" src="https://img.shields.io/badge/catalog-YAML%20%2B%20JSON-2563eb"></a>
@@ -27,11 +28,12 @@
 <!-- CATALOG:STATS:START -->
 <p align="center">
   <img alt="papers: 13" src="https://img.shields.io/badge/papers-13-16616a">
+  <img alt="official records indexed: 18,269" src="https://img.shields.io/badge/official%20records%20indexed-18%2C269-0f766e">
   <img alt="direct comparisons: 5" src="https://img.shields.io/badge/direct%20comparisons-5-dc6b46">
   <img alt="official artifacts: 10" src="https://img.shields.io/badge/official%20artifacts-10-2563eb">
   <img alt="domains: 7" src="https://img.shields.io/badge/domains-7-4bcbd5">
-  <img alt="conference groups: 2" src="https://img.shields.io/badge/conference%20groups-2-7c3aed">
-  <img alt="reviewed: 2026-08-24" src="https://img.shields.io/badge/reviewed-2026--08--24-475569">
+  <img alt="conference series tracked: 13" src="https://img.shields.io/badge/conference%20series%20tracked-13-7c3aed">
+  <img alt="reviewed: 2026-08-25" src="https://img.shields.io/badge/reviewed-2026--08--25-475569">
 </p>
 <!-- CATALOG:STATS:END -->
 
@@ -46,7 +48,7 @@
 </p>
 <!-- CATALOG:COVERAGE:END -->
 
-This repository is the open data and maintenance layer behind the **web-first research catalog**. The main catalog is restricted to **2026 papers with an official conference, proceedings, or OpenReview conference record** that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model.
+This repository is the open data and maintenance layer behind the **web-first research catalog**. The main catalog is restricted to **2026 papers with an official conference, proceedings, or OpenReview conference record** that evaluate, analyze, or outperform **Claude Code** and **Codex CLI** as complete products—not papers that merely use a Claude or GPT-family model. Every official-list record remains auditable as `included`, `excluded`, `pending`, or `duplicate`, so a compact catalog reflects strict scope rather than silent filtering.
 
 ## Start with the website
 
@@ -67,11 +69,11 @@ For raw or generated research material, use the [paper dossiers](papers/README.m
 
 ## Contributing
 
-[Suggest a paper](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml), correct an evidence record, or read [CONTRIBUTING.md](CONTRIBUTING.md). The catalog is generated from `data/papers.yaml` and validated in CI.
+[Suggest a paper](https://github.com/MicroMilo/awesome-claude-code-codex-papers/issues/new?template=paper.yml), correct an evidence record, join a [research discussion](https://github.com/MicroMilo/awesome-claude-code-codex-papers/discussions), or read [CONTRIBUTING.md](CONTRIBUTING.md). The catalog is generated from `data/papers.yaml` and validated in CI.
 
 ---
 
 <p align="center">
   <strong>Did this save you a paper-reading session?</strong><br>
-  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers">Star the repository ★</a> — it helps more researchers find the evidence.
+  <a href="https://github.com/MicroMilo/awesome-claude-code-codex-papers/stargazers">Star the repository ★</a> — it helps more researchers find the evidence.
 </p>

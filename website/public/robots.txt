@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://micromilo.github.io/awesome-claude-code-codex-papers/sitemap.xml

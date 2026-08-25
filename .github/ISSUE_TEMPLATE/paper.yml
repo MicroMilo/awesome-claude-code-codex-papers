@@ -31,7 +31,6 @@ body:
       options:
         - Claude Code
         - Codex CLI
-        - Historical OpenAI Codex model
     validations:
       required: true
   - type: dropdown
@@ -87,7 +86,6 @@ body:
         - Direct comparison
         - Related method
         - Evaluation only
-        - Historical model
     validations:
       required: true
   - type: textarea

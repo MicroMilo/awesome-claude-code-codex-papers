@@ -4,9 +4,8 @@
 
 - `claude-code`: Anthropic's Claude Code product or CLI used as an end-to-end agent harness.
 - `codex-cli`: OpenAI Codex CLI used as an end-to-end agent harness.
-- `openai-codex-model`: the historical OpenAI Codex model, without the modern Codex CLI harness.
 
-The product field describes the evaluated harness, not merely the model provider. A paper using a Claude API model inside a custom scaffold is not automatically a Claude Code paper.
+The product field describes the evaluated harness, not merely the model provider. A paper using a Claude API model, a GPT-family model, or the historical OpenAI Codex model without the corresponding product harness is outside the main-catalog scope.
 
 ## Domains
 
@@ -40,10 +39,6 @@ The product is integrated, discussed, or used in a partial experiment, but the c
 ### Evaluation only
 
 The paper introduces a benchmark, dataset, measurement study, or failure analysis and reports product-level results without a method intended to outperform the product.
-
-### Historical model
-
-The paper studies the pre-CLI OpenAI Codex model. These entries are retained for research continuity but never mixed with modern Codex CLI results.
 
 ## Method tags
 
@@ -102,7 +97,6 @@ full text, appendix, and available artifact have been checked.
 - `component-level`: the main evidence isolates retrieval, planning, testing, or another component.
 - `configuration-ablation`: the product is compared under changed instructions or configuration.
 - `benchmark-only`: the product is measured without an improvement intervention.
-- `historical-model`: the result concerns the pre-CLI OpenAI Codex model.
 
 ## Evidence strength
 

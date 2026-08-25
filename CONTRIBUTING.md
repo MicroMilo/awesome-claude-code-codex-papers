@@ -2,80 +2,75 @@
 
 Thank you for helping maintain an accurate, evidence-first catalog of research on production coding agents.
 
-## Inclusion criteria
+## Scope gate
 
-A paper belongs in the catalog when at least one of the following is true:
+A paper belongs in the main catalog only when all of these conditions hold:
 
-1. It directly executes Claude Code or Codex CLI in an experiment.
-2. It proposes a method that wraps, configures, improves, or competes with one of those products.
-3. It introduces a benchmark or empirical study with product-level Claude Code or Codex CLI results.
-4. It studies the historical OpenAI Codex model and is clearly labeled `historical`.
+1. It is a formally accepted 2026 paper in one of the conference series listed in `docs/taxonomy.md`.
+2. Its primary URL is an official conference page, proceedings page, conference OpenReview record, or publisher record.
+3. It actually runs or evaluates Claude Code or Codex CLI as a product-level agent harness.
+4. The full text, appendix, and available artifact have been checked for the claimed product, model, configuration, and evidence location.
 
-A paper does not belong in the primary catalog merely because it uses a Claude or GPT-family model. The product agent or harness must be part of the study.
+Qualifying uses include a product baseline, product-level evaluation, benchmark, empirical analysis, or a method that wraps, configures, improves, or competes with the product.
 
-## Evidence standard
+The following do **not** qualify by themselves:
 
-Every entry must link to a primary source: the official proceedings page, DOI landing page, OpenReview record, arXiv record, or authors' artifact repository.
+- an arXiv-only preprint;
+- a title or abstract that merely mentions a product;
+- use of a Claude or GPT-family API model inside a custom scaffold;
+- use of the historical OpenAI Codex model without Codex CLI;
+- a citation, related-work mention, authoring acknowledgement, or artifact instruction.
 
-Reported results must be paraphrased accurately and accompanied by comparison caveats. Do not infer that a comparison is same-model or same-budget unless the paper explicitly establishes it.
+If formal acceptance, first-party full text, or product-level context cannot be verified, keep the record `pending` in the conference census and record the blocker. Do not promote it to `data/papers.yaml`.
 
-Use these values when the paper is unclear:
+## Primary-source policy
 
-```yaml
-same_model: unknown
-same_budget: unknown
-```
+Use sources in this order:
 
-## Adding a paper
+1. official conference or proceedings record;
+2. official conference OpenReview record;
+3. formal publisher or DOI landing page;
+4. author-maintained artifact for implementation details.
 
-1. Add one entry to `data/papers.yaml`.
-2. Use a stable identifier such as `short-title-year`.
-3. Record authors, identifiers, system name, artifact status, and publication date from primary sources.
-4. Assign one standardized `conference`, preserve the exact `venue`, and select every applicable `domain`.
-5. Choose the narrowest correct evidence class and comparison scope.
-6. Record where the supporting result appears in the paper.
-7. Run `make build` to regenerate README stats, both JSON exports, views, and paper dossiers.
-8. Run `make check` and `make site-check` before opening a pull request.
+An arXiv link may be preserved only as an auxiliary link. It never satisfies the main catalog's conference-source requirement. Blogs, search results, personal publication lists, and model cards are discovery aids, not evidence for acceptance or experimental claims.
 
-Do not manually edit content between either pair of `CATALOG:STATS` or `CATALOG:COVERAGE` markers in the READMEs. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are also generated.
+## Adding or correcting a paper
 
-## Required source checks
+1. Search `data/audit/2026-conference-census/` for the official-list record before creating a new one.
+2. Confirm the title, authors, conference, track, acceptance status, and primary URL against a first-party source.
+3. Check the paper body, tables, footnotes, appendix, supplement, and available artifact.
+4. Record exact product model strings and snapshots without shortening them.
+5. Record product/CLI version, reasoning mode, budgets, run count, tool permissions, and baseline configuration. Use `not-reported` or `unknown` only after checking all available primary material.
+6. Give a section, table, figure, appendix, or artifact path in `evidence.source_location`.
+7. Update the census disposition and reason. Add the paper to `data/papers.yaml` only after it passes the scope gate.
+8. Run `make build`, `make check`, and `make site-check`.
 
-- Confirm the paper title and authors against an official paper page or PDF.
-- Distinguish arXiv publication dates from final venue publication.
-- Use the standardized conference series only after acceptance is verified; otherwise use `arXiv` and keep the exact source in `venue`.
-- Select domains from `docs/taxonomy.md`; multiple domains are encouraged when the evidence genuinely crosses areas.
-- Confirm that an artifact repository is author-maintained before marking it `official`.
-- Record the exact CLI version and model when the paper or artifact reports them.
-- Identify whether the result is product-level, component-level, a configuration ablation, benchmark-only, or historical-model evidence.
-- Keep missing details as `not-reported`, `not-found`, or `unknown`; absence is useful data.
+Do not manually edit content between the `CATALOG:STATS` or `CATALOG:COVERAGE` markers in either README. Files under `papers/` and `views/`, plus `data/papers.json` and `website/data/catalog.json`, are generated from `data/papers.yaml`.
 
 ## Evidence classes
 
 - `direct`: a numeric head-to-head comparison with Claude Code or Codex CLI.
-- `related`: relevant product-level evidence, but not a clean numeric head-to-head.
-- `evaluation`: product evaluation without a proposed improvement method.
-- `historical`: pre-CLI OpenAI Codex model research.
+- `related`: relevant product-level or component evidence without a clean numeric head-to-head.
+- `evaluation`: a benchmark or empirical evaluation of the product without a proposed improvement method.
 
-## Product naming
+`direct` means a comparison exists; it does not mean the comparison is fair. Never infer same-model or same-budget parity. Preserve `unknown` and explain confounders in `evidence.caveats`.
 
-Use canonical identifiers:
+## Canonical product names
 
 - `claude-code`
 - `codex-cli`
-- `openai-codex-model` for historical model-only work
 
-Future products must be added to both `data/schema.json` and `docs/taxonomy.md` before use.
+Additional industrial products require an explicit scope decision plus coordinated updates to the schema, taxonomy, validators, website, and census workflow.
 
 ## Pull request checklist
 
-- [ ] The paper satisfies the inclusion criteria.
-- [ ] All quantitative claims match the cited primary source.
-- [ ] Model, version, budget, and tool details are recorded or marked unknown.
-- [ ] Author, identifier, publication, and artifact fields come from primary sources.
-- [ ] Conference, exact venue, and domains follow the catalog taxonomy.
-- [ ] The evidence location and comparison scope are recorded.
+- [ ] The paper passes every scope-gate condition.
+- [ ] The primary paper URL is an official 2026 conference source, not arXiv.
+- [ ] Product use is verified from full-text context rather than a name match.
+- [ ] Quantitative claims match the cited source location.
+- [ ] Exact model strings, version, budget, tools, and runs are recorded or explicitly unavailable.
+- [ ] Conference, venue, domains, classification, and comparison scope follow the taxonomy.
+- [ ] The conference census carries a matching disposition and reason.
 - [ ] Comparison caveats are explicit.
-- [ ] `make check` passes.
-- [ ] `make site-check` passes when the website or catalog changed.
-- [ ] No copyrighted PDF has been committed.
+- [ ] No copyrighted paper PDF has been committed.
+- [ ] `make check` and `make site-check` pass.

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type ProductId = "claude-code" | "codex-cli" | "openai-codex-model";
-type Classification = "direct" | "related" | "evaluation" | "historical";
+type ProductId = "claude-code" | "codex-cli";
+type Classification = "direct" | "related" | "evaluation";
 type EvidenceStrength = "high" | "medium" | "contextual";
 type Language = "en" | "zh";
 type ConferenceId =
@@ -92,7 +92,6 @@ const REPOSITORY_URL =
 const PRODUCT_LABELS: Record<ProductId, string> = {
   "claude-code": "Claude Code",
   "codex-cli": "Codex CLI",
-  "openai-codex-model": "Codex model",
 };
 
 const DOMAIN_LABELS: Record<Language, Record<DomainId, string>> = {
@@ -177,7 +176,6 @@ const copy = {
     direct: "Direct",
     related: "Related",
     evaluation: "Evaluation",
-    historical: "Historical",
     clear: "Clear filters",
     results: "matching papers",
     noResults: "No paper matches these filters.",
@@ -250,7 +248,6 @@ const copy = {
     direct: "直接对比",
     related: "相关方法",
     evaluation: "仅评测",
-    historical: "历史模型",
     clear: "清空筛选",
     results: "篇匹配论文",
     noResults: "没有论文符合当前筛选。",
@@ -288,13 +285,11 @@ const CLASS_LABELS: Record<Language, Record<Classification, string>> = {
     direct: "Direct comparison",
     related: "Related method",
     evaluation: "Evaluation",
-    historical: "Historical",
   },
   zh: {
     direct: "直接对比",
     related: "相关方法",
     evaluation: "仅评测",
-    historical: "历史模型",
   },
 };
 
@@ -410,7 +405,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
       direct: 0,
       evaluation: 1,
       related: 2,
-      historical: 3,
     };
     return papers
       .filter((paper) => {
@@ -720,7 +714,6 @@ export function CatalogExplorer({ papers, reviewedAt }: Props) {
               <option value="direct">{t.direct}</option>
               <option value="evaluation">{t.evaluation}</option>
               <option value="related">{t.related}</option>
-              <option value="historical">{t.historical}</option>
             </select>
           </label>
 

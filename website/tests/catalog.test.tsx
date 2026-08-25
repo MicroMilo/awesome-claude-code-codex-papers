@@ -126,6 +126,8 @@ test("ships GitHub Pages metadata without OpenAI hosting references", async () =
     html,
     /https:\/\/micromilo\.github\.io\/awesome-claude-code-codex-papers\/og\.png/,
   );
+  assert.match(html, /application\/ld\+json/);
+  assert.match(html, /"@type": "Dataset"/);
   assert.doesNotMatch(html, /chatgpt\.site|openai|vinext|wrangler/i);
   assert.match(
     insightsHtml,
@@ -136,6 +138,12 @@ test("ships GitHub Pages metadata without OpenAI hosting references", async () =
     /awesome-claude-code-codex-papers\/insights\//,
   );
   assert.doesNotMatch(insightsHtml, /chatgpt\.site|vinext|wrangler/i);
+
+  const sitemap = await readFile(
+    new URL("../dist/sitemap.xml", import.meta.url),
+    "utf8",
+  );
+  assert.match(sitemap, /awesome-claude-code-codex-papers\/insights\//);
 });
 
 test("site catalog mirrors the repository JSON export", async () => {

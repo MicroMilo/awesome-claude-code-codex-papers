@@ -551,8 +551,7 @@ h1 span {
   text-transform: uppercase;
 }
 
-.model-list [data-product="codex-cli"] span,
-.model-list [data-product="openai-codex-model"] span {
+.model-list [data-product="codex-cli"] span {
   color: #16616a;
 }
 

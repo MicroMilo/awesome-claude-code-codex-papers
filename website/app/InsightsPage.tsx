@@ -38,7 +38,6 @@ type Props = {
 const PRODUCT_LABELS: Record<Paper["products"][number]["product"], string> = {
   "claude-code": "Claude Code",
   "codex-cli": "Codex CLI",
-  "openai-codex-model": "Codex model",
 };
 
 const copy = {

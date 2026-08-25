@@ -35,7 +35,3 @@ not merely a model from the same vendor.
 | [SLDAgent](../papers/scaling-laws-2026.md) | ICLR Conference 2026 | Evaluation only | Discover symbolic scaling laws from experimental data with executable code agents. | high |
 | [Terminal-Bench 2.0](../papers/terminal-bench-2-2026.md) | ICLR Conference 2026 | Evaluation only | Evaluate industrial and open-source agents on realistic command-line tasks with executable tests. | high |
 | [ZeroRepo / RPG](../papers/rpg-zerorepo-2026.md) | ICLR Conference 2026 | Direct comparison | Repository-level codebase generation | high |
-## OpenAI Codex model (0)
-
-| System | Venue | Evidence class | Task | Strength |
-|---|---|---|---|---|

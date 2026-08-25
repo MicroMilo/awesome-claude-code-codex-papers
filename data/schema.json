@@ -7,7 +7,7 @@
   "required": ["catalog_version", "reviewed_at", "papers"],
   "properties": {
     "catalog_version": {
-      "const": 2
+      "const": 3
     },
     "reviewed_at": {
       "type": "string",
@@ -28,10 +28,10 @@
       "required": ["product", "role", "model", "version"],
       "properties": {
         "product": {
-          "enum": ["claude-code", "codex-cli", "openai-codex-model"]
+          "enum": ["claude-code", "codex-cli"]
         },
         "role": {
-          "enum": ["baseline", "evaluated", "host", "historical-baseline"]
+          "enum": ["baseline", "evaluated", "host"]
         },
         "model": {
           "type": "string",
@@ -178,13 +178,11 @@
             "conference",
             "workshop",
             "tool-demo",
-            "dataset-benchmark",
-            "journal",
-            "preprint"
+            "dataset-benchmark"
           ]
         },
         "classification": {
-          "enum": ["direct", "related", "evaluation", "historical"]
+          "enum": ["direct", "related", "evaluation"]
         },
         "system": {
           "type": "string",
@@ -347,8 +345,7 @@
                 "product-level",
                 "component-level",
                 "configuration-ablation",
-                "benchmark-only",
-                "historical-model"
+                "benchmark-only"
               ]
             },
             "source_location": {
