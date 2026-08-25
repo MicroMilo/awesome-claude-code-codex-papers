@@ -1,6 +1,6 @@
 PyYAML==6.0.2
 beautifulsoup4==4.15.0
 jsonschema==4.25.0
-pytest==8.4.1
+pytest==9.0.3
 requests==2.33.1
 ruff==0.12.9
